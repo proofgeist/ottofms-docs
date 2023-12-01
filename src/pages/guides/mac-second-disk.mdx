@@ -1,0 +1,35 @@
+# Using a second disk for backups.
+
+The security setup on the latest versions of macOS is very strict. By default applications do not get access to other hard disks. OttoFMS uses the FileMaker Server default backup location. If that location is on another disk you will have to give OttoFMS access to that disk using the macOS Security and Privacy settings.
+
+## How to give OttoFMS access to the backup disk.
+
+OttoFMS will need to be installed already. If you have not installed OttoFMS yet, please do so first. You may notice that OttoFMS won't seem to be running. That is because it can't access the backup folder.
+
+Here is how you give it access:
+
+1. Choose Apple menu  > System Preferences.
+2. Click Security & Privacy.
+3. Select the Privacy tab.
+4. Select Full Disk Access.
+5. You may see the OttoFMS executable already in the list. If so make sure it is enabled. If not, click the + button and add the OttoFMS executable. It is located in the OttoFMS `bin` folder in your Applications folder.
+   - Depending on the version of Otto, the name of the executable will be either `otto-macos` or `otto-macos-x64` or `otto-mac-arm64`.
+6. [Restart Otto](/managing-ottofms#starting-stopping-and-restarting)
+
+### Screenshot.
+
+![macOS Security and Privacy](/img/sec-priv.png)
+
+## Signs that OttoFMS does not have access to the backup disk.
+
+### Migrations fail with a permission error.
+
+If you upgrade OttoFMS or FileMaker Server or the Mac os operating system, and suddenly migrations stop working with a permission error, it is likely that OttoFMS does not have access to the backup disk.
+
+### OttoFMS does not start.
+
+After installing Otto, you can't reach the OttoFMS web interface. If you check the stderr.log file in Otto's log folder you will see an error like this:
+
+```
+Error: EPERM: operation not permitted, mkdir '/Volumes/Backup/FMS Backups/_Otto_'
+```

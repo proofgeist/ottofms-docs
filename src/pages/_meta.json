@@ -1,0 +1,47 @@
+{
+	"index": "Introduction",
+	"---": {
+		"title": "",
+		"type": "separator"
+	},
+	"beta": "Currently in Beta",
+	"changes-from-3": "Major changes from Otto 3",
+	"----": {
+		"title": "",
+		"type": "separator"
+	},
+	"getting-started": "Getting Started",
+	"concepts": "Concepts",
+	"guides": "Guides",
+
+	"-- OttoFMS": {
+		"title": "OttoFMS",
+		"type": "separator"
+	},
+	"ottofms": "Overview",
+	"managing-ottofms": "Managing OttoFms",
+	"otto-console": "OttoFMS Web Console",
+	"dev-api": {
+		"title": "Developer API",
+		"href": "/apidoc",
+		"newWindow": true
+	},
+	"ottofms-changelog": "Version History",
+	"known-issues": "Known Issues",
+	"-- OttoDeploy": {
+		"title": "OttoDeploy",
+		"type": "separator"
+	},
+	"ottodeploy": "Overview",
+	"ottodeploy-ui": "OttoDeploy UI",
+	"hybrid-app": "Hybrid App",
+	"otto-deploy-changelog": "Version History",
+	"-- More": {
+		"title": "More",
+		"type": "separator"
+	},
+	"license": "License",
+	"tech-specs": "Tech Specs",
+	"usage-data": "Usage Data",
+	"support": "Support"
+}

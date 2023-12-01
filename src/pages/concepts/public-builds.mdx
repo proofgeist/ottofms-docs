@@ -1,0 +1,48 @@
+import { FileTree, Steps } from "nextra/components";
+
+# Public Builds
+
+Public builds are builds that are hosted on a webserver and are accessible to anyone. They are used to distribute your app to your users. How widely you distribute your app is up to you. You can distribute it to a small group of testers, or you can distribute it to the entire world.
+
+<Steps>
+### Use Otto Deploy to configure your build.
+OttoDeploy's build interface walks you through the process of choosing the files to include you build, whether to clone or copy them, and how to run a script before the build to prepare your files.
+
+### Run the build
+
+Kick off the Build with OttoDeploy. OttoFms will process the files according to your configuration and create a zip archive of the build.
+
+### Download the build
+
+Use OttoDeploy to download the build. Unzip the archive and extract the manifest.json file. Leave the archvie intact. You will need it both the manifest.json file and the archive to distribute your build.
+
+### Upload the build to a webserver
+
+Upload the build to a webserver. You can use any webserver you like. You can use a service like AWS S3, or you can use your own webserver. The only requirement is that the files are accessible via a url. See the example File system below for the best practices for hosting your public builds.
+
+</Steps>
+
+## Webserver File System Example
+
+You place the zip archive and the manifest.json file next to each other on a webserver. You would use a structure like this to host your public builds.
+
+<FileTree>
+	<FileTree.Folder open={true} name="web-accessbile-folder" defaultOpen>
+		<FileTree.Folder open={true} name="MyApp_v1.0.1">
+			<FileTree.File name="manifest.json" />
+			<FileTree.File name="MyApp_v1.0.1.zip" />
+		</FileTree.Folder>
+		<FileTree.Folder open={true} name="MyApp_v1.1.0">
+			<FileTree.File name="manifest.json" />
+			<FileTree.File name="MyApp_v1.1.0.zip" />
+		</FileTree.Folder>
+		<FileTree.Folder open={true} name="MyApp_v2.1.0">
+			<FileTree.File name="manifest.json" />
+			<FileTree.File name="MyApp_v2.0.0.zip" />
+		</FileTree.Folder>
+	</FileTree.Folder>
+</FileTree>
+
+If the url to your web-accessible folder is `https://myserver.com/public-builds`, then the url to the first build would be `https://myserver.com/public-builds/MyApp_v1.0.1/manifest.json`.
+
+OttoDeploy and SimpleQ are both available as public builds.

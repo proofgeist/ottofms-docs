@@ -1,0 +1,10 @@
+{
+	"dashboard": "Dashboard",
+	"deployments": "Deployments",
+	"file-manager": "File Manager",
+	"api-keys": "API Keys",
+	"webhooks": "Webhooks",
+	"filemaker-server": "FileMaker Server",
+	"logs": "Logs",
+	"settings": "Settings"
+}

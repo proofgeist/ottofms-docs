@@ -1,0 +1,35 @@
+{
+	"name": "ottofms-docs",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"known-issues": "pnpx tsx ./scripts/build-known-issues",
+		"dev": "next dev -p 3063",
+		"build": "pnpm known-issues && next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@tabler/icons-react": "^2.42.0",
+		"@types/qs": "^6.9.10",
+		"autoprefixer": "10.4.15",
+		"dotenv": "^16.3.1",
+		"next": "^14.0.1",
+		"nextra": "^2.13.2",
+		"nextra-theme-docs": "^2.13.2",
+		"postcss": "8.4.29",
+		"qs": "^6.11.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"tailwindcss": "3.3.3",
+		"typescript": "^5.3.2"
+	},
+	"devDependencies": {
+		"@types/node": "20.6.0",
+		"@types/react": "^18.2.39",
+		"@types/react-dom": "^18.2.17",
+		"eslint": "8.49.0",
+		"eslint-config-next": "13.5.3",
+		"eslint-plugin-mdx": "^2.2.0"
+	}
+}

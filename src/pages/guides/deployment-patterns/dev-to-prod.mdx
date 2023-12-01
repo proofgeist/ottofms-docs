@@ -1,0 +1,71 @@
+import { Steps } from "nextra/components";
+
+## Dev to Prod
+
+This is the simplest and most common deployment pattern. Business that run on custom FileMaker Applications often have a development server and production server. This deployment pattern is used to move changes made on the development server to the production server.
+
+## Overview
+
+This deployment doesn't need the Advanced options. It uses a single deployment to move the files from the development server to the production server and migrate the data from production to development.
+
+### Two servers
+
+This guide assumes that you have a both a production and development server setup and your FileMaker files are hosted on both servers.
+
+### Single server variation
+
+You can use a single server for both development and production. This is simple if your FileMaker application is entirely contained in a single file, as all you have to do is have two copies of the file on the server, one for development and one for production. You will need to name the files differently. The most common approach is to add a suffix to the dev file name, such as `MyApp_DEV.fmp12`.
+
+If your FileMaker application is split into multiple files then it will be easier to use two servers.
+
+## Steps
+
+<Steps>
+### Open OttoDeploy
+Open your copy of OttoDeploy.  If you haven't installed it on your FileMaker Server do that now.
+
+### Create a deployment
+
+On the OttoDeploy List View click the "Create Deployment" button.
+
+### Choose servers
+
+Choose or create your servers. The 'Source' server should be where your development files are hosted. The 'Destination' server should be where your production files are hosted.
+
+As noted above they can be the same server.
+
+### Configure the default options
+
+Make sure you enter the user name and password for the files. The accounts needs to be a `FULL_ACCESS` account, or it need to have the `migration` extended privilege set.
+
+The default for the rest of the options should be fine. It will use accounts from the destination or in this case production server, which is almost certainly what you want.
+
+### Choose files
+
+Choose the files you want to deploy. You can choose multiple files.
+
+In the single file variation you will need to change the FileName on Destination, most likely remove the `_Dev` suffix.
+
+### Choose "Migrate" as the operation.
+
+You will want to choose `Migrate` as the operation. This will copy the files from the source to the destination and then migrate the data from the destination to the source.
+
+If `migrate` isn't available you may not have the same file on both servers. Make sure you have the same files on both servers.
+
+### Additional operations
+
+#### Close additional files
+
+Choose any additional files that should be closed on the destination server. Read more about [closing additional files](/concepts/close-additional-files).
+
+#### Post migration scripts
+
+Setup and choose your post migration script. See the [Post Deployment Scripts](/concepts/post-deployment-scripts) for more information.
+
+### Review and deploy
+
+Click review and deploy to validate your setup. Correct any errors that are highlited.
+
+Click "Start Now" or schedule for later to kick your deployment
+
+</Steps>

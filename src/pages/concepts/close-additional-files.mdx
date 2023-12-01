@@ -1,0 +1,24 @@
+# Close additional files
+
+## Why?
+
+During a deployment, files that are on the destination server that are part of the deployment will be closed automatically. However if there are additional files on the server that might have external file references to the files being deployed, then these files will not be closed.
+
+This presents at least two problems:
+
+- Users may inadvertently open the related files which will then try to open the files being deployed. As these files are closed they will not be available and the user will get an error.
+- Server side scripts may do the same thing. They may try to pull open files that are closed as part of the deployment; again leading to an error.
+
+## How to prevent this
+
+You can teach the deployment about other files that should be closed as part of the deployment. See below.
+
+If the file in question fail to close, the entire deployment will abort.
+
+### OttoDeploy
+
+OttoDeploy's deployment interface lets you choose a list of other files to close as part of the deployment. This is done in the `Additional Options` section of a deplopment.
+
+### Developer API
+
+The [OttoFms Developer Api](/apidoc#tag/Deployment/operation/PostOttoApiDeployment) can take a `close` `fileOperation` parameter. You can use that instead of the other options; `replace`, `install`, or `migrate`.
