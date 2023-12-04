@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useConfig, useTheme } from "nextra-theme-docs";
 import { Footer } from "./src/components/footer";
-import { OttoFmsLogo } from "@/components/logos/ottofms";
+import { OttoFMSLogo } from "@/components/logos/ottofms";
 function getBaseUrl() {
   const productionUrl = "https://docs.ottofms.com";
   const localDevUrl = "http://localhost:3063";
@@ -27,7 +27,7 @@ function Head() {
       <meta property="og:url" content={url} />
       <meta
         property="og:description"
-        content={frontMatter.description || "OttoFms Documentation"}
+        content={frontMatter.description || "OttoFMS Documentation"}
       />
     </>
   );
@@ -45,7 +45,7 @@ function Logo() {
         justifyContent: "space-between",
       }}
     >
-      <OttoFmsLogo scale={0.55} />
+      <OttoFMSLogo scale={0.55} />
     </div>
   );
 }
@@ -65,13 +65,13 @@ const config = {
     key: "ottofms-beta-release",
     text: (
       <a href="/beta" target="_blank">
-        OttoFms is in beta. 🛑 Do not use in production. 🛑 Read more →
+        OttoFMS is in beta. 🛑 Do not use in production. 🛑 Read more →
       </a>
     ),
   },
   useNextSeoProps() {
     return {
-      titleTemplate: `%s | OttoFms`,
+      titleTemplate: `%s | OttoFMS`,
     };
   },
 };

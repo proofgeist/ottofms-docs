@@ -10,18 +10,18 @@ Rather then creating a another way to schedule actions on a FileMaker Server, Ot
 
 ## How does it work?
 
-When you send a deployment to OttoFms it looks for a timestamp property. If it finds a valid timestamp, it will create a system script schedule on the FileMaker Server that will trigger the deployment at the specified time.
+When you send a deployment to OttoFMS it looks for a timestamp property. If it finds a valid timestamp, it will create a system script schedule on the FileMaker Server that will trigger the deployment at the specified time.
 
 We generate a name for schedule, but this name can be changed. If you need to change information about a schedule after it has been setup, you can edit the scheduled time and name from the FileMaker Server Admin Console.
 
 <Callout type="warning">
-	Editing the selected system script or the script parameters will break the
-	schedule, ensure that they are not changed if you edit the name or scheduled
-	time.
+  Editing the selected system script or the script parameters will break the
+  schedule, ensure that they are not changed if you edit the name or scheduled
+  time.
 </Callout>
 
 <Callout type="warning">
-	Running two schedules at the same time will cause one of the two to fail.
-	Ensure that your schedules have enough buffer time between them for the entire
-	deployment to run before another deployment begins.
+  Running two schedules at the same time will cause one of the two to fail.
+  Ensure that your schedules have enough buffer time between them for the entire
+  deployment to run before another deployment begins.
 </Callout>

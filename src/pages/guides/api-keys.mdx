@@ -5,7 +5,7 @@ import { Bleed } from "nextra-theme-docs";
 
 ## Introduction
 
-OttoFms provides an Api Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing you need to do to use the Data API. Without Otto you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFms you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. Otto will handle the token exchange and updating for you.
+OttoFMS provides an Api Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing you need to do to use the Data API. Without Otto you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. Otto will handle the token exchange and updating for you.
 
 The API Key can be safely given to 3rd party integrations and services to access your FileMaker data without giving them access to your FileMaker user name and password.
 
@@ -13,7 +13,7 @@ The API Key can be safely given to 3rd party integrations and services to access
 
 **Before you begin you should check off everything in this list:**
 
-- [ ] OttoFms is running on a FileMaker server version 19.6 or later
+- [ ] OttoFMS is running on a FileMaker server version 19.6 or later
 - [ ] FileMaker Data API is enabled on the server
 - [ ] The FileMaker file you want to access is hosted on the server
 - [ ] You have a user name and password for the file that has the correct privilege set to access the Data API
@@ -26,8 +26,8 @@ If you don't have this checklist completed, you may struggle with the steps belo
 Once you sure your server is ready, create an API Key, by following these steps.
 
 <Steps>
-### Login to OttoFms
-Login to the [OttoFms web console](/otto-console).
+### Login to OttoFMS
+Login to the [OttoFMS web console](/otto-console).
 
 ### Navigate to Api Keys
 
@@ -59,11 +59,11 @@ You have successfully created an API Key. You can now use this API Key to access
 ### Use a different url
 
 <Callout type="info">
-	**Important** You will need to use a slightly different url when access the
-	data api with a an API Key.
+  **Important** You will need to use a slightly different url when access the
+  data api with a an API Key.
 </Callout>
 
-Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFms and it will be able to use the Api Key
+Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it will be able to use the Api Key
 
 For example, change this url path:
 
@@ -78,8 +78,8 @@ to this path
 ```
 
 <Callout type="warning">
-	**File extension matters** Always add `.fmp12` to the end of the database name
-	in the url.
+  **File extension matters** Always add `.fmp12` to the end of the database name
+  in the url.
 </Callout>
 
 ### Authentication
@@ -101,18 +101,18 @@ Here is a video that shows how to create an API Key and use it to make a request
 ---
 
 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-	<iframe
-		src="https://player.vimeo.com/video/890122764?h=b8586bf005&amp;badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479"
-		frameborder="0"
-		allow="autoplay; fullscreen; picture-in-picture"
-		title="OttoFms"
-		style={{
-			position: "absolute",
-			top: 0,
-			left: 0,
-			width: "100%",
-			height: "100%",
-		}}
-	></iframe>
+  <iframe
+    src="https://player.vimeo.com/video/890122764?h=b8586bf005&amp;badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    title="OttoFMS"
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+  ></iframe>
 </div>
 <script src="https://player.vimeo.com/api/player.js"></script>

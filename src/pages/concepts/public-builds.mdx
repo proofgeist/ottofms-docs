@@ -10,7 +10,7 @@ OttoDeploy's build interface walks you through the process of choosing the files
 
 ### Run the build
 
-Kick off the Build with OttoDeploy. OttoFms will process the files according to your configuration and create a zip archive of the build.
+Kick off the Build with OttoDeploy. OttoFMS will process the files according to your configuration and create a zip archive of the build.
 
 ### Download the build
 
@@ -27,20 +27,20 @@ Upload the build to a webserver. You can use any webserver you like. You can use
 You place the zip archive and the manifest.json file next to each other on a webserver. You would use a structure like this to host your public builds.
 
 <FileTree>
-	<FileTree.Folder open={true} name="web-accessbile-folder" defaultOpen>
-		<FileTree.Folder open={true} name="MyApp_v1.0.1">
-			<FileTree.File name="manifest.json" />
-			<FileTree.File name="MyApp_v1.0.1.zip" />
-		</FileTree.Folder>
-		<FileTree.Folder open={true} name="MyApp_v1.1.0">
-			<FileTree.File name="manifest.json" />
-			<FileTree.File name="MyApp_v1.1.0.zip" />
-		</FileTree.Folder>
-		<FileTree.Folder open={true} name="MyApp_v2.1.0">
-			<FileTree.File name="manifest.json" />
-			<FileTree.File name="MyApp_v2.0.0.zip" />
-		</FileTree.Folder>
-	</FileTree.Folder>
+  <FileTree.Folder open={true} name="web-accessbile-folder" defaultOpen>
+    <FileTree.Folder open={true} name="MyApp_v1.0.1">
+      <FileTree.File name="manifest.json" />
+      <FileTree.File name="MyApp_v1.0.1.zip" />
+    </FileTree.Folder>
+    <FileTree.Folder open={true} name="MyApp_v1.1.0">
+      <FileTree.File name="manifest.json" />
+      <FileTree.File name="MyApp_v1.1.0.zip" />
+    </FileTree.Folder>
+    <FileTree.Folder open={true} name="MyApp_v2.1.0">
+      <FileTree.File name="manifest.json" />
+      <FileTree.File name="MyApp_v2.0.0.zip" />
+    </FileTree.Folder>
+  </FileTree.Folder>
 </FileTree>
 
 If the url to your web-accessible folder is `https://myserver.com/public-builds`, then the url to the first build would be `https://myserver.com/public-builds/MyApp_v1.0.1/manifest.json`.
