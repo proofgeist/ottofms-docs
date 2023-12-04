@@ -8,24 +8,24 @@ if (!process.env.VERCEL) config();
 main().then(() => console.log("done"));
 
 async function main() {
-  const ottofmstable = await getOttFMSKNownIssuesMD();
+  const ottoFMSTable = await getOttFMSKnownIssuesMD();
 
   const md = `
 
  # Known Issues
 	Here are all the known issues with OttoFMS.
 	
-	${ottofmstable}
+	${ottoFMSTable}
 	`;
 
   writeFileSync(join(__dirname, "..", "src", "pages", "known-issues.mdx"), md);
 }
 
-async function getOttFMSKNownIssuesMD() {
+async function getOttFMSKnownIssuesMD() {
   const data = await getOttoFMSTasks();
 
   const header = `
-| name   | status | description |
+| Name   | Status | Description |
 | :----- | :----: | :---- |`;
 
   const rows = data.map((issue) => {

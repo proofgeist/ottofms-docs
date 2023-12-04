@@ -12,16 +12,16 @@ The destination server will then run the deployment right away or at a scheduled
 
 ## Scheduled Deployments
 
-In Otto 3 Scheduled deployments where run by Migrator.fmp12. They were not part of the old migration definition. That had some weird constraints such as requiring the Migrator.fmp12 file to be hosted on the same server that was doing the migration.
+In Otto v3, scheduled deployments were run by Migrator.fmp12. They were not part of the old migration definition. That had some weird constraints such as requiring the Migrator.fmp12 file to be hosted on the same server that was doing the migration.
 
-Now the "Deployment Definition" includes the scheduling. The Deployment is sent to the target server, and that server will schedule the deployment to run at the specified time. OttoDeploy ( the new Migrator )
+Now the "Deployment Definition" includes the scheduling. The Deployment is sent to the target server, and that server will schedule the deployment to run at the specified time. OttoDeploy (the new Migrator)
 doesn't need to be running anywhere specific.
 
 ## Deployments
 
-This is new. In Otto 3, if a deployment failed, it would leave the target file set in a bad state Some files will be new others will be unchanged. In OttoFMS, if a deployment fails, the target file set will be reverted to the state it was in before the deployment started.
+This is new. In Otto v3, if a deployment failed, it would leave the target file set in a bad state. Some files would be new, others would be unchanged. In OttoFMS, if a deployment fails, the target file set will be reverted to the state it was in before the deployment started.
 
-## Simple Vs Advanced
+## Simple vs Advanced
 
 See the OttoDeploy documentation for how to turn on Advanced options.
 
@@ -37,13 +37,13 @@ If you are a vertical market solution provider, or you want to incorporate a sta
 
 ## Sub-deployments
 
-Turning on Advanced in OttoDeploy, gives you access to sub-deployments. Sub-deployments are a way to break up a deployment into smaller sets of files. The most common case for this is if you need to upgrade many copies of a single solution running on a server. For example, if you have 10 copies of a solution running on a server, you can create a sub-deployment for each copy.
+Turning on Advanced in OttoDeploy gives you access to sub-deployments. Sub-deployments are a way to break up a deployment into smaller sets of files. The most common case for this is if you need to upgrade many copies of a single solution running on a server. For example, if you have 10 copies of a solution running on a server, you can create a sub-deployment for each copy.
 
 There are a few benefits to using a sub-deployments over a single deployment:
 
 - If one sub-deployment fails the other deployments will not be reverted.
-  - This behavior can be slightly adjusted using the abortRemaining option, which will stop all remaining deployments if one deployment in the set fails. (ie. if you have a 5 sub-deployments with the abortRemaining option set and sub-deployment 3 fails to complete, sub-deployments 4 and 5 will be aborted)
-- Sub-deployments can use multiple different sources for the files, allowing you to run a set of 5 sub-deployments from 5 different sources, whereas in OttoFMS 3 you needed to run 5 separate migrations.
+  - This behavior can be slightly adjusted using the "Abort Remaining" option, which will stop all remaining deployments if one deployment in the set fails. (ie. if you have a 5 sub-deployments with the "Abort Remaining" option set and sub-deployment 3 fails to complete, sub-deployments 4 and 5 will not be run)
+- Sub-deployments can use multiple different sources for the files, allowing you to run a set of 5 sub-deployments from 5 different sources, whereas in Otto v3 you needed to run 5 separate migrations.
 
 ### What sub-deployments can't do
 
@@ -54,11 +54,11 @@ Sub-deployments can't target different Destination Servers. A sub-deployment can
 ## Relationship to Builds
 
 <Callout type="info">
-  One of the biggest changes between OttoFMS and OttoV3 is that you can now
+  One of the biggest changes between OttoFMS and Otto v3 is that you can now
   separate the process of creating a build from the process of deploying a
   build. This allows you to create a build once, and then deploy it many times.
   This is useful if you have a vertical market solution that you want to deploy
   to many different customers.
 </Callout>
 
-Deployments use [Builds](/concepts/builds) as the source of the new files that are being moved onto a server. If you are just doing a simple deployment you don't need to worry about builds. A build is created 'just in time' for you behind the scenes. But in the more advanced cases, you will want to create a build first, and then use that build in your deployment. This advanced set of features is accessed by turning on the Advanced options in OttoDeploy.
+Deployments use [Builds](/concepts/builds) as the source of the new files that are being moved onto a server. If you are just doing a simple deployment you don't need to worry about builds. A build is created 'just in time' for you behind the scenes. But in the more advanced cases, you will want to create a build first, and then use that build in your deployment. This advanced set of features is accessed by turning on Advanced options in OttoDeploy.

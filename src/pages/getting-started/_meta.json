@@ -1,5 +1,5 @@
 {
-	"install-mac-win": "Install: Mac or windows",
-	"install-linux": "Install: Linux",
-	"running-first-deployment": "Running your First Deployment"
+  "install-mac-win": "Install: Mac or Windows",
+  "install-linux": "Install: Linux",
+  "running-first-deployment": "Running your First Deployment"
 }

@@ -9,14 +9,14 @@ If you are using `DEV`, `STAGE`, and `PROD` servers, this pattern will be intere
 How do we keep the staging server up to date with the latest code from the `DEV` server and the latest production data from the `PROD` server?
 
 <Callout>
-	This pattern will move **all the data** from the `PROD` server to the `STAGE`
-	server. This may not be what you want. If you want to move only some of the
-	data, that is more complicated.
+  This pattern will move **all the data** from the `PROD` server to the `STAGE`
+  server. This may not be what you want. If you want to move only some of the
+  data, that is more complicated.
 </Callout>
 
 ## Solution
 
-Use two sub-deployments, one to pull the production data from the `PROD` server to `STAGE` and one to pull the latest code from the `DEV` server. Set the `Abort remaining sub-deployments` option to on. That way, if the first deployment fails, the second one will not run.
+Use two sub-deployments, one to pull the production data from the `PROD` server to `STAGE` and one to pull the latest code from the `DEV` server. Switch on the `Abort remaining sub-deployments` option. That way, if the first deployment fails, the second one will not run.
 
 ### Advanced options
 

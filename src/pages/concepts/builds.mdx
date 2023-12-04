@@ -36,7 +36,7 @@ When OttoFMS receives a request to create a build, it will run the following ste
 
 - Run the pre-build script (if configured). This is an opportunity to do anything you want before the build begins.
 - Each file listed in the `files` property of the payload will either be cloned or copied into a new folder in the OttoFMS `outbox` directory.
-- a manifest.json file is created with information about the build, that is used by OttoFMS to install the build, or use it as the schema source of a migration.
+- A manifest.json file is created with information about the build, that is used by OttoFMS to install the build, or use it as the schema source of a migration.
 - The new `build` folder is zipped up and the archive is named with the build ID.
 
 ## Configure Builds with OttoDeploy
@@ -50,11 +50,11 @@ OttoDeploy has a user interface for configuring builds. You can access this by c
   there are no errors.
 </Callout>
 
-## Just in time Builds
+## Just in Time Builds
 
-Deployments can be configured to create a build just before the deployment begins. This is in fact what happens when you use the Simple Settings to run a Simple Deployment. Under the hood we call this a "just in time" Build.
+Deployments can be configured to create a build just before the deployment begins. This is in fact what happens when you use the Simple Settings to run a Simple Deployment. Under the hood we call this a "just in time" build.
 
-This type of deployment is the most similar to how things work in Otto 3 and earlier.
+This type of deployment is the most similar to how things work in Otto v3 and earlier.
 
 You can see this in [OttoFMS Developer API documentation for starting a deployment](/apidoc#tag/Deployment/operation/PostOttoApiDeployment). The `deployments[0]source` property of the payload can be one of several options including `otto4jit`. That option tells OttoFMS to create a build on the source server before starting the rest of deployment. Once the build is done, OttoFMS fetches the newly creating build and uses it as the source for the deployment.
 

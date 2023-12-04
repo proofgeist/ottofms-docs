@@ -5,21 +5,21 @@ import { Bleed } from "nextra-theme-docs";
 
 ## Introduction
 
-OttoFMS provides an Api Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing you need to do to use the Data API. Without Otto you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. Otto will handle the token exchange and updating for you.
+OttoFMS provides an API Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing you need to do to use the Data API. Without OttoFMS you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. OttoFMS will handle the token exchange and updating for you.
 
-The API Key can be safely given to 3rd party integrations and services to access your FileMaker data without giving them access to your FileMaker user name and password.
+The API Key can be safely given to 3rd party integrations and services to access your FileMaker data without giving them access to your FileMaker username and password.
 
 ## Before you begin
 
 **Before you begin you should check off everything in this list:**
 
 - [ ] OttoFMS is running on a FileMaker server version 19.6 or later
-- [ ] FileMaker Data API is enabled on the server
-- [ ] The FileMaker file you want to access is hosted on the server
-- [ ] You have a user name and password for the file that has the correct privilege set to access the Data API
-- [ ] You are be able to make Data APIrRequest the native way without using an API Key.
+- [ ] The FileMaker Data API is enabled on the server
+- [ ] The FileMaker File you want to access is hosted on the server
+- [ ] You have a username and password for the file that has the correct privilege set to access the Data API
+- [ ] You are be able to make Data API Request the native way without using an API Key.
 
-If you don't have this checklist completed, you may struggle with the steps below
+If you don't have this checklist completed, you may struggle with the steps below.
 
 ## Create an API Key
 
@@ -29,24 +29,24 @@ Once you sure your server is ready, create an API Key, by following these steps.
 ### Login to OttoFMS
 Login to the [OttoFMS web console](/otto-console).
 
-### Navigate to Api Keys
+### Navigate to API Keys
 
-Navigate to the [Api Keys page](/otto-console/api-keys) in the web console.
+Navigate to the [API Keys page](/otto-console/api-keys) in the web console.
 
 ### Create a new API Key
 
 Click the "Create API Key" button in the upper left to create a new API Key.
-![New Api Key Button](/img/ottofms/guides/new-api-key-button.png)
+![New API Key Button](/img/ottofms/guides/new-api-key-button.png)
 
 ### Fill out the form
 
 Fill out the form in the modal dialog that pops ups. When you have entered everything correctly click the Create Button. If you have everything configured correctly and you have the right user name and password, you won't get an error.
-![New Api Key Form](/img/ottofms/guides/new-api-key-form.png)
+![New API Key Form](/img/ottofms/guides/new-api-key-form.png)
 
 ### Copy the API Key
 
 If you have everything correct you will be able to copy the newly created API Key.
-![New Api Key Form](/img/ottofms/guides/copy-api-key.png)
+![New API Key Form](/img/ottofms/guides/copy-api-key.png)
 
 ### Success
 
@@ -63,7 +63,7 @@ You have successfully created an API Key. You can now use this API Key to access
   data api with a an API Key.
 </Callout>
 
-Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it will be able to use the Api Key
+Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it will be able to use the API Key
 
 For example, change this url path:
 

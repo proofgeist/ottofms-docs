@@ -1,4 +1,4 @@
-# Using a second disk for backups.
+# Using a second disk for backups
 
 The security setup on the latest versions of macOS is very strict. By default applications do not get access to other hard disks. OttoFMS uses the FileMaker Server default backup location. If that location is on another disk you will have to give OttoFMS access to that disk using the macOS Security and Privacy settings.
 
@@ -22,13 +22,13 @@ Here is how you give it access:
 
 ## Signs that OttoFMS does not have access to the backup disk.
 
-### Migrations fail with a permission error.
+### Deployments fail with a permission error.
 
-If you upgrade OttoFMS or FileMaker Server or the Mac os operating system, and suddenly migrations stop working with a permission error, it is likely that OttoFMS does not have access to the backup disk.
+If you upgrade OttoFMS or FileMaker Server or the Mac os operating system, and suddenly deployments stop working with a permission error, it is likely that OttoFMS does not have access to the backup disk.
 
 ### OttoFMS does not start.
 
-After installing Otto, you can't reach the OttoFMS web interface. If you check the stderr.log file in Otto's log folder you will see an error like this:
+If you can't reach the OttoFMS web interface after install, check the stderr.log file in Otto's log folder. If you see an error like this it is a sign that you have a second disk permissions error:
 
 ```
 Error: EPERM: operation not permitted, mkdir '/Volumes/Backup/FMS Backups/_Otto_'
