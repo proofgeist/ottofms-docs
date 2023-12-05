@@ -8,7 +8,7 @@ export type KnownIssue = {
   tags: string[];
 };
 
-export async function getOttoFMSTasks() {
+export async function getOttoFmsTasks() {
   const query = {
     archived: "false",
     tags: ["known-issue"],

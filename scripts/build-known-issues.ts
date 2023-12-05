@@ -1,6 +1,6 @@
 import { write, writeFileSync } from "fs";
 import { join } from "path";
-import { getOttoFMSTasks } from "./clickup";
+import { getOttoFmsTasks } from "./clickup";
 import { config } from "dotenv";
 
 if (!process.env.VERCEL) config();
@@ -13,7 +13,7 @@ async function main() {
   const md = `
 
  # Known Issues
-	Here are all the known issues with OttoFMS.
+	Here are all the known issues with OttoFms.
 	
 	${ottoFMSTable}
 	`;
@@ -22,7 +22,7 @@ async function main() {
 }
 
 async function getOttFMSKnownIssuesMD() {
-  const data = await getOttoFMSTasks();
+  const data = await getOttoFmsTasks();
 
   const header = `
 | Name   | Status | Description |
