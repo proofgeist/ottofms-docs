@@ -2,51 +2,51 @@ import { Callout } from "nextra/components";
 
 # Coming from Otto v3?
 
-This document is for people who are familiar with Otto v3 and want to know what's changed in OttoFms and OttoDeploy. If you have never used Otto v3 before you can safely skip this section of the documentation.
+This document is for people who are familiar with Otto v3 and want to know what's changed in OttoFMS and OttoDeploy. If you have never used Otto v3 before you can safely skip this section of the documentation.
 
 <Callout type="warning">
   **Please read everything** on this page before you rush to switch from Otto v3
-  to OttoFms. While we want you to switch eventually, OttoFms is currently in
+  to OttoFMS. While we want you to switch eventually, OttoFMS is currently in
   [beta](/beta) and even when it is released it will not have all the features
   of Otto v3 right away. If you are using Otto v3 in production you should
-  continue to use it until OttoFms has all the features you need.
+  continue to use it until OttoFMS has all the features you need.
 </Callout>
 
-## OttoFms will be free
+## OttoFMS is Free
 
-OttoFms and OttoDeploy will be **free forever** as long as you abide by the terms of the [license agreement](/license). This is a change from Otto v3 which was a paid product. We are making this change because we want to make it as easy as possible for people to use OttoFms and OttoDeploy.
+OttoFMS and OttoDeploy will be **free forever** as long as you abide by the terms of the [license agreement](/license). This is a change from Otto v3 which was a paid product. We are making this change because we want to make it as easy as possible for people to use OttoFMS and OttoDeploy.
 
 ## Tech Support changes
 
-Otto v3 includes free email based tech support. OttoFms is a free product and as such does not include free email based tech support. Free support is provide via a community forum. Paid support is available. Learn more on the [support page](/support).
+Otto v3 included free email based tech support. OttoFMS is a free product and as such does not include free email based tech support. Free support is provide via a community forum. Paid support is available. Learn more on the [support page](/support).
 
 ## Tech specs
 
-OttoFms requires FileMaker 19.6 or later. It runs on any OS supported by FileMaker Server 19.6 or greater.
+OttoFMS requires FileMaker 19.6 or later. It runs on any OS supported by FileMaker Server 19.6 or greater.
 
 ## Same features, new names
 
-OttoFms and and OttoDeploy take the place of Otto and Migrator.fmp12. We changed the names because we felt that the new names were a better description of what each product does and where it is installed and runs.
+OttoFMS and and OttoDeploy take the place of Otto and Migrator.fmp12. We changed the names because we felt that the new names were a better description of what each product does and where it is installed and runs.
 
-OttoFms and OttoDeploy are complete, from the ground up, rewrites of Otto v3 and Migrator.fmp12. They are not compatible with Otto v3 or Migrator.fmp12.
+OttoFMS and OttoDeploy are complete, from the ground up, rewrites of Otto v3 and Migrator.fmp12. They are not compatible with Otto v3 or Migrator.fmp12.
 
-### OttoFms
+### OttoFMS
 
-OttoFms, like Otto v3 and earlier, runs on your FileMaker Server, hence the "FMS" in the name. It provides the Dev Ops and runtime features which supercharge your development practices and your FileMaker based applications.
+OttoFMS, like Otto v3 and earlier, runs on your FileMaker Server, hence the "FMS" in the name. It provides the Dev Ops and runtime features which supercharge your development practices and your FileMaker based applications.
 
 ### OttoDeploy.fmp12
 
 OttoDeploy.fmp12 takes the place of Migrator.fmp12. "Data Migration" describes only one part of what Migrator was doing. Really what it was doing was deploying FileMaker files from one server to another. Deploying files is a much more accurate description of what was going on so we changed the name.
 
-OttoDeploy is now the place where you configure your "Deployments" and send them off to OttoFms to do it's thing.
+OttoDeploy is now the place where you configure your "Deployments" and send them off to OttoFMS to do it's thing.
 
 ## Highlighted changes
 
-OttoFms and OttoDeploy have roughly the same feature set as the applications they replace but they have been much improved and expanded. Here is a list of some of the most important changes.
+OttoFMS and OttoDeploy have roughly the same feature set as the applications they replace but they have been much improved and expanded. Here is a list of some of the most important changes.
 
-### OttoFms
+### OttoFMS
 
-- **No more port 3030**. OttoFms now runs on port 80/443 along with your FileMaker Server. This means that you no longer need to open up an additional port on your firewall, and you don't have to do anything special to get it to work with SSL.
+- **No more port 3030**. OttoFMS now runs on port 80/443 along with your FileMaker Server. This means that you no longer need to open up an additional port on your firewall, and you don't have to do anything special to get it to work with SSL.
 - **Migrations are now Deployments**. Data Migration is now just one option in a Deployment. You can also install and replace files.
 - **Deployments are now atomic**. If any file in a deployment fails the entire deployment is rolled back.
 - **Deployment can have sub-deployments** which are run in order. This allows for more advanced use cases then was possible before. Sub-deployments are atomic, but by default they do not cause other sub-deployments to revert.
@@ -56,10 +56,10 @@ OttoFms and OttoDeploy have roughly the same feature set as the applications the
 
 ### OttoDeploy
 
-- **OttoDeploy can auto-upgrade**. OttoDeploy can be auto-installed and auto-upgraded on any server running OttoFms.
+- **OttoDeploy can auto-upgrade**. OttoDeploy can be auto-installed and auto-upgraded on any server running OttoFMS.
 - **OttoDeploy UI is simpler**. The ui is up to modern standards both in look and feel and usability. You won't believe it is a FileMaker file.
 
-## Otto v3 features not in OttoFms
+## Otto v3 features not in OttoFMS
 
 Some features are being retired as they are no longer useful or viable. Others are planned for future releases.
 
@@ -70,4 +70,4 @@ Some features are being retired as they are no longer useful or viable. Others a
 
 ### Coming soon
 
-- **OttoFms Application Logging**
+- **OttoFMS Application Logging**

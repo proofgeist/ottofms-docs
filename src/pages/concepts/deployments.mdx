@@ -6,7 +6,7 @@ Deployments are what we used to call Migrations. They automate the process of mo
 
 ## How it works
 
-You configure your deployment using OttoDeploy.fmp12, (which takes the place of Migrator.fmp12 in the Otto3 line) and then you send the deployment to the destination server running OttoFms, via an http request to the OttoFms Developer API.
+You configure your deployment using OttoDeploy.fmp12, (which takes the place of Migrator.fmp12 in the Otto3 line) and then you send the deployment to the destination server running OttoFMS, via an http request to the OttoFMS Developer API.
 
 The destination server will then run the deployment right away or at a scheduled time.
 
@@ -19,7 +19,7 @@ doesn't need to be running anywhere specific.
 
 ## Deployments
 
-This is new. In Otto v3, if a deployment failed, it would leave the target file set in a bad state. Some files would be new, others would be unchanged. In OttoFms, if a deployment fails, the target file set will be reverted to the state it was in before the deployment started.
+This is new. In Otto v3, if a deployment failed, it would leave the target file set in a bad state. Some files would be new, others would be unchanged. In OttoFMS, if a deployment fails, the target file set will be reverted to the state it was in before the deployment started.
 
 ## Simple vs Advanced
 
@@ -54,7 +54,7 @@ Sub-deployments can't target different Destination Servers. A sub-deployment can
 ## Relationship to Builds
 
 <Callout type="info">
-  One of the biggest changes between OttoFms and Otto v3 is that you can now
+  One of the biggest changes between OttoFMS and Otto v3 is that you can now
   separate the process of creating a build from the process of deploying a
   build. This allows you to create a build once, and then deploy it many times.
   This is useful if you have a vertical market solution that you want to deploy

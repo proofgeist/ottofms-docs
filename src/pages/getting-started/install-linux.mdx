@@ -1,22 +1,22 @@
 import { Callout, Steps } from "nextra/components";
 
-# Installing OttoFms (Linux)
+# Installing OttoFMS (Linux)
 
 ## Pre-flight Checklist
 
 Before you begin, confirm the following:
 
 - FileMaker Server is installed on your server
-- Your server machine meets the [minimum requirements to run OttoFms](/tech-specs)
+- Your server machine meets the [minimum requirements to run OttoFMS](/tech-specs)
 - Make sure your server has a swap file configured for additional virtual memory.
 - You have administrator rights to your server
 - You can access the FileMaker Server Admin Console
-- You can access the [OttoFms license server](https://edd-sl-proxy.geistgate.com) using a web browser
+- You can access the [OttoFMS license server](https://edd-sl-proxy.geistgate.com) using a web browser
 
 <Callout type="warning">
-  OttoFms expects FileMaker Server to be running with the default `fmserver`
+  OttoFMS expects FileMaker Server to be running with the default `fmserver`
   user and `fmsadmin` group privileges. This is set during FileMaker Server
-  installation. It is very rarely changed, but if you did change it, OttoFms
+  installation. It is very rarely changed, but if you did change it, OttoFMS
   will not install correctly.
 </Callout>
 
@@ -36,20 +36,20 @@ The download package you receive is a zip file, Unzip it for the actual Installe
 ### Run the installer via command line
 
 ```cmd copy
-sudo apt -y install ./ottofms-app_|version|_amd64.deb
+sudo apt -y install ./OttoFMS-app_|version|_amd64.deb
 ```
 
 For example:
 
 ```cmd copy
-sudo apt -y install ./ottofms-app_1.0.0_amd64.deb
+sudo apt -y install ./OttoFMS-app_1.0.0_amd64.deb
 ```
 
-### Open the OttoFms Web Console
+### Open the OttoFMS Web Console
 
 Open your browser and enter https://[host].com/otto/, where [host] is the fully qualified domain name of your FileMaker Server machine.
 
-### Learn more about the [OttoFms Web Console](/otto-console/dashboard)
+### Learn more about the [OttoFMS Web Console](/otto-console/dashboard)
 
  </Steps>
 

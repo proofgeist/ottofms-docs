@@ -2,7 +2,7 @@ import { Callout } from "nextra/components";
 
 # Builds
 
-OttoFms and OttoDeploy work together to let you create a _snapshot_ or _version_ of your files which can be used as a source for deployment, or just as way to archive a particular state of your project. OttoFms provides an [API endpoint](/apidoc#tag/Build) for creating a build. OttoDeploy has a user interface for configuring the builds and sending it to the API on the server.
+OttoFMS and OttoDeploy work together to let you create a _snapshot_ or _version_ of your files which can be used as a source for deployment, or just as way to archive a particular state of your project. OttoFMS provides an [API endpoint](/apidoc#tag/Build) for creating a build. OttoDeploy has a user interface for configuring the builds and sending it to the API on the server.
 
 The end result is a Zip Archive named after your build id and a manifest.json file that contains information about the build.
 
@@ -26,17 +26,17 @@ We see two common variations of this:
 
 ### Public Builds
 
-If you want to share a solution with the community or your customers, you can create a build and share it on the internet. How widely you share it or if it is password protected is up to you. Anyone running OttoFms will be able to easily install it on their server _if they have access to the webserver you have hosted your build on_. If you follow a few guidelines you can also make it possible for people to **upgrade** to newer versions of your solution when you release them.
+If you want to share a solution with the community or your customers, you can create a build and share it on the internet. How widely you share it or if it is password protected is up to you. Anyone running OttoFMS will be able to easily install it on their server _if they have access to the webserver you have hosted your build on_. If you follow a few guidelines you can also make it possible for people to **upgrade** to newer versions of your solution when you release them.
 
 Read more about [Public Builds](/concepts/public-builds).
 
 ## What happens during a build?
 
-When OttoFms receives a request to create a build, it will run the following steps:
+When OttoFMS receives a request to create a build, it will run the following steps:
 
 - Run the pre-build script (if configured). This is an opportunity to do anything you want before the build begins.
-- Each file listed in the `files` property of the payload will either be cloned or copied into a new folder in the OttoFms `outbox` directory.
-- A manifest.json file is created with information about the build, that is used by OttoFms to install the build, or use it as the schema source of a migration.
+- Each file listed in the `files` property of the payload will either be cloned or copied into a new folder in the OttoFMS `outbox` directory.
+- A manifest.json file is created with information about the build, that is used by OttoFMS to install the build, or use it as the schema source of a migration.
 - The new `build` folder is zipped up and the archive is named with the build ID.
 
 ## Configure Builds with OttoDeploy
@@ -56,6 +56,6 @@ Deployments can be configured to create a build just before the deployment begin
 
 This type of deployment is the most similar to how things work in Otto v3 and earlier.
 
-You can see this in [OttoFms Developer API documentation for starting a deployment](/apidoc#tag/Deployment/operation/PostOttoApiDeployment). The `deployments[0]source` property of the payload can be one of several options including `otto4jit`. That option tells OttoFms to create a build on the source server before starting the rest of deployment. Once the build is done, OttoFms fetches the newly creating build and uses it as the source for the deployment.
+You can see this in [OttoFMS Developer API documentation for starting a deployment](/apidoc#tag/Deployment/operation/PostOttoApiDeployment). The `deployments[0]source` property of the payload can be one of several options including `otto4jit`. That option tells OttoFMS to create a build on the source server before starting the rest of deployment. Once the build is done, OttoFMS fetches the newly creating build and uses it as the source for the deployment.
 
 The "just in time build" is deleted from the source server once the deployment is complete.

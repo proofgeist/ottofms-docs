@@ -1,6 +1,6 @@
-# Managing OttoFms Application
+# Managing OttoFMS Application
 
-This document covers installing, upgrading, uninstalling, starting and stopping the OttoFms application running on your server.
+This document covers installing, upgrading, uninstalling, starting and stopping the OttoFMS application running on your server.
 
 ## Installing
 
@@ -13,36 +13,36 @@ Use the installers and instructions for the specific platforms:
 
 ### Mac and windows
 
-Mac and windows both include uninstallers in the application folder. Run those to uninstall OttoFms.
+Mac and windows both include uninstallers in the application folder. Run those to uninstall OttoFMS.
 
 ### Linux
 
 ```bash copy filename="Uninstalling Linux"
-sudo apt remove ottofms-app
+sudo apt remove OttoFMS-app
 ```
 
 ## Upgrading
 
-To upgrade OttoFms to a new version, follow the instructions for [uninstalling](#uninstalling) the old version first. Then follow the instructions for [installing](#installing) the new version.
+To upgrade OttoFMS to a new version, follow the instructions for [uninstalling](#uninstalling) the old version first. Then follow the instructions for [installing](#installing) the new version.
 
 ## Starting, stopping and restarting
 
 ### Web Console
 
-You can restart the OttoFms application from the web console on all platform. It is on the settings page. (Not released yet)
+You can restart the OttoFMS application from the web console on all platform. It is on the settings page. (Not released yet)
 
 ### Mac OS X
 
-You can use the terminal to start, stop the OttoFms application.
+You can use the terminal to start, stop the OttoFMS application.
 
-```bash copy filename="Starting OttoFms"
+```bash copy filename="Starting OttoFMS"
 sudo launchctl bootstrap system /Library/LaunchDaemons/com.proofgeist.otto.plist
 ```
 
-```bash copy filename="Stopping OttoFms"
+```bash copy filename="Stopping OttoFMS"
 sudo launchctl bootstrap system /Library/LaunchDaemons/com.proofgeist.otto.plist
 ```
 
 ### Windows
 
-You can use Computer Management / Services and Applications / Services to manage OttoFms on windows. It appears in the Services list as `OttoFms`. All windows services are managed in the same way, including FileMaker Server.
+You can use Computer Management / Services and Applications / Services to manage OttoFMS on windows. It appears in the Services list as `OttoFMS`. All windows services are managed in the same way, including FileMaker Server.
