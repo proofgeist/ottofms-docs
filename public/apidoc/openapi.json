@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Otto Developer API",
-    "version": "4.0.1-beta.7",
+    "version": "4.0.1-beta.9",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "Otto Logo"
@@ -294,6 +294,61 @@
         "tags": [
           "Settings"
         ]
+      }
+    },
+    "/otto/api/restart": {
+      "post": {
+        "operationId": "PostOttoApiRestart",
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/restart Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiRestartSuccessfulResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/restart Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiRestartErrorResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "Otto sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Restart Otto",
+        "summary": "Restart Otto",
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/restart request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiRestartRequestBody"
+              }
+            }
+          }
+        }
       }
     },
     "/otto/api/script/run-via-schedule": {
@@ -674,6 +729,38 @@
         },
         "description": "### Download a build zip using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
         "summary": "Build Download Link",
+        "tags": [
+          "Build"
+        ]
+      }
+    },
+    "/otto/api/build/downloadFolder/{token}": {
+      "get": {
+        "operationId": "GetOttoApiBuildDownloadfolderToken",
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/build/downloadFolder/:token Successful response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadfolderTokenSuccessfulResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/build/downloadFolder/:token Error response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadfolderTokenErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "### Download a zip containing the build folder using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
+        "summary": "Download Build Folder",
         "tags": [
           "Build"
         ]
@@ -1082,6 +1169,224 @@
         }
       }
     },
+    "/otto/api/admin-api-key": {
+      "post": {
+        "operationId": "PostOttoApiAdminApiKey",
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/admin-api-key Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiAdminApiKeySuccessfulResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/admin-api-key Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiAdminApiKeyErrorResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "Otto sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "### Create an Otto Admin Api Key\n\nThis endpoint creates an Admin API Key for the FileMaker Server with the specified user and password.",
+        "summary": "Create an Admin API Key",
+        "tags": [
+          "Admin API Keys"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/admin-api-key request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiAdminApiKeyRequestBody"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "GetOttoApiAdminApiKey",
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/admin-api-key Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeySuccessfulResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/admin-api-key Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeyErrorResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "Otto sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "### Get all Admin Api Keys",
+        "summary": "Get all Admin API Keys",
+        "tags": [
+          "Admin API Keys"
+        ]
+      }
+    },
+    "/otto/api/admin-api-key/{key}": {
+      "patch": {
+        "operationId": "PatchOttoApiAdminApiKeyKey",
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/admin-api-key/:key Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeySuccessfulResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/admin-api-key/:key Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyErrorResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "Otto sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "### Update an Admin Api Key",
+        "summary": "Update an Admin API Key",
+        "tags": [
+          "Admin API Keys"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "PATCH /otto/api/admin-api-key/:key parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyParameterKey"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/admin-api-key/:key request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyRequestBody"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiAdminApiKeyKey",
+        "responses": {
+          "200": {
+            "description": "DELETE /otto/api/admin-api-key/:key Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeySuccessfulResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "DELETE /otto/api/admin-api-key/:key Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyErrorResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "Otto sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "### Remove an Api Key",
+        "summary": "Remove an API Key",
+        "tags": [
+          "Admin API Keys"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "DELETE /otto/api/admin-api-key/:key parameter",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyParameterKey"
+            }
+          }
+        ]
+      }
+    },
     "/otto/api/api-key": {
       "post": {
         "operationId": "PostOttoApiApiKey",
@@ -1123,7 +1428,7 @@
         "description": "### Create an Otto Api Key\n\nThis endpoint creates an API Key for the FileMaker file with the specified user and password.",
         "summary": "Create an API Key",
         "tags": [
-          "Api Keys"
+          "API Keys"
         ],
         "requestBody": {
           "description": "POST /otto/api/api-key request body",
@@ -1176,7 +1481,7 @@
         "description": "### Get all Api Keys",
         "summary": "Get all API Keys",
         "tags": [
-          "Api Keys"
+          "API Keys"
         ]
       }
     },
@@ -1221,7 +1526,7 @@
         "description": "### Get an Api Key",
         "summary": "Get an API Key",
         "tags": [
-          "Api Keys"
+          "API Keys"
         ],
         "parameters": [
           {
@@ -1275,7 +1580,7 @@
         "description": "### Remove an Api Key",
         "summary": "Remove an API Key",
         "tags": [
-          "Api Keys"
+          "API Keys"
         ],
         "parameters": [
           {
@@ -1331,7 +1636,7 @@
         "description": "### Logout an Api Key",
         "summary": "Logout an API Key",
         "tags": [
-          "Api Keys"
+          "API Keys"
         ],
         "parameters": [
           {
@@ -1844,8 +2149,16 @@
                   {
                     "allOf": [
                       {
-                        "type": "object",
-                        "properties": {}
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
                       },
                       {
                         "type": "object",
@@ -2000,6 +2313,137 @@
           "messages"
         ]
       },
+      "PostOttoApiRestartSuccessfulResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "ok",
+              "message"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "exclusiveMinimum": false,
+                  "maximum": 0,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiRestartErrorResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {}
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "exclusiveMinimum": false,
+                  "maximum": 20000,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiRestartRequestBody": {
+        "allOf": [
+          {
+            "allOf": [
+              {
+                "allOf": [
+                  {
+                    "allOf": [
+                      {
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {}
+                  }
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {}
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
       "PostOttoApiScriptRunViaScheduleSuccessfulResponse": {
         "type": "object",
         "properties": {
@@ -2108,8 +2552,16 @@
                   {
                     "allOf": [
                       {
-                        "type": "object",
-                        "properties": {}
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
                       },
                       {
                         "type": "object",
@@ -2402,8 +2854,16 @@
                   {
                     "allOf": [
                       {
-                        "type": "object",
-                        "properties": {}
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
                       },
                       {
                         "type": "object",
@@ -2525,7 +2985,7 @@
               },
               "buildId": {
                 "type": "string",
-                "default": "build_qFSC3KGF6XAh"
+                "default": "build_u8p7dEEK9Cxb"
               }
             },
             "required": [
@@ -2691,6 +3151,13 @@
         "format": "binary"
       },
       "GetOttoApiBuildDownloadTokenErrorResponse": {
+        "type": "string"
+      },
+      "GetOttoApiBuildDownloadfolderTokenSuccessfulResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiBuildDownloadfolderTokenErrorResponse": {
         "type": "string"
       },
       "GetOttoApiBuildBuildidParameterBuildid": {
@@ -2861,13 +3328,17 @@
               },
               "downloadUrl": {
                 "type": "string"
+              },
+              "downloadFolderUrl": {
+                "type": "string"
               }
             },
             "required": [
               "status",
               "buildId",
               "zipArchive",
-              "downloadUrl"
+              "downloadUrl",
+              "downloadFolderUrl"
             ]
           },
           "messages": {
@@ -3138,6 +3609,25 @@
                                   "type": {
                                     "type": "string",
                                     "enum": [
+                                      "apiKey"
+                                    ]
+                                  },
+                                  "apiKey": {
+                                    "type": "string",
+                                    "description": "The admin api key"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "apiKey"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
                                       "userpass"
                                     ]
                                   },
@@ -3198,6 +3688,25 @@
                                 "required": [
                                   "type",
                                   "token"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "apiKey"
+                                    ]
+                                  },
+                                  "apiKey": {
+                                    "type": "string",
+                                    "description": "The admin api key"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "apiKey"
                                 ]
                               },
                               {
@@ -3336,6 +3845,25 @@
                                 "required": [
                                   "type",
                                   "token"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "apiKey"
+                                    ]
+                                  },
+                                  "apiKey": {
+                                    "type": "string",
+                                    "description": "The admin api key"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "apiKey"
                                 ]
                               },
                               {
@@ -3975,8 +4503,16 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "type": "object",
+                                "properties": {}
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -4142,6 +4678,25 @@
                                         "type": {
                                           "type": "string",
                                           "enum": [
+                                            "apiKey"
+                                          ]
+                                        },
+                                        "apiKey": {
+                                          "type": "string",
+                                          "description": "The admin api key"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "apiKey"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
                                             "userpass"
                                           ]
                                         },
@@ -4202,6 +4757,25 @@
                                       "required": [
                                         "type",
                                         "token"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "apiKey"
+                                          ]
+                                        },
+                                        "apiKey": {
+                                          "type": "string",
+                                          "description": "The admin api key"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "apiKey"
                                       ]
                                     },
                                     {
@@ -4340,6 +4914,25 @@
                                       "required": [
                                         "type",
                                         "token"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "apiKey"
+                                          ]
+                                        },
+                                        "apiKey": {
+                                          "type": "string",
+                                          "description": "The admin api key"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "apiKey"
                                       ]
                                     },
                                     {
@@ -4856,6 +5449,25 @@
                                         "type": {
                                           "type": "string",
                                           "enum": [
+                                            "apiKey"
+                                          ]
+                                        },
+                                        "apiKey": {
+                                          "type": "string",
+                                          "description": "The admin api key"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "apiKey"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
                                             "userpass"
                                           ]
                                         },
@@ -4916,6 +5528,25 @@
                                       "required": [
                                         "type",
                                         "token"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "apiKey"
+                                          ]
+                                        },
+                                        "apiKey": {
+                                          "type": "string",
+                                          "description": "The admin api key"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "apiKey"
                                       ]
                                     },
                                     {
@@ -5054,6 +5685,25 @@
                                       "required": [
                                         "type",
                                         "token"
+                                      ]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "apiKey"
+                                          ]
+                                        },
+                                        "apiKey": {
+                                          "type": "string",
+                                          "description": "The admin api key"
+                                        }
+                                      },
+                                      "required": [
+                                        "type",
+                                        "apiKey"
                                       ]
                                     },
                                     {
@@ -5606,8 +6256,16 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "type": "object",
+                                "properties": {}
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -5744,8 +6402,16 @@
                   {
                     "allOf": [
                       {
-                        "type": "object",
-                        "properties": {}
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
                       },
                       {
                         "type": "object",
@@ -5860,6 +6526,444 @@
           }
         ]
       },
+      "PostOttoApiAdminApiKeySuccessfulResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "key"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "exclusiveMinimum": false,
+                  "maximum": 0,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiAdminApiKeyErrorResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {}
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "exclusiveMinimum": false,
+                  "maximum": 20000,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiAdminApiKeyRequestBody": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "default": "(no label)"
+          },
+          "user": {
+            "type": "string"
+          },
+          "pass": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "user",
+          "pass"
+        ]
+      },
+      "GetOttoApiAdminApiKeySuccessfulResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "api-keys": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": 5e-324,
+                      "exclusiveMinimum": false,
+                      "maximum": 1.7976931348623157e+308,
+                      "exclusiveMaximum": false
+                    },
+                    "key": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "key",
+                    "label"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "api-keys"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "exclusiveMinimum": false,
+                  "maximum": 0,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiAdminApiKeyErrorResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {}
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "exclusiveMinimum": false,
+                  "maximum": 20000,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiAdminApiKeyKeyParameterKey": {
+        "type": "string"
+      },
+      "PatchOttoApiAdminApiKeyKeySuccessfulResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "label": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "label"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "exclusiveMinimum": false,
+                  "maximum": 0,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiAdminApiKeyKeyErrorResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {}
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "exclusiveMinimum": false,
+                  "maximum": 20000,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiAdminApiKeyKeyRequestBody": {
+        "allOf": [
+          {
+            "allOf": [
+              {
+                "allOf": [
+                  {
+                    "allOf": [
+                      {
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {}
+                  }
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {}
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        ]
+      },
+      "DeleteOttoApiAdminApiKeyKeyParameterKey": {
+        "type": "string"
+      },
+      "DeleteOttoApiAdminApiKeyKeySuccessfulResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "exclusiveMinimum": false,
+                  "maximum": 0,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "DeleteOttoApiAdminApiKeyKeyErrorResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {}
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "exclusiveMinimum": false,
+                  "maximum": 20000,
+                  "exclusiveMaximum": false,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
       "PostOttoApiApiKeySuccessfulResponse": {
         "type": "object",
         "properties": {
@@ -5956,8 +7060,16 @@
                   {
                     "allOf": [
                       {
-                        "type": "object",
-                        "properties": {}
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
                       },
                       {
                         "type": "object",
@@ -6398,8 +7510,16 @@
                   {
                     "allOf": [
                       {
-                        "type": "object",
-                        "properties": {}
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          {
+                            "type": "object",
+                            "properties": {}
+                          }
+                        ]
                       },
                       {
                         "type": "object",
@@ -6475,11 +7595,15 @@
       }
     },
     {
-      "name": "Api Keys",
-      "description": "API Keys",
+      "name": "API Keys",
+      "description": "API Keys are used as a proxy for the FileMaker Data API.",
       "externalDocs": {
         "url": "https://ottofms.com/docs/api-keys"
       }
+    },
+    {
+      "name": "Admin API Keys",
+      "description": "Admin API Keys are used as a proxy to the FileMaker Server Admin API"
     },
     {
       "name": "Miscellaneous",
