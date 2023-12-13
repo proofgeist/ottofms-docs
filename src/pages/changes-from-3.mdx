@@ -5,11 +5,10 @@ import { Callout } from "nextra/components";
 This document is for people who are familiar with Otto v3 and want to know what's changed in OttoFMS and OttoDeploy. If you have never used Otto v3 before you can safely skip this section of the documentation.
 
 <Callout type="warning">
-  **Please read everything** on this page before you rush to switch from Otto v3
-  to OttoFMS. While we want you to switch eventually, OttoFMS is currently in
-  [beta](/beta) and even when it is released it will not have all the features
-  of Otto v3 right away. If you are using Otto v3 in production you should
-  continue to use it until OttoFMS has all the features you need.
+  **Please read everything** on this page before you rush to upgrade from Otto
+  v3. OttoFMS is a major upgrade and includes many backward-incompatible
+  changes. If you are using Otto v3 in production you should continue to use it
+  until OttoFMS has all the features you need.
 </Callout>
 
 ## OttoFMS is Free
@@ -26,7 +25,7 @@ OttoFMS requires FileMaker 19.6 or later. It runs on any OS supported by FileMak
 
 ## Same features, new names
 
-OttoFMS and and OttoDeploy take the place of Otto and Migrator.fmp12. We changed the names because we felt that the new names were a better description of what each product does and where it is installed and runs.
+OttoFMS and and OttoDeploy take the place of Otto and Migrator.fmp12 respectively. We changed the names because we felt that the new names were a better description of what each product does and where it is installed and runs.
 
 OttoFMS and OttoDeploy are complete, from the ground up, rewrites of Otto v3 and Migrator.fmp12. They are not compatible with Otto v3 or Migrator.fmp12.
 
@@ -71,3 +70,21 @@ Some features are being retired as they are no longer useful or viable. Others a
 ### Coming soon
 
 - **OttoFMS Application Logging**
+
+## Upgrading FAQ
+
+### Can I run both OttoFMS and Otto v3 at the same time?
+
+Yes, but we don't advise this. Since they run on different ports, they can co-exist on the same server, but you should not run deployments from them both at the same time.
+
+### Can I migrate my API keys from Otto v3 to OttoFMS?
+
+No, you will need to re-create any API keys that you need in OttoFMS. Thankfully, this has been made much easier in OttoFMS using the web dashboard to create and manage API keys. Keep in mind that any applications currently using API keys for webhooks or the Data API Proxy feature from Otto v3 will also need to change their port and URL path to use OttoFMS instead.
+
+### Can I customize OttoDeploy in the same way that I could Migrator.fmp12?
+
+No. The nature of OttoDeploy was built to be easier to use and understand the complex features and concepts of OttoFMS for newcomers. In trade, the file is not as customizable as Migrator.fmp12 was. We welcome you to submit feature requests for any limitations that you are unable to achieve with OttoDeploy, or you can also build your own custom deployment file using the OttoFMS Developer API.
+
+### Other questions?
+
+Reach out via our [Support forum](https://community.proofgeist.com/)

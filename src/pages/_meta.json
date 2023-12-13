@@ -14,13 +14,13 @@
   "concepts": "Concepts",
   "guides": "Guides",
 
-  "-- OttoFms": {
-    "title": "OttoFms",
+  "-- OttoFMS": {
+    "title": "OttoFMS",
     "type": "separator"
   },
   "ottofms": "Overview",
-  "managing-ottofms": "Managing OttoFms",
-  "otto-console": "OttoFms Web Console",
+  "managing-ottofms": "Managing OttoFMS",
+  "otto-console": "OttoFMS Web Console",
   "dev-api": {
     "title": "Developer API",
     "href": "/apidoc",
