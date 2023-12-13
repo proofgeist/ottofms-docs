@@ -22,9 +22,13 @@
   "managing-ottofms": "Managing OttoFMS",
   "otto-console": "OttoFMS Web Console",
   "dev-api": {
-    "title": "Developer API",
+    "title": "Developer API Docs ↗",
     "href": "/apidoc",
     "newWindow": true
+  },
+  "api-proxy": {
+    "title": "API Proxy",
+    "href": "/api-proxy"
   },
   "ottofms-changelog": "Version History",
   "known-issues": "Known Issues",

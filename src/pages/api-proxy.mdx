@@ -1,0 +1,51 @@
+import { Callout } from "nextra/components";
+
+# API Proxy
+
+OttoFMS exposes proxy access for the FileMaker Data API and the FileMaker Admin API. The proxy allows you to access these FileMaker APIs using long-lived API keys instead of your username and password.
+
+## Data API Proxy
+
+<Callout type="info">
+  Think of a Data API key as a replacement for a set of FileMaker credentials to
+  a specific FileMaker file. It provides access to the FileMaker Data API for
+  that file.
+</Callout>
+
+First, create a Data API key ([guide](/guides/api-keys)). Data API keys are linked to a single database file and replace the FileMaker credentials for that file. The credentials you enter must have the `fmrest` privilege set for that file.
+
+Add the following header to your HTTP request:
+
+```
+Authorization: Bearer KEY_12395874
+```
+
+Prefix the base URL with `/otto`. For example:
+
+```
+https://filemaker.yourserver.com/otto/fmi/data/vLatest
+```
+
+## Admin API Proxy
+
+<Callout type="info">
+  Think of an Admin API key as a replacement for your FileMaker Server Admin
+  Console credentials. It provides access to both the FileMaker Admin API and
+  the Otto Developer API.
+</Callout>
+
+First, create an Admin API Key ([guide](/guides/api-keys)).
+
+Add the following header to your HTTP request:
+
+```
+Authorization: Bearer AK_123987
+```
+
+Prefix the base URL with `/otto`. For example:
+
+```
+https://filemaker.yourserver.com/otto/fmi/admin/v2
+```
+
+You can also use an Admin API key to authenticate against the Otto Developer API.

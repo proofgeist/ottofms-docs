@@ -1,13 +1,15 @@
 # OttoFMS Developer API
 
-OttoFMS has a [Developer API](/apidoc) that works the same way as the FileMaker Server provided Admin API. In fact, you can think of it as an extension to the Admin API. It uses the same authentication by default and is even documented in the same manner.
-
-OttoDeploy uses this API to get it's work done.
+OttoFMS has a [Developer API](/apidoc) that works the same way as the FileMaker Server Admin API. In fact, you can think of it as an extension to the Admin API. It uses the same authentication by default and is even documented in the same manner. OttoDeploy uses this API to get it's work done.
 
 ## Made for developers
 
-You can use this API to build your own tools to manage your FileMaker Server. It is fully documented and you can use the [OttoFMS Developer API](/apidoc) to learn how to use it.
+You can use this API to build your own tools to manage your FileMaker Server. The documentation is hosted alongside the OttoFMS dashbaord so you can always check the docs according to your installed version of OttoFMS. You can also view the most current docs [here](/apidoc).
 
-## You may not need it.
+## You may not need it
 
-We hope that OttoFMS and it's companion apps like OttoDeploy will cover 80 to 90 percent of all the uses cases out there, so you don't have to use the API directly. But if you do, it's there for you.
+We hope that OttoFMS and it's companion apps like OttoDeploy will cover 90% of all the uses cases out there, so you don't have to use the API directly. But if you do, it's there for you.
+
+## API Proxy
+
+OttoFMS can also proxy requests through to the FileMaker Data API and Admin API endpoints. This allows you to use a long-lived API token instead of raw credentials in external applications. [Learn more](/api-proxy).
