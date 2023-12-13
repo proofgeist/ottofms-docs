@@ -1,4 +1,4 @@
-import { Cards, Card } from "nextra/components";
+import { Callout, Cards, Card, CopyToClipboard } from "nextra/components";
 
 # OttoDeploy Overview
 
@@ -22,10 +22,20 @@ Check out the [guides](/guides) for how to use OttoDeploy along with OttoFMS and
 
 Any FileMaker server running OttoFMS can automatically install and update OttoDeploy. Look for the OttoDeploy Banner on your OttoFMS "Deployments screen". It will walk you through getting OttoDeploy installed on your server.
 
-## Security issues you should know about
+## 🔒 Security Warning
 
 OttoDeploy needs to have access to your FileMaker Servers and your FileMaker Files. You will enter these credentials into the OttoDeploy into fields in the database.
 
 This is why the file ships with an encryption key that **you should change.**
 
 This is also why we give you the file to host and manage. You should setup passwords and privileges to protect this file as you see fit.
+
+### Default Credentials
+
+Username: `admin` <CopyToClipboard getValue={()=>"admin"} />  
+Password: `admin` <CopyToClipboard getValue={()=>"admin"} />  
+Encryption Key: `Ottom@tic` <CopyToClipboard getValue={()=>"Ottom@tic"} />
+
+<Callout type="warning">
+  You should change these values after installing on your own server!
+</Callout>
