@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useConfig, useTheme } from "nextra-theme-docs";
 import { Footer } from "./src/components/footer";
-import { OttoFmsLogo } from "@/components/logos/ottofms";
+import { OttoFMSLogo } from "@/components/logos/ottofms";
 function getBaseUrl() {
   const productionUrl = "https://docs.ottofms.com";
   const localDevUrl = "http://localhost:3063";
@@ -45,7 +45,7 @@ function Logo() {
         justifyContent: "space-between",
       }}
     >
-      <OttoFmsLogo scale={0.55} />
+      <OttoFMSLogo scale={0.55} />
     </div>
   );
 }

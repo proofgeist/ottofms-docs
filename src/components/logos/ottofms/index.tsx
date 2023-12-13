@@ -9,7 +9,7 @@ import ottofmsLite from "./ottofms-lite.svg";
 //@ts-ignore
 import ottofmsDark from "./ottofms-lite.svg";
 
-export function OttoFmsLogo({ scale = 1 }) {
+export function OttoFMSLogo({ scale = 1 }) {
   const { theme } = useTheme();
   const baseHeight = 64;
   const baseWidth = 304;
