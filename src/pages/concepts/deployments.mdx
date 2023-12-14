@@ -4,19 +4,21 @@ import { Callout } from "nextra/components";
 
 Deployments are what we used to call Migrations. They automate the process of moving files from server to server or from a prebuilt set of files to a server. They will often involve migrating data from a previous version of a file into a new version of a file, but they don't have to.
 
+Deployments can be used to migrate data onto a new version of your schema, to install new files, to replace existing files with new versions.
+
 ## How it works
 
-You configure your deployment using [OttoDeploy.fmp12](/ottodeploy), (formerly called Migrator.fmp12 from Otto v3) and then you send the deployment to the destination server running OttoFMS, via a HTTP request to the [OttoFMS Developer API](/developer-api).
+Deployments are configured using [OttoDeploy.fmp12](/ottodeploy), (formerly called Migrator.fmp12 from Otto v3) and then sent to the destination server running OttoFMS using OttoDeploy or the [OttoFMS Developer API](/developer-api).
 
 The destination server will then run the deployment right away or at a scheduled time (configured in the deployment payload).
 
-### Scheduled Deployments
-
-OttoFMS leverages the FileMaker Server's built in scheduling to run deployments at a scheduled time. When you configure a deployment to run at a scheduled time, OttoFMS will create a FileMaker Server schedule that triggers OttoFMS on the server to run the deployment. This technique does not require the OttoDeploy file to be hosted on the server that is running the deployment.
-
 ### Deployments are Atomic
 
-A backup is made of all files that are being deployed before the deployment starts. If any part of the deployment fails, the backups are restored and the deployment is aborted. This ensures that the server is always in a consistent state where either all the files deployed successfully, or none of them did.
+A backup is made of all files in the deployment before it starts. If any part of the deployment fails, the backups are restored and the deployment is aborted. This ensures that the server is always in a consistent state where either all the files deployed successfully, or none of them did.
+
+### Scheduled Deployments
+
+OttoFMS leverages the FileMaker Server's built in scheduling to run deployments at a scheduled time. When you configure a deployment to run via schedule, OttoFMS will create a FileMaker Server schedule that triggers OttoFMS on the server to run the deployment. This technique does not require the OttoDeploy file to be hosted on the server that is running the deployment.
 
 ## Advanced Deployments
 
@@ -26,7 +28,11 @@ See the [OttoDeploy documentation](/ottodeploy) for how to turn on Advanced opti
 
 ### Sub-deployments
 
-Sub-deployments are a way to break up a deployment into smaller sets of files. The most common case for this is if you need to upgrade many copies of a single solution running on a server. For example, if you have 10 copies of a solution running on a server, you can create a sub-deployment for each copy.
+Sub-deployments are a way to break up a deployment into smaller sets of files. There are two main use cases for sub-deployments, which are using multiple sources and upgrading multiple versions of the same file.
+
+Each sub-deployment can be configured to pull from a different source server, so they could be used to do a install from a production server onto a staging server and then migrate the new version of the schema from the development server. See our [Refresh Staging](/guides/deployment-patterns/refresh-staging) for more information.
+
+Sub-deployments can be used if you need to upgrade many copies of a single solution running on a server. For example, if you have 10 copies of a solution running on a server, you can create a sub-deployment for each copy.
 
 There are a few benefits to using a sub-deployments over a single deployment:
 

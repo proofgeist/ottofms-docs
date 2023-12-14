@@ -1,0 +1,37 @@
+import { Tabs, Callout, Steps, CopyToClipboard } from "nextra/components";
+
+# Installing OttoDeploy
+
+OttoDeploy is a FileMaker file that helps you run deployments between your FileMaker servers powered by OttoFMS.
+
+You only need 1 copy of OttoDeploy to manage multiple installs of OttoFMS. We recommend hosting it on your "development" server for the best experience. This allows you to share access to it with your team and keep it easily upgraded when new versions are released. It will run as a local FileMaker file on your desktop, but you would need to manually migrate your data when a new version is released.
+
+## Install via OttoFMS
+
+<Callout emoji="✨" type="info">
+  Recommended for most users
+</Callout>
+
+After you login to your OttoFMS dashboard for the first time, you will see a banner inviting you to install OttoDeploy on your server.
+
+## Install Locally
+
+Follow the instructions above to download the latest version using OttoFMS, then navigate to the FileMaker Server tab of OttoFMS and close, then download the file.
+
+## 🔒 Security Warning
+
+OttoDeploy needs to have access to your FileMaker Servers and your FileMaker Files. You will enter these credentials into the OttoDeploy into fields in the database.
+
+This is why the file ships with an encryption key that **you should change.**
+
+This is also why we give you the file to host and manage. You should setup passwords and privileges to protect this file as you see fit.
+
+### Default Credentials
+
+Username: `admin` <CopyToClipboard getValue={()=>"admin"} />  
+Password: `admin` <CopyToClipboard getValue={()=>"admin"} />  
+Encryption Key: `Ottom@tic` <CopyToClipboard getValue={()=>"Ottom@tic"} />
+
+<Callout type="warning">
+  You should change these values after installing on your own server!
+</Callout>

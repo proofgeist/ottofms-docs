@@ -1,5 +1,5 @@
 {
-  "install-mac-win": "Install: Mac or Windows",
-  "install-linux": "Install: Linux",
+  "install": "Install OttoFMS",
+  "install-ottodeploy": "Install OttoDeploy",
   "running-first-deployment": "Running your First Deployment"
 }
