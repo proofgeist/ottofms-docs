@@ -37,7 +37,7 @@ Sub-deployments can be used if you need to upgrade many copies of a single solut
 There are a few benefits to using a sub-deployments over a single deployment:
 
 - If one sub-deployment fails the other deployments will not be reverted.
-  - This behavior can be slightly adjusted using the "Abort Remaining" option, which will stop all remaining deployments if one deployment in the set fails. (ie. if you have a 5 sub-deployments with the "Abort Remaining" option set and sub-deployment 3 fails to complete, sub-deployments 4 and 5 will not be run)
+  - This behavior can be slightly adjusted using the [Abort Remaining on Failure](/ottodeploy-features/deployments/advanced-options#abort-remaining-on-failure) option, which will stop all remaining deployments if one deployment in the set fails.
 - Sub-deployments can use multiple different sources for the files, allowing you to run a set of 5 sub-deployments from 5 different sources, whereas in Otto v3 you needed to run 5 separate migrations.
 
 #### What sub-deployments can't do

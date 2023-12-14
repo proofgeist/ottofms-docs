@@ -1,6 +1,6 @@
 ## Advanced Options
 
-When you turn on the Advanced options you will see a set of new options, including:
+OttoDeploy exposes a set of Advanced options for deployments which can be used for more advanced use cases. When you turn on the Advanced options you will see a set of new options, including:
 
 - Add sub-deployment
 - Use a different source for each deployment
@@ -8,4 +8,36 @@ When you turn on the Advanced options you will see a set of new options, includi
 
 ![Advanced Deployment](/img/ottodeploy/advanced-dep.png)
 
-If you would like to turn the advanced options on for new deployments by default, you can change that in the settings.
+If you would like to turn the advanced options on for new deployments by default, you can change that in the [OttoDeploy settings](/ottodeploy-features/settings).
+
+## Turn on Advanced Deployments
+
+If you need the Advanced Options you can turn them on and off by clicking on the three dots in the top right corner of the deployment view.
+
+![Switch to advanced](/img/ottodeploy/switch-to-adv.png)
+
+### Selecting a Build
+
+Using the advanced options allows you to specify a source build to deploy to your destination. The builds will be fetched from your source server to select, and you can choose to deploy a specific build or to build the latest version of your source file using a "Just in Time" build. By default, we will run a Just in time build if you do not select a specific build. Just in Time builds are also the default for deployments not using advanced options.
+
+For more information on builds, see our [Builds](/concepts/builds) documentation.
+
+### Abort Remaining on Failure
+
+The Abort Remaining on Failure option allows you to prevent running subsequent sub-deployments if one fails. This may be useful if you are running a series of sub-deployments that depend on the preceding sub-deployment to succeed. Setting the Abort Remaining on Failure option will prevent the subsequent sub-deployments from running if a preceding sub-deployment fails. The failing sub-deployment will still be fully reverted and the deployment will be marked as failed.
+
+For example, if you have a deployment with three sub-deployments and the second sub-deployment fails, the third sub-deployment will not run. The first sub-deployment will not be reverted, as it was fully successful.
+
+If you do not want to abort the remaining sub-deployments if one fails, turn off the Abort Remaining on Failure option. This would be the case if you were deploying a single file to three different files on the destination server and they did not depend on one another. This is the default setting.
+
+### Sub-Deployments
+
+Sub-Deployments are described in detail in the [Sub-Deployments](/concepts/deployments#sub-deployments) section of the documentation.
+
+Each sub-deployment gets the option to use an alternate source (including a different build!) and to run seperate post-deployment scripts or close specific files while running. Sub-deployments can be easily re-ordered using the arrow buttons in the top-right corner of the sub-deployment. There is also the option to duplication sub-deployments and delete specific sub-deployments in the top-right corner of each sub-deployment.
+
+Each sub-deployment requires a name and source files. The name is used to identify that sub-deployment in the OttoFMS console.
+
+### Use Alternate Source
+
+Each sub-deployment can use an alternate source to fetchh its source files. The source can be a different build on the same source server, a different server, or even an external url. If you do not turn on the "Use Anternate Source" toggle, the sub-deployment will use the default surce you selected at the top of your deployment.
