@@ -2,7 +2,11 @@ import { Callout, Steps } from "nextra/components";
 
 # Installing OttoFMS (Mac/Windows)
 
-Note: OttoFMS does work on Apple Silicon based Macs under Rosetta 2. Even though it isn't running natively it is still very fast. We are planning to have an Apple Silicon native version in the future.
+<Callout type="info">
+  OttoFMS **does** run on Apple Silicon based Macs under Rosetta 2. Even though
+  it isn't running natively it is still very fast. We are planning to have an
+  Apple Silicon native version in the future.
+</Callout>
 
 ## Pre-flight Checklist
 
@@ -12,6 +16,8 @@ Before you begin, confirm the following:
 - Your server machine meets the [minimum requirements to run OttoFMS](/tech-specs)
 - You have administrator rights to your server
 - You can access the FileMaker Server Admin Console
+- You have your free [OttoFMS license key](https://ottofms.com)
+- You can access the [OttoFMS license server](https://edd-sl-proxy.geistgate.com) using a web browser within your server's network
 - If you are using macOS and you have second disk setup as the default backup, please read [this article](/guides/mac-second-disk) before installing OttoFMS.
 
 <Callout type="warning">
@@ -43,7 +49,14 @@ Open your browser and enter https://[host]/otto/, where [host] is the fully qual
 
 - (mac servers, only) - If you are using a second disk for backups, you will need to [configure OttoFMS to use it](/guides/mac-second-disk) before you can use the web console.
 
-### Learn more about the [OttoFMS Web Console](/otto-console/dashboard)
+<Callout type="info">Don't forget the trailing slash after `/otto/`!</Callout>
+### Enter your license key
+
+Your license key was displayed on the same page as the download links for OttoFMS. It will also be sent to you via email.
+
+### Login to the OttoFMS Web Console
+
+Use the same credentials as you would for the FileMaker Server Admin Console.
 
  </Steps>
 

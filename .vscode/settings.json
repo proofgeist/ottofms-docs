@@ -4,6 +4,7 @@
     "Claris",
     "filemaker",
     "fmdapi",
+    "fmrest",
     "fmsadmin",
     "fmserver",
     "nextra",
@@ -11,5 +12,8 @@
     "ottofms",
     "Ottomatic",
     "proofgeist"
-  ]
+  ],
+  "cSpell.enabled": true,
+  "cSpell.enableFiletypes": ["mdx"],
+  "cSpell.ignoreWords": ["Ottom"]
 }
