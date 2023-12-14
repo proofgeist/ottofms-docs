@@ -86,14 +86,17 @@ Keep in mind that any applications currently using API keys for webhooks or the 
 
 Examples:
 
-```text filename="Otto v3"
-https://my-otto-server.com:3030/fmi/data/vLatest/
+```bash filename="Otto v3"
+https://my-otto-server.com:3030/fmi/data/vLatest/...
+-H Authorization: Bearer KEY_12395874
+# or
 https://my-otto-server.com:3030/receiver/SimpleQ.fmp12/channel?apiKey=KEY_12395874
-
 ```
 
-```text filename="OttoFMS"
-https://my-otto-server.com/otto/fmi/data/vLatest/
+```bash filename="OttoFMS"
+https://my-otto-server.com/otto/fmi/data/vLatest/...
+-H Authorization: Bearer dk_85238774
+# or
 https://my-otto-server.com/otto/receiver/SimpleQ.fmp12/channel?apiKey=dk_85238774
 ```
 
