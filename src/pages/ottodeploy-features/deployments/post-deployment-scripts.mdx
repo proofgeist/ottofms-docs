@@ -4,9 +4,7 @@ When you deploy a file to a server you may need to run a script to set up the fi
 
 ## How to use
 
-[OttoDeploy](/ottodeploy) includes an option to run a Post Deployment script after a file has been deployed to a server. This script can be used to do any setup that is required after the file has been deployed.
-
-The [OttoFMS Developer API](/apidoc) will let you pass an optional script to run after the file has been deployed. This script will be run after the file has been deployed and any data migration has completed.
+[OttoDeploy](/ottodeploy) includes an option to run a Post Deployment script after a file has been deployed to a server. This script can be used to do any setup that is required after the file has been deployed. You will need to specify the file to run the script on, the script name, and the login information for the file in question (since it may be a file not in your deployment). You can also specify the script parameters that will be passed to the script.
 
 ## Example use cases
 

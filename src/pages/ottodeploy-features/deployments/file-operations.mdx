@@ -1,3 +1,17 @@
 import { Cards, Card } from "nextra/components";
 
 # File Operations
+
+There are three main operations that you can perform on a file via OttoDeploy: Migrate, Install, and Replace. Each operation is described below. Note that "Close" is also a file operation, but it is exposed in OttoDeploy via the ["Close Additional Files"](/ottodeploy-features/deployments/close-additional-files) setting.
+
+## Migrate
+
+In a migration, data from the destination file will be migrated into a clone of the file from the source. This is useful if you want to make changes to the schema of a file and need to migrate the old data into the new schema. This will be the file operation used most if you are using OttoDeploy to migrate changes from a development environment to a production environment. Additional options can be configured for each file, such as which file we should pull the accounts, value lists, and fonts from. These additional options can be seen in the file options menu.
+
+## Install
+
+An install will install a file fromt the source that does not exist on the destination. The entire file will be copied from the source to the destination. This is the operation that OttoFMS uses to install OttoDeploy onto your server. You can specify a folder to install the new file into in the file options.
+
+## Replace
+
+A replace will take an entire file from the source and replace the file on the destination. This process is similar to the install operation, but it will overwrite the file on the destination rather than creating a new file.
