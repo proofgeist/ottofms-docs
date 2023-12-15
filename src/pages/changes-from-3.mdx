@@ -78,6 +78,10 @@ Some features are being retired as they are no longer useful or viable. Others a
 
 Technically yes, but we **strongly** discourage this. Since they run on different ports, they can co-exist on the same server, but you **should not** run deployments from them both at the same time as this could result in catastrophic data loss or file corruption.
 
+### Can I import my migrations from Migrator.fmp12 to OttoDeploy?
+
+No. There are too many differences in OttoDeploy to make this possible. You will need to recreate your deployments in OttoDeploy.
+
 ### Will my API keys from v3 remain the same in OttoFMS?
 
 No, you will need to re-create any API keys that you want to continue to use in OttoFMS. Thankfully, this has been made much easier in OttoFMS as you can use the web dashboard to create and manage API keys. To help you distinguish between your old and new API keys, OttoFMS uses a new naming convention for API keys. Data API keys (also used for webhooks) are now prefixed with `dk_` and Admin API keys are prefixed with `ak_`.

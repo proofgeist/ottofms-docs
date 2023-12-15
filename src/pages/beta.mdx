@@ -1,34 +1,51 @@
-import { Callout } from "nextra/components";
+import { Callout, Steps } from "nextra/components";
 
 # Beta Period
 
-<Callout type="info">OttoFMS Beta Period ends December 31st 2023</Callout>
+<Callout type="info">
+  OttoFMS Beta Period ends January 1st 2024. <br />
+  After this time, beta installs of OttoFMS will no longer function and you will
+  need to upgrade to the stable release.
+</Callout>
 
-We expect that OttoFMS will reach a final public release by the end of 2023. Until then, we will be releasing Beta versions of OttoFMS. These versions will be available to all users, but will not be recommended for production use.
+We expect that OttoFMS will reach a final public release by the end of January 2024. Until then, we will be releasing Beta versions of OttoFMS. These versions will be available to all users, but will not be recommended for production use.
 
 <Callout type="warning">
   We do not recommend you use Beta versions in production. Stick with Otto v3
   and Migrator.fmp12 for production use.
 </Callout>
 
-## Questions
+## Installing the Beta
 
-### Can I run OttoFMS along side Otto v3?
+<Steps>
 
-You can install OttoFMS alongside Otto v3. However, please be aware that they can easily conflict with one another. Do not try to run Deployments on OttoFMS and migrations on Otto v3 at the same time. You should only use one or the other.
+### Get a license key
 
-### Can OttoFMS work with Otto v3?
+A free license key is required to install OttoFMS. Make sure you obtain your license key from your account at [https://ottofms.com](https://ottofms.com) before installing.
 
-No. OttoFMS can only talk to other servers running OttoFMS.
+Your license key is the same for the beta and release versions of OttoFMS. You will not have to change your license when you upgrade to the stable release, and likewise if you have already licensed OttoFMS the beta versions will be licensed as well.
 
-### Is there a migration path from Otto v3 to OttoFMS?
+### Uninstall old version of OttoFMS
 
-No. Not at this time. You will have to manually migrate your data from Otto v3 to OttoFMS.
+If you were running a previous version of OttoFMS, you will need to [uninstall](/managing-ottofms#uninstalling) it before installing the beta. Your license key and other data will be saved.
 
-### Is there a migration path from Migrator.fmp12 to OttoDeploy.fmp12?
+### Download the Beta Installer
 
-No. Not at this time. You will have to manually migrate your data from Migrator.fmp12 to OttoDeploy.fmp12.
+- [Windows](https://console.ottomatic.cloud/downloads/ottofms/beta/win)
+- [Mac](https://console.ottomatic.cloud/downloads/ottofms/beta/mac)
+- [Linux](https://console.ottomatic.cloud/downloads/ottofms/beta/amd)
+- [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/beta/arm)
 
-### What the price of OttoFMS?
+### Follow the installation instructions
 
-OttoFMS will be free forever as long as you abide by the [license](/license).
+See the standard [installation instructions](/getting-started/install).
+
+### Join our Community
+
+We want your feedback! Ask questions or submit feedback using our [community forum](https://community.proofgeist.com).
+
+</Steps>
+
+## Coming from Otto v3?
+
+Check out our upgrade guide for [Otto v3 users](/changes-from-3).
