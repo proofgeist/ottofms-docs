@@ -1,0 +1,35 @@
+# Starting, stopping and restarting
+
+## Web Console
+
+You can restart the OttoFMS application from the web console on all platforms from the settings page.
+
+## MacOS
+
+You can use the terminal to start, stop the OttoFMS application.
+
+```bash copy filename="Starting OttoFMS"
+sudo launchctl bootstrap system /Library/LaunchDaemons/com.proofgeist.otto.plist
+```
+
+```bash copy filename="Stopping OttoFMS"
+sudo launchctl bootstrap system /Library/LaunchDaemons/com.proofgeist.otto.plist
+```
+
+## Windows
+
+You can use Computer Management / Services and Applications / Services to manage OttoFMS on windows. It appears in the Services list as `OttoFMS`. All windows services are managed in the same way, including FileMaker Server.
+
+## Linux
+
+```bash copy filename="Starting OttoFMS"
+sudo systemctl start ottofms-proofgeist-com.service
+```
+
+```bash copy filename="Stopping OttoFMS"
+sudo systemctl stop ottofms-proofgeist-com.service
+```
+
+```bash copy filename="Restarting OttoFMS"
+sudo systemctl restart ottofms-proofgeist-com.service
+```
