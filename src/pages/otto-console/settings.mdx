@@ -34,15 +34,42 @@ Left ( Get ( HostName ) ; 6 ) = "[PRD] "
 
 ## Offsite Backups
 
-Docs coming soon!
+If configured, OttoFMS will automatically upload backups to an offsite location. This allows you to keep more backups without taking up space on your FileMaker Server and also provides an extra layer of protection in case your server is compromised.
+
+<Callout type="info">
+  For the best experience, we recommend using [Ottomatic Cloud
+  Storage](https://ottomatic.cloud) for offsite backups. It's affordable and
+  offers a built-in integration to easily configure offsite backups in OttoFMS.
+</Callout>
+
+To configure offsite backups, you will need credentials for an S3-compatible storage provider. Upon configuration, you'll be prompted for the following information from your storage provider:
+
+- **Endpoint**: The URL of your S3-compatible storage provider.
+- **Access Key ID**
+- **Secret Access Key**
+- **Region**: Optional, but required for some storage providers
+- **Bucket Name**: The name of the bucket where backups should be stored.
+- **Remote Folder Path**: A sub-folder to store backups in, so that you can use the same bucket for multiple servers.
+
+After entering this information, you can click the "Test" button to verify that OttoFMS can connect to your storage provider. If the test is successful, you can click "Save" to save the configuration. If the test fails, you will be prompted to correct the information and try again.
+
+### Backup Schedule
+
+Otto will create a FileMaker Server Scheduled Backup named `OTTO_OFFSITE`. By default it will backup all databases, to a folder it creates within the Remote Folder Path that you setup. You can modify the schedule to adjust what gets backed up and when, but you **should not change the name of the backup schedule**.
 
 ## Deployment Settings
 
-Docs coming soon!
+During each deployment, OttoFMS creates a backup of each file before making any changes. This setting here allows to choose how many backups from these deployments you want to keep. The larger the number, the more space it will take up on your server.
+
+For more information about Deployments, see the [Concepts > Deployments](/concepts/deployments) page.
 
 ## Build Settings
 
-Docs coming soon!
+When you trigger a build from [OttoDeploy](/ottodeploy-features/builds) or the [OttoFMS Developer API](/apidoc#tag/Build/operation/PostOttoApiBuild), it is stored on the server. This setting here allows you to choose how many builds you want to keep. The larger the number, the more space it will take up on your server.
+
+This setting does not apply to "Just-in-time" builds, which are cleared from the server after they are downloaded.
+
+For more information about Builds, see the [Concepts > Builds](/concepts/builds) page.
 
 ## Popup Settings
 
