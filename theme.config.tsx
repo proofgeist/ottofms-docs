@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useConfig, useTheme } from "nextra-theme-docs";
+import { useConfig, useTheme, DocsThemeConfig } from "nextra-theme-docs";
 import { Footer } from "./src/components/footer";
 import { OttoFMSLogo } from "@/components/logos/ottofms";
 function getBaseUrl() {
@@ -35,7 +35,6 @@ function Head() {
 
 function Logo() {
   const { theme } = useTheme();
-  const iconVariant = theme === "dark" ? "darkmode" : "lightmode";
   return (
     <div
       style={{
@@ -50,7 +49,7 @@ function Logo() {
   );
 }
 
-const config = {
+const config: DocsThemeConfig = {
   primaryHue: 201,
   logo: Logo,
   darkMode: true,
@@ -58,6 +57,7 @@ const config = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
+  docsRepositoryBase: "https://github.com/proofgeist/ottofms-docs/tree/main",
   footer: { text: Footer },
   feedback: { content: null },
   editLink: { component: Null },
@@ -65,13 +65,13 @@ const config = {
     key: "ottofms-beta-release",
     text: (
       <a href="/beta" target="_blank">
-        OttoFms is in beta. 🛑 Do not use in production. 🛑 Read more →
+        OttoFMS is in beta. 🛑 Do not use in production. 🛑 Read more →
       </a>
     ),
   },
   useNextSeoProps() {
     return {
-      titleTemplate: `%s | OttoFms`,
+      titleTemplate: `%s | OttoFMS`,
     };
   },
 };
