@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Otto Developer API",
-    "version": "4.1.0-beta.15",
+    "version": "4.0.1-beta.15",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "Otto Logo"
@@ -2988,7 +2988,7 @@
               },
               "buildId": {
                 "type": "string",
-                "default": "build_hLsUd7SJRVAi"
+                "default": "build_qOKQvLkfmG3G"
               }
             },
             "required": [
