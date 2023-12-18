@@ -16,4 +16,8 @@ Docs coming soon!
 
 ## Admin API Keys
 
-Docs coming soon!
+Admin API Keys are what OttoFMS uses to manage your FileMaker Server login for any processes that require it. You can create a new Admin API Key by clicking the "Create Admin API Key" button in the top right corner of the list view.
+
+We use Admin API Keys to proxy to the admin API of your FileMaker Server. This allows us to use the API without constantly having to create new admin sessions with FileMaker. You can create Admin API tokens for any process that needs to query the FileMaker or OttoFMS APIs. To use the FileMaker API with an OttoFMS Admin API key, you will need to prefix the api path with `/otto`. For more information on the proxy, see the [API Proxy](/api-proxy) page.
+
+Admin API Keys are used to query your server from OttoDeploy.
