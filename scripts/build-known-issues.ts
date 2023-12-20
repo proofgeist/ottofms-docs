@@ -1,6 +1,6 @@
 import { write, writeFileSync } from "fs";
 import { join } from "path";
-import { getOttoFmsTasks } from "./clickup";
+import { getOttoFMSTasks } from "./clickup";
 import { config } from "dotenv";
 
 if (!process.env.VERCEL) config();
@@ -8,7 +8,7 @@ if (!process.env.VERCEL) config();
 main().then(() => console.log("done"));
 
 async function main() {
-  const ottoFMSTable = await getOttFMSKnownIssuesMD();
+  const ottoFMSTable = await getOttoFMSKnownIssuesMD();
 
   const md = `
 
@@ -21,8 +21,8 @@ async function main() {
   writeFileSync(join(__dirname, "..", "src", "pages", "known-issues.mdx"), md);
 }
 
-async function getOttFMSKnownIssuesMD() {
-  const data = await getOttoFmsTasks();
+async function getOttoFMSKnownIssuesMD() {
+  const data = await getOttoFMSTasks();
 
   const header = `
 | Name   | Status | Description |
