@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Otto Developer API",
-    "version": "4.0.1-beta.15",
+    "version": "4.0.1-beta.16",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "Otto Logo"
@@ -1979,6 +1979,9 @@
                 "nullable": true,
                 "type": "string",
                 "description": "Remote path this server is being backed up to."
+              },
+              "isExistingSchedule": {
+                "type": "boolean"
               }
             },
             "required": [
@@ -1986,7 +1989,8 @@
               "secret_access_key",
               "type",
               "bucketName",
-              "remotePath"
+              "remotePath",
+              "isExistingSchedule"
             ],
             "description": "all fields will be null if no backup location is set",
             "example": {
@@ -1995,7 +1999,8 @@
               "endpoint": "https://my-endpoint.com",
               "type": "s3",
               "bucketName": "my-bucket-name",
-              "remotePath": "/remote-path"
+              "remotePath": "/remote-path",
+              "isExistingSchedule": true
             }
           },
           "messages": {
@@ -2988,7 +2993,7 @@
               },
               "buildId": {
                 "type": "string",
-                "default": "build_ck8nbZYljnXb"
+                "default": "build_IjeLj1wU2Q0T"
               }
             },
             "required": [
