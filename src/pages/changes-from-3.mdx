@@ -15,7 +15,7 @@ This document is for people who are familiar with Otto v3 and want to know what'
 
 - **You make heavy usage of API keys for webhooks or the Data API Proxy**. You will need to re-create your API keys in OttoFMS and update any applications that use them.
 
-- **You have made major customizations to Migrator.fmp12**. OttoDeploy, the replacement for Migrator.fmp12, is not as customizable as Migrator.fmp12 was. If you're unable to use OttoDeploy for your custom workflow, get in touch with us via the [forum](https://community.proofgeist.com).
+- **You have made major customizations to Migrator.fmp12**. OttoDeploy, the replacement for Migrator.fmp12, is not as customizable as Migrator.fmp12 was. If you're unable to use OttoDeploy for your custom workflow, we welcome all feature requests via the [forum](https://community.proofgeist.com).
 
 - **You rely on the Otto Application Logs**. This feature will come to OttoFMS in a future release.
 ---
@@ -28,7 +28,7 @@ OttoFMS and OttoDeploy will be **free forever** as long as you abide by the term
 
 ## Tech Support changes
 
-Otto v3 included email based tech support. Since OttoFMS is a free product, free support will be provided via a community forum so that our answers to all questions can be public to help others. Paid support is available; learn more on the [support page](/support).
+Otto v3 included email based tech support. Since OttoFMS is a free product, free support will be provided via the [community forum](https://community.proofgeist.com) so that our answers to all questions can be public to help others. Paid support is available; learn more on the [support page](/support).
 
 ## Technical Requirements
 
@@ -42,17 +42,17 @@ OttoFMS and OttoDeploy are complete, from the ground up, rewrites of Otto v3 and
 
 ### OttoFMS
 
-OttoFMS, like Otto v3 and earlier, runs on your FileMaker Server, hence the "FMS" in the name. It provides the Dev Ops and runtime features which supercharge your development practices and your FileMaker based applications.
+OttoFMS, like Otto v3 and earlier, runs on your FileMaker Server, hence the "FMS" in the name. It provides the DevOps and runtime features which supercharge your development practices and your FileMaker based applications.
 
 ### OttoDeploy.fmp12
 
-OttoDeploy.fmp12 takes the place of Migrator.fmp12. "Data Migration" describes only one part of what Migrator was doing. Really what it was doing was deploying FileMaker files from one server to another. Deploying files is a much more accurate description of what was going on so we changed the name.
+OttoDeploy.fmp12 takes the place of Migrator.fmp12. "Data Migration" describes only one part of what Migrator was doing. Really what it was doing was deploying FileMaker files from one server to another. Deploying files is a much more accurate description of the workflows that are possible, and so we changed the name accordingly.
 
 OttoDeploy is now the place where you configure your "Deployments" and send them off to OttoFMS to do its thing.
 
 ## Highlighted changes
 
-OttoFMS and OttoDeploy have roughly the same feature set as the applications they replace but they have been much improved and expanded. Here is a list of some of the most important changes.
+OttoFMS and OttoDeploy have roughly the same feature set as the applications they replace but they have been much improved and expanded. Here is a list of some of the most important changes:
 
 ### OttoFMS
 
@@ -61,14 +61,14 @@ OttoFMS and OttoDeploy have roughly the same feature set as the applications the
 - **Migrations are now Deployments**. Data Migration is now just one option in a Deployment. You can also install, replace, or simply close files during a deployment.
 - **Deployments are now atomic**. If any file in a deployment fails the entire deployment is rolled back.
 - **Deployment can have sub-deployments** which are run in order. This allows for more advanced use cases then was possible before. Sub-deployments are atomic, but by default they do not cause other sub-deployments to revert.
-- **Deployments scheduling improved**. Schedules are now part of the deployment and don't require Migrator.fmp12 or OttoDeploy.fmp12 to be running on the same server.
+- **Deployments scheduling improved**. Schedules are now part of the deployment and don't require Migrator.fmp12 or OttoDeploy.fmp12 to be running on the server that performs the deployment.
 - **Post Migration Scripts are now Post Deployment Scripts**. In addition to changing the name, these scripts are now part of the Deployment.
-- **Webhooks are easier**. Webhooks are easier to setup and use. They no longer need to run over port 3030.
+- **Webhooks are easier**. Webhooks are much easier to setup and use. They no longer need to run over port 3030.
 
 ### OttoDeploy
 
 - **OttoDeploy can auto-upgrade**. OttoDeploy can be auto-installed and auto-upgraded on any server running OttoFMS.
-- **OttoDeploy UI is simpler**. The ui is up to modern standards both in look and feel and usability. You won't believe it is a FileMaker file.
+- **OttoDeploy UI is simpler**. The ui is up to modern standards both in look and feel, and usability. You won't believe it is a FileMaker file.
 
 ## Otto v3 features not in OttoFMS
 
@@ -115,7 +115,7 @@ https://my-otto-server.com/otto/fmi/data/vLatest/...
 https://my-otto-server.com/otto/receiver/SimpleQ.fmp12/channel?apiKey=dk_85238774
 ```
 
-If you have any questions about this process, please reach out to us on our [Support forum](https://community.proofgeist.com/).
+If you have any questions about this process, please reach out to us on our [community forum](https://community.proofgeist.com/).
 
 ### Can I customize OttoDeploy in the same way that I could Migrator.fmp12?
 
@@ -123,4 +123,4 @@ No. The nature of OttoDeploy was built to be easier to use and understand the co
 
 ### Other questions?
 
-Reach out via our [Support forum](https://community.proofgeist.com/)
+Reach out via the [community forum](https://community.proofgeist.com/)
