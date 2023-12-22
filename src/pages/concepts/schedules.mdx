@@ -6,13 +6,13 @@ OttoFMS comes with the ability to schedule a [Deployment](/concepts/deployments)
 
 ## FileMaker Server Script Schedules
 
-Rather then creating a another way to schedule actions on a FileMaker Server, OttoFMS uses FileMaker Server's System Script Schedules feature to trigger the deployment.
+Rather then creating another way to schedule actions on a FileMaker Server, OttoFMS uses FileMaker Server's Script and Verify Schedules feature to trigger the deployment.
 
 ## How does it work?
 
-When you send a deployment to OttoFMS it checks a scheduled flag and timestamp. If it finds a valid flag and timestamp, it will create a system script schedule on the FileMaker Server that will trigger the deployment at the specified time.
+When you send a deployment to OttoFMS it checks a scheduled flag and timestamp. If it finds a valid flag and timestamp, it will create a [script schedule](https://help.claris.com/en/server-help/content/schedule-run-fm-script.html). on the FileMaker Server that will trigger the deployment at the specified time.
 
-We generate a name for schedule, but this name can be changed. If you need to change information about a schedule after it has been setup, you can edit the scheduled time and name from the FileMaker Server Admin Console.
+We generate a name for the schedule, but this name can be changed. If you need to change information about a schedule after it has been setup, you can edit the scheduled time and name from the FileMaker Server Admin Console.
 
 <Callout type="warning">
   Editing the selected system script or the script parameters will break the
