@@ -18,19 +18,19 @@ A backup is made of all files in the deployment before it starts. If any part of
 
 ### Scheduled Deployments
 
-OttoFMS leverages the FileMaker Server's built in scheduling to run deployments at a scheduled time. When you configure a deployment to run via schedule, OttoFMS will create a FileMaker Server schedule that triggers OttoFMS on the server to run the deployment. This technique does not require the OttoDeploy file to be hosted on the server that is running the deployment.
+OttoFMS leverages the FileMaker Server's built-in scheduling to run deployments at a scheduled time. When you configure a deployment to run via schedule, OttoFMS will create a FileMaker Server schedule that triggers OttoFMS on the server to run the deployment. This technique does not require the OttoDeploy file to be hosted on the server that is running the deployment.
 
 ## Advanced Deployments
 
-Most users will not need to make use of the advanced deployment features. But if you are a vertical market solution provider, or you want to incorporate a staging server into your setup or for any other more advanced setups you are going to want to use the Advanced interface.
+Most users will not need to make use of the advanced deployment features. But if you are a vertical market solution provider, or you want to incorporate a staging server into your setup, or for any other more advanced workflows, you will want to use the Advanced interface.
 
 See the [OttoDeploy documentation](/ottodeploy) for how to turn on Advanced options.
 
 ### Sub-deployments
 
-Sub-deployments are a way to break up a deployment into smaller sets of files. There are two main use cases for sub-deployments, which are using multiple sources and upgrading multiple versions of the same file.
+Sub-deployments are a way to break up a deployment into smaller sets of files. There are two main use cases for sub-deployments: using multiple sources and upgrading multiple versions of the same file.
 
-Each sub-deployment can be configured to pull from a different source server, so they could be used to do a install from a production server onto a staging server and then migrate the new version of the schema from the development server. See our [Refresh Staging](/guides/deployment-patterns/refresh-staging) for more information.
+Each sub-deployment can be configured to pull from a different source server. For example, they can be used to do a install from a production server onto a staging server and then migrate the new version of the schema from the development server. See our [Refresh Staging](/guides/deployment-patterns/refresh-staging) for more information.
 
 Sub-deployments can be used if you need to upgrade many copies of a single solution running on a server. For example, if you have 10 copies of a solution running on a server, you can create a sub-deployment for each copy.
 
