@@ -19,3 +19,5 @@ The pages on the docs each correspond to a .mdx file in the src/pages folder in 
 This site runs using Nextra, see their [docs](https://nextra.site/docs) for more information on configuration and setup. 
 
 All changes will need to go through a pull request to be approved by one of the members of the Proof+Geist Digital team. 
+
+Feel free to submit issues in the github repository or in the proof+geist community if you find any typos or broken links.
