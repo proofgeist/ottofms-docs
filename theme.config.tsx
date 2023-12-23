@@ -35,6 +35,16 @@ function Head() {
           frontMatter.subTitle || ""
         }`}
       />
+      <meta
+        property="twitter:image"
+        content={`${baseUrl}/api/og-image?title=${title}&subtitle=${
+          frontMatter.subTitle || ""
+        }`}
+      />
+      <meta
+        property="twitter:description"
+        content={frontMatter.description || "OttoFMS Documentation"}
+      />
     </>
   );
 }
