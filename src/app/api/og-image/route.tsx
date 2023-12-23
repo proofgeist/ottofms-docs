@@ -17,7 +17,6 @@ export async function GET(req: Request) {
           display: "flex",
           flexDirection: "column",
           fontSize: 60,
-          border: "4px solid #0977B1",
           borderRadius: 8,
           color: "#0977B1",
           background: "#EDF1F3",
