@@ -27,11 +27,13 @@ function Head() {
       <meta property="og:url" content={url} />
       <meta
         property="og:description"
-        content={frontMatter.description || "OttoFms Documentation"}
+        content={frontMatter.description || "OttoFMS Documentation"}
       />
       <meta
         property="og:image"
-        content={`${baseUrl}/api/og-image?title=${title}&subtitle=${frontMatter.subTitle}`}
+        content={`${baseUrl}/api/og-image?title=${title}&subtitle=${
+          frontMatter.subTitle || ""
+        }`}
       />
     </>
   );
