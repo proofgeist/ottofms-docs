@@ -36,6 +36,10 @@ function Head() {
         }`}
       />
       <meta
+        property="twitter:title"
+        content={title || "OttoFMS Documentation"}
+      />
+      <meta
         property="twitter:image"
         content={`${baseUrl}/api/og-image?title=${title}&subtitle=${
           frontMatter.subTitle || ""
