@@ -18,7 +18,7 @@ function Head() {
   const baseUrl = getBaseUrl();
 
   const { asPath, defaultLocale, locale } = useRouter();
-  const { frontMatter } = useConfig();
+  const { frontMatter, title } = useConfig();
   const url =
     baseUrl + (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
 
@@ -28,6 +28,10 @@ function Head() {
       <meta
         property="og:description"
         content={frontMatter.description || "OttoFms Documentation"}
+      />
+      <meta
+        property="og:image"
+        content={`${baseUrl}/api/og-image?title=${title}&subtitle=${frontMatter.subTitle}`}
       />
     </>
   );
