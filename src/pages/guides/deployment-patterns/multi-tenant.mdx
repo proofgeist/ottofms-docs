@@ -8,23 +8,23 @@ If you are a vertical market solution provider then this pattern will appeal to 
   **Single server variation** This document covers upgrading several customer
   applications that are all running on a single server. If you have many servers
   to upgrade then you will need to repeat this process for each server for now.
-  We have multi-server target support on our near-term roadmap for OttoDeploy
+  We have multi-server target support on our near-term roadmap for OttoDeploy.
 </Callout>
 
 ## Problem
 
-You want upgrade several customer applications that are all running on a single server with the same "new version" of your application.
+You want to upgrade several customer applications that are all running on a single server with the same "new version" of your application.
 
 ## Solution
 
 ### Sub-deployments
 
-You can use sub-deployments to deploy the same version from your dev server or from a "release build" to each of the application instances running on the server. Each sub deployment can be setup to use the specific file names and file options for each customer.
+You can use sub-deployments to deploy the same version from your dev server or from a "release build" to each of the application instances running on the server. Each sub-deployment can be setup to use the specific file names and file options for each customer.
 
 #### Atomic sub-deployments
 
-Since each sub-deployment is atomic, if one of the sub-deployments fails then the remaining sub-deployments will not be effected, unless you use the abort remaining option.
+Since each sub-deployment is atomic, if one of the sub-deployments fails then the remaining sub-deployments will not be affected, unless you use the abort remaining option feature.
 
 ### Advanced options
 
-You will need to turn on the "Advanced options" in the deployment settings to use the Sub-deployments and Abort Remaining options.
+You will need to turn on the "Advanced options" in the deployment settings to use the sub-deployments and abort remaining sub-deployments features.

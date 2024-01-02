@@ -19,9 +19,9 @@ a particular state of your project. OttoFMS provides an [API endpoint](/apidoc#t
 for creating a build. OttoDeploy has a user interface for configuring the builds
 and sending it to the API on the server.
 
-The end result is a Zip Archive named after your build id and a manifest.json file that contains information about the build.
+The end result is a Zip Archive named after your build ID and a manifest.json file that contains information about the build.
 
-Here are a few example of how you might choose to name your build and it's archive name:
+Here are a few example of how you might choose to name your build and its archive name:
 
 ```
 build-2023-03-01.zip
@@ -51,7 +51,7 @@ When OttoFMS receives a request to create a build, it will run the following ste
 
 - Run the pre-build script (if configured). This is an opportunity to do anything you want before the build begins.
 - Each file listed in the `files` property of the payload will either be cloned or copied into a new folder in the OttoFMS `outbox` directory.
-- A manifest.json file is created with information about the build, that is used by OttoFMS to install the build, or use it as the schema source of a migration.
+- A manifest.json file is created with information about the build, that is used by OttoFMS to install the build, or use it as the schema source of a deployment.
 - The new `build` folder is zipped up and the archive is named with the build ID.
 
 ## Configure Builds with OttoDeploy

@@ -8,7 +8,7 @@ The settings page is where you can configure various features of OttoFMS, such a
 
 ## Appearance
 
-This section allows you to control the appearance of the OttoFMS console. The settings within this section are stored with the server and will apply for any user to logs into the console and from any browser. Some settings (such as the color) are also used by OttoDeploy and the Ottomatic Cloud Console to help you recognize which server you are working with.
+This section allows you to control the appearance of the OttoFMS console. The settings within this section are stored with the server and will apply for any user that logs into the console and from any browser. Some settings (such as the color) are also used by OttoDeploy and the Ottomatic Cloud Console to help you recognize which server you are working with.
 
 The only appearance setting that is **not** saved with the server is the light/dark mode toggle in the top-right of every page. In our experience, each user has their own preference for light/dark mode, so we leave this setting up to the user.
 
@@ -51,7 +51,7 @@ To configure offsite backups, you will need credentials for an S3-compatible sto
 - **Bucket Name**: The name of the bucket where backups should be stored.
 - **Remote Folder Path**: A sub-folder to store backups in, so that you can use the same bucket for multiple servers.
 
-After entering this information, you can click the "Test" button to verify that OttoFMS can connect to your storage provider. If the test is successful, you can click "Save" to save the configuration. If the test fails, you will be prompted to correct the information and try again.
+After entering this information, click the "Test" button to verify that OttoFMS can connect to your storage provider. If the test is successful, click "Save" to save the configuration. If the test fails, you will be prompted to correct the information and try again.
 
 ### Backup Schedule
 
@@ -65,7 +65,7 @@ For more information about Deployments, see the [Concepts > Deployments](/concep
 
 ## Build Settings
 
-When you trigger a build from [OttoDeploy](/ottodeploy-features/builds) or the [OttoFMS Developer API](/apidoc#tag/Build/operation/PostOttoApiBuild), it is stored on the server. This setting here allows you to choose how many builds you want to keep. The larger the number, the more space it will take up on your server.
+When you trigger a build from [OttoDeploy](/ottodeploy-features/builds) or the [OttoFMS Developer API](/apidoc#tag/Build/operation/PostOttoApiBuild), it is stored on the server. This setting allows you to choose how many builds you want to keep. The larger the number, the more space it will take up on your server.
 
 This setting does not apply to "Just-in-time" builds, which are cleared from the server after they are downloaded.
 

@@ -1,11 +1,11 @@
 import { Steps, Callout } from "nextra/components";
-import { Bleed } from "nextra-theme-docs";
+import Vimeo from "../../components/vimeo";
 
 # How to use API Keys
 
 ## Introduction
 
-OttoFMS provides an API Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing you need to do to use the Data API. Without OttoFMS you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. OttoFMS will handle the token exchange and updating for you.
+OttoFMS provides an API Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing that you need to do to use the Data API. Without OttoFMS you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. OttoFMS will handle the token exchange and refreshing for you.
 
 The API Key can be safely given to 3rd party integrations and services to access your FileMaker data without giving them access to your FileMaker username and password.
 
@@ -63,7 +63,7 @@ You have successfully created an API Key. You can now use this API Key to access
   data api with a an API Key.
 </Callout>
 
-Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it will be able to use the API Key
+Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it will be able to use the API Key.
 
 For example, change this url path:
 
@@ -100,19 +100,4 @@ Here is a video that shows how to create an API Key and use it to make a request
 
 ---
 
-<div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-  <iframe
-    src="https://player.vimeo.com/video/890122764?h=b8586bf005&amp;badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479"
-    frameborder="0"
-    allow="autoplay; fullscreen; picture-in-picture"
-    title="OttoFMS"
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-    }}
-  ></iframe>
-</div>
-<script src="https://player.vimeo.com/api/player.js"></script>
+<Vimeo id={"890122764"} />
