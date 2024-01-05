@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 # Deployments
 
 The Deployments view is where you can setup and manage your deployments. You can access the Deployments view by clicking on the `Deployments` link in the left hand navigation. Read more about [Deployments](/concepts/deployments).
@@ -10,6 +12,25 @@ On the list view you can see all the deployment configurations that you have set
 
 ## Deployment View
 
-Here is what the default Deployment view looks like.
+Each Deployment has a detail view where you can see and update the details of that deployment. You can access the detail view by clicking on any of the listed deployments in the list view.
 
 ![Deployment Detail](/img/ottodeploy/simple-deployment.png)
+
+### Deployment Details
+
+The menu in the top right can be used to perform actions on each deployment:
+
+<Image
+  src="/img/ottodeploy/deployment-menu.png"
+  alt="Deployment Detail"
+  width={300}
+  height={300}
+/>
+
+Copy Deployment JSON: This will open up a window where you can review the JSON object that will be sent to OttoFMS on your destination server. There is a setting in the opened window to hide secrets, this can be toggled to hide any secrets that are in the JSON object. If you send your deployment JSON to Proof+Geist for support, please make sure to hide secrets before sending.
+
+Use Advanced Options: Toggles the advanced options for the deployment. The advanced options are described in the [Advanced Options](/ottodeploy-features/deployments/advanced-options) section.
+
+Duplicate: Creates a copy of this deployment.
+
+Delete: Deletes this deployment from OttoDeploy. This action cannot be reversed.
