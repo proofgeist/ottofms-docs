@@ -1,6 +1,153 @@
-import { Callout } from "nextra/components";
+import { Steps } from "nextra/components";
 
-<Callout type="info">
-	This page is still under construction, come back later to see what we've
-	cooked up!
-</Callout>
+# How to setup webhooks
+
+## Introduction
+
+Webhooks are a way to get notified when something happens in another application or service. This is useful if you want to integrate with a third party service, like a shipping service, or a payment gateway. OttoFMS makes it very easy to let a FileMaker file receive webhooks.
+
+## Before you begin
+
+### Api Key created
+
+OttoFMS uses API Keys to authenticate incoming webhooks. You should be able to create an API Key for the FileMaker File you want to receiver webhooks. If you haven't done that yet, please use the [API Key guide](/guides/api-keys) first to setup an API Key for your target FileMaker file.
+
+### FileMaker file preparation
+
+OttoFMS uses a script and a table with a couple of fields to receive webhooks. We provide a FileMaker Addon that you can use to quickly add all the schema you need to get started.
+
+- [ ] Ensure your target FileMaker file is hosted on a OttoFMS powered server.
+- [ ] Ensure you can create an [API Key](/guides/api-keys) for the target FileMaker file.
+- [ ] [Download OttoReceiver.fmaddon](/downloads/OttoReceiver.fmaddon.zip)
+- [ ] Unzip the archive
+- [ ] Double click the OttoReceiver.fmaddon file to install it in the proper location.
+- [ ] Open the FileMaker file you want to receive webhooks, Go into Layout mode and install the new Addon. (See below for more details)
+
+![Install Otto Receiver Addon](/img/ottofms/guides/otto-receiver-addon.png)
+
+## Registering a webhook
+
+Technically you don't need to register a webhook, but it is a good idea to do so. It will make it easier to manage your webhooks and it will allow you to easily test your webhooks.
+
+<Steps>
+### Login to OttoFMS
+Login to the [OttoFMS web console](/otto-console).
+
+### Navigate to API Keys
+
+Navigate to the [API Keys page](/otto-console/webhooks) in the web console.
+
+### Register a new webhook
+
+Click the "Register" button in the upper left to register a new Webhook.
+![Register](/img/ottofms/guides/webhook-button.png)
+
+### Select the target FileMaker file
+
+First select the FileMaker file you want to receive webhooks. You can select a FileMaker file from the dropdown.
+![Select FileMaker file](/img/ottofms/guides/wh-select-db.png)
+
+### Create an API Key (optional)
+
+If you haven't created an API Key yet, you can click the "Create API Key" button to create a new API Key.
+![Create API Key](/img/ottofms/guides/wh-create-api-key.png)
+
+### Select an API Key
+
+If there are multiple API Keys for the FileMaker file you selected, you can select the API Key you want to use from the dropdown.
+![Select API Key](/img/ottofms/guides/wh-select-api-key.png)
+
+### Handle error (if any)
+
+If you get an error that says "FileMaker Database setup is incomplete", you need to install the OttoReceiver.fmaddon file in your FileMaker file. See the [FileMaker file preparation](#filemaker-file-preparation) section above for more details.
+![FileMaker Database setup is incomplete](/img/ottofms/guides/wh-handle-error.png)
+
+### Enter a channel
+
+Enter a channel. Channels are used to identify the webhook. You can use any string you want. It is a good idea to use a channel that is related to the third party service you want to integrate with. [see image below](#click-register)
+
+This value will end up in the Channel field of the OttoReceiverInbox table.
+
+### Add a label (optional)
+
+Labels are just used to make it easier to identify a webhook. You can use any string you want. [see image below](#click-register)
+
+### Copy the URL
+
+Copy the URL that is shown in the dialog. You will need this URL to configure your webhook in the third party service you want to integrate with. [see image below](#click-register)
+
+### Click "Register"
+
+When you are done, click the "Register" button to register the webhook.
+![Register webhook](/img/ottofms/guides/wh-final.png)
+
+### Success
+
+You have successfully registered a new webhook. You can now use the URL you copied to configure your third party service to send webhooks to your FileMaker file.
+
+</Steps>
+
+## Testing a webhook
+
+### Built in test tool
+
+Click the three dots next to the webhook you want to test and select "View/Test" from the menu. Click the "Send Webhook" button to send a test webhook to your FileMaker file.
+
+The Test Result field will show you the result of the test. If the test was successful, you will see the result of the test in the Test Result field. If the test failed, you will see the error message in the Test Result field. It will look something like this:
+
+```json
+{
+  "success": true,
+  "scriptError": 0,
+  "scriptResult": {
+    "success": true
+  },
+  "messageRecordId": "4",
+  "successMessage": "Message Accepted"
+}
+```
+
+### Postman
+
+You can also use a tool like [Postman](https://www.postman.com/) to test your webhooks. Send a POST request with a valid JSON body to the URL you copied when you registered your webhook. The JSON body should look something like this:
+
+```json
+{
+  "message": "Hello World"
+}
+```
+
+You should get something similar to this and the status code should be 200.
+
+```json
+{
+  "success": true,
+  "scriptError": 0,
+  "scriptResult": {
+    "success": true
+  },
+  "messageRecordId": "4",
+  "successMessage": "Message Accepted"
+}
+```
+
+## Handling incoming webhooks
+
+Once you have registered a webhook, you can start handling incoming webhooks. OttoFMS will automatically create a record in the OttoReceiverInbox table for every incoming webhook. The record will contain the following fields:
+
+- Channel
+- Payload
+
+The Channel field will contain the channel you specified when you registered the webhook. The Payload field will contain the JSON payload of the webhook.
+
+OttoFMS will then call the OttoReceiver script in your FileMaker file. You can use this script to process the webhook.
+
+### Modify OttoReceiver script
+
+Modify the OttoReceiver script to process the webhook. Create an IF/ELSE IF branch in the script for every channel you want to handle. See the image below for an example.
+
+![OttoReceiver script](/img/ottofms/guides/otto-receiver-script-example.png)
+
+## SimpleQ
+
+SimpleQ is a more advanced and powerful way of handling incoming webhooks. It allows you to queue webhooks and process them asynchronously. See the [SimpleQ guide](/guides/simpleq) for more details.
