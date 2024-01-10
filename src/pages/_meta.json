@@ -19,8 +19,7 @@
     "type": "separator"
   },
   "ottofms": "Overview",
-  "managing-ottofms": "Installing / Uninstalling",
-  "starting-stopping": "Starting / Stopping",
+  "managing-ottofms": "Managing OttoFMS",
   "otto-console": "OttoFMS Web Console",
   "dev-api": {
     "title": "Developer API Docs ↗",

@@ -1,0 +1,19 @@
+### Update Linux using our update script
+
+We have set up a hosted update script that you can run on your server to update OttoFMS. To run, simply copy and paste the following command into your terminal:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash
+```
+
+If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash -s -- -v 4.0.1-beta.19
+```
+
+### Update Mac/Windows/Manual Linux
+
+To update OttoFMS to a new version, follow the instructions for [uninstalling](/managing-ottofms/installing-uninstalling#uninstalling) the old version first. Then follow the instructions for [installing](/managing-ottofms/installing-uninstalling#installing) the new version.
+
+We are planning to add a more streamlined update process in the future.

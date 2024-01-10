@@ -35,6 +35,24 @@ Select your operating system for specific installation instructions:
    <span>Make sure your server has a swap file configured for additional virtual memory.</span>
    </Callout>
 
+### Option 1: Install using our install script
+
+We have set up a hosted install script that you can run on your server to install OttoFMS. This script can also be used to update to a different version of OttoFMS later.
+
+To run, simply copy and paste the following command into your terminal:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash
+```
+
+If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash -s -- -v 4.0.1-beta.19
+```
+
+### Option 2: Manual Install
+
 <Steps>
 ### SSH into your Linux Server
 
@@ -43,7 +61,7 @@ Select your operating system for specific installation instructions:
 - [Download Linux Installer](https://console.ottomatic.cloud/downloads/ottofms/latest/amd)
 - [Download Linux Installer (arm)](https://console.ottomatic.cloud/downloads/ottofms/latest/arm)
 
-The download package you receive is a zip file, Unzip it for the actual Installer
+The download package you receive is a zip file, unzip it for the actual installer
 
 ### cd to the directory containing the downloaded installer file
 
