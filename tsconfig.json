@@ -41,7 +41,7 @@
     "theme.config.tsx",
     "scripts/build-known-issues.ts",
     ".next/types/**/*.ts"
-  ],
+, "next.config.js"  ],
   "exclude": [
     "node_modules"
   ],
