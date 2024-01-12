@@ -4,18 +4,19 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["ui", "common"],
   async redirects() {
-    return [];
+    return [
+      {
+        source: "/webhooks",
+        destination: "/guides/webhooks",
+        permanent: true,
+      },
+    ];
   },
   rewrites: async () => {
     return [
       {
         source: "/apidoc",
         destination: "/apidoc/index.html",
-      },
-      {
-        source: "/webhooks",
-        destination: "/guides/webhook",
-        permanent: true,
       },
     ];
   },
