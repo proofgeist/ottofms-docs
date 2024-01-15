@@ -1,5 +1,23 @@
 # OttoDeploy Version History
 
+## 0.1.0-beta.9
+
+Released: 1/12/2024
+
+### Patch Changes
+
+- f36570a8: make server api key entry more clear
+- 823785bc: Default Rebuild Indexes and Reevaluate Field Calcs to No for new deployments
+- 3240754a: Added file counts to the deployment review modal
+- c21489e4: added option to pause queries in OttoDeploy so you can debug other files without being inundated with scripts. It is available on the Settings page.
+- 3d589ff2: fixed tab order in file options modal
+- 0db6375b: Prefill the server nickname if available from the OttoFMS API
+- 68fa2ec1: File select modal now has a select all option that will select all files that are visible in the modal (only files filtered by the search are included)
+- 3dcfe588: add option to hide deployment secrets in copiable json
+- b0f6b555: Link out to OttoFMS console for retrieving an API key easily
+- 0f2f28eb: move build select and url entry for alternate source underneath source selection to clarify that it is from the source, not the destination
+- 77620349: add install/replace file operation which allows OttoDeploy to dynamically choose to install or replace based on the state of the destination server.
+
 ## 0.1.0-beta.8
 
 Released: 12/22/2023
