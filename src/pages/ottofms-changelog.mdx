@@ -1,11 +1,36 @@
 # OttoFMS Version History
 
+## 4.0.1-beta.21
+
+Released: 1/11/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/mac)
+
+### Patch Changes
+
+- dd61074f: added a log of the license status on OttoFMS startup
+- ccc470ef: update OttoFMS api doc favicon
+- 42965470: going to the /otto/license page with a valid installed license will pass through to OttoFMS
+- 28cdbf04: files now upload in 25 MB chunks to avoid a timeout for large files over slow internet
+- 7f2472bf: added OttoFMS build number to the info api and settings page.
+- fb3c6a23: adding an admin api token via the api before logging into the web console will now properly set up authentication
+- 3911a4fa: closed files can now be downloaded
+- bd29e671: fix id column spacing in deployments table
+- 9807d071: tables in FMS tab are now sortable
+- 444089d1: Added server nickname to the info endpoint
+- 83174279: added keep me logged in functionality
+- 225b50b5: skip logging close files when no files are closing
+- 544f298e: prevent error on deselect log in log viewer
+- 4d0d4800: Expanded deployments in the deployments table will not collapse when a deployment is running
+- c065a97a: handle encrypted files better when opening files.
+- 4577a262: show error if FileMaker is not running when accessing the OttoFMS console
+- 6f1b9d0e: encrypt usernames and passwords for post deployment script
+
 ## 4.0.1-beta.19
 
 Released: 12/22/2023
 
 Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/mac)
-
 
 ### Patch Changes
 
