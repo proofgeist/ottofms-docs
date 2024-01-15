@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.0.1-beta.19",
+    "version": "4.0.1-beta.21",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -1783,6 +1783,9 @@
                   "version": {
                     "type": "string"
                   },
+                  "build": {
+                    "type": "string"
+                  },
                   "themeColor": {
                     "nullable": true,
                     "type": "string"
@@ -1796,14 +1799,20 @@
                       "prod"
                     ]
                   },
+                  "serverNickname": {
+                    "type": "string"
+                  },
                   "isLicenseValid": {
                     "type": "boolean"
                   }
                 },
                 "required": [
                   "version",
+                  "build",
                   "themeColor",
-                  "environmentTag"
+                  "environmentTag",
+                  "serverNickname",
+                  "isLicenseValid"
                 ]
               },
               "FileMakerServer": {
@@ -2159,8 +2168,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -2419,8 +2444,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -2562,8 +2603,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -2864,8 +2921,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -2993,7 +3066,7 @@
               },
               "buildId": {
                 "type": "string",
-                "default": "build_xBAFxIGMLUu0"
+                "default": "build_Iymr3Y6funVK"
               }
             },
             "required": [
@@ -4513,8 +4586,24 @@
                           {
                             "allOf": [
                               {
-                                "type": "object",
-                                "properties": {}
+                                "allOf": [
+                                  {
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {}
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
                               },
                               {
                                 "type": "object",
@@ -6266,8 +6355,24 @@
                           {
                             "allOf": [
                               {
-                                "type": "object",
-                                "properties": {}
+                                "allOf": [
+                                  {
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {}
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
                               },
                               {
                                 "type": "object",
@@ -6412,8 +6517,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -6618,22 +6739,30 @@
         ]
       },
       "PostOttoApiAdminApiKeyRequestBody": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "type": "string",
-            "default": "(no label)"
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {}
           },
-          "user": {
-            "type": "string"
-          },
-          "pass": {
-            "type": "string"
+          {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "default": "(no label)"
+              },
+              "user": {
+                "type": "string"
+              },
+              "pass": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "user",
+              "pass"
+            ]
           }
-        },
-        "required": [
-          "user",
-          "pass"
         ]
       },
       "GetOttoApiAdminApiKeySuccessfulResponse": {
@@ -6846,8 +6975,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -7070,8 +7215,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
@@ -7520,8 +7681,24 @@
                       {
                         "allOf": [
                           {
-                            "type": "object",
-                            "properties": {}
+                            "allOf": [
+                              {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {}
+                              }
+                            ]
                           },
                           {
                             "type": "object",
