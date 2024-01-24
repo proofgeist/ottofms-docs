@@ -1,0 +1,47 @@
+import { Callout, Steps } from "nextra/components";
+
+# What happens during a deployment?
+
+OttoFMS Deployments are a complex process that dramatically simplifies the deployment of your application. For a deployment between two OttoFMS servers using the simple deployment options, OttoFMS performs the following steps during the deployment:
+
+<Steps>
+
+### Close Files on Destination
+
+First we will close all of the files in the deployment on the destination server. This includes any files that are being migrated onto or replaced, as well as any files that are set to close during the deployment using the [Close Additional Files](/ottodeploy-features/deployments/close-additional-files) option.
+
+If there are no files to close, this step is skipped.
+
+### Run Build on Source
+
+We run a [build](/concepts/builds) on the source server. Depending on the [file operations](/ottodeploy-features/deployments/file-operations) in the deployment, a copy or a clone of the source files will be created and put into a .zip file.
+
+### Fetch Files from the Source
+
+The .zip file from the source server is downloaded onto the destination server. The files are then extracted so they can be used for subsequent steps.
+
+### Migrate Data
+
+For files that are using the "migrate" [file operation](/ottodeploy-features/deployments/file-operations), data will be migrated from the destination file to the clone that was downloaded from the source server using the Data Migration tool.
+
+### Backup Destination Files
+
+All files on the destination that are being changed as part of the deployment are backed up before OttoFMS replaces them with the new version of the file. This allows you to roll back to the previous version of the file if there is an issue with the deployment.
+
+### Install New Files
+
+The new files from the source server are installed on the destination server. Files that are being migrated are replaced with the new version that was created from the clone with migrated data, and files that are being replaced are replaced with the new version from the source server.
+
+### Open Files on Destination
+
+All files that were closed at the beginning of the deployment are opened again.
+
+### Run Post Deployment Scripts
+
+Any post deployment scripts that were configured for the deployment are run on the destination server.
+
+</Steps>
+
+### Advanced Deployments
+
+Each sub-deployment in an [advanced deployment](/concepts/deployments/advanced-deployments) will run all of the above steps. You can think of a sub-deployment as its own full deployment, happening in sequence with the other sub-deployments.
