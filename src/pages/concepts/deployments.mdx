@@ -18,32 +18,6 @@ A backup is made of all files in the deployment before it starts. If any part of
 
 OttoFMS leverages the FileMaker Server's built-in scheduling to run deployments at a scheduled time. When you configure a deployment to run via schedule, OttoFMS will create a FileMaker Server schedule that triggers OttoFMS on the server to run the deployment. This technique does not require the OttoDeploy file to be hosted on the server that is running the deployment.
 
-## Advanced Deployments
-
-Most users will not need to make use of the advanced deployment features. But if you are a vertical market solution provider, or you want to incorporate a staging server into your setup, or for any other more advanced workflows, you will want to use the Advanced interface.
-
-See the [OttoDeploy documentation](/ottodeploy) for how to turn on Advanced options.
-
-### Sub-deployments
-
-Sub-deployments are a way to break up a deployment into smaller sets of files. There are two main use cases for sub-deployments: using multiple sources and upgrading multiple versions of the same file.
-
-Each sub-deployment can be configured to pull from a different source server. For example, they can be used to do a install from a production server onto a staging server and then migrate the new version of the schema from the development server. See our [Refresh Staging](/guides/deployment-patterns/refresh-staging) for more information.
-
-Sub-deployments can be used if you need to upgrade many copies of a single solution running on a server. For example, if you have 10 copies of a solution running on a server, you can create a sub-deployment for each copy.
-
-There are a few benefits to using a sub-deployments over a single deployment:
-
-- If one sub-deployment fails the other sub-deployments will not be reverted.
-  - This behavior can be slightly adjusted using the [Abort Remaining on Failure](/ottodeploy-features/deployments/advanced-options#abort-remaining-on-failure) option, which will stop all remaining sub-deployments if one sub-deployment in the set fails.
-- Sub-deployments can use multiple different sources for the files, allowing you to run a set of 5 sub-deployments from 5 different sources, whereas in Otto v3 you needed to run 5 separate migrations.
-
-#### What sub-deployments can't do
-
-Sub-deployments can't be scheduled separately. If you need to schedule a sub-deployment separately, you will need to create a separate deployment for it.
-
-Sub-deployments can't target different destination servers. A sub-deployment can use a different source for the files, but they will all use the same destination server. If you need to deploy to different destination servers, you will need to create a separate deployment for each destination server.
-
 ### Builds
 
 All deployments use a [Build](/concepts/builds) as the source of the files that are being moved onto a destination server. For simple deployments, a build is created for you automatically. For advanced use cases, read on in the [next section](/concepts/builds) to learn more about builds.
