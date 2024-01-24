@@ -87,7 +87,10 @@ const config: DocsThemeConfig = {
         <a
           className={className}
           target="_blank"
-          href={`https://pr.new/proofgeist/ottofms-docs/edit/main/${filePath}`}
+          href={`https://pr.new/proofgeist/ottofms-docs/edit/main/${filePath}?initialPath=${window.location.pathname.replace(
+            "/",
+            ""
+          )}`}
           style={{ display: "flex", gap: 6, alignItems: "center" }}
         >
           Edit This page <IconExternalLink size={18} />
