@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useConfig, useTheme, DocsThemeConfig } from "nextra-theme-docs";
 import { Footer } from "./src/components/footer";
 import { OttoFMSLogo } from "@/components/logos/ottofms";
+import { IconExternalLink } from "@tabler/icons-react";
 function getBaseUrl() {
   const productionUrl = "https://docs.ottofms.com";
   const localDevUrl = "http://localhost:3063";
@@ -77,10 +78,23 @@ const config: DocsThemeConfig = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
-  docsRepositoryBase: "https://github.com/proofgeist/ottofms-docs/tree/main",
+  docsRepositoryBase: "https://pr.new/proofgeist/ottofms-docs/edit/main",
   footer: { text: Footer },
   feedback: { content: null },
-  editLink: { component: Null },
+  editLink: {
+    component: ({ filePath, className }) => {
+      return (
+        <a
+          className={className}
+          target="_blank"
+          href={`https://pr.new/proofgeist/ottofms-docs/edit/main/${filePath}`}
+          style={{ display: "flex", gap: 6, alignItems: "center" }}
+        >
+          Edit This page <IconExternalLink size={18} />
+        </a>
+      );
+    },
+  },
   banner: {
     key: "ottofms-beta-release",
     text: (
