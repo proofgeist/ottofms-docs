@@ -83,6 +83,7 @@ const config: DocsThemeConfig = {
   feedback: { content: null },
   editLink: {
     component: ({ filePath, className }) => {
+      if (typeof window === "undefined") return null;
       return (
         <a
           className={className}
