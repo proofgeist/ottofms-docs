@@ -13,7 +13,7 @@ async function main() {
   const md = `
 
  # Known Issues
-	Here are all the known issues with OttoFms.
+	Here are all the known issues with OttoFMS.
 	
 	${ottoFMSTable}
 	`;

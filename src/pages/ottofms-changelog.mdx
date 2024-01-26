@@ -1,11 +1,144 @@
 # OttoFMS Version History
 
+## 4.0.5
+
+Released: 1/25/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.5/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.5/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.5/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.5/mac)
+
+
+### Patch Changes
+
+- 74b5b63: fixed error causing uploads to fail
+
+## 4.0.4
+
+Released: 1/24/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.4/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.4/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.4/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.4/mac)
+
+### Patch Changes
+
+- b2f9fb8: remove unnecessary headers from Services table
+- c4de046: fixed issue where OttoFMS API would not refresh the session token if it was expired.
+
+## 4.0.3
+
+Released: 1/23/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.3/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.3/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.3/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.3/mac)
+
+### Patch Changes
+
+- f444d8b: fixed issue with autoregister webhook toggle toggling the autoregister webhook behavior backwards
+
+## 4.0.2
+
+Released: 1/22/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.2/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.2/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.2/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.2/mac)
+
+### Patch Changes
+
+- d336fc6: Fix error running migrations using encrypted files.
+- 7f2472b: added OttoFMS build number to the info api and settings page.
+- f45ad2e: fix padding in file manager
+- eb0f522: added loading indicator to login button
+- fb3c6a2: adding an admin api token via the api before logging into the web console will now properly set up authentication
+- dd61074: added a log of the license status on OttoFMS startup
+- 6566160: added lots of docs links
+- fdeb5ef: fix adminapi login error with keys
+- eb0f522: admin api key is now encrypted in the database
+- f188131: remove expire time from stored token, make cookie expire in 30 days
+- d55b880: added the option to restart the OttoFMS service from the settings page
+- b7ed60c: Rename API Key prefix to DK\_
+- 3911a4f: closed files can now be downloaded
+- 7cb0ce9: databases are now sorted alphabetically in the fms amdin tab
+- 9eb4278: don't close create api key modal on click outside
+- ccc470e: update OttoFMS api doc favicon
+- 66c02be: Add Admin API keys and Admin API Proxy
+- 848f569: add license info to tinybird
+- 9f27bd1: build download api now sends the build folder as a zip rather than just the build zip
+- 7b55a13: added description to ottomatic folder
+- bd29e67: fix id column spacing in deployments table
+- 497a29c: fix empty database color error on license and login pages
+- eb0f522: allow any fms log file in the log viewer
+- d55b880: added ottomatic-backups folder for use with ottomatic disaster protection
+- f45ad2e: make settings scroll inside main shell rather than full shell
+- efe02be: Fix unhandled rejection error and add splat format to console logger
+- e2e76d4: fix otto docs link
+- 674721c: await zip file completion
+- eb0f522: added a boolean for whether there is an existing offsite backup schedule to the get offsite settings endpoint
+- 4296547: going to the /otto/license page with a valid installed license will pass through to OttoFMS
+- eb0f522: moved admin console link to help menu
+- eb0f522: fix webhook error when not returning any ScriptResult in the OttoReceiver Script
+- 5760701: enable using an Ottomatic license for OttoFMS
+- 28cdbf0: files now upload in 25 MB chunks to avoid a timeout for large files over slow internet
+- f5444ca: removed http access on windows
+- 5e7c465: improves settings page ui
+- f305d3c: fixed issue with FileMaker Servere 20.3 preserved folder
+- eb0f522: Add more descriptions to help buttons
+- c4f17db: Update UI for detail view of sub-deployments
+- c065b70: deploying OttoDeploy will now only choose a schema version that has both a web version and a schema build for that version published
+- afd1af8: fix error unzipping files during deployments
+- c4f17db: Update Admin API key icon
+- e74220e: Activation with a License is now required for OttoFMS
+- 2d8f128: add required tag to API key label
+- 9807d07: tables in FMS tab are now sortable
+- a2082ac: improved build archiving
+- 444089d: Added server nickname to the info endpoint
+- 5760701: add idLicenseValid to the info endpoint
+- 590b18f: sort databases in the fms admin tab alphabetically
+- 8317427: added keep me logged in functionality
+- 05ede19: added guidance about admin api keys to developer api docs
+- 53ff9ad: added encryption lock icon to Fm databases screen
+- c52024c: convert Otto to OttoFMS in multiple places
+- 225b50b: skip logging close files when no files are closing
+- 544f298: prevent error on deselect log in log viewer
+- 4d0d480: Expanded deployments in the deployments table will not collapse when a deployment is running
+- c065a97: handle encrypted files better when opening files.
+- 4577a26: show error if FileMaker is not running when accessing the OttoFMS console
+- 6f1b9d0: encrypt usernames and passwords for post deployment script
+- eb0f522: add date to changelog in docs
+- edb063f: fix password and encryption key masking in logs to match complex passwords
+- eb0f522: prevent error when updating offsite settings via api. Will no longer attempt to recreate the backup schedule if one is already existing
+- 08a4970: updated capitalization of OttoFMS
+- 2985148: fixed issue with Webhook FileMaker validation
+- e7638e6: rename otto v4
+- 2300d1e: check for new versions and show in footer
+
+## 4.0.1-beta.21
+
+Released: 1/11/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.21/mac)
+
+### Patch Changes
+
+- dd61074f: added a log of the license status on OttoFMS startup
+- ccc470ef: update OttoFMS api doc favicon
+- 42965470: going to the /otto/license page with a valid installed license will pass through to OttoFMS
+- 28cdbf04: files now upload in 25 MB chunks to avoid a timeout for large files over slow internet
+- 7f2472bf: added OttoFMS build number to the info api and settings page.
+- fb3c6a23: adding an admin api token via the api before logging into the web console will now properly set up authentication
+- 3911a4fa: closed files can now be downloaded
+- bd29e671: fix id column spacing in deployments table
+- 9807d071: tables in FMS tab are now sortable
+- 444089d1: Added server nickname to the info endpoint
+- 83174279: added keep me logged in functionality
+- 225b50b5: skip logging close files when no files are closing
+- 544f298e: prevent error on deselect log in log viewer
+- 4d0d4800: Expanded deployments in the deployments table will not collapse when a deployment is running
+- c065a97a: handle encrypted files better when opening files.
+- 4577a262: show error if FileMaker is not running when accessing the OttoFMS console
+- 6f1b9d0e: encrypt usernames and passwords for post deployment script
+- Fixed error when uploading files on Windows servers
+
 ## 4.0.1-beta.19
 
 Released: 12/22/2023
 
 Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.1-beta.19/mac)
-
 
 ### Patch Changes
 

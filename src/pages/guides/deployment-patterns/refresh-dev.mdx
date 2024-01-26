@@ -1,0 +1,74 @@
+import { Callout, Steps } from "nextra/components";
+// import Vimeo from "../../../components/vimeo";
+
+# Refresh Dev
+
+This pattern will allow you to test your new development changes with updated production data without having to maintain a third staging server or file.
+
+<Callout type="info">
+  This pattern is described below using two seperate servers, but it can also be
+  done with two files on the same server. The pattern is the same, but the
+  implementation is slightly different. If you would like to do this using files
+  on the same server, simply replace the word "server" with "file" in the
+  instructions below.
+</Callout>
+
+## Problem
+
+Say you want to have real-world data in you development server to properly test new development. How do you keep the development server up to date with the latest data from the `PROD` server without wiping out our new development?
+
+<Callout>
+  This pattern will move **all the data** from the `PROD` server to the `DEV`
+  server. This may not be what you want. If you want to move only some of the
+  data, that is more complicated.
+</Callout>
+
+## Solution #1 - Replace `DEV` after migrating to `PROD`
+
+<Callout>
+  This solution is the easiest to implement, but it will wipe out any new
+  development you have done since last migrating from `DEV` to `PROD`. See
+  Solution #2 for a more robust solution.
+</Callout>
+
+The easy solution is to perform a replace from the `PROD` server to the `DEV` server after you deploy from `DEV` to `PROD`. This will wipe out all the schema on the `DEV` server and replace it with the schema from the `PROD` server. This is a good solution if you have not done any new development on `DEV` yet or if you do not care about wiping out development. In most situations, Solution #2 is better for when you have already done some development on `DEV`.
+
+## Solution #2 - Perform a migration using sub-deployments
+
+To migrate from `PROD` to `DEV` without wiping out our development, you can use sub-deployments. This pattern will require three sub-deployments:
+
+<Steps>
+
+### Copy data from Production
+
+In your first sub-deployment, copy your production file from the `PROD` server to a staging file on the `DEV` server. The staging file is only going to be used as a location to perform these operations, so it can be deleted after the deployment is complete.
+
+The source for this sub-deployment will be the `PROD` server.
+
+### Migrate Schema from Development
+
+Then we will need to migrate the schema from your development file to the new staging file. The staging file will now have all of your production data with your new development schema. If you were doing a staging refresh, you could stop here and use the staging file as your new staging file.
+
+The source for this sub-deployment will be the `DEV` server.
+
+### Overwrite Development with Staging
+
+Now that you have a staging file with your production data and your development schema, you can replace the development file with the staging file.
+
+This will essentially overwrite your development file with the new file you have built in the staging file. Now your development file will have all of your new development with the latest production data.
+
+The source for this sub-deployment will be the `DEV` server.
+
+  </Steps>
+
+You will need to use alternate sources for 1-2 of these sub-deployments (depending on whether you choose the source as your `DEV` or `PROD` server). Switch on the `Abort remaining sub-deployments` option so that you will not pereform subsequent sub-deployments if one fails.
+
+### Advanced options
+
+You will need to turn on the [Advanced Options](/ottodeploy-features/deployments/advanced-options) in the deployment settings to use the Sub-deployments and abort remaining sub-deployments features.
+
+## Video walkthrough
+
+Coming Soon!
+
+{/* <Vimeo id={"903870137"} /> */}

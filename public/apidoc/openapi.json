@@ -1,8 +1,8 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.0.1-beta.19",
+    "version": "4.0.5",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -15,21 +15,21 @@
         "operationId": "GetOttoApiCanReachOtherServer",
         "responses": {
           "200": {
-            "description": "GET /otto/api/can-reach-other-server Successful response",
+            "description": "GET /otto/api/can-reach-other-server Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/can-reach-other-server Error response",
+            "description": "GET /otto/api/can-reach-other-server Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -60,7 +60,7 @@
             "required": true,
             "description": "The url of the other server",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterOtherserverurl"
+              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterOtherServerUrl"
             },
             "examples": {
               "example1": {
@@ -74,7 +74,7 @@
             "required": false,
             "description": "is the other server running Otto 3",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterIslegacy"
+              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterIsLegacy"
             },
             "examples": {
               "example1": {
@@ -90,21 +90,21 @@
         "operationId": "GetOttoApiInfo",
         "responses": {
           "200": {
-            "description": "GET /otto/api/info Successful response",
+            "description": "GET /otto/api/info Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiInfoSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiInfoPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/info Error response",
+            "description": "GET /otto/api/info Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiInfoErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiInfoNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -135,21 +135,21 @@
         "operationId": "GetOttoApiSettingsOffsite",
         "responses": {
           "200": {
-            "description": "GET /otto/api/settings/offsite Successful response",
+            "description": "GET /otto/api/settings/offsite Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsitePositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/settings/offsite Error response",
+            "description": "GET /otto/api/settings/offsite Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -178,11 +178,11 @@
         "operationId": "PostOttoApiSettingsOffsite",
         "responses": {
           "200": {
-            "description": "POST /otto/api/settings/offsite Successful response",
+            "description": "POST /otto/api/settings/offsite Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsitePositiveResponse"
                 },
                 "examples": {
                   "example1": {
@@ -201,11 +201,11 @@
             }
           },
           "400": {
-            "description": "POST /otto/api/settings/offsite Error response",
+            "description": "POST /otto/api/settings/offsite Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -230,7 +230,7 @@
           "Settings"
         ],
         "requestBody": {
-          "description": "POST /otto/api/settings/offsite request body",
+          "description": "POST /otto/api/settings/offsite Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -256,21 +256,21 @@
         "operationId": "DeleteOttoApiSettingsOffsite",
         "responses": {
           "200": {
-            "description": "DELETE /otto/api/settings/offsite Successful response",
+            "description": "DELETE /otto/api/settings/offsite Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteSuccessfulResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsitePositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "DELETE /otto/api/settings/offsite Error response",
+            "description": "DELETE /otto/api/settings/offsite Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteErrorResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -301,21 +301,21 @@
         "operationId": "PostOttoApiRestart",
         "responses": {
           "200": {
-            "description": "POST /otto/api/restart Successful response",
+            "description": "POST /otto/api/restart Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiRestartSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiRestartPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/restart Error response",
+            "description": "POST /otto/api/restart Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiRestartErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiRestartNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -340,7 +340,7 @@
           "Settings"
         ],
         "requestBody": {
-          "description": "POST /otto/api/restart request body",
+          "description": "POST /otto/api/restart Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -356,21 +356,21 @@
         "operationId": "PostOttoApiScriptRunViaSchedule",
         "responses": {
           "200": {
-            "description": "POST /otto/api/script/run-via-schedule Successful response",
+            "description": "POST /otto/api/script/run-via-schedule Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaScheduleSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaSchedulePositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/script/run-via-schedule Error response",
+            "description": "POST /otto/api/script/run-via-schedule Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaScheduleErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaScheduleNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -395,7 +395,7 @@
           "Scripts"
         ],
         "requestBody": {
-          "description": "POST /otto/api/script/run-via-schedule request body",
+          "description": "POST /otto/api/script/run-via-schedule Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -439,21 +439,21 @@
         "operationId": "GetOttoApiFmFileFilenameDownload",
         "responses": {
           "200": {
-            "description": "GET /otto/api/fm-file/:filename/download Successful response",
+            "description": "GET /otto/api/fm-file/:filename/download Positive response",
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/fm-file/:filename/download Error response",
+            "description": "GET /otto/api/fm-file/:filename/download Negative response",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadNegativeResponse"
                 }
               }
             }
@@ -469,7 +469,7 @@
             "name": "filename",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/fm-file/:filename/download parameter",
+            "description": "GET /otto/api/fm-file/:filename/download Parameter",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadParameterFilename"
             },
@@ -501,21 +501,21 @@
         "operationId": "GetOttoApiFmFileFilenameLink",
         "responses": {
           "200": {
-            "description": "GET /otto/api/fm-file/:filename/link Successful response",
+            "description": "GET /otto/api/fm-file/:filename/link Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/fm-file/:filename/link Error response",
+            "description": "GET /otto/api/fm-file/:filename/link Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -544,7 +544,7 @@
             "name": "filename",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/fm-file/:filename/link parameter",
+            "description": "GET /otto/api/fm-file/:filename/link Parameter",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkParameterFilename"
             },
@@ -576,21 +576,21 @@
         "operationId": "GetOttoApiFmFileDownloadToken",
         "responses": {
           "200": {
-            "description": "GET /otto/api/fm-file/download/:token Successful response",
+            "description": "GET /otto/api/fm-file/download/:token Positive response",
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/fm-file/download/:token Error response",
+            "description": "GET /otto/api/fm-file/download/:token Negative response",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenNegativeResponse"
                 }
               }
             }
@@ -608,21 +608,21 @@
         "operationId": "PostOttoApiBuild",
         "responses": {
           "200": {
-            "description": "POST /otto/api/build Successful response",
+            "description": "POST /otto/api/build Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiBuildSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiBuildPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/build Error response",
+            "description": "POST /otto/api/build Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiBuildErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiBuildNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -646,7 +646,7 @@
           "Build"
         ],
         "requestBody": {
-          "description": "POST /otto/api/build request body",
+          "description": "POST /otto/api/build Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -662,21 +662,21 @@
         "operationId": "GetOttoApiBuildList",
         "responses": {
           "200": {
-            "description": "GET /otto/api/build/list Successful response",
+            "description": "GET /otto/api/build/list Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildListSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildListPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/build/list Error response",
+            "description": "GET /otto/api/build/list Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildListErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildListNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -707,21 +707,21 @@
         "operationId": "GetOttoApiBuildDownloadToken",
         "responses": {
           "200": {
-            "description": "GET /otto/api/build/download/:token Successful response",
+            "description": "GET /otto/api/build/download/:token Positive response",
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadTokenSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadTokenPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/build/download/:token Error response",
+            "description": "GET /otto/api/build/download/:token Negative response",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadTokenErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadTokenNegativeResponse"
                 }
               }
             }
@@ -736,24 +736,24 @@
     },
     "/otto/api/build/downloadFolder/{token}": {
       "get": {
-        "operationId": "GetOttoApiBuildDownloadfolderToken",
+        "operationId": "GetOttoApiBuildDownloadFolderToken",
         "responses": {
           "200": {
-            "description": "GET /otto/api/build/downloadFolder/:token Successful response",
+            "description": "GET /otto/api/build/downloadFolder/:token Positive response",
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadfolderTokenSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadFolderTokenPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/build/downloadFolder/:token Error response",
+            "description": "GET /otto/api/build/downloadFolder/:token Negative response",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadfolderTokenErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadFolderTokenNegativeResponse"
                 }
               }
             }
@@ -768,24 +768,24 @@
     },
     "/otto/api/build/{buildId}": {
       "get": {
-        "operationId": "GetOttoApiBuildBuildid",
+        "operationId": "GetOttoApiBuildBuildId",
         "responses": {
           "200": {
-            "description": "GET /otto/api/build/:buildId Successful response",
+            "description": "GET /otto/api/build/:buildId Positive response",
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildBuildidSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildBuildIdPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/build/:buildId Error response",
+            "description": "GET /otto/api/build/:buildId Negative response",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildBuildidErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildBuildIdNegativeResponse"
                 }
               }
             }
@@ -801,32 +801,32 @@
             "name": "buildId",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/build/:buildId parameter",
+            "description": "GET /otto/api/build/:buildId Parameter",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiBuildBuildidParameterBuildid"
+              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdParameterBuildId"
             }
           }
         ]
       },
       "delete": {
-        "operationId": "DeleteOttoApiBuildBuildid",
+        "operationId": "DeleteOttoApiBuildBuildId",
         "responses": {
           "200": {
-            "description": "DELETE /otto/api/build/:buildId Successful response",
+            "description": "DELETE /otto/api/build/:buildId Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiBuildBuildidSuccessfulResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiBuildBuildIdPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "DELETE /otto/api/build/:buildId Error response",
+            "description": "DELETE /otto/api/build/:buildId Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiBuildBuildidErrorResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiBuildBuildIdNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -855,9 +855,9 @@
             "name": "buildId",
             "in": "path",
             "required": true,
-            "description": "DELETE /otto/api/build/:buildId parameter",
+            "description": "DELETE /otto/api/build/:buildId Parameter",
             "schema": {
-              "$ref": "#/components/schemas/DeleteOttoApiBuildBuildidParameterBuildid"
+              "$ref": "#/components/schemas/DeleteOttoApiBuildBuildIdParameterBuildId"
             }
           }
         ]
@@ -865,24 +865,24 @@
     },
     "/otto/api/build/{buildId}/status": {
       "get": {
-        "operationId": "GetOttoApiBuildBuildidStatus",
+        "operationId": "GetOttoApiBuildBuildIdStatus",
         "responses": {
           "200": {
-            "description": "GET /otto/api/build/:buildId/status Successful response",
+            "description": "GET /otto/api/build/:buildId/status Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildBuildidStatusSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/build/:buildId/status Error response",
+            "description": "GET /otto/api/build/:buildId/status Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiBuildBuildidStatusErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -911,18 +911,18 @@
             "name": "buildId",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/build/:buildId/status parameter",
+            "description": "GET /otto/api/build/:buildId/status Parameter",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiBuildBuildidStatusParameterBuildid"
+              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusParameterBuildId"
             }
           },
           {
             "name": "delay",
             "in": "query",
             "required": false,
-            "description": "GET /otto/api/build/:buildId/status parameter",
+            "description": "GET /otto/api/build/:buildId/status Parameter",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiBuildBuildidStatusParameterDelay"
+              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusParameterDelay"
             }
           }
         ]
@@ -933,21 +933,21 @@
         "operationId": "GetOttoApiDeploymentId",
         "responses": {
           "200": {
-            "description": "GET /otto/api/deployment/:id Successful response",
+            "description": "GET /otto/api/deployment/:id Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiDeploymentIdSuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiDeploymentIdPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/deployment/:id Error response",
+            "description": "GET /otto/api/deployment/:id Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiDeploymentIdErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiDeploymentIdNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -976,7 +976,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/deployment/:id parameter",
+            "description": "GET /otto/api/deployment/:id Parameter",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiDeploymentIdParameterId"
             }
@@ -989,21 +989,21 @@
         "operationId": "PostOttoApiDeployment",
         "responses": {
           "200": {
-            "description": "POST /otto/api/deployment Successful response",
+            "description": "POST /otto/api/deployment Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiDeploymentSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/deployment Error response",
+            "description": "POST /otto/api/deployment Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiDeploymentErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1028,7 +1028,7 @@
           "Deployment"
         ],
         "requestBody": {
-          "description": "POST /otto/api/deployment request body",
+          "description": "POST /otto/api/deployment Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1044,21 +1044,21 @@
         "operationId": "PostOttoApiDeploymentUndo",
         "responses": {
           "200": {
-            "description": "POST /otto/api/deployment/undo Successful response",
+            "description": "POST /otto/api/deployment/undo Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiDeploymentUndoSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentUndoPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/deployment/undo Error response",
+            "description": "POST /otto/api/deployment/undo Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiDeploymentUndoErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentUndoNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1083,7 +1083,7 @@
           "Deployment"
         ],
         "requestBody": {
-          "description": "POST /otto/api/deployment/undo request body",
+          "description": "POST /otto/api/deployment/undo Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1099,21 +1099,21 @@
         "operationId": "PostOttoApiFmsProcess",
         "responses": {
           "200": {
-            "description": "POST /otto/api/fms-process Successful response",
+            "description": "POST /otto/api/fms-process Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiFmsProcessSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiFmsProcessPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/fms-process Error response",
+            "description": "POST /otto/api/fms-process Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiFmsProcessErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiFmsProcessNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1138,7 +1138,7 @@
           "Server Processes"
         ],
         "requestBody": {
-          "description": "POST /otto/api/fms-process request body",
+          "description": "POST /otto/api/fms-process Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1174,21 +1174,21 @@
         "operationId": "PostOttoApiAdminApiKey",
         "responses": {
           "200": {
-            "description": "POST /otto/api/admin-api-key Successful response",
+            "description": "POST /otto/api/admin-api-key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiAdminApiKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiAdminApiKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/admin-api-key Error response",
+            "description": "POST /otto/api/admin-api-key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiAdminApiKeyErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiAdminApiKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1213,7 +1213,7 @@
           "Admin API Keys"
         ],
         "requestBody": {
-          "description": "POST /otto/api/admin-api-key request body",
+          "description": "POST /otto/api/admin-api-key Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1227,21 +1227,21 @@
         "operationId": "GetOttoApiAdminApiKey",
         "responses": {
           "200": {
-            "description": "GET /otto/api/admin-api-key Successful response",
+            "description": "GET /otto/api/admin-api-key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/admin-api-key Error response",
+            "description": "GET /otto/api/admin-api-key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeyErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1272,21 +1272,21 @@
         "operationId": "PatchOttoApiAdminApiKeyKey",
         "responses": {
           "200": {
-            "description": "PATCH /otto/api/admin-api-key/:key Successful response",
+            "description": "PATCH /otto/api/admin-api-key/:key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "PATCH /otto/api/admin-api-key/:key Error response",
+            "description": "PATCH /otto/api/admin-api-key/:key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyErrorResponse"
+                  "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1315,14 +1315,14 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "PATCH /otto/api/admin-api-key/:key parameter",
+            "description": "PATCH /otto/api/admin-api-key/:key Parameter",
             "schema": {
               "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyParameterKey"
             }
           }
         ],
         "requestBody": {
-          "description": "PATCH /otto/api/admin-api-key/:key request body",
+          "description": "PATCH /otto/api/admin-api-key/:key Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1336,21 +1336,21 @@
         "operationId": "DeleteOttoApiAdminApiKeyKey",
         "responses": {
           "200": {
-            "description": "DELETE /otto/api/admin-api-key/:key Successful response",
+            "description": "DELETE /otto/api/admin-api-key/:key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "DELETE /otto/api/admin-api-key/:key Error response",
+            "description": "DELETE /otto/api/admin-api-key/:key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyErrorResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1379,7 +1379,7 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "DELETE /otto/api/admin-api-key/:key parameter",
+            "description": "DELETE /otto/api/admin-api-key/:key Parameter",
             "schema": {
               "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyParameterKey"
             }
@@ -1392,21 +1392,21 @@
         "operationId": "PostOttoApiApiKey",
         "responses": {
           "200": {
-            "description": "POST /otto/api/api-key Successful response",
+            "description": "POST /otto/api/api-key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiApiKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiApiKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/api-key Error response",
+            "description": "POST /otto/api/api-key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiApiKeyErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiApiKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1431,7 +1431,7 @@
           "API Keys"
         ],
         "requestBody": {
-          "description": "POST /otto/api/api-key request body",
+          "description": "POST /otto/api/api-key Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1445,21 +1445,21 @@
         "operationId": "GetOttoApiApiKey",
         "responses": {
           "200": {
-            "description": "GET /otto/api/api-key Successful response",
+            "description": "GET /otto/api/api-key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiApiKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiApiKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/api-key Error response",
+            "description": "GET /otto/api/api-key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiApiKeyErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiApiKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1490,21 +1490,21 @@
         "operationId": "GetOttoApiApiKeyKey",
         "responses": {
           "200": {
-            "description": "GET /otto/api/api-key/:key Successful response",
+            "description": "GET /otto/api/api-key/:key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiApiKeyKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/GetOttoApiApiKeyKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "GET /otto/api/api-key/:key Error response",
+            "description": "GET /otto/api/api-key/:key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiApiKeyKeyErrorResponse"
+                  "$ref": "#/components/schemas/GetOttoApiApiKeyKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1533,7 +1533,7 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/api-key/:key parameter",
+            "description": "GET /otto/api/api-key/:key Parameter",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiApiKeyKeyParameterKey"
             }
@@ -1544,21 +1544,21 @@
         "operationId": "DeleteOttoApiApiKeyKey",
         "responses": {
           "200": {
-            "description": "DELETE /otto/api/api-key/:key Successful response",
+            "description": "DELETE /otto/api/api-key/:key Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeySuccessfulResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeyPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "DELETE /otto/api/api-key/:key Error response",
+            "description": "DELETE /otto/api/api-key/:key Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeyErrorResponse"
+                  "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1587,7 +1587,7 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "DELETE /otto/api/api-key/:key parameter",
+            "description": "DELETE /otto/api/api-key/:key Parameter",
             "schema": {
               "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeyParameterKey"
             }
@@ -1600,21 +1600,21 @@
         "operationId": "PostOttoApiApiKeyKeyLogout",
         "responses": {
           "200": {
-            "description": "POST /otto/api/api-key/:key/logout Successful response",
+            "description": "POST /otto/api/api-key/:key/logout Positive response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutSuccessfulResponse"
+                  "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutPositiveResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "POST /otto/api/api-key/:key/logout Error response",
+            "description": "POST /otto/api/api-key/:key/logout Negative response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutErrorResponse"
+                  "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1643,14 +1643,14 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "POST /otto/api/api-key/:key/logout parameter",
+            "description": "POST /otto/api/api-key/:key/logout Parameter",
             "schema": {
               "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutParameterKey"
             }
           }
         ],
         "requestBody": {
-          "description": "POST /otto/api/api-key/:key/logout request body",
+          "description": "POST /otto/api/api-key/:key/logout Request body",
           "content": {
             "application/json": {
               "schema": {
@@ -1664,12 +1664,12 @@
   },
   "components": {
     "schemas": {
-      "GetOttoApiCanReachOtherServerParameterOtherserverurl": {
+      "GetOttoApiCanReachOtherServerParameterOtherServerUrl": {
         "type": "string",
         "format": "url",
         "description": "The url of the other server"
       },
-      "GetOttoApiCanReachOtherServerParameterIslegacy": {
+      "GetOttoApiCanReachOtherServerParameterIsLegacy": {
         "type": "string",
         "enum": [
           "0",
@@ -1678,7 +1678,7 @@
         "default": "0",
         "description": "is the other server running Otto 3"
       },
-      "GetOttoApiCanReachOtherServerSuccessfulResponse": {
+      "GetOttoApiCanReachOtherServerPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -1697,10 +1697,16 @@
               "ok",
               "msg"
             ],
-            "example": {
-              "ok": true,
-              "msg": "success"
-            }
+            "examples": [
+              {
+                "ok": true,
+                "msg": "success"
+              },
+              {
+                "ok": false,
+                "msg": "the other server could not be reached from this server"
+              }
+            ]
           },
           "messages": {
             "type": "array",
@@ -1711,9 +1717,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -1733,12 +1737,11 @@
           "messages"
         ]
       },
-      "GetOttoApiCanReachOtherServerErrorResponse": {
+      "GetOttoApiCanReachOtherServerNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -1749,9 +1752,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -1771,7 +1772,7 @@
           "messages"
         ]
       },
-      "GetOttoApiInfoSuccessfulResponse": {
+      "GetOttoApiInfoPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -1783,18 +1784,28 @@
                   "version": {
                     "type": "string"
                   },
-                  "themeColor": {
-                    "nullable": true,
+                  "build": {
                     "type": "string"
                   },
+                  "themeColor": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "environmentTag": {
-                    "nullable": true,
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "enum": [
                       "dev",
                       "stg",
                       "prod"
                     ]
+                  },
+                  "serverNickname": {
+                    "type": "string"
                   },
                   "isLicenseValid": {
                     "type": "boolean"
@@ -1802,8 +1813,11 @@
                 },
                 "required": [
                   "version",
+                  "build",
                   "themeColor",
-                  "environmentTag"
+                  "environmentTag",
+                  "serverNickname",
+                  "isLicenseValid"
                 ]
               },
               "FileMakerServer": {
@@ -1822,25 +1836,19 @@
                         "type": "number",
                         "format": "double",
                         "minimum": 5e-324,
-                        "exclusiveMinimum": false,
-                        "maximum": 1.7976931348623157e+308,
-                        "exclusiveMaximum": false
+                        "maximum": 1.7976931348623157e+308
                       },
                       "minor": {
                         "type": "number",
                         "format": "double",
                         "minimum": 5e-324,
-                        "exclusiveMinimum": false,
-                        "maximum": 1.7976931348623157e+308,
-                        "exclusiveMaximum": false
+                        "maximum": 1.7976931348623157e+308
                       },
                       "patch": {
                         "type": "number",
                         "format": "double",
                         "minimum": 5e-324,
-                        "exclusiveMinimum": false,
-                        "maximum": 1.7976931348623157e+308,
-                        "exclusiveMaximum": false
+                        "maximum": 1.7976931348623157e+308
                       }
                     },
                     "required": [
@@ -1883,9 +1891,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -1905,12 +1911,11 @@
           "messages"
         ]
       },
-      "GetOttoApiInfoErrorResponse": {
+      "GetOttoApiInfoNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -1921,9 +1926,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -1943,41 +1946,55 @@
           "messages"
         ]
       },
-      "GetOttoApiSettingsOffsiteSuccessfulResponse": {
+      "GetOttoApiSettingsOffsitePositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
             "type": "object",
             "properties": {
               "access_key_id": {
-                "nullable": true,
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "secret_access_key": {
-                "nullable": true,
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "endpoint": {
-                "nullable": true,
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "region": {
-                "nullable": true,
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "type": {
-                "nullable": true,
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Always s3"
               },
               "bucketName": {
-                "nullable": true,
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Name of the bucket this server is being backed up to"
               },
               "remotePath": {
-                "nullable": true,
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Remote path this server is being backed up to."
               },
               "isExistingSchedule": {
@@ -1993,15 +2010,17 @@
               "isExistingSchedule"
             ],
             "description": "all fields will be null if no backup location is set",
-            "example": {
-              "access_key_id": "my-access-key",
-              "secret_access_key": "my-secret-key",
-              "endpoint": "https://my-endpoint.com",
-              "type": "s3",
-              "bucketName": "my-bucket-name",
-              "remotePath": "/remote-path",
-              "isExistingSchedule": true
-            }
+            "examples": [
+              {
+                "access_key_id": "my-access-key",
+                "secret_access_key": "my-secret-key",
+                "endpoint": "https://my-endpoint.com",
+                "type": "s3",
+                "bucketName": "my-bucket-name",
+                "remotePath": "/remote-path",
+                "isExistingSchedule": true
+              }
+            ]
           },
           "messages": {
             "type": "array",
@@ -2012,9 +2031,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2034,12 +2051,11 @@
           "messages"
         ]
       },
-      "GetOttoApiSettingsOffsiteErrorResponse": {
+      "GetOttoApiSettingsOffsiteNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -2050,9 +2066,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2072,12 +2086,11 @@
           "messages"
         ]
       },
-      "PostOttoApiSettingsOffsiteSuccessfulResponse": {
+      "PostOttoApiSettingsOffsitePositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -2088,9 +2101,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2110,12 +2121,11 @@
           "messages"
         ]
       },
-      "PostOttoApiSettingsOffsiteErrorResponse": {
+      "PostOttoApiSettingsOffsiteNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -2126,9 +2136,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2149,92 +2157,44 @@
         ]
       },
       "PostOttoApiSettingsOffsiteRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
           },
-          {
-            "type": "object",
-            "properties": {
-              "endpoint": {
-                "type": "string"
-              },
-              "region": {
-                "type": "string",
-                "default": "us-east-1"
-              },
-              "access_key_id": {
-                "type": "string"
-              },
-              "secret_access_key": {
-                "type": "string"
-              },
-              "bucketName": {
-                "type": "string",
-                "minLength": 1,
-                "description": "Name of the bucket to use for this server"
-              },
-              "remotePath": {
-                "type": "string",
-                "description": "Remote path to use for this server. We recommend using the server name"
-              },
-              "setupBackupSchedule": {
-                "type": "boolean",
-                "default": false
-              }
-            },
-            "required": [
-              "endpoint",
-              "access_key_id",
-              "secret_access_key",
-              "bucketName",
-              "remotePath"
-            ],
-            "example": {
-              "access_key_id": "my-access-key",
-              "secret_access_key": "my-secret-key",
-              "endpoint": "https://my-endpoint.com",
-              "bucketName": "my-bucket-name",
-              "remotePath": "/remote-path",
-              "setupBackupSchedule": true
-            }
+          "region": {
+            "type": "string",
+            "default": "us-east-1"
+          },
+          "access_key_id": {
+            "type": "string"
+          },
+          "secret_access_key": {
+            "type": "string"
+          },
+          "bucketName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name of the bucket to use for this server"
+          },
+          "remotePath": {
+            "type": "string",
+            "description": "Remote path to use for this server. We recommend using the server name"
+          },
+          "setupBackupSchedule": {
+            "type": "boolean",
+            "default": false
           }
+        },
+        "required": [
+          "endpoint",
+          "access_key_id",
+          "secret_access_key",
+          "bucketName",
+          "remotePath"
         ]
       },
-      "DeleteOttoApiSettingsOffsiteSuccessfulResponse": {
+      "DeleteOttoApiSettingsOffsitePositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -2261,9 +2221,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2283,12 +2241,11 @@
           "messages"
         ]
       },
-      "DeleteOttoApiSettingsOffsiteErrorResponse": {
+      "DeleteOttoApiSettingsOffsiteNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -2299,9 +2256,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2321,7 +2276,7 @@
           "messages"
         ]
       },
-      "PostOttoApiRestartSuccessfulResponse": {
+      "PostOttoApiRestartPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -2348,9 +2303,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2370,12 +2323,11 @@
           "messages"
         ]
       },
-      "PostOttoApiRestartErrorResponse": {
+      "PostOttoApiRestartNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -2386,9 +2338,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2409,50 +2359,9 @@
         ]
       },
       "PostOttoApiRestartRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {}
-          }
-        ]
+        "type": "object"
       },
-      "PostOttoApiScriptRunViaScheduleSuccessfulResponse": {
+      "PostOttoApiScriptRunViaSchedulePositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -2466,9 +2375,7 @@
                 "type": "integer",
                 "format": "int64",
                 "minimum": -1,
-                "exclusiveMinimum": false,
                 "maximum": 20000,
-                "exclusiveMaximum": false,
                 "description": "the last error code returned by the script, or the schedule runner"
               },
               "ok": {
@@ -2491,9 +2398,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2513,12 +2418,11 @@
           "messages"
         ]
       },
-      "PostOttoApiScriptRunViaScheduleErrorResponse": {
+      "PostOttoApiScriptRunViaScheduleNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -2529,9 +2433,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -2552,44 +2454,286 @@
         ]
       },
       "PostOttoApiScriptRunViaScheduleRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "FileMaker File Name ending with .fmp12"
               },
-              {
-                "type": "object",
-                "properties": {}
+              "user": {
+                "type": "string",
+                "description": "FileMaker User Name"
+              },
+              "password": {
+                "type": "string",
+                "description": "FileMaker User Password"
               }
+            },
+            "required": [
+              "name",
+              "user",
+              "password"
             ]
           },
-          {
+          "script": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the FileMaker Script to run"
+              },
+              "param": {
+                "type": "string",
+                "description": "Text string passed to the FileMaker Script"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        },
+        "required": [
+          "file",
+          "script"
+        ]
+      },
+      "GetOttoApiFmFileFilenameDownloadParameterFilename": {
+        "type": "string"
+      },
+      "GetOttoApiFmFileFilenameDownloadParameterClone": {
+        "type": "string",
+        "enum": [
+          "0",
+          "1"
+        ],
+        "default": "0",
+        "description": "Use 1 to download a clone"
+      },
+      "GetOttoApiFmFileFilenameDownloadPositiveResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiFmFileFilenameDownloadNegativeResponse": {
+        "type": "string"
+      },
+      "GetOttoApiFmFileFilenameLinkParameterFilename": {
+        "type": "string"
+      },
+      "GetOttoApiFmFileFilenameLinkParameterClone": {
+        "type": "string",
+        "enum": [
+          "0",
+          "1"
+        ],
+        "default": "0",
+        "description": "Use 1 to download a clone"
+      },
+      "GetOttoApiFmFileFilenameLinkPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "link": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "link"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiFmFileFilenameLinkNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiFmFileDownloadTokenPositiveResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiFmFileDownloadTokenNegativeResponse": {
+        "type": "string"
+      },
+      "PostOttoApiBuildPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "started": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "started"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiBuildNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiBuildRequestBody": {
+        "type": "object",
+        "properties": {
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fileName": {
+                  "type": "string",
+                  "description": "FileMaker File Name ending with .fmp12"
+                },
+                "clone": {
+                  "type": "boolean",
+                  "default": true
+                },
+                "user": {
+                  "type": "string",
+                  "description": "required if the build will be used in a future data migration"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "required if the build will be used in a future data migration"
+                },
+                "encryptionKey": {
+                  "type": "string",
+                  "description": "required if the file is encrypted"
+                }
+              },
+              "required": [
+                "fileName"
+              ]
+            },
+            "minItems": 1
+          },
+          "force": {
+            "type": "boolean",
+            "default": false
+          },
+          "preBuildScript": {
             "type": "object",
             "properties": {
               "file": {
@@ -2629,380 +2773,35 @@
                 "required": [
                   "name"
                 ]
+              },
+              "stopBuildOnFail": {
+                "type": "boolean",
+                "default": false,
+                "description": "if true and the script doesn't complete successfully, then the build will fail."
               }
             },
             "required": [
               "file",
               "script"
-            ],
-            "example": {
-              "script": {
-                "name": "MyScript",
-                "param": "This is a parameter"
-              },
-              "file": {
-                "name": "MyFile.fmp12",
-                "user": "MyUserName",
-                "password": "MyPassword"
-              }
-            }
-          }
-        ]
-      },
-      "GetOttoApiFmFileFilenameDownloadParameterFilename": {
-        "type": "string"
-      },
-      "GetOttoApiFmFileFilenameDownloadParameterClone": {
-        "type": "string",
-        "enum": [
-          "0",
-          "1"
-        ],
-        "default": "0",
-        "description": "Use 1 to download a clone"
-      },
-      "GetOttoApiFmFileFilenameDownloadSuccessfulResponse": {
-        "type": "string",
-        "format": "binary"
-      },
-      "GetOttoApiFmFileFilenameDownloadErrorResponse": {
-        "type": "string"
-      },
-      "GetOttoApiFmFileFilenameLinkParameterFilename": {
-        "type": "string"
-      },
-      "GetOttoApiFmFileFilenameLinkParameterClone": {
-        "type": "string",
-        "enum": [
-          "0",
-          "1"
-        ],
-        "default": "0",
-        "description": "Use 1 to download a clone"
-      },
-      "GetOttoApiFmFileFilenameLinkSuccessfulResponse": {
-        "type": "object",
-        "properties": {
-          "response": {
-            "type": "object",
-            "properties": {
-              "link": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "link"
             ]
           },
-          "messages": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "format": "double",
-                  "minimum": 0,
-                  "exclusiveMinimum": false,
-                  "maximum": 0,
-                  "exclusiveMaximum": false,
-                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
-                },
-                "text": {
-                  "type": "string",
-                  "default": "ok",
-                  "description": "error message"
-                }
-              },
-              "required": [
-                "code"
-              ]
-            }
+          "compressionLevel": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1,
+            "maximum": 9,
+            "default": -1
+          },
+          "buildId": {
+            "type": "string",
+            "default": "build_Cuek99CgsWsC"
           }
         },
         "required": [
-          "response",
-          "messages"
+          "files"
         ]
       },
-      "GetOttoApiFmFileFilenameLinkErrorResponse": {
-        "type": "object",
-        "properties": {
-          "response": {
-            "type": "object",
-            "properties": {}
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "format": "double",
-                  "minimum": -1,
-                  "exclusiveMinimum": false,
-                  "maximum": 20000,
-                  "exclusiveMaximum": false,
-                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
-                },
-                "text": {
-                  "type": "string",
-                  "description": "error message"
-                }
-              },
-              "required": [
-                "code",
-                "text"
-              ]
-            }
-          }
-        },
-        "required": [
-          "response",
-          "messages"
-        ]
-      },
-      "GetOttoApiFmFileDownloadTokenSuccessfulResponse": {
-        "type": "string",
-        "format": "binary"
-      },
-      "GetOttoApiFmFileDownloadTokenErrorResponse": {
-        "type": "string"
-      },
-      "PostOttoApiBuildSuccessfulResponse": {
-        "type": "object",
-        "properties": {
-          "response": {
-            "type": "object",
-            "properties": {
-              "started": {
-                "type": "boolean"
-              }
-            },
-            "required": [
-              "started"
-            ]
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "format": "double",
-                  "minimum": 0,
-                  "exclusiveMinimum": false,
-                  "maximum": 0,
-                  "exclusiveMaximum": false,
-                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
-                },
-                "text": {
-                  "type": "string",
-                  "default": "ok",
-                  "description": "error message"
-                }
-              },
-              "required": [
-                "code"
-              ]
-            }
-          }
-        },
-        "required": [
-          "response",
-          "messages"
-        ]
-      },
-      "PostOttoApiBuildErrorResponse": {
-        "type": "object",
-        "properties": {
-          "response": {
-            "type": "object",
-            "properties": {}
-          },
-          "messages": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "format": "double",
-                  "minimum": -1,
-                  "exclusiveMinimum": false,
-                  "maximum": 20000,
-                  "exclusiveMaximum": false,
-                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
-                },
-                "text": {
-                  "type": "string",
-                  "description": "error message"
-                }
-              },
-              "required": [
-                "code",
-                "text"
-              ]
-            }
-          }
-        },
-        "required": [
-          "response",
-          "messages"
-        ]
-      },
-      "PostOttoApiBuildRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "files": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "fileName": {
-                      "type": "string",
-                      "description": "FileMaker File Name ending with .fmp12"
-                    },
-                    "clone": {
-                      "type": "boolean",
-                      "default": true
-                    },
-                    "user": {
-                      "type": "string",
-                      "description": "required if the build will be used in a future data migration"
-                    },
-                    "password": {
-                      "type": "string",
-                      "description": "required if the build will be used in a future data migration"
-                    },
-                    "encryptionKey": {
-                      "type": "string",
-                      "description": "required if the file is encrypted"
-                    }
-                  },
-                  "required": [
-                    "fileName"
-                  ]
-                },
-                "minItems": 1
-              },
-              "force": {
-                "type": "boolean",
-                "default": false
-              },
-              "preBuildScript": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "FileMaker File Name ending with .fmp12"
-                      },
-                      "user": {
-                        "type": "string",
-                        "description": "FileMaker User Name"
-                      },
-                      "password": {
-                        "type": "string",
-                        "description": "FileMaker User Password"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "user",
-                      "password"
-                    ]
-                  },
-                  "script": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Name of the FileMaker Script to run"
-                      },
-                      "param": {
-                        "type": "string",
-                        "description": "Text string passed to the FileMaker Script"
-                      }
-                    },
-                    "required": [
-                      "name"
-                    ]
-                  },
-                  "stopBuildOnFail": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "if true and the script doesn't complete successfully, then the build will fail."
-                  }
-                },
-                "required": [
-                  "file",
-                  "script"
-                ]
-              },
-              "compressionLevel": {
-                "type": "number",
-                "format": "double",
-                "minimum": -1,
-                "exclusiveMinimum": false,
-                "maximum": 9,
-                "exclusiveMaximum": false,
-                "default": -1
-              },
-              "buildId": {
-                "type": "string",
-                "default": "build_xBAFxIGMLUu0"
-              }
-            },
-            "required": [
-              "files"
-            ]
-          }
-        ]
-      },
-      "GetOttoApiBuildListSuccessfulResponse": {
+      "GetOttoApiBuildListPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -3094,9 +2893,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -3116,12 +2913,11 @@
           "messages"
         ]
       },
-      "GetOttoApiBuildListErrorResponse": {
+      "GetOttoApiBuildListNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -3132,9 +2928,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -3154,34 +2948,34 @@
           "messages"
         ]
       },
-      "GetOttoApiBuildDownloadTokenSuccessfulResponse": {
+      "GetOttoApiBuildDownloadTokenPositiveResponse": {
         "type": "string",
         "format": "binary"
       },
-      "GetOttoApiBuildDownloadTokenErrorResponse": {
+      "GetOttoApiBuildDownloadTokenNegativeResponse": {
         "type": "string"
       },
-      "GetOttoApiBuildDownloadfolderTokenSuccessfulResponse": {
+      "GetOttoApiBuildDownloadFolderTokenPositiveResponse": {
         "type": "string",
         "format": "binary"
       },
-      "GetOttoApiBuildDownloadfolderTokenErrorResponse": {
+      "GetOttoApiBuildDownloadFolderTokenNegativeResponse": {
         "type": "string"
       },
-      "GetOttoApiBuildBuildidParameterBuildid": {
+      "GetOttoApiBuildBuildIdParameterBuildId": {
         "type": "string"
       },
-      "GetOttoApiBuildBuildidSuccessfulResponse": {
+      "GetOttoApiBuildBuildIdPositiveResponse": {
         "type": "string",
         "format": "binary"
       },
-      "GetOttoApiBuildBuildidErrorResponse": {
+      "GetOttoApiBuildBuildIdNegativeResponse": {
         "type": "string"
       },
-      "DeleteOttoApiBuildBuildidParameterBuildid": {
+      "DeleteOttoApiBuildBuildIdParameterBuildId": {
         "type": "string"
       },
-      "DeleteOttoApiBuildBuildidSuccessfulResponse": {
+      "DeleteOttoApiBuildBuildIdPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -3204,9 +2998,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -3226,12 +3018,11 @@
           "messages"
         ]
       },
-      "DeleteOttoApiBuildBuildidErrorResponse": {
+      "DeleteOttoApiBuildBuildIdNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -3242,9 +3033,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -3264,18 +3053,16 @@
           "messages"
         ]
       },
-      "GetOttoApiBuildBuildidStatusParameterBuildid": {
+      "GetOttoApiBuildBuildIdStatusParameterBuildId": {
         "type": "string"
       },
-      "GetOttoApiBuildBuildidStatusParameterDelay": {
+      "GetOttoApiBuildBuildIdStatusParameterDelay": {
         "type": "number",
         "format": "double",
         "minimum": 5e-324,
-        "exclusiveMinimum": false,
-        "maximum": 1.7976931348623157e+308,
-        "exclusiveMaximum": false
+        "maximum": 1.7976931348623157e+308
       },
-      "GetOttoApiBuildBuildidStatusSuccessfulResponse": {
+      "GetOttoApiBuildBuildIdStatusPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -3358,9 +3145,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -3380,12 +3165,11 @@
           "messages"
         ]
       },
-      "GetOttoApiBuildBuildidStatusErrorResponse": {
+      "GetOttoApiBuildBuildIdStatusNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -3396,9 +3180,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -3421,7 +3203,7 @@
       "GetOttoApiDeploymentIdParameterId": {
         "type": "string"
       },
-      "GetOttoApiDeploymentIdSuccessfulResponse": {
+      "GetOttoApiDeploymentIdPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -3430,10 +3212,8 @@
               "id": {
                 "type": "integer",
                 "format": "int64",
-                "minimum": 0,
-                "exclusiveMinimum": true,
+                "exclusiveMinimum": 0,
                 "maximum": 9007199254740991,
-                "exclusiveMaximum": false,
                 "description": "The deployment id"
               },
               "log": {
@@ -3477,9 +3257,7 @@
                       "type": "number",
                       "format": "double",
                       "minimum": 5e-324,
-                      "exclusiveMinimum": false,
-                      "maximum": 1.7976931348623157e+308,
-                      "exclusiveMaximum": false
+                      "maximum": 1.7976931348623157e+308
                     },
                     "file": {
                       "type": "string"
@@ -3497,8 +3275,10 @@
                 "format": "any"
               },
               "name": {
-                "nullable": true,
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "deployment_payload": {
                 "type": "object",
@@ -3563,9 +3343,7 @@
                             "type": "number",
                             "format": "double",
                             "minimum": 5e-324,
-                            "exclusiveMinimum": false,
                             "maximum": 1.7976931348623157e+308,
-                            "exclusiveMaximum": false,
                             "description": "The previous deployment id"
                           }
                         },
@@ -3806,9 +3584,7 @@
                                 "type": "number",
                                 "format": "double",
                                 "minimum": -1,
-                                "exclusiveMinimum": false,
                                 "maximum": 9,
-                                "exclusiveMaximum": false,
                                 "default": -1
                               }
                             },
@@ -3910,8 +3686,10 @@
                     ]
                   },
                   "name": {
-                    "nullable": true,
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Descriptive name for the deployment (appears in UI)"
                   },
                   "postDeploymentScript": {
@@ -4245,15 +4023,15 @@
                 "type": "number",
                 "format": "double",
                 "minimum": 0,
-                "exclusiveMinimum": false,
                 "maximum": 1,
-                "exclusiveMaximum": false,
                 "description": "0 = false, 1 = true"
               },
               "created_at": {
-                "nullable": true,
                 "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "externalDocs": {
                   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
@@ -4285,9 +4063,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -4307,12 +4083,11 @@
           "messages"
         ]
       },
-      "GetOttoApiDeploymentIdErrorResponse": {
+      "GetOttoApiDeploymentIdNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -4323,9 +4098,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -4345,7 +4118,7 @@
           "messages"
         ]
       },
-      "PostOttoApiDeploymentSuccessfulResponse": {
+      "PostOttoApiDeploymentPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -4360,9 +4133,7 @@
                     "type": "number",
                     "format": "double",
                     "minimum": 5e-324,
-                    "exclusiveMinimum": false,
-                    "maximum": 1.7976931348623157e+308,
-                    "exclusiveMaximum": false
+                    "maximum": 1.7976931348623157e+308
                   }
                 },
                 "required": [
@@ -4380,9 +4151,7 @@
                     "type": "number",
                     "format": "double",
                     "minimum": 5e-324,
-                    "exclusiveMinimum": false,
-                    "maximum": 1.7976931348623157e+308,
-                    "exclusiveMaximum": false
+                    "maximum": 1.7976931348623157e+308
                   },
                   "schedule": {
                     "type": "object",
@@ -4440,9 +4209,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -4462,12 +4229,11 @@
           "messages"
         ]
       },
-      "PostOttoApiDeploymentErrorResponse": {
+      "PostOttoApiDeploymentNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -4478,9 +4244,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -4503,48 +4267,7 @@
       "PostOttoApiDeploymentRequestBody": {
         "allOf": [
           {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "allOf": [
-                              {
-                                "type": "object",
-                                "properties": {}
-                              },
-                              {
-                                "type": "object",
-                                "properties": {}
-                              }
-                            ]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
+            "type": "object"
           },
           {
             "oneOf": [
@@ -4560,7 +4283,7 @@
                   },
                   "timestamp": {
                     "type": "string",
-                    "pattern": "/^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])/",
+                    "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])",
                     "description": "timestamp to use to schedule the deployment. See Claris FileMaker scheduling APi docs for formatting."
                   },
                   "label": {
@@ -4632,9 +4355,7 @@
                                   "type": "number",
                                   "format": "double",
                                   "minimum": 5e-324,
-                                  "exclusiveMinimum": false,
                                   "maximum": 1.7976931348623157e+308,
-                                  "exclusiveMaximum": false,
                                   "description": "The previous deployment id"
                                 }
                               },
@@ -4875,9 +4596,7 @@
                                       "type": "number",
                                       "format": "double",
                                       "minimum": -1,
-                                      "exclusiveMinimum": false,
                                       "maximum": 9,
-                                      "exclusiveMaximum": false,
                                       "default": -1
                                     }
                                   },
@@ -4979,8 +4698,10 @@
                           ]
                         },
                         "name": {
-                          "nullable": true,
-                          "type": "string",
+                          "type": [
+                            "string",
+                            "null"
+                          ],
                           "description": "Descriptive name for the deployment (appears in UI)"
                         },
                         "postDeploymentScript": {
@@ -5403,9 +5124,7 @@
                                   "type": "number",
                                   "format": "double",
                                   "minimum": 5e-324,
-                                  "exclusiveMinimum": false,
                                   "maximum": 1.7976931348623157e+308,
-                                  "exclusiveMaximum": false,
                                   "description": "The previous deployment id"
                                 }
                               },
@@ -5646,9 +5365,7 @@
                                       "type": "number",
                                       "format": "double",
                                       "minimum": -1,
-                                      "exclusiveMinimum": false,
                                       "maximum": 9,
-                                      "exclusiveMaximum": false,
                                       "default": -1
                                     }
                                   },
@@ -5750,8 +5467,10 @@
                           ]
                         },
                         "name": {
-                          "nullable": true,
-                          "type": "string",
+                          "type": [
+                            "string",
+                            "null"
+                          ],
                           "description": "Descriptive name for the deployment (appears in UI)"
                         },
                         "postDeploymentScript": {
@@ -6098,7 +5817,7 @@
           }
         ]
       },
-      "PostOttoApiDeploymentUndoSuccessfulResponse": {
+      "PostOttoApiDeploymentUndoPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6113,9 +5832,7 @@
                     "type": "number",
                     "format": "double",
                     "minimum": 5e-324,
-                    "exclusiveMinimum": false,
-                    "maximum": 1.7976931348623157e+308,
-                    "exclusiveMaximum": false
+                    "maximum": 1.7976931348623157e+308
                   }
                 },
                 "required": [
@@ -6133,9 +5850,7 @@
                     "type": "number",
                     "format": "double",
                     "minimum": 5e-324,
-                    "exclusiveMinimum": false,
-                    "maximum": 1.7976931348623157e+308,
-                    "exclusiveMaximum": false
+                    "maximum": 1.7976931348623157e+308
                   },
                   "schedule": {
                     "type": "object",
@@ -6193,9 +5908,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6215,12 +5928,11 @@
           "messages"
         ]
       },
-      "PostOttoApiDeploymentUndoErrorResponse": {
+      "PostOttoApiDeploymentUndoNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -6231,9 +5943,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6254,71 +5964,23 @@
         ]
       },
       "PostOttoApiDeploymentUndoRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "allOf": [
-                              {
-                                "type": "object",
-                                "properties": {}
-                              },
-                              {
-                                "type": "object",
-                                "properties": {}
-                              }
-                            ]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "format": "double",
-                "minimum": 5e-324,
-                "exclusiveMinimum": false,
-                "maximum": 1.7976931348623157e+308,
-                "exclusiveMaximum": false,
-                "nullable": true
-              }
-            },
-            "required": [
-              "id"
-            ]
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "minimum": 5e-324,
+            "maximum": 1.7976931348623157e+308
           }
+        },
+        "required": [
+          "id"
         ]
       },
-      "PostOttoApiFmsProcessSuccessfulResponse": {
+      "PostOttoApiFmsProcessPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6341,9 +6003,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6363,12 +6023,11 @@
           "messages"
         ]
       },
-      "PostOttoApiFmsProcessErrorResponse": {
+      "PostOttoApiFmsProcessNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -6379,9 +6038,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6402,139 +6059,95 @@
         ]
       },
       "PostOttoApiFmsProcessRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
+        "type": "object",
+        "properties": {
+          "command": {
+            "oneOf": [
               {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
+                "type": "string",
+                "enum": [
+                  "start"
                 ]
               },
               {
-                "type": "object",
-                "properties": {}
+                "type": "string",
+                "enum": [
+                  "stop"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "restart"
+                ]
               }
             ]
           },
-          {
-            "type": "object",
-            "properties": {
-              "command": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "start"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "stop"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "restart"
-                    ]
-                  }
+          "service": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "wpe"
                 ]
               },
-              "service": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "wpe"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "fmse"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "adminserver"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "httpserver"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "fmsib"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "xdbc"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "server"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "fmdapi"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "odata"
-                    ]
-                  }
+              {
+                "type": "string",
+                "enum": [
+                  "fmse"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "adminserver"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "httpserver"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "fmsib"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "xdbc"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "server"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "fmdapi"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "odata"
                 ]
               }
-            },
-            "required": [
-              "command",
-              "service"
-            ],
-            "example": {
-              "command": "start",
-              "service": "wpe"
-            }
+            ]
           }
+        },
+        "required": [
+          "command",
+          "service"
         ]
       },
-      "PostOttoApiAdminApiKeySuccessfulResponse": {
+      "PostOttoApiAdminApiKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6557,9 +6170,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6579,12 +6190,11 @@
           "messages"
         ]
       },
-      "PostOttoApiAdminApiKeyErrorResponse": {
+      "PostOttoApiAdminApiKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -6595,9 +6205,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6636,7 +6244,7 @@
           "pass"
         ]
       },
-      "GetOttoApiAdminApiKeySuccessfulResponse": {
+      "GetOttoApiAdminApiKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6651,16 +6259,16 @@
                       "type": "number",
                       "format": "double",
                       "minimum": 5e-324,
-                      "exclusiveMinimum": false,
-                      "maximum": 1.7976931348623157e+308,
-                      "exclusiveMaximum": false
+                      "maximum": 1.7976931348623157e+308
                     },
                     "key": {
                       "type": "string"
                     },
                     "label": {
-                      "nullable": true,
-                      "type": "string"
+                      "type": [
+                        "string",
+                        "null"
+                      ]
                     }
                   },
                   "required": [
@@ -6684,9 +6292,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6706,12 +6312,11 @@
           "messages"
         ]
       },
-      "GetOttoApiAdminApiKeyErrorResponse": {
+      "GetOttoApiAdminApiKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -6722,9 +6327,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6747,7 +6350,7 @@
       "PatchOttoApiAdminApiKeyKeyParameterKey": {
         "type": "string"
       },
-      "PatchOttoApiAdminApiKeyKeySuccessfulResponse": {
+      "PatchOttoApiAdminApiKeyKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6757,8 +6360,10 @@
                 "type": "string"
               },
               "label": {
-                "nullable": true,
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               }
             },
             "required": [
@@ -6775,9 +6380,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6797,12 +6400,11 @@
           "messages"
         ]
       },
-      "PatchOttoApiAdminApiKeyKeyErrorResponse": {
+      "PatchOttoApiAdminApiKeyKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -6813,9 +6415,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6836,60 +6436,20 @@
         ]
       },
       "PatchOttoApiAdminApiKeyKeyRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "label": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "label"
-            ]
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
           }
+        },
+        "required": [
+          "label"
         ]
       },
       "DeleteOttoApiAdminApiKeyKeyParameterKey": {
         "type": "string"
       },
-      "DeleteOttoApiAdminApiKeyKeySuccessfulResponse": {
+      "DeleteOttoApiAdminApiKeyKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6912,9 +6472,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6934,12 +6492,11 @@
           "messages"
         ]
       },
-      "DeleteOttoApiAdminApiKeyKeyErrorResponse": {
+      "DeleteOttoApiAdminApiKeyKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -6950,9 +6507,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -6972,7 +6527,7 @@
           "messages"
         ]
       },
-      "PostOttoApiApiKeySuccessfulResponse": {
+      "PostOttoApiApiKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -6999,9 +6554,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7021,12 +6574,11 @@
           "messages"
         ]
       },
-      "PostOttoApiApiKeyErrorResponse": {
+      "PostOttoApiApiKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -7037,9 +6589,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7060,70 +6610,30 @@
         ]
       },
       "PostOttoApiApiKeyRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
+        "type": "object",
+        "properties": {
+          "database": {
+            "type": "string",
+            "description": "FileMaker File Name ending with .fmp12"
           },
-          {
-            "type": "object",
-            "properties": {
-              "database": {
-                "type": "string",
-                "description": "FileMaker File Name ending with .fmp12"
-              },
-              "label": {
-                "type": "string",
-                "default": "(no label)"
-              },
-              "user": {
-                "type": "string"
-              },
-              "pass": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "database",
-              "user",
-              "pass"
-            ]
+          "label": {
+            "type": "string",
+            "default": "(no label)"
+          },
+          "user": {
+            "type": "string"
+          },
+          "pass": {
+            "type": "string"
           }
+        },
+        "required": [
+          "database",
+          "user",
+          "pass"
         ]
       },
-      "GetOttoApiApiKeySuccessfulResponse": {
+      "GetOttoApiApiKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -7138,9 +6648,7 @@
                       "type": "number",
                       "format": "double",
                       "minimum": 5e-324,
-                      "exclusiveMinimum": false,
-                      "maximum": 1.7976931348623157e+308,
-                      "exclusiveMaximum": false
+                      "maximum": 1.7976931348623157e+308
                     },
                     "key": {
                       "type": "string"
@@ -7174,9 +6682,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7196,12 +6702,11 @@
           "messages"
         ]
       },
-      "GetOttoApiApiKeyErrorResponse": {
+      "GetOttoApiApiKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -7212,9 +6717,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7237,7 +6740,7 @@
       "GetOttoApiApiKeyKeyParameterKey": {
         "type": "string"
       },
-      "GetOttoApiApiKeyKeySuccessfulResponse": {
+      "GetOttoApiApiKeyKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -7247,9 +6750,7 @@
                 "type": "number",
                 "format": "double",
                 "minimum": 5e-324,
-                "exclusiveMinimum": false,
-                "maximum": 1.7976931348623157e+308,
-                "exclusiveMaximum": false
+                "maximum": 1.7976931348623157e+308
               },
               "key": {
                 "type": "string"
@@ -7277,9 +6778,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7299,12 +6798,11 @@
           "messages"
         ]
       },
-      "GetOttoApiApiKeyKeyErrorResponse": {
+      "GetOttoApiApiKeyKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -7315,9 +6813,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7340,7 +6836,7 @@
       "DeleteOttoApiApiKeyKeyParameterKey": {
         "type": "string"
       },
-      "DeleteOttoApiApiKeyKeySuccessfulResponse": {
+      "DeleteOttoApiApiKeyKeyPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -7363,9 +6859,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7385,12 +6879,11 @@
           "messages"
         ]
       },
-      "DeleteOttoApiApiKeyKeyErrorResponse": {
+      "DeleteOttoApiApiKeyKeyNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -7401,9 +6894,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7426,7 +6917,7 @@
       "PostOttoApiApiKeyKeyLogoutParameterKey": {
         "type": "string"
       },
-      "PostOttoApiApiKeyKeyLogoutSuccessfulResponse": {
+      "PostOttoApiApiKeyKeyLogoutPositiveResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -7449,9 +6940,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": 0,
-                  "exclusiveMinimum": false,
                   "maximum": 0,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7471,12 +6960,11 @@
           "messages"
         ]
       },
-      "PostOttoApiApiKeyKeyLogoutErrorResponse": {
+      "PostOttoApiApiKeyKeyLogoutNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
-            "type": "object",
-            "properties": {}
+            "type": "object"
           },
           "messages": {
             "type": "array",
@@ -7487,9 +6975,7 @@
                   "type": "number",
                   "format": "double",
                   "minimum": -1,
-                  "exclusiveMinimum": false,
                   "maximum": 20000,
-                  "exclusiveMaximum": false,
                   "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
                 },
                 "text": {
@@ -7510,49 +6996,9 @@
         ]
       },
       "PostOttoApiApiKeyKeyLogoutRequestBody": {
-        "allOf": [
-          {
-            "allOf": [
-              {
-                "allOf": [
-                  {
-                    "allOf": [
-                      {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "properties": {}
-                          },
-                          {
-                            "type": "object",
-                            "properties": {}
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {}
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {}
-              }
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {},
-            "required": []
-          }
-        ]
+        "type": "object",
+        "properties": {},
+        "required": []
       }
     },
     "responses": {},
