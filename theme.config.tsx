@@ -19,14 +19,6 @@ const config: DocsThemeConfig = {
   editLink: {
     component: withoutServerEditLink,
   },
-  banner: {
-    key: "ottofms-beta-release",
-    text: (
-      <a href="/beta" target="_blank">
-        OttoFMS is in beta. 🛑 Do not use in production. 🛑 Read more →
-      </a>
-    ),
-  },
   useNextSeoProps() {
     return {
       titleTemplate: `%s | OttoFMS`,
