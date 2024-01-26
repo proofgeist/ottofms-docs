@@ -1,5 +1,70 @@
 # OttoDeploy Version History
 
+## 1.0.1
+
+Released: 1/26/2024
+
+### Patch Changes
+
+- 04917b8: files installed using the install/replace option are now properly flagged to be migrated in subsequent sub-deployments
+
+## 1.0.0
+
+### Schema Changes
+
+- Added a Go to object at the end of many scripts to lower the number of beeps filemaker makes.
+- Added file icon
+
+### Minor Changes
+
+- eb0f522: Can now select installed files from previous sub-deployments for use in a sub-deployment.
+
+### Patch Changes
+
+- eb0f522: validate OttoFMS license when adding server to OttoDeploy
+- f36570a: make server api key entry more clear
+- 7b6bf2c: Fix OttoFMS console link on servers page
+- 823785b: Default Rebuild Indexes and Reevaluate Field Calcs to No for new deployments
+- a4097eb: applying autosave fix to builds
+- 3240754: Added file counts to the deployment review modal
+- 28f27ef: fixed errors in schema upgrade process
+- a4097eb: fixing another bug with autosave saving forever
+- 9dc0e5a: Add a warning modal when default credentials are detected
+- 8494738: gave file select modals a height restriction so they won't extend past the screen edge
+- c21489e: added option to pause queries in OttoDeploy so you can debug other files without being inundated with scripts. It is available on the Settings page.
+- eb0f522: Added a variety of informational popups and links to OttoDeploy
+- 476e7f6: all filenames are now formatted the same way in ui
+- 3d589ff: fixed tab order in file options modal
+- 08a4970: updating ui for servers and builds lists
+- 0db6375: Prefill the server nickname if available from the OttoFMS API
+- 9d8d4ae: web updates will now be installed prior to schema updates.
+- a46d464: updated review window to more closely match the setup in the deployment set up screen
+- 08a4970: fix top margins on all alerts without titles
+- 98d2a4d: we now show an error when you enter invalid credentials for admin api key creation
+- 6217094: sort files alphabetically in modals and dropdowns
+- 6128a64: add copy build json button
+- d9c15e6: made dpeloyment and build titles editing more intuitive
+- 2aef457: fixing ui bug with deployment list name
+- 08a4970: fixed link to the docs in the spotlight
+- 9f27bd1: fix: stop fetching build status once build is completed
+- a46d464: made schema and data source for migrations more obvious in review window and file table
+- bc4a299: clarify deployment unable to send error
+- 66c02be: Support Otto Admin API Keys for servers
+- a4097eb: prevent autosave from running forever
+- 08a4970: removed userback from ottodeploy
+- 93c372e: scheduling from OttoDeploy failed
+- bd09e97: fixed a duplicate filename error in post deployment script select
+- 08a4970: added help menu with links to support and docs
+- 68fa2ec: File select modal now has a select all option that will select all files that are visible in the modal (only files filtered by the search are included)
+- df4547a: clone selection in builds works with defaults properly
+- 69bbec3: fix error with partial build url on autosave causing error and clearing all deployment info since last save
+- c938b52: Copy Deployment JSON
+- 24701f3: rename Otto to OttoFMS in multiple places
+- 3dcfe58: add option to hide deployment secrets in copiable json
+- b0f6b55: Link out to OttoFMS console for retrieving an API key easily
+- 0f2f28e: move build select and url entry for alternate source underneath source selection to clarify that it is from the source, not the destination
+- 7762034: add install/replace file operation which allows OttoDeploy to dynamically choose to install or replace based on the state of the destination server.
+
 ## 0.1.0-beta.10
 
 Released: 1/18/2024
