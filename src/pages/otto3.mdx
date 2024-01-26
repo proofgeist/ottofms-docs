@@ -1,4 +1,4 @@
-import { Callout } from "nextra/components";
+import { Callout, Card, Cards } from "nextra/components";
 
 # Coming from Otto v3?
 
@@ -10,15 +10,10 @@ This document is for people who are familiar with Otto v3 and want to know what'
   changes. If you are using Otto v3 in production you should continue to use it
   until OttoFMS has all the features you need.
 </Callout>
-
-## Reasons NOT to upgrade right away:
-
-- **You make heavy usage of API keys for webhooks or the Data API Proxy**. You will need to re-create your API keys in OttoFMS and update any applications that use them.
-
-- **You have made major customizations to Migrator.fmp12**. OttoDeploy, the replacement for Migrator.fmp12, is not as customizable as Migrator.fmp12 was. If you're unable to use OttoDeploy for your custom workflow, we welcome all feature requests via the [forum](https://community.proofgeist.com).
-
-- **You rely on the Otto Application Logs**. This feature will come to OttoFMS in a future release.
----
+<Cards>
+  <Card title="Can I Upgrade" arrow href="/otto3/can-i-upgrade" />
+  <Card title="Transition FAQs" arrow href="/getting-started/install" />
+</Cards>
 
 # What's New
 
@@ -82,45 +77,3 @@ Some features are being retired as they are no longer useful or viable. Others a
 ### Coming soon
 
 - **OttoFMS Application Logging**
-
-## Upgrading FAQ
-
-### Can I run both OttoFMS and Otto v3 at the same time?
-
-Technically yes, but we **strongly** discourage this. Since they run on different ports, they can co-exist on the same server, but you **should not** run deployments from them both at the same time as this could result in catastrophic data loss or file corruption.
-
-### Can I import my migrations from Migrator.fmp12 to OttoDeploy?
-
-No. There are too many differences in OttoDeploy to make this possible. You will need to recreate your deployments in OttoDeploy.
-
-### Will my API keys from v3 remain the same in OttoFMS?
-
-No, you will need to re-create any API keys that you want to continue to use in OttoFMS. Thankfully, this has been made much easier in OttoFMS as you can use the web dashboard to create and manage API keys. To help you distinguish between your old and new API keys, OttoFMS uses a new naming convention for API keys. Data API keys (also used for webhooks) are now prefixed with `dk_` and Admin API keys are prefixed with `ak_`.
-
-Keep in mind that any applications currently using API keys for webhooks or the Data API Proxy feature from Otto v3 will also need to change their port and URL path to use OttoFMS instead.
-
-Examples:
-
-```bash filename="Otto v3"
-https://my-otto-server.com:3030/fmi/data/vLatest/...
--H Authorization: Bearer KEY_12395874
-# or
-https://my-otto-server.com:3030/receiver/SimpleQ.fmp12/channel?apiKey=KEY_12395874
-```
-
-```bash filename="OttoFMS"
-https://my-otto-server.com/otto/fmi/data/vLatest/...
--H Authorization: Bearer dk_85238774
-# or
-https://my-otto-server.com/otto/receiver/SimpleQ.fmp12/channel?apiKey=dk_85238774
-```
-
-If you have any questions about this process, please reach out to us on our [community forum](https://community.proofgeist.com/).
-
-### Can I customize OttoDeploy in the same way that I could Migrator.fmp12?
-
-No. The nature of OttoDeploy was built to be easier to use and understand the complex features and concepts of OttoFMS for newcomers. In trade, the file is not as customizable as Migrator.fmp12 was. We welcome you to submit feature requests for any limitations that you are unable to achieve with OttoDeploy, or you can also build your own custom deployment file using the [OttoFMS Developer API](/apidoc). To learn more about this design decision, check out [this page](/hybrid-app).
-
-### Other questions?
-
-Reach out via the [community forum](https://community.proofgeist.com/)
