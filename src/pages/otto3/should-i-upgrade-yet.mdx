@@ -1,0 +1,66 @@
+# Should I upgrade to OttoFMS?
+
+This document is intended to help you decide if you when you should upgrade to OttoFMS. If you have any questions about this process, please reach out to us on our [community forum](https://community.proofgeist.com/).
+
+## Reasons NOT to upgrade right away:
+
+- **You make heavy usage of API keys for webhooks or the Data API Proxy**. You will need to re-create your API keys in OttoFMS and update any applications that use them.
+
+- **You have made major customizations to Migrator.fmp12**. OttoDeploy, the replacement for Migrator.fmp12, is not as customizable as Migrator.fmp12 was. If you're unable to use OttoDeploy for your custom workflow, we really want to know what you need. We are highly motivated to solve this problem, please reach with ideas or issue at either the [forum](https://community.proofgeist.com) or via email at support@proofgeist.com
+
+- **You rely on the Otto Application Logs**. This feature will come to OttoFMS in a future release.
+- **You rely on Google Authentication**. Please let us know in the [community forum](https://community.proofgeist.com/) if this is something you need.
+
+---
+
+## Upgrading FAQ
+
+### Can I run both OttoFMS and Otto v3 at the same time?
+
+Technically yes, but we **strongly** discourage this. Since they run on different ports, they can co-exist on the same server, but you **should not** run deployments from them both at the same time as this could result in catastrophic data loss or file corruption.
+
+### Can I import my migrations from Migrator.fmp12 to OttoDeploy?
+
+No. There are too many differences in OttoDeploy to make this possible. You will need to recreate your deployments in OttoDeploy.
+
+### Will Migrator.fmp12 work with OttoFMS?
+
+Not at this time, but it is something we are exploring.
+
+We recognize that some of you have made significant changes to Migrator.fmp12, and you aren’t going to be happy about giving those customizations. We know this, and are committed to listening to what you need. We want this transition to be one that you are excited about. This is just the beginning.
+
+### Will my API keys from v3 remain the same in OttoFMS?
+
+No, you will need to re-create any API keys that you want to continue to use in OttoFMS. Thankfully, this has been made much easier in OttoFMS as you can use the web dashboard to create and manage API keys. To help you distinguish between your old and new API keys, OttoFMS uses a new naming convention for API keys. Data API keys (also used for webhooks) are now prefixed with `dk_` and Admin API keys are prefixed with `ak_`.
+
+Keep in mind that any applications currently using API keys for webhooks or the Data API Proxy feature from Otto v3 will also need to change their port and URL path to use OttoFMS instead.
+
+Examples:
+
+```bash filename="Otto v3"
+https://my-otto-server.com:3030/fmi/data/vLatest/...
+-H Authorization: Bearer KEY_12395874
+# or
+https://my-otto-server.com:3030/receiver/SimpleQ.fmp12/channel?apiKey=KEY_12395874
+```
+
+```bash filename="OttoFMS"
+https://my-otto-server.com/otto/fmi/data/vLatest/...
+-H Authorization: Bearer dk_85238774
+# or
+https://my-otto-server.com/otto/receiver/SimpleQ.fmp12/channel?apiKey=dk_85238774
+```
+
+If you have any questions about this process, please reach out to us on our [community forum](https://community.proofgeist.com/).
+
+### Can I migrate API keys from Otto v3 to OttoFMS?
+
+Not at this time, but it is something we are actively working on. We expect to have a tool available soon.
+
+### Can I customize OttoDeploy in the same way that I could Migrator.fmp12?
+
+No. The nature of OttoDeploy was built to be easier to use and understand the complex features and concepts of OttoFMS for newcomers. In trade, the file is not as customizable as Migrator.fmp12 was. We welcome you to submit feature requests for any limitations that you are unable to achieve with OttoDeploy, or you can also build your own custom deployment file using the [OttoFMS Developer API](/apidoc). To learn more about this design decision, check out [this page](/hybrid-app).
+
+### Other questions?
+
+Reach out via the [community forum](https://community.proofgeist.com/)
