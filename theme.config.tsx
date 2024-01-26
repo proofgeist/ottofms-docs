@@ -81,14 +81,7 @@ const config: DocsThemeConfig = {
   footer: { text: Footer },
   feedback: { content: null },
   editLink: { component: Null },
-  banner: {
-    key: "ottofms-beta-release",
-    text: (
-      <a href="/beta" target="_blank">
-        OttoFMS is in beta. 🛑 Do not use in production. 🛑 Read more →
-      </a>
-    ),
-  },
+
   useNextSeoProps() {
     return {
       titleTemplate: `%s | OttoFMS`,
