@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.0.5",
+    "version": "4.0.6",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -2794,7 +2794,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_Cuek99CgsWsC"
+            "default": "build_Fe7BDZbep11B"
           }
         },
         "required": [
