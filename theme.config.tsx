@@ -3,6 +3,7 @@ import { useConfig, useTheme, DocsThemeConfig } from "nextra-theme-docs";
 import { Footer } from "./src/components/footer";
 import { OttoFMSLogo } from "@/components/logos/ottofms";
 import { IconExternalLink } from "@tabler/icons-react";
+import "./src/styles/globals.css";
 import NoSsr from "@/components/no-ssr";
 
 const config: DocsThemeConfig = {
