@@ -2,6 +2,15 @@
 
 This page walks through some common errors in OttoFMS and how to fix them. If you don't see your problem on this list, check out our [support](/support) options.
 
-### I installed OttoFMS on a Mac and its not working
+## I installed OttoFMS on a Mac and its not working
 
 If you have installed OttoFMS on a Mac and it will not run and is not producing logs in the /OttoFMS/logs folder, you may need to give OttoFMS full disk access. See our [Mac Second Disk](/guides/mac-second-disk) guide for instructions on how to do this.
+
+## Nothings working and my server doesn't have a valid SSL certificate
+
+OttoFMS requires a Valid SSL Certificate to communicate with other servers and itself. The Claris Self signed certificate is not valid. You have a few options to fix this:
+
+1. Purchase a valid SSL certificate from a Certificate Authority and install it on your server.
+2. Use a free SSL certificate from [Let's Encrypt](https://letsencrypt.org/). You can use the [Certbot](https://certbot.eff.org/) to install the certificate on your server.
+3. Use a service like [ngrok](https://ngrok.com/). This will create a secure tunnel to your server and provide a valid SSL certificate.
+4. Ask us about Aperture, our secure tunneling service that is similar to ngrok but tuned for FileMaker Server. It will be available soon, through our hosting platform [Ottomatic](https://www.ottomatic.cloud)
