@@ -2,6 +2,7 @@ import { useOs, useLocalStorage } from "@mantine/hooks";
 import { Button } from "./ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -33,7 +34,7 @@ export function RaycastSnippet({ snippetType, ...props }: RaycastSnippetProps) {
       <Dialog>
         <div className="bg-[#202123] p-4 rounded-lg">
           {props.title && (
-            <div className="bg-gray-600 -m-4 mb-4 overflow-hidden rounded-t-lg p-2">
+            <div className="bg-neutral-700 -m-4 mb-4 overflow-hidden rounded-t-lg p-3 font-bold text-md">
               <p>{props.title}</p>
             </div>
           )}
@@ -96,7 +97,6 @@ export function RaycastSnippet({ snippetType, ...props }: RaycastSnippetProps) {
           <DialogHeader>
             <DialogTitle>Setup Guide</DialogTitle>
           </DialogHeader>
-          s
           <div>
             <p>1. Install Raycast</p>
             <DialogDescription>
@@ -121,52 +121,27 @@ export function RaycastSnippet({ snippetType, ...props }: RaycastSnippetProps) {
             </DialogDescription>
           </div>
           <div>
-            <p>3. Click Done</p>
+            <p>3. Copy or Import</p>
             <DialogDescription>
               <p className="pb-2">
-                We'll save this preference in your browser so you can skip this
-                dialog for future snippets.
+                Copy directly to your clipboard or import this snippet into the
+                extension for later use.
               </p>
             </DialogDescription>
           </div>
-          <div className="text-right">
-            <Button onClick={() => setHasExtension(true)}>Done</Button>
-          </div>
+          <DialogClose asChild>
+            <div className="flex gap-2 justify-end">
+              <a href={deepLink_import} onClick={() => setHasExtension(true)}>
+                <Button variant="secondary">Import</Button>
+              </a>
+              <a href={deepLink_copy} onClick={() => setHasExtension(true)}>
+                <Button>Copy</Button>
+              </a>
+            </div>
+          </DialogClose>
         </DialogContent>
       </Dialog>
     </>
-  );
-
-  return (
-    <div className="bg-[#202123] p-4 rounded-md">
-      <div className="bg-[#202123] p-4 rounded-lg">
-        {props.title && (
-          <div className="bg-gray-600 -m-4 mb-4 overflow-hidden rounded-t-lg p-2">
-            <p>{props.title}</p>
-          </div>
-        )}
-        <div className="flex justify-between items-center gap-2 ">
-          <img src="/raycast-snippets.png" className="max-w-[100px] mr-4" />
-          <div>
-            <h3 className="text-lg font-bold">
-              Copy using FileMaker Snippets for Raycast
-            </h3>
-            <p className="text-gray-400 text-sm">
-              Raycast is a blazingly fast, totally extendable free launcher for
-              MacOS. With Raycast and the FileMaker Snippets extension installed
-              on your computer, you can copy code snippets directly from these
-              docs.
-            </p>
-          </div>
-          <div className="space-y-2 flex flex-col">
-            <Button size="lg">Copy</Button>
-            <Button size="sm" variant="secondary">
-              Import
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -174,10 +149,10 @@ function InstallButton() {
   return (
     <a
       title="Install filemaker-snippets Raycast Extension"
-      href="https://www.raycast.com/eluce2/claris-snippets"
+      href="https://www.raycast.com/eluce2/filemaker-snippets"
     >
       <img
-        src="https://www.raycast.com/eluce2/claris-snippets/install_button@2x.png?v=1.1"
+        src="/install_button@2x.png"
         height="64"
         alt=""
         style={{ height: "64px" }}
