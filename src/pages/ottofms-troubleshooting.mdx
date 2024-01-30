@@ -14,3 +14,9 @@ OttoFMS requires a Valid SSL Certificate to communicate with other servers and i
 2. Use a free SSL certificate from [Let's Encrypt](https://letsencrypt.org/). You can use the [Certbot](https://certbot.eff.org/) to install the certificate on your server.
 3. Use a service like [ngrok](https://ngrok.com/). This will create a secure tunnel to your server and provide a valid SSL certificate.
 4. Ask us about Aperture, our secure tunneling service that is similar to ngrok but tuned for FileMaker Server. It will be available soon, through our hosting platform [Ottomatic](https://www.ottomatic.cloud)
+
+## My Migrations are failing with a Signal Killed (SIGKILL) or Segmentation Fault error
+
+This is likely caused by running out of memory. On many Operating Systems a process that uses up too much memory will be killed directly by the OS, causing a SIGKILL error for the process. If you are running a Linux server without a swap file or if your server does not have enough RAM or virtual memory this can happen. Check out our [recommended specifications](/tech-specs#production-servers) for OttoFMS servers for some base specifications.
+
+A similar error can be caused by having corrupted FileMaker files when you try to run a migration. If you are getting Segmentation Fault errors, try to run recovery on your file and migrate it again.
