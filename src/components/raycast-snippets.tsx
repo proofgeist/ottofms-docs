@@ -32,16 +32,16 @@ export function RaycastSnippet({ snippetType, ...props }: RaycastSnippetProps) {
   return (
     <>
       <Dialog>
-        <div className="bg-[#202123] p-4 rounded-lg">
+        <div className="bg-[#202123] p-4 rounded-lg dark">
           {props.title && (
-            <div className="bg-neutral-700 -m-4 mb-4 overflow-hidden rounded-t-lg p-3 font-bold text-md">
+            <div className="bg-neutral-700 text-neutral-100 -m-4 mb-4 overflow-hidden rounded-t-lg p-3 font-bold text-md">
               <p>{props.title}</p>
             </div>
           )}
           <div className="flex  items-center gap-2">
             <img src="/raycast-snippets.png" className="max-w-[100px] mr-4" />
             <div className="flex-grow">
-              <h3 className="text-lg font-bold">
+              <h3 className="text-lg font-bold text-gray-50">
                 Copy this snippet using FileMaker Snippets for Raycast
               </h3>
               <div className="text-gray-400 text-sm space-y-2">
