@@ -8,8 +8,30 @@ OttoFMS will run on any operating system that is certified to run FileMaker Serv
 
 FileMaker Server version 19.6 or greater is required. OttoFMS will not work with FileMaker Server 19.5 or earlier.
 
-## Claris support
+### Claris support
 
 FileMaker Server 19.6 and greater is currently supported by Claris. However on Feb, 28, 2024 Claris will end support for FileMaker Server 19. We will not do anything to prevent you from using OttoFMS with FileMaker Server 19.6 after that date, but we will prioritize support for the Claris supported versions of FileMaker Server.
 
 You can check the current schedule for End of Life dates for FileMaker Server on the [Claris website](https://support.claris.com/s/answerview?anum=000034564&language=en_US).
+
+## Production Servers
+
+In addition to the base FileMaker Server requirement, OttoFMS' minimum requirements for a production server are:
+
+- 4 CPU cores
+- 8GB RAM
+- Available virtual memory or swap file.
+
+Migrations make copies of your database files both in RAM and on disk as part of the migration process. A good general rule is that if you need to have 3x the size of your production database files in available disk space, and at least 2x the size of your production database files in RAM or virtual memory.
+
+### Virtual memory
+
+Mac and Windows have virtual memory. They can use available disk space as RAM as needed. This does slow down the server. You can read more about virtual memory at Wikipedia.
+
+### Linux swap files
+
+Linux may or may not have a swap file by default. We recommend that you don't install OttoFMS on a Linux production server without a swap file configured.
+
+## Dev servers
+
+Dev servers may not need the resources that a production server needs. It isn't doing migrations. It isn't doing backups. It isn't doing a lot of things. It is just running the server. So you can get away with fewer resources. The minimum requirements for a dev server are the same as FileMaker Server.
