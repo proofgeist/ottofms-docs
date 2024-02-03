@@ -2,12 +2,12 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.0.6",
+    "version": "4.0.7",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
     },
-    "description": "## Authentication\n\nThe OttoFMS Developer API uses exactly the same authentication as the <a href=\"https://help.claris.com/en/admin-api-guide/content/index.html\" target=\"_blank\">**Claris FileMaker Server Admin API**</a>. \n"
+    "description": "## Authentication\n\nThe OttoFMS Developer API uses exactly the same authentication as the <a href=\"https://help.claris.com/en/admin-api-guide/content/index.html\" target=\"_blank\">**Claris FileMaker Server Admin API**</a>. \n\nThe OttoFMS API can also use OttoFMS Admin API keys to authenticate the OttoFMS API and proxy to the FileMaker Admin API. See the <a href=\"https://docs.ottofms.com/api-proxy#admin-api-proxy\" target=\"_blank\">**OttoFMS Docs**</a> for more information.\n"
   },
   "paths": {
     "/otto/api/can-reach-other-server": {
@@ -459,7 +459,7 @@
             }
           }
         },
-        "description": "Calling this endpoint will make a copy or clone of a file and start streaming the file back to the client.",
+        "description": "Calling this endpoint will make a copy or clone of a file and start streaming the file back to the client. This intended to be used by browser based clients as it will automatically create download the file using the browser default download location.",
         "summary": "Download a file from FileMaker Server",
         "tags": [
           "FileMaker Files"
@@ -534,7 +534,7 @@
             }
           }
         },
-        "description": "Calling this endpoint will make a copy or clone of a file and send back a link which can be used to download a zip of the file.",
+        "description": "Calling this endpoint will make a copy or clone of a file and send back a link which can be used to download a zip of the file. See the next endpoint for how to download the file.",
         "summary": "Get a file download link",
         "tags": [
           "FileMaker Files"
@@ -596,8 +596,8 @@
             }
           }
         },
-        "description": "Download a file using a download url",
-        "summary": "File Download Link",
+        "description": "Use a get request to download a file from a link obtained from the previous endpoint. This is useful if you want to download the file into a FileMaker Container field for example.",
+        "summary": "Get a file with a download link",
         "tags": [
           "FileMaker Files"
         ]
@@ -1835,19 +1835,19 @@
                       "major": {
                         "type": "number",
                         "format": "double",
-                        "minimum": 5e-324,
+                        "minimum": -1.7976931348623157e+308,
                         "maximum": 1.7976931348623157e+308
                       },
                       "minor": {
                         "type": "number",
                         "format": "double",
-                        "minimum": 5e-324,
+                        "minimum": -1.7976931348623157e+308,
                         "maximum": 1.7976931348623157e+308
                       },
                       "patch": {
                         "type": "number",
                         "format": "double",
-                        "minimum": 5e-324,
+                        "minimum": -1.7976931348623157e+308,
                         "maximum": 1.7976931348623157e+308
                       }
                     },
@@ -2794,7 +2794,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_Fe7BDZbep11B"
+            "default": "build_qvF1MsAnklVV"
           }
         },
         "required": [
@@ -3059,7 +3059,7 @@
       "GetOttoApiBuildBuildIdStatusParameterDelay": {
         "type": "number",
         "format": "double",
-        "minimum": 5e-324,
+        "minimum": -1.7976931348623157e+308,
         "maximum": 1.7976931348623157e+308
       },
       "GetOttoApiBuildBuildIdStatusPositiveResponse": {
@@ -3256,7 +3256,7 @@
                     "timeElapsed": {
                       "type": "number",
                       "format": "double",
-                      "minimum": 5e-324,
+                      "minimum": -1.7976931348623157e+308,
                       "maximum": 1.7976931348623157e+308
                     },
                     "file": {
@@ -3342,7 +3342,7 @@
                           "deploymentId": {
                             "type": "number",
                             "format": "double",
-                            "minimum": 5e-324,
+                            "minimum": -1.7976931348623157e+308,
                             "maximum": 1.7976931348623157e+308,
                             "description": "The previous deployment id"
                           }
@@ -4132,7 +4132,7 @@
                   "batchId": {
                     "type": "number",
                     "format": "double",
-                    "minimum": 5e-324,
+                    "minimum": -1.7976931348623157e+308,
                     "maximum": 1.7976931348623157e+308
                   }
                 },
@@ -4150,7 +4150,7 @@
                   "batchId": {
                     "type": "number",
                     "format": "double",
-                    "minimum": 5e-324,
+                    "minimum": -1.7976931348623157e+308,
                     "maximum": 1.7976931348623157e+308
                   },
                   "schedule": {
@@ -4354,7 +4354,7 @@
                                 "deploymentId": {
                                   "type": "number",
                                   "format": "double",
-                                  "minimum": 5e-324,
+                                  "minimum": -1.7976931348623157e+308,
                                   "maximum": 1.7976931348623157e+308,
                                   "description": "The previous deployment id"
                                 }
@@ -5123,7 +5123,7 @@
                                 "deploymentId": {
                                   "type": "number",
                                   "format": "double",
-                                  "minimum": 5e-324,
+                                  "minimum": -1.7976931348623157e+308,
                                   "maximum": 1.7976931348623157e+308,
                                   "description": "The previous deployment id"
                                 }
@@ -5831,7 +5831,7 @@
                   "batchId": {
                     "type": "number",
                     "format": "double",
-                    "minimum": 5e-324,
+                    "minimum": -1.7976931348623157e+308,
                     "maximum": 1.7976931348623157e+308
                   }
                 },
@@ -5849,7 +5849,7 @@
                   "batchId": {
                     "type": "number",
                     "format": "double",
-                    "minimum": 5e-324,
+                    "minimum": -1.7976931348623157e+308,
                     "maximum": 1.7976931348623157e+308
                   },
                   "schedule": {
@@ -5972,7 +5972,7 @@
               "null"
             ],
             "format": "double",
-            "minimum": 5e-324,
+            "minimum": -1.7976931348623157e+308,
             "maximum": 1.7976931348623157e+308
           }
         },
@@ -6258,7 +6258,7 @@
                     "id": {
                       "type": "number",
                       "format": "double",
-                      "minimum": 5e-324,
+                      "minimum": -1.7976931348623157e+308,
                       "maximum": 1.7976931348623157e+308
                     },
                     "key": {
@@ -6647,7 +6647,7 @@
                     "id": {
                       "type": "number",
                       "format": "double",
-                      "minimum": 5e-324,
+                      "minimum": -1.7976931348623157e+308,
                       "maximum": 1.7976931348623157e+308
                     },
                     "key": {
@@ -6749,7 +6749,7 @@
               "id": {
                 "type": "number",
                 "format": "double",
-                "minimum": 5e-324,
+                "minimum": -1.7976931348623157e+308,
                 "maximum": 1.7976931348623157e+308
               },
               "key": {
