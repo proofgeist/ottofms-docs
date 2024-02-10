@@ -8,19 +8,19 @@ Deployments can be used to migrate data onto a new version of your schema, to in
 
 Deployments are configured using [OttoDeploy.fmp12](/ottodeploy), (formerly called Migrator.fmp12 from Otto v3) and then sent to the destination server running OttoFMS using OttoDeploy or the [OttoFMS Developer API](/apidoc).
 
-The destination server will then run the deployment right away or at a scheduled time (configured in the deployment payload).
+The destination server will then run the deployment immediately or at a scheduled time (configured in the deployment payload).
 
 ### Sources and Destinations
 
 Deployments have a source and a destination. The source is the server or location where the source files are located. The destination is the server where the files will be deployed to. The destination will be the server where OttoFMS runs the deployment, and the files will be fetched from the source.
 
-The source and the destination can be the same server. For example, you can migrate a file from file A to file B on the same server. If using the same server, unsure that you are not trying to migrate a file onto itself. This will cause the deployment to fail.
+The source and the destination can be the same server. For example, you can migrate a file from file A to file B on the same server. If using the same server, ensure that you are not trying to migrate a file onto itself. This will cause the deployment to fail.
 
-The source can also be a prebuilt set of files from a url. This can be used to run a deployment from a [public build](/concepts/public-builds).
+The source can also be a prebuilt set of files from a URL. This can be used to run a deployment from a [public build](/concepts/public-builds).
 
 ### Deployments are Atomic
 
-A backup is made of all files in the deployment. If any part of the deployment fails, the backups are restored and the deployment is aborted. This ensures that the server is always in a consistent state where either all the files deployed successfully, or none of them did.
+A backup is made of all files in the deployment. If any part of the deployment fails, the backups are restored and the deployment is aborted. This ensures that the server is always in a consistent state where either all the files deployed successfully or none of them did.
 
 ### Scheduled Deployments
 
