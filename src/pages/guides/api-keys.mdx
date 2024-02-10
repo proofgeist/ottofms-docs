@@ -5,7 +5,7 @@ import Vimeo from "../../components/vimeo";
 
 ## Introduction
 
-OttoFMS provides an API Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing that you need to do to use the Data API. Without OttoFMS you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can setup an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. OttoFMS will handle the token exchange and refreshing for you.
+OttoFMS provides an API Key service to make it easier to use the FileMaker Data API by handling the token exchange and refreshing that you need to do to use the Data API. Without OttoFMS you need to login with a user name and password first to get an access token then you can use that token to make calls to the Data API. With OttoFMS you can set up an API Key to access a given file with a user name and password and then use that API Key to make calls to the Data API. OttoFMS will handle the token exchange and refresh for you.
 
 The API Key can be safely given to 3rd party integrations and services to access your FileMaker data without giving them access to your FileMaker username and password.
 
@@ -63,9 +63,9 @@ You have successfully created an API Key. You can now use this API Key to access
   data api with a an API Key.
 </Callout>
 
-Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it will be able to use the API Key.
+Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it can use the API Key.
 
-For example, change this url path:
+For example, change this URL path:
 
 ```
 /fmi/data/vLatest/databases/{database.fmp12}/layouts/{layout}/records
