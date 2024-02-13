@@ -1,5 +1,20 @@
 # OttoDeploy Version History
 
+## 1.0.3
+
+Released: 2/13/2024
+
+### Patch Changes
+
+- 8c3e71d: bopy build json and copy deployment json modals will no longer jump around when toggling secrets on and off
+- 360b8e1: password field will now display the password instead of the username for migrations
+- 1586591: OttoDeploy now prevents attempting to deploy a file onto itself (on the same server). Previously, migrations from a file onto itself were failing without a good warning, and installs and replaces do nothing. Now these operations will be prevented on the OttoDeploy side.
+- 1586591: added better feedback for invalid file operations
+- e997c9a: added a default date of 1 hour in the future for scheduling a deployment. this default is only in the UI, it can be changed from the scheduling modal.
+- 07fb356: OttoDeploy can now display the FMS version when adding a new server even if it does not find ottoFMS on the server
+- 9d5fe97: added server tag and colors to the builds and servers lists
+- efe352a: updated ui of the add/edit server modal to more closely match the input flow
+
 ## 1.0.2
 
 Released: 2/7/2024
