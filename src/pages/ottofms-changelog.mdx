@@ -1,11 +1,53 @@
 # OttoFMS Version History
 
+## 4.1.0
+
+Released: 2/12/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.1.0/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.1.0/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.1.0/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.1.0/mac)
+
+
+### Minor Changes
+
+- 9897d8b: deployments running between the same source and destination server using a just in time build will now delete the just in time build from the outbox locally rather than making a http request to do it
+- f8e08c9: clients can now be disconnected from the client table on the filemaker server tab
+- d9c9aa5: if doing a deployment with the same source and destination server, the build will be run locally rather than creating a http request to run the build
+- 9897d8b: deployments running with the same source and destination server will now copy builds from the outbox to the inbox rather than make a http request for them
+
+### Patch Changes
+
+- 56a3358: scheduled deployments that fail to properly create a schedule will now delete the created deployment and the created schedule to clean up after themselves.
+- d3fea22: attempting to install a file into an additional folder that is not set up now results in a helpful error message
+- d99c470: added better error for an invalid timestamp on scheduled deployments
+- 1e33a9d: streamlined ui and removed a couple visual bugs from the register webhooks modal
+- 18a59ae: better error message when Just in time build fails
+- a7f50cd: added more logging for deployments and made unhandled rejected error log better
+- 1eeb6f9: fire a better error when a build tries to backup a closed file
+- e9d83ac: fixed tooltip text in crashed deployment when there is only one sub-deployment
+- c8d9503: only log that we are deleting the schedule if there is a schedule to delete
+- cdd63a9: external links in the cmd+k menu will now open in a new tab
+- 07b4141: deployments will now only log that you are logged into the source server if you are using the userpass authentication method since akiKeys and tokens do not need to log in.
+- 118db45: usage data now includes otto version and fms version
+- e13216b: fixed error in ui causing notifications to not appear
+- 56a3358: API errors will now be labelled as OttoFMS API errors rather than FileMaker errors
+- 64d43a6: downloaded deployment files now have more helpful names
+- a1ad695: better error message for failed builds
+- 56a3358: scheduled deployments that fail to properly create a schedule will now display a more helpful error.
+- fc13f52: webhook urls can now be copied without the api key if you plan to use them with headers instead
+- 22c82f9: uploads that take longer than an hour will no longer fail. Uploads can also now be resumed up to two days after starting
+- 367addd: migrations longer than 15 minutes will no longer crash with an invalid token error
+- 180c9fe: allow login to ottoFMS console after changing the FMS password
+- 8d808b7: better errors for the fetch failed errors
+- 8d8fce8: we no longer log that the files were opened successfully at the end of a deployment if there were no files opened successfully
+- 7a0d45d: admin api keys now have a last used time rather than an updated time. It will display the last time that admin api key was used in the OttoFMS api or the Admin API proxy
+- fb03a47: use locale formatting for deployment start date and time in table and specific deployment page
+- faae2ae: upload fm file modal no longer shows a red X when try to upload any file. It will now show an upload icon for all files, and an error will show if the file is not a .fmp12 file.
+
 ## 4.0.10
 
 Released: 2/7/2024
 
 Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.0.10/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.0.10/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.0.10/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.0.10/mac)
-
 
 ### Patch Changes
 
