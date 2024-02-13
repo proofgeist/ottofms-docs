@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import { useConfig, useTheme, DocsThemeConfig } from "nextra-theme-docs";
-import { Footer } from "./src/components/footer";
+import { Footer } from "./src/components/ui/footer";
 import { OttoFMSLogo } from "@/components/logos/ottofms";
 import { IconExternalLink } from "@tabler/icons-react";
 import "./src/styles/globals.css";
 import NoSsr from "@/components/no-ssr";
+import { TopRightLogo } from "@/components/ui/top-right-logo";
 
 const config: DocsThemeConfig = {
   primaryHue: 201,
@@ -24,6 +25,9 @@ const config: DocsThemeConfig = {
     return {
       titleTemplate: `%s | OttoFMS`,
     };
+  },
+  navbar: {
+    extraContent: <TopRightLogo />,
   },
 };
 
