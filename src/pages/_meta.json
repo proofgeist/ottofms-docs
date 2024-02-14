@@ -1,4 +1,9 @@
 {
+  "contact": {
+    "title": "Have Otto V3?",
+    "type": "page",
+    "href": "/otto3"
+  },
   "index": "Introduction",
   "---": {
     "title": "",

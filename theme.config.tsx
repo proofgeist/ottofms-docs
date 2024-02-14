@@ -6,6 +6,7 @@ import { IconExternalLink } from "@tabler/icons-react";
 import "./src/styles/globals.css";
 import NoSsr from "@/components/no-ssr";
 import { TopRightLogo } from "@/components/ui/top-right-logo";
+import { TitleComponent } from "@/components/sidebar-title";
 
 const config: DocsThemeConfig = {
   primaryHue: 201,
@@ -14,6 +15,18 @@ const config: DocsThemeConfig = {
   head: Head,
   sidebar: {
     defaultMenuCollapseLevel: 1,
+    titleComponent: ({ title, type }) => {
+      if (title === "Coming from Otto v3") {
+        return (
+          <span
+            style={{ fontSize: "16px", fontWeight: "900", color: "#0977B1" }}
+          >
+            {title}
+          </span>
+        );
+      }
+      return <>{title}</>;
+    },
   },
   docsRepositoryBase: "https://pr.new/proofgeist/ottofms-docs/edit/main",
   footer: { text: Footer },
