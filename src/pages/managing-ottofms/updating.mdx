@@ -1,19 +1,58 @@
-### Update Linux using our update script
+import { Tabs, Callout, Steps } from "nextra/components";
 
-We have set up a hosted update script that you can run on your server to update OttoFMS. To run, simply copy and paste the following command into your terminal:
+## Option 1: Update using the update script
+
+We have set up a hosted update script that you can run on your server to update OttoFMS. Each OS has a different script, so make sure to use the correct one for your server.
+
+<Tabs items={["Linux", "Windows", "MacOS"]}>
+  <Tabs.Tab>
+
+To run, simply copy and paste the following command into your terminal:
 
 ```cmd copy
-sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-linux.sh" | bash
+```
+
+If you'd like to update to a specific version of OttoFMS, you can specify the version number as a parameter:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-linux.sh" | bash -s -- -v 4.1.0
+```
+
+</Tabs.Tab>
+  <Tabs.Tab>
+
+To run, simply copy and paste the following command into PowerShell:
+
+```cmd copy
+iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofgeist.com/ottofms/install-scripts/install-win.ps1'))
 ```
 
 If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
 
 ```cmd copy
-sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash -s -- -v 4.0.1-beta.19
+$OttoFMSInstallVersion = "4.1.0"
+iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofgeist.com/ottofms/install-scripts/install-win.ps1'))
 ```
 
-### Update Mac/Windows/Manual Linux
+  </Tabs.Tab>
+  <Tabs.Tab>
 
-To update OttoFMS to a new version, follow the instructions for [uninstalling](/managing-ottofms/installing-uninstalling#uninstalling) the old version first. Then follow the instructions for [installing](/managing-ottofms/installing-uninstalling#installing) the new version.
+To run, simply copy and paste the following command into your terminal:
 
-We are planning to add a more streamlined update process in the future.
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-mac.sh" | bash
+```
+
+If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-mac.sh" | bash -s -- -v 4.1.0
+```
+
+  </Tabs.Tab>
+</Tabs>
+
+## Option 2: Manual Update
+
+To manually update OttoFMS to a new version, follow the instructions for [uninstalling](/managing-ottofms/installing-uninstalling#uninstalling) the old version first. Then follow the instructions for [installing](/managing-ottofms/installing-uninstalling#installing) the new version.

@@ -29,7 +29,6 @@ Select your operating system for specific installation instructions:
 
 <Tabs items={["Linux", "Windows", "MacOS"]}>
   <Tabs.Tab>
- ## Linux Installation
   <Callout type="info">
 **Additional preflight checks for Linux:**  
    <span>Make sure your server has a swap file configured for additional virtual memory.</span>
@@ -42,13 +41,13 @@ We have set up a hosted install script that you can run on your server to instal
 To run, simply copy and paste the following command into your terminal:
 
 ```cmd copy
-sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-linux.sh" | bash
 ```
 
 If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
 
 ```cmd copy
-sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install.sh" | bash -s -- -v 4.0.1-beta.19
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-linux.sh" | bash -s -- -v 4.1.0
 ```
 
 ### Option 2: Manual Install
@@ -82,7 +81,24 @@ sudo apt -y install ./ottofms-app_1.0.0_amd64.deb
 </Tabs.Tab>
   <Tabs.Tab>
 
-## Windows Installation
+### Option 1: Install using our install script
+
+We have set up a hosted install script that you can run on your server to install OttoFMS. This script can also be used to update to a different version of OttoFMS later.
+
+To run, simply copy and paste the following command into PowerShell:
+
+```cmd copy
+iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofgeist.com/ottofms/install-scripts/install-win.ps1'))
+```
+
+If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
+
+```cmd copy
+$OttoFMSInstallVersion = "4.1.0"
+iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofgeist.com/ottofms/install-scripts/install-win.ps1'))
+```
+
+### Option 2: Manual Install
 
 <Steps>
 
@@ -109,12 +125,29 @@ The download package you receive is a zip file, unzip it for the actual Installe
   <Tabs.Tab>
   
   
-## MacOS Installation
 <Callout type="info">
 
 If you are using macOS and you have second disk setup as the default backup, please read [this article](/guides/mac-second-disk) before installing OttoFMS.
 
 </Callout>
+
+### Option 1: Install using our install script
+
+We have set up a hosted install script that you can run on your server to install OttoFMS. This script can also be used to update to a different version of OttoFMS later.
+
+To run, simply copy and paste the following command into your terminal:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-mac.sh" | bash
+```
+
+If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
+
+```cmd copy
+sudo curl -sSL "https://appupdates.proofgeist.com/ottofms/install-scripts/install-mac.sh" | bash -s -- -v 4.1.0
+```
+
+### Option 2: Manual Install
 
 <Steps>
 
@@ -150,7 +183,10 @@ Follow [this guide](/guides/mac-second-disk) to verify that OttoFMS has Full Dis
 Open your browser and enter https://[host].com/otto/, where [host] is the fully qualified domain name of your FileMaker Server machine.
 
 <Callout type="info">Don't forget the trailing slash after `/otto/`!</Callout>
-<Callout>Page not loading? Check out the [troubleshooting guide](/ottofms-troubleshooting)</Callout>
+<Callout>
+  Page not loading? Check out the [troubleshooting
+  guide](/ottofms-troubleshooting)
+</Callout>
 
 ### Enter your license key
 
