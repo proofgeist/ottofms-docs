@@ -63,6 +63,7 @@ function Head() {
 
   const { asPath, defaultLocale, locale } = useRouter();
   const { frontMatter, title } = useConfig();
+  console.log("frontMatter", frontMatter);
   const url =
     baseUrl + (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
 
