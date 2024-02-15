@@ -2,10 +2,22 @@ import { Callout } from "nextra/components";
 
 # FileMaker Databases
 
-On this tab you can find a list of all the FileMaker database files that are on the server. You can  upload new database files to the FileMaker Server from here as well.
+On this tab you can find a list of all the FileMaker database files that are on the server. You can upload new database files to the FileMaker Server from here as well.
+
+## Uploading Files
 
 Click the **Upload** button to upload one or more database files to the server.
 
+OttoFMS uses a resumable uploader to allow you to upload very large files. If the upload is interrupted, simply select the same file again and the upload will resume from where it left off.
+
+After the files are uploaded, OttoFMS will automatically open the files for you. If you upload an encrypted file, you must open the file manually and enter the encryption password.
+
+## File Actions
+
 Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **download**, or **delete** the database file.
 
+OttoFMS can download a hosted FileMaker file without needing to close it first. When you download a file from this interface, OttoFMS makes an ad-hoc backup of the file and then downloads the backup. When you download a clone, no data is included which can often result in a much smaller file size.
+
 ![FileMaker Databases](/img/ottofms/console/fms-databases.png)
+
+{/* ### Save As XML */}
