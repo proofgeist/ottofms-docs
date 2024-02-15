@@ -75,7 +75,7 @@ function Head() {
       />
       <meta
         property="og:image"
-        content={`${baseUrl}/api/og-image?title=${title}&subtitle=${
+        content={`${baseUrl}/api/og-image?title=${title}&subTitle=${
           frontMatter.subTitle || ""
         }`}
       />
@@ -85,7 +85,7 @@ function Head() {
       />
       <meta
         property="twitter:image"
-        content={`${baseUrl}/api/og-image?title=${title}&subtitle=${
+        content={`${baseUrl}/api/og-image?title=${title}&subTitle=${
           frontMatter.subTitle || ""
         }`}
       />
