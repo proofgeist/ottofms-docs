@@ -31,8 +31,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofg
 If you'd like to install a specific version of OttoFMS, you can specify the version number as a parameter:
 
 ```cmd copy
-$OttoFMSInstallVersion = "4.1.0"
-iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofgeist.com/ottofms/install-scripts/install-win.ps1'))
+$OttoFMSInstallVersion = "4.1.0"; iex ((New-Object System.Net.WebClient).DownloadString('https://appupdates.proofgeist.com/ottofms/install-scripts/install-win.ps1'))
 ```
 
   </Tabs.Tab>
