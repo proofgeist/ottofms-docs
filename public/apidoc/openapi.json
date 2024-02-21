@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.1.0",
+    "version": "4.1.1",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -596,10 +596,64 @@
             }
           }
         },
-        "description": "Use a get request to download a file from a link obtained from the previous endpoint. This is useful if you want to download the file into a FileMaker Container field for example.",
+        "description": "Use a get request to download a file from a link obtained from a previous endpoint. This is useful if you want to download the file into a FileMaker Container field for example.",
         "summary": "Get a file with a download link",
         "tags": [
           "FileMaker Files"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/fm-file/download/:token Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenParameterToken"
+            }
+          }
+        ]
+      }
+    },
+    "/otto/api/download": {
+      "get": {
+        "operationId": "GetOttoApiDownload",
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/download Positive response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiDownloadPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/download Negative response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiDownloadNegativeResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "This endpoint is for streaming a file from a download link returned from another endpoint, it's not intended to be used directly.",
+        "summary": "Signed Download Link",
+        "tags": [
+          "Miscellaneous"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "description": "GET /otto/api/download Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiDownloadParameterToken"
+            }
+          }
         ]
       }
     },
@@ -2609,11 +2663,24 @@
           "messages"
         ]
       },
+      "GetOttoApiFmFileDownloadTokenParameterToken": {
+        "type": "string"
+      },
       "GetOttoApiFmFileDownloadTokenPositiveResponse": {
         "type": "string",
         "format": "binary"
       },
       "GetOttoApiFmFileDownloadTokenNegativeResponse": {
+        "type": "string"
+      },
+      "GetOttoApiDownloadParameterToken": {
+        "type": "string"
+      },
+      "GetOttoApiDownloadPositiveResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiDownloadNegativeResponse": {
         "type": "string"
       },
       "PostOttoApiBuildPositiveResponse": {
@@ -2794,7 +2861,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_4XWTk2KdF4CV"
+            "default": "build_vPmytJ8fWrHg"
           }
         },
         "required": [
@@ -3825,7 +3892,7 @@
                             "dataMigrationOptions": {
                               "type": "object",
                               "properties": {
-                                "-target_local": {
+                                "-target_locale": {
                                   "type": "string"
                                 },
                                 "-force": {
@@ -4837,7 +4904,7 @@
                                   "dataMigrationOptions": {
                                     "type": "object",
                                     "properties": {
-                                      "-target_local": {
+                                      "-target_locale": {
                                         "type": "string"
                                       },
                                       "-force": {
@@ -5606,7 +5673,7 @@
                                   "dataMigrationOptions": {
                                     "type": "object",
                                     "properties": {
-                                      "-target_local": {
+                                      "-target_locale": {
                                         "type": "string"
                                       },
                                       "-force": {
