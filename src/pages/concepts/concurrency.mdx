@@ -1,0 +1,22 @@
+import { Callout } from "nextra/components";
+
+# Concurrency
+
+<Callout type="warning">
+**Warning?**
+
+Setting the concurrency too high can cause problems, if your server does not have enough resources to handle it. Please be cautious when setting this value to anything higher than 1
+
+</Callout>
+
+OttoFMS staring in version 4.2 can process more than one file at time. This is called concurrency. The default value is 1, meaning that only one file will be processed at a time. You can change this value in each sub deployment when you have the Advanced Options enabled.
+
+## What are the impacts?
+
+### CPUs
+
+OttoFMS normally will only use one CPU to migrate data and to copy and move files. When you increase the concurrency, OttoFMS will use one CPU for each level of concurrency you set. So if you set it to 3 you can expect your server to use 3 CPUs to process the files. All of those CPUs may go to 100 percent.
+
+### Memory
+
+Each of those processes will also use it's own pile of memory. On a small 4GB server you will certainly run out of processing power and memory if raise the concurrency higher than 1.
