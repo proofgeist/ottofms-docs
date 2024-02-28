@@ -20,3 +20,7 @@ OttoFMS normally will only use one CPU to migrate data and to copy and move file
 ### Memory
 
 Each of those processes will also use it's own pile of memory. On a small 4GB server you will certainly run out of processing power and memory if raise the concurrency higher than 1.
+
+## Linux without a swap file are more prone to problems
+
+Linux servers that do not have a swap file will start killing other processes like FileMaker Server and Otto. If you are running a server without a swap file, please be very cautious when increasing the concurrency.
