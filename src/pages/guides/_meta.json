@@ -2,6 +2,7 @@
   "deployment-patterns": "Deployment Patterns",
   "api-keys": "API Keys",
   "webhooks": "Webhooks",
+  "webhook-response": "Webhook Response",
   "simpleq": "SimpleQ",
   "offsite-backups": "Offsite Backups"
 }

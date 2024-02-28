@@ -1,0 +1,21 @@
+# How to set the webhook response
+
+There are cases where you need to modify the response of a webhook. Usually this is for some kind of validation that the webhook is setup correctly and can handle the response.
+
+OttoFMS will use the value in the Exit Script step to set the response to the webhook. The response will be in JSON format.
+
+The following is an example of a webhook response:
+
+```json
+{
+  "useScriptResult": true,
+  "status" : 200 ,
+  "statusMessage: "OK",
+  "headers : ["content-type": "application/json" ],
+   body : "{}"
+}
+```
+
+The `useScriptResult` property should be set to true. This will signal OttoFMS to use the properties in that JSO to set the response to the webhook.
+
+In the response above the status is set to 200, the status message is set to "OK", the content type is set to "application/json" and the body is set to an empty JSON object.
