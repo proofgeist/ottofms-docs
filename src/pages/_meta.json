@@ -37,10 +37,12 @@
   "ottofms-changelog": "Version History",
   "ottofms-troubleshooting": "Troubleshooting",
   "known-issues": "Known Issues",
+  "large-files": "Large File Issues",
   "-- OttoDeploy": {
     "title": "OttoDeploy",
     "type": "separator"
   },
+
   "ottodeploy": "Overview",
   "ottodeploy-features": "Features",
   "hybrid-app": "Hybrid App",
