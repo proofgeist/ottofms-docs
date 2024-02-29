@@ -3,23 +3,23 @@ import { Callout } from "nextra/components";
 # Concurrency
 
 <Callout type="warning">
-**Warning?**
-
-Setting the concurrency too high can cause problems, if your server does not have enough resources to handle it. Please be cautious when setting this value to anything higher than 1
+**Warning** Setting the concurrency too high can cause problems if your server does not have enough resources to handle it. The higher you raise the concurrency the bigger the server you are going to need to handle it. Please read [Possible negative impacts](#possible-negative-impacts) below.
 
 </Callout>
 
-OttoFMS staring in version 4.2 can process more than one file at time. This is called concurrency. The default value is 1, meaning that only one file will be processed at a time. You can change this value in each sub deployment when you have the Advanced Options enabled.
+OttoFMS staring in version 4.2 can process more than one file at time. This is called concurrency. The default value is 1, meaning that only one file will be processed at a time. Multi-file deployments will go faster **if your server can handle it**. Single file deployments will not go any faster if you increase the concurrency.
 
-## What are the impacts?
+You can change this value in each sub deployment when you have the Advanced Options enabled.
 
-### CPUs
+## Possible negative impacts
 
-OttoFMS normally will only use one CPU to migrate data and to copy and move files. When you increase the concurrency, OttoFMS will use one CPU for each level of concurrency you set. So if you set it to 3 you can expect your server to use 3 CPUs to process the files. All of those CPUs may go to 100 percent.
+### Higher CPU usage
 
-### Memory
+OttoFMS normally will only use one CPU to migrate data and to copy and move files. When you increase the concurrency, OttoFMS will use one CPU for each level of concurrency you set. So if you set it to 3 you can expect your server to use 3 CPUs to process the files. All of those CPUs may go to 100 percent utilization.
 
-Each of those processes will also use it's own pile of memory. On a small 4GB server you will certainly run out of processing power and memory if raise the concurrency higher than 1.
+### Higher memory usage
+
+Each of those processes will also use it's own pile of memory. On a small 4GB server you will certainly run out of processing power and memory if you raise the concurrency higher than 1.
 
 ## Linux without a swap file are more prone to problems
 
