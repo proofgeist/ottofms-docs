@@ -1,5 +1,41 @@
 # OttoFMS Version History
 
+## 4.2.0
+
+Released: 2/29/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.2.0/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.2.0/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.2.0/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.2.0/mac)
+
+### Minor Changes
+
+- the create build api now has a memLevel option which can help manage the memory usage of the zipping process. by default it is set to 1, which is the least memory usage. See OttoFMS api docs for allowed values.
+- completedFiles key added to the build manifest stored in the outbox. this value will be incremented with each file fully zipped during the build so we can track progress better.
+- zipSize key added to the build manifest. This value will be set upon build completion with the size of the .build.zip in bytes.
+- added concurrency to the OttoFMS api as a sub-deployment level setting. The concurrency setting manages how many files will be installed or migrated simultaneously.
+
+### Patch Changes
+
+- uninstalling OttoFMS on windows will now fully remove all IIS routing rules put in place by the installer
+- improved logging for delete build and get build status endpoints
+- we are now making even fewer calls to the admin api where possible
+- added link to the webhooks guide from the error if your database is not properly set up to recieve webhooks
+- timers for running deployment will now update based on deployment start time rather than most recent log message, making them more accurate in the ui.
+- Builds will now delete each file from the outbox folder after they are successfully zipped into the .build.zip file. This should dramatically reduce folder size in the outbox.
+- OttoFMS now only logs that remaining deployments will be aborted (when using the abort remaining option) if there are remaining deployments to abort
+- added an ongoing duration to the running deployment screen
+- added better error handling within the build status endpoint
+- updated the formatting of deployment times in the deployment table, deployment details view, and the dashboard
+- added more logs to the zip creation process
+- the manifest.json inside of the .build.zip file will now have a status of "zipping" instead of "started". This value is not updated to "completed" since we update the manifest to "completed" after the zip is complete.
+- we now only log that we are removing builds from the inbox at the end of a deployment if there are builds to remove
+- changed the default compression level of build zips from -1 to 0 (this will apply very little compression to the zips by default, increasing file size and decreasing zip time). This should increase fetch time and decrease zip time. The compression level can be changed in the api, and it will be added to OttoDeployin the future.
+- Fixed an issue that caused OttoFMS to check the wrong disk for available space before starting deployments
+- zips created by ottofms will no longer have errors when unzipped with services like 7zip
+- fixed issue where the copied webhook url would include the masked api key rather than the full api key.
+- added more logging to the fetching phase of deployments so you can see progress as the deployment runs.
+- added server operating system to collected usage data. This will help us target specific operating systems which are having more trouble running processes on OttoFMS
+- Add error handling and logging for file download
+
 ## 4.1.1
 
 Released: 2/21/2024
