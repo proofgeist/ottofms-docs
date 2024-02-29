@@ -74,3 +74,15 @@ This type of deployment is the most similar to how things worked in Otto v3 and 
 You can see this in [OttoFMS Developer API documentation for starting a deployment](/apidoc#tag/Deployment/operation/PostOttoApiDeployment). The `deployments[0]source` property of the payload can be one of several options including `otto4jit`. That option tells OttoFMS to create a build on the source server before starting the rest of deployment. Once the build is done, OttoFMS fetches the newly creating build and uses it as the source for the deployment.
 
 The "just in time build" is deleted from the source server once the deployment is complete.
+
+## Build Archive Options
+
+OttoFMS and OttoDeploy have settings that let you adjust the compression level and the memory usage of the build process. You can adjust these settings in the OttoDeploy Build detail screen, and the Deployment detail screen if you are using a just in time build.
+
+<Callout type="warning">
+  Increase the compression level or increasing the memory limit will effect the
+  time it takes to create a build. It will also increase the memory usage of the
+  server while the build is running.
+</Callout>
+
+Increasing compression level will make the archive smaller, but it will take longer to create the archive. Increasing the memory limit will allow the build to use more memory, which can make the build process faster.
