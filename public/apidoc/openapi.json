@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.1.1",
+    "version": "4.2.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -13,6 +13,41 @@
     "/otto/api/can-reach-other-server": {
       "get": {
         "operationId": "GetOttoApiCanReachOtherServer",
+        "summary": "Verify that this server can reach another server",
+        "description": "### Check the network.\nOtto servers communicate over http. There must be valid network path between them for them to communicate. This endpoint can be used to verify that the network path is valid, that is, that this server can talk to the other server.\n",
+        "tags": [
+          "Miscellaneous"
+        ],
+        "parameters": [
+          {
+            "name": "otherServerUrl",
+            "in": "query",
+            "required": true,
+            "description": "The url of the other server",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterOtherServerUrl"
+            },
+            "examples": {
+              "example1": {
+                "value": "https://my.devloper.server.com"
+              }
+            }
+          },
+          {
+            "name": "isLegacy",
+            "in": "query",
+            "required": false,
+            "description": "is the other server running Otto 3",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterIsLegacy"
+            },
+            "examples": {
+              "example1": {
+                "value": "0"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/can-reach-other-server Positive response",
@@ -47,47 +82,17 @@
               }
             }
           }
-        },
-        "description": "### Check the network.\nOtto servers communicate over http. There must be valid network path between them for them to communicate. This endpoint can be used to verify that the network path is valid, that is, that this server can talk to the other server.\n",
-        "summary": "Verify that this server can reach another server",
-        "tags": [
-          "Miscellaneous"
-        ],
-        "parameters": [
-          {
-            "name": "otherServerUrl",
-            "in": "query",
-            "required": true,
-            "description": "The url of the other server",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterOtherServerUrl"
-            },
-            "examples": {
-              "example1": {
-                "value": "https://my.devloper.server.com"
-              }
-            }
-          },
-          {
-            "name": "isLegacy",
-            "in": "query",
-            "required": false,
-            "description": "is the other server running Otto 3",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiCanReachOtherServerParameterIsLegacy"
-            },
-            "examples": {
-              "example1": {
-                "value": "0"
-              }
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/info": {
       "get": {
         "operationId": "GetOttoApiInfo",
+        "summary": "Get OttoFMS Info",
+        "description": "Get information about the OttoFMS server and FileMaker Server.",
+        "tags": [
+          "OttoFMS Info"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/info Positive response",
@@ -122,17 +127,17 @@
               }
             }
           }
-        },
-        "description": "Get information about the OttoFMS server and FileMaker Server.",
-        "summary": "Get OttoFMS Info",
-        "tags": [
-          "OttoFMS Info"
-        ]
+        }
       }
     },
     "/otto/api/settings/offsite": {
       "get": {
         "operationId": "GetOttoApiSettingsOffsite",
+        "summary": "Get Offsite Backup Settings",
+        "description": "Get Offsite Backup Settings",
+        "tags": [
+          "Settings"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/settings/offsite Positive response",
@@ -167,15 +172,37 @@
               }
             }
           }
-        },
-        "description": "Get Offsite Backup Settings",
-        "summary": "Get Offsite Backup Settings",
-        "tags": [
-          "Settings"
-        ]
+        }
       },
       "post": {
         "operationId": "PostOttoApiSettingsOffsite",
+        "summary": "Update Offsite Backup Settings",
+        "description": "Update Offsite Backup Settings with new S3 information",
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/settings/offsite Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRequestBody"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "access_key_id": "my-access-key",
+                    "secret_access_key": "my-secret-key",
+                    "endpoint": "https://my-endpoint.com",
+                    "bucketName": "my-bucket-name",
+                    "remotePath": "/remote-path",
+                    "setupBackupSchedule": true
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/settings/offsite Positive response",
@@ -223,37 +250,15 @@
               }
             }
           }
-        },
-        "description": "Update Offsite Backup Settings with new S3 information",
-        "summary": "Update Offsite Backup Settings",
-        "tags": [
-          "Settings"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/settings/offsite Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRequestBody"
-              },
-              "examples": {
-                "example1": {
-                  "value": {
-                    "access_key_id": "my-access-key",
-                    "secret_access_key": "my-secret-key",
-                    "endpoint": "https://my-endpoint.com",
-                    "bucketName": "my-bucket-name",
-                    "remotePath": "/remote-path",
-                    "setupBackupSchedule": true
-                  }
-                }
-              }
-            }
-          }
         }
       },
       "delete": {
         "operationId": "DeleteOttoApiSettingsOffsite",
+        "summary": "Remove Offsite Backup Settings",
+        "description": "Remove Offsite Backup Settings",
+        "tags": [
+          "Settings"
+        ],
         "responses": {
           "200": {
             "description": "DELETE /otto/api/settings/offsite Positive response",
@@ -288,17 +293,27 @@
               }
             }
           }
-        },
-        "description": "Remove Offsite Backup Settings",
-        "summary": "Remove Offsite Backup Settings",
-        "tags": [
-          "Settings"
-        ]
+        }
       }
     },
     "/otto/api/restart": {
       "post": {
         "operationId": "PostOttoApiRestart",
+        "summary": "Restart OttoFMS",
+        "description": "Restart OttoFMS",
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/restart Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiRestartRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/restart Positive response",
@@ -333,64 +348,14 @@
               }
             }
           }
-        },
-        "description": "Restart OttoFMS",
-        "summary": "Restart OttoFMS",
-        "tags": [
-          "Settings"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/restart Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiRestartRequestBody"
-              }
-            }
-          }
         }
       }
     },
     "/otto/api/script/run-via-schedule": {
       "post": {
         "operationId": "PostOttoApiScriptRunViaSchedule",
-        "responses": {
-          "200": {
-            "description": "POST /otto/api/script/run-via-schedule Positive response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaSchedulePositiveResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "POST /otto/api/script/run-via-schedule Negative response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaScheduleNegativeResponse"
-                },
-                "examples": {
-                  "example1": {
-                    "value": {
-                      "response": {},
-                      "messages": [
-                        {
-                          "code": 18011,
-                          "text": "OttoFMS sample error"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "### Run a script via schedule  \nRun a script using the FileMaker Scheduled Script Scripting Engine.\nIt is an altertantive to running a script via the Data API, oData API\nor Custom Web Publishing. Unlike those, this method doesn't require an\nan accoint with an extended privelege set, other than the one required\nto run on a Server.  \n\nThe Schedule will be created, run and then deleted.",
         "summary": "Run a script via schedule",
+        "description": "### Run a script via schedule  \nRun a script using the FileMaker Scheduled Script Scripting Engine.\nIt is an altertantive to running a script via the Data API, oData API\nor Custom Web Publishing. Unlike those, this method doesn't require an\nan accoint with an extended privelege set, other than the one required\nto run on a Server.  \n\nThe Schedule will be created, run and then deleted.",
         "tags": [
           "Scripts"
         ],
@@ -431,36 +396,49 @@
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/script/run-via-schedule Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaSchedulePositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/script/run-via-schedule Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiScriptRunViaScheduleNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
     "/otto/api/fm-file/{filename}/download": {
       "get": {
         "operationId": "GetOttoApiFmFileFilenameDownload",
-        "responses": {
-          "200": {
-            "description": "GET /otto/api/fm-file/:filename/download Positive response",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadPositiveResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "GET /otto/api/fm-file/:filename/download Negative response",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadNegativeResponse"
-                }
-              }
-            }
-          }
-        },
-        "description": "Calling this endpoint will make a copy or clone of a file and start streaming the file back to the client. This intended to be used by browser based clients as it will automatically create download the file using the browser default download location.",
         "summary": "Download a file from FileMaker Server",
+        "description": "Calling this endpoint will make a copy or clone of a file and start streaming the file back to the client. This intended to be used by browser based clients as it will automatically create download the file using the browser default download location.",
         "tags": [
           "FileMaker Files"
         ],
@@ -493,12 +471,69 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/fm-file/:filename/download Positive response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/fm-file/:filename/download Negative response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiFmFileFilenameDownloadNegativeResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/otto/api/fm-file/{filename}/link": {
       "get": {
         "operationId": "GetOttoApiFmFileFilenameLink",
+        "summary": "Get a file download link",
+        "description": "Calling this endpoint will make a copy or clone of a file and send back a link which can be used to download a zip of the file. See the next endpoint for how to download the file.",
+        "tags": [
+          "FileMaker Files"
+        ],
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/fm-file/:filename/link Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkParameterFilename"
+            },
+            "examples": {
+              "example1": {
+                "value": "test.fmp12"
+              }
+            }
+          },
+          {
+            "name": "clone",
+            "in": "query",
+            "required": false,
+            "description": "Use 1 to download a clone",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkParameterClone"
+            },
+            "examples": {
+              "example1": {
+                "value": "1"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/fm-file/:filename/link Positive response",
@@ -533,47 +568,28 @@
               }
             }
           }
-        },
-        "description": "Calling this endpoint will make a copy or clone of a file and send back a link which can be used to download a zip of the file. See the next endpoint for how to download the file.",
-        "summary": "Get a file download link",
-        "tags": [
-          "FileMaker Files"
-        ],
-        "parameters": [
-          {
-            "name": "filename",
-            "in": "path",
-            "required": true,
-            "description": "GET /otto/api/fm-file/:filename/link Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkParameterFilename"
-            },
-            "examples": {
-              "example1": {
-                "value": "test.fmp12"
-              }
-            }
-          },
-          {
-            "name": "clone",
-            "in": "query",
-            "required": false,
-            "description": "Use 1 to download a clone",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkParameterClone"
-            },
-            "examples": {
-              "example1": {
-                "value": "1"
-              }
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/fm-file/download/{token}": {
       "get": {
         "operationId": "GetOttoApiFmFileDownloadToken",
+        "summary": "Get a file with a download link",
+        "description": "Use a get request to download a file from a link obtained from a previous endpoint. This is useful if you want to download the file into a FileMaker Container field for example.",
+        "tags": [
+          "FileMaker Files"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/fm-file/download/:token Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenParameterToken"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/fm-file/download/:token Positive response",
@@ -595,28 +611,28 @@
               }
             }
           }
-        },
-        "description": "Use a get request to download a file from a link obtained from a previous endpoint. This is useful if you want to download the file into a FileMaker Container field for example.",
-        "summary": "Get a file with a download link",
-        "tags": [
-          "FileMaker Files"
-        ],
-        "parameters": [
-          {
-            "name": "token",
-            "in": "path",
-            "required": true,
-            "description": "GET /otto/api/fm-file/download/:token Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenParameterToken"
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/download": {
       "get": {
         "operationId": "GetOttoApiDownload",
+        "summary": "Signed Download Link",
+        "description": "This endpoint is for streaming a file from a download link returned from another endpoint, it's not intended to be used directly.",
+        "tags": [
+          "Miscellaneous"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "description": "GET /otto/api/download Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiDownloadParameterToken"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/download Positive response",
@@ -638,28 +654,26 @@
               }
             }
           }
-        },
-        "description": "This endpoint is for streaming a file from a download link returned from another endpoint, it's not intended to be used directly.",
-        "summary": "Signed Download Link",
-        "tags": [
-          "Miscellaneous"
-        ],
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "required": true,
-            "description": "GET /otto/api/download Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiDownloadParameterToken"
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/build": {
       "post": {
         "operationId": "PostOttoApiBuild",
+        "summary": "Create a build",
+        "tags": [
+          "Build"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/build Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiBuildRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/build Positive response",
@@ -694,26 +708,17 @@
               }
             }
           }
-        },
-        "summary": "Create a build",
-        "tags": [
-          "Build"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/build Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiBuildRequestBody"
-              }
-            }
-          }
         }
       }
     },
     "/otto/api/build/list": {
       "get": {
         "operationId": "GetOttoApiBuildList",
+        "summary": "List Builds",
+        "description": "List all builds on the server",
+        "tags": [
+          "Build"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/build/list Positive response",
@@ -748,17 +753,17 @@
               }
             }
           }
-        },
-        "description": "List all builds on the server",
-        "summary": "List Builds",
-        "tags": [
-          "Build"
-        ]
+        }
       }
     },
     "/otto/api/build/download/{token}": {
       "get": {
         "operationId": "GetOttoApiBuildDownloadToken",
+        "summary": "Build Download Link",
+        "description": "### Download a build zip using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
+        "tags": [
+          "Build"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/build/download/:token Positive response",
@@ -780,17 +785,17 @@
               }
             }
           }
-        },
-        "description": "### Download a build zip using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
-        "summary": "Build Download Link",
-        "tags": [
-          "Build"
-        ]
+        }
       }
     },
     "/otto/api/build/downloadFolder/{token}": {
       "get": {
         "operationId": "GetOttoApiBuildDownloadFolderToken",
+        "summary": "Download Build Folder",
+        "description": "### Download a zip containing the build folder using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
+        "tags": [
+          "Build"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/build/downloadFolder/:token Positive response",
@@ -812,17 +817,28 @@
               }
             }
           }
-        },
-        "description": "### Download a zip containing the build folder using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
-        "summary": "Download Build Folder",
-        "tags": [
-          "Build"
-        ]
+        }
       }
     },
     "/otto/api/build/{buildId}": {
       "get": {
         "operationId": "GetOttoApiBuildBuildId",
+        "summary": "Get Build Zip",
+        "description": "### Stream a build zip\nStream a build zip from the server. This endpoint will return a 404 if the build does not exist.",
+        "tags": [
+          "Build"
+        ],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/build/:buildId Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdParameterBuildId"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/build/:buildId Positive response",
@@ -844,9 +860,12 @@
               }
             }
           }
-        },
-        "description": "### Stream a build zip\nStream a build zip from the server. This endpoint will return a 404 if the build does not exist.",
-        "summary": "Get Build Zip",
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiBuildBuildId",
+        "summary": "Remove a build",
+        "description": "### Remove a build",
         "tags": [
           "Build"
         ],
@@ -855,15 +874,12 @@
             "name": "buildId",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/build/:buildId Parameter",
+            "description": "DELETE /otto/api/build/:buildId Parameter",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdParameterBuildId"
+              "$ref": "#/components/schemas/DeleteOttoApiBuildBuildIdParameterBuildId"
             }
           }
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteOttoApiBuildBuildId",
+        ],
         "responses": {
           "200": {
             "description": "DELETE /otto/api/build/:buildId Positive response",
@@ -898,9 +914,14 @@
               }
             }
           }
-        },
-        "description": "### Remove a build",
-        "summary": "Remove a build",
+        }
+      }
+    },
+    "/otto/api/build/{buildId}/status": {
+      "get": {
+        "operationId": "GetOttoApiBuildBuildIdStatus",
+        "summary": "Get build status",
+        "description": "### Get build status",
         "tags": [
           "Build"
         ],
@@ -909,17 +930,21 @@
             "name": "buildId",
             "in": "path",
             "required": true,
-            "description": "DELETE /otto/api/build/:buildId Parameter",
+            "description": "GET /otto/api/build/:buildId/status Parameter",
             "schema": {
-              "$ref": "#/components/schemas/DeleteOttoApiBuildBuildIdParameterBuildId"
+              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusParameterBuildId"
+            }
+          },
+          {
+            "name": "delay",
+            "in": "query",
+            "required": false,
+            "description": "GET /otto/api/build/:buildId/status Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusParameterDelay"
             }
           }
-        ]
-      }
-    },
-    "/otto/api/build/{buildId}/status": {
-      "get": {
-        "operationId": "GetOttoApiBuildBuildIdStatus",
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/build/:buildId/status Positive response",
@@ -954,37 +979,28 @@
               }
             }
           }
-        },
-        "description": "### Get build status",
-        "summary": "Get build status",
-        "tags": [
-          "Build"
-        ],
-        "parameters": [
-          {
-            "name": "buildId",
-            "in": "path",
-            "required": true,
-            "description": "GET /otto/api/build/:buildId/status Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusParameterBuildId"
-            }
-          },
-          {
-            "name": "delay",
-            "in": "query",
-            "required": false,
-            "description": "GET /otto/api/build/:buildId/status Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusParameterDelay"
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/deployment/{id}": {
       "get": {
         "operationId": "GetOttoApiDeploymentId",
+        "summary": "Get a Deployment",
+        "description": "Returns the Deployment data for the given deployment Id",
+        "tags": [
+          "Deployment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/deployment/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiDeploymentIdParameterId"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/deployment/:id Positive response",
@@ -1019,28 +1035,27 @@
               }
             }
           }
-        },
-        "description": "Returns the Deployment data for the given deployment Id",
-        "summary": "Get a Deployment",
-        "tags": [
-          "Deployment"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "GET /otto/api/deployment/:id Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiDeploymentIdParameterId"
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/deployment": {
       "post": {
         "operationId": "PostOttoApiDeployment",
+        "summary": "Start a deployment",
+        "description": "Use this endpoint to start a deployment. The deployment will be started asynchronously and you can use the `/deployments` endpoint to check the status of the deployment.",
+        "tags": [
+          "Deployment"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/deployment Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiDeploymentRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/deployment Positive response",
@@ -1075,27 +1090,27 @@
               }
             }
           }
-        },
-        "description": "Use this endpoint to start a deployment. The deployment will be started asynchronously and you can use the `/deployments` endpoint to check the status of the deployment.",
-        "summary": "Start a deployment",
-        "tags": [
-          "Deployment"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/deployment Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiDeploymentRequestBody"
-              }
-            }
-          }
         }
       }
     },
     "/otto/api/deployment/undo": {
       "post": {
         "operationId": "PostOttoApiDeploymentUndo",
+        "summary": "Undo a Deployment",
+        "description": "Restores the backup created before the given deployment Id to \n",
+        "tags": [
+          "Deployment"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/deployment/undo Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiDeploymentUndoRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/deployment/undo Positive response",
@@ -1130,27 +1145,47 @@
               }
             }
           }
-        },
-        "description": "Restores the backup created before the given deployment Id to \n",
-        "summary": "Undo a Deployment",
-        "tags": [
-          "Deployment"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/deployment/undo Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiDeploymentUndoRequestBody"
-              }
-            }
-          }
         }
       }
     },
     "/otto/api/fms-process": {
       "post": {
         "operationId": "PostOttoApiFmsProcess",
+        "summary": "Start and stop processes",
+        "description": "### Start, stop and restart various FileMaker Server processes.\n\n**Caution:** Restarting or Stopping a process will kill anything that might be running on that process. Use with caution.\n\nThe `service` property can be one of the following:\n- `wpe`\n- `fmse`\n- `adminserver`\n- `httpserver`\n- `fmsib`\n- `xdbc`\n- `server` - requires HTTP Basic Auth\n- `fmdapi`\n- `odata`\n\nThe `command` property can be one of the following:\n- `start`\n- `stop`\n- `restart`",
+        "tags": [
+          "Server Processes"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/fms-process Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiFmsProcessRequestBody"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "command": "start",
+                    "service": "wpe"
+                  }
+                },
+                "example2": {
+                  "value": {
+                    "command": "stop",
+                    "service": "httpserver"
+                  }
+                },
+                "example3": {
+                  "value": {
+                    "command": "restart",
+                    "service": "adminserver"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/fms-process Positive response",
@@ -1185,47 +1220,27 @@
               }
             }
           }
-        },
-        "description": "### Start, stop and restart various FileMaker Server processes.\n\n**Caution:** Restarting or Stopping a process will kill anything that might be running on that process. Use with caution.\n\nThe `service` property can be one of the following:\n- `wpe`\n- `fmse`\n- `adminserver`\n- `httpserver`\n- `fmsib`\n- `xdbc`\n- `server` - requires HTTP Basic Auth\n- `fmdapi`\n- `odata`\n\nThe `command` property can be one of the following:\n- `start`\n- `stop`\n- `restart`",
-        "summary": "Start and stop processes",
-        "tags": [
-          "Server Processes"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/fms-process Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiFmsProcessRequestBody"
-              },
-              "examples": {
-                "example1": {
-                  "value": {
-                    "command": "start",
-                    "service": "wpe"
-                  }
-                },
-                "example2": {
-                  "value": {
-                    "command": "stop",
-                    "service": "httpserver"
-                  }
-                },
-                "example3": {
-                  "value": {
-                    "command": "restart",
-                    "service": "adminserver"
-                  }
-                }
-              }
-            }
-          }
         }
       }
     },
     "/otto/api/admin-api-key": {
       "post": {
         "operationId": "PostOttoApiAdminApiKey",
+        "summary": "Create an Admin API Key",
+        "description": "### Create an OttoFMS Admin Api Key\n\nThis endpoint creates an Admin API Key for the FileMaker Server with the specified user and password.",
+        "tags": [
+          "Admin API Keys"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/admin-api-key Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiAdminApiKeyRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/admin-api-key Positive response",
@@ -1260,25 +1275,15 @@
               }
             }
           }
-        },
-        "description": "### Create an OttoFMS Admin Api Key\n\nThis endpoint creates an Admin API Key for the FileMaker Server with the specified user and password.",
-        "summary": "Create an Admin API Key",
-        "tags": [
-          "Admin API Keys"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/admin-api-key Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiAdminApiKeyRequestBody"
-              }
-            }
-          }
         }
       },
       "get": {
         "operationId": "GetOttoApiAdminApiKey",
+        "summary": "Get all Admin API Keys",
+        "description": "### Get all Admin Api Keys",
+        "tags": [
+          "Admin API Keys"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/admin-api-key Positive response",
@@ -1313,17 +1318,38 @@
               }
             }
           }
-        },
-        "description": "### Get all Admin Api Keys",
-        "summary": "Get all Admin API Keys",
-        "tags": [
-          "Admin API Keys"
-        ]
+        }
       }
     },
     "/otto/api/admin-api-key/{key}": {
       "patch": {
         "operationId": "PatchOttoApiAdminApiKeyKey",
+        "summary": "Update an Admin API Key",
+        "description": "### Update an Admin Api Key",
+        "tags": [
+          "Admin API Keys"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "PATCH /otto/api/admin-api-key/:key Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyParameterKey"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/admin-api-key/:key Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "PATCH /otto/api/admin-api-key/:key Positive response",
@@ -1358,9 +1384,12 @@
               }
             }
           }
-        },
-        "description": "### Update an Admin Api Key",
-        "summary": "Update an Admin API Key",
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiAdminApiKeyKey",
+        "summary": "Remove an API Key",
+        "description": "### Remove an Api Key",
         "tags": [
           "Admin API Keys"
         ],
@@ -1369,25 +1398,12 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "PATCH /otto/api/admin-api-key/:key Parameter",
+            "description": "DELETE /otto/api/admin-api-key/:key Parameter",
             "schema": {
-              "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyParameterKey"
+              "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyParameterKey"
             }
           }
         ],
-        "requestBody": {
-          "description": "PATCH /otto/api/admin-api-key/:key Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyRequestBody"
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "DeleteOttoApiAdminApiKeyKey",
         "responses": {
           "200": {
             "description": "DELETE /otto/api/admin-api-key/:key Positive response",
@@ -1422,28 +1438,27 @@
               }
             }
           }
-        },
-        "description": "### Remove an Api Key",
-        "summary": "Remove an API Key",
-        "tags": [
-          "Admin API Keys"
-        ],
-        "parameters": [
-          {
-            "name": "key",
-            "in": "path",
-            "required": true,
-            "description": "DELETE /otto/api/admin-api-key/:key Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyParameterKey"
-            }
-          }
-        ]
+        }
       }
     },
     "/otto/api/api-key": {
       "post": {
         "operationId": "PostOttoApiApiKey",
+        "summary": "Create an API Key",
+        "description": "### Create an OttoFMS Api Key\n\nThis endpoint creates an API Key for the FileMaker file with the specified user and password.",
+        "tags": [
+          "API Keys"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/api-key Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiApiKeyRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/api-key Positive response",
@@ -1478,25 +1493,15 @@
               }
             }
           }
-        },
-        "description": "### Create an OttoFMS Api Key\n\nThis endpoint creates an API Key for the FileMaker file with the specified user and password.",
-        "summary": "Create an API Key",
-        "tags": [
-          "API Keys"
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/api-key Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiApiKeyRequestBody"
-              }
-            }
-          }
         }
       },
       "get": {
         "operationId": "GetOttoApiApiKey",
+        "summary": "Get all API Keys",
+        "description": "### Get all Api Keys",
+        "tags": [
+          "API Keys"
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/api-key Positive response",
@@ -1531,17 +1536,28 @@
               }
             }
           }
-        },
-        "description": "### Get all Api Keys",
-        "summary": "Get all API Keys",
-        "tags": [
-          "API Keys"
-        ]
+        }
       }
     },
     "/otto/api/api-key/{key}": {
       "get": {
         "operationId": "GetOttoApiApiKeyKey",
+        "summary": "Get an API Key",
+        "description": "### Get an Api Key",
+        "tags": [
+          "API Keys"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/api-key/:key Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiApiKeyKeyParameterKey"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "GET /otto/api/api-key/:key Positive response",
@@ -1576,9 +1592,12 @@
               }
             }
           }
-        },
-        "description": "### Get an Api Key",
-        "summary": "Get an API Key",
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiApiKeyKey",
+        "summary": "Remove an API Key",
+        "description": "### Remove an Api Key",
         "tags": [
           "API Keys"
         ],
@@ -1587,15 +1606,12 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/api-key/:key Parameter",
+            "description": "DELETE /otto/api/api-key/:key Parameter",
             "schema": {
-              "$ref": "#/components/schemas/GetOttoApiApiKeyKeyParameterKey"
+              "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeyParameterKey"
             }
           }
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteOttoApiApiKeyKey",
+        ],
         "responses": {
           "200": {
             "description": "DELETE /otto/api/api-key/:key Positive response",
@@ -1630,9 +1646,14 @@
               }
             }
           }
-        },
-        "description": "### Remove an Api Key",
-        "summary": "Remove an API Key",
+        }
+      }
+    },
+    "/otto/api/api-key/{key}/logout": {
+      "post": {
+        "operationId": "PostOttoApiApiKeyKeyLogout",
+        "summary": "Logout an API Key",
+        "description": "### Logout an Api Key",
         "tags": [
           "API Keys"
         ],
@@ -1641,17 +1662,22 @@
             "name": "key",
             "in": "path",
             "required": true,
-            "description": "DELETE /otto/api/api-key/:key Parameter",
+            "description": "POST /otto/api/api-key/:key/logout Parameter",
             "schema": {
-              "$ref": "#/components/schemas/DeleteOttoApiApiKeyKeyParameterKey"
+              "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutParameterKey"
             }
           }
-        ]
-      }
-    },
-    "/otto/api/api-key/{key}/logout": {
-      "post": {
-        "operationId": "PostOttoApiApiKeyKeyLogout",
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/api-key/:key/logout Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutRequestBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "POST /otto/api/api-key/:key/logout Positive response",
@@ -1683,32 +1709,6 @@
                     }
                   }
                 }
-              }
-            }
-          }
-        },
-        "description": "### Logout an Api Key",
-        "summary": "Logout an API Key",
-        "tags": [
-          "API Keys"
-        ],
-        "parameters": [
-          {
-            "name": "key",
-            "in": "path",
-            "required": true,
-            "description": "POST /otto/api/api-key/:key/logout Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutParameterKey"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "POST /otto/api/api-key/:key/logout Request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutRequestBody"
               }
             }
           }
@@ -2857,11 +2857,20 @@
             "format": "double",
             "minimum": -1,
             "maximum": 9,
-            "default": -1
+            "default": 0,
+            "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
+          },
+          "memoryLevel": {
+            "type": "number",
+            "format": "double",
+            "minimum": 1,
+            "maximum": 9,
+            "default": 1,
+            "description": "The amount of memory used by OttoFMS to zip the build. Higher values will let the process use more memory to zip and will make the process faster. Lower values will use less memory and will make the process slower."
           },
           "buildId": {
             "type": "string",
-            "default": "build_x0PT3yx64RlI"
+            "default": "build_3Ba6657FLlhL"
           }
         },
         "required": [
@@ -2884,6 +2893,7 @@
                       "enum": [
                         "started",
                         "failed",
+                        "zipping",
                         "completed"
                       ]
                     },
@@ -2927,6 +2937,20 @@
                       },
                       "minItems": 1,
                       "description": "the files included the build"
+                    },
+                    "zipSize": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308,
+                      "description": "the size of the zip file in bytes"
+                    },
+                    "completedFiles": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308,
+                      "description": "The number of files finished and in the zip"
                     },
                     "message": {
                       "type": "string",
@@ -3140,6 +3164,7 @@
                 "enum": [
                   "started",
                   "failed",
+                  "zipping",
                   "completed"
                 ]
               },
@@ -3183,6 +3208,20 @@
                 },
                 "minItems": 1,
                 "description": "the files included the build"
+              },
+              "zipSize": {
+                "type": "number",
+                "format": "double",
+                "minimum": -1.7976931348623157e+308,
+                "maximum": 1.7976931348623157e+308,
+                "description": "the size of the zip file in bytes"
+              },
+              "completedFiles": {
+                "type": "number",
+                "format": "double",
+                "minimum": -1.7976931348623157e+308,
+                "maximum": 1.7976931348623157e+308,
+                "description": "The number of files finished and in the zip"
               },
               "message": {
                 "type": "string",
@@ -3652,7 +3691,16 @@
                                 "format": "double",
                                 "minimum": -1,
                                 "maximum": 9,
-                                "default": -1
+                                "default": 0,
+                                "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
+                              },
+                              "memoryLevel": {
+                                "type": "number",
+                                "format": "double",
+                                "minimum": 1,
+                                "maximum": 9,
+                                "default": 1,
+                                "description": "The amount of memory used by OttoFMS to zip the build. Higher values will let the process use more memory to zip and will make the process faster. Lower values will use less memory and will make the process slower."
                               }
                             },
                             "description": "The build options that get passed along to the source server"
@@ -4079,6 +4127,14 @@
                       ]
                     },
                     "description": "Array of file operations to run in the deployment"
+                  },
+                  "concurrency": {
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 1,
+                    "maximum": 10,
+                    "default": 1,
+                    "description": "Number of concurrent file operations to run"
                   }
                 },
                 "required": [
@@ -4664,7 +4720,16 @@
                                       "format": "double",
                                       "minimum": -1,
                                       "maximum": 9,
-                                      "default": -1
+                                      "default": 0,
+                                      "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
+                                    },
+                                    "memoryLevel": {
+                                      "type": "number",
+                                      "format": "double",
+                                      "minimum": 1,
+                                      "maximum": 9,
+                                      "default": 1,
+                                      "description": "The amount of memory used by OttoFMS to zip the build. Higher values will let the process use more memory to zip and will make the process faster. Lower values will use less memory and will make the process slower."
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
@@ -5091,6 +5156,14 @@
                             ]
                           },
                           "description": "Array of file operations to run in the deployment"
+                        },
+                        "concurrency": {
+                          "type": "integer",
+                          "format": "int64",
+                          "exclusiveMinimum": 1,
+                          "maximum": 10,
+                          "default": 1,
+                          "description": "Number of concurrent file operations to run"
                         }
                       },
                       "required": [
@@ -5433,7 +5506,16 @@
                                       "format": "double",
                                       "minimum": -1,
                                       "maximum": 9,
-                                      "default": -1
+                                      "default": 0,
+                                      "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
+                                    },
+                                    "memoryLevel": {
+                                      "type": "number",
+                                      "format": "double",
+                                      "minimum": 1,
+                                      "maximum": 9,
+                                      "default": 1,
+                                      "description": "The amount of memory used by OttoFMS to zip the build. Higher values will let the process use more memory to zip and will make the process faster. Lower values will use less memory and will make the process slower."
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
@@ -5860,6 +5942,14 @@
                             ]
                           },
                           "description": "Array of file operations to run in the deployment"
+                        },
+                        "concurrency": {
+                          "type": "integer",
+                          "format": "int64",
+                          "exclusiveMinimum": 1,
+                          "maximum": 10,
+                          "default": 1,
+                          "description": "Number of concurrent file operations to run"
                         }
                       },
                       "required": [
