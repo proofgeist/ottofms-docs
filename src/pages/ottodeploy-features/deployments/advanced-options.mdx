@@ -1,10 +1,17 @@
+import { Server } from "http";
+import { Callout } from "nextra/components";
+
 ## Advanced Options
 
 OttoDeploy exposes a set of Advanced options for deployments which can be used for more advanced use cases. When you turn on the Advanced options you will see a set of new options, including:
 
 - Add sub-deployment
 - Use a different source for each deployment
-- Optionally abort remaining sub-deployments if one fails
+- Abort remaining sub-deployments if one fails
+- Compression and memory settings for just in time builds
+- Using a build as a source for a deployment
+- Concurrency settings for sub-deployments
+- Selecting a specific sub-deployment or set of files to run
 
 ![Advanced Deployment](/img/ottodeploy/advanced-dep.png)
 
@@ -21,6 +28,10 @@ If you need the Advanced Options you can turn them on and off by clicking on the
 Using the advanced options allows you to specify a source build to deploy to your destination. The builds will be fetched from your source server to select, and you can choose to deploy a specific build or to build the latest version of your source file using a "Just in Time" build. By default, we will run a Just in time build if you do not select a specific build. Just in Time builds are also the default for deployments not using advanced options.
 
 For more information on builds, see our [Builds](/concepts/builds) documentation.
+
+### Just In Time Build Options
+
+For Just In Time builds in advanced deployments you can set the build options for the just in time build. See the [compression and memory](/ottodeploy-features/builds#compression-level) settings for more information.
 
 ### Abort Remaining on Failure
 
@@ -41,3 +52,20 @@ Each sub-deployment requires a name and source files. The name is used to identi
 ### Use Alternate Source
 
 Each sub-deployment can use an alternate source to fetch its source files. The source can be a different build on the same source server, a different server, or even an external url. If you do not turn on the "Use Anternate Source" toggle, the sub-deployment will use the default source that you selected at the top of your deployment.
+
+### Running part of a Deployment
+
+When advanced options are turned on a checkbox will appear at the top of each sub-deployment and on each file in a sub-deployment. Unchecking these checkboxes will prevent that sub-deployment or file from being added to the deployment that gets sent to OttoFMS. This can be useful if you want to run a specific part of a deployment or if you want to run a specific file in a sub-deployment. When deselecting a sub-deployment, the sub-deployment will collapse so that you can focus on the sub-deployments that are selected.
+
+### Concurrency
+
+<Callout type="warning">
+  Be aware, setting the concurrency setting too high can and will cause your
+  server lots of problems. Each migration that is running uses more RAM from
+  your Server, and if your server runs out of RAM the Operating System will
+  start shutting down processes, starting with FileMaker Server and OttoFMS. We
+  recommend keeping this setting at 1 unless you have a specific reason to
+  increase it.
+</Callout>
+
+The sub-deployment level concurrency setting allows fine-grained control over how many file operations run at once. This can be useful if deploying a large number of files to a server with a large number of resource. By default this is set to 1, meaning that only one file operation will run at a time.

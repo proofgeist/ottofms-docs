@@ -1,5 +1,8 @@
 {
   "deployments": "Deployments",
   "builds": "Builds",
-  "servers": "Servers"
+  "servers": "Servers",
+  "history": {
+    "display": "hidden"
+  }
 }

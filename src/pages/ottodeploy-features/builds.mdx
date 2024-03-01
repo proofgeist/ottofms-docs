@@ -13,3 +13,29 @@ The list view is the default view for the Builds view. It displays a list of all
 The build detail view is where you can configure your build.
 
 ![Builds list](/img/ottodeploy/build-detail.png)
+
+## Build Options
+
+### Name
+
+The build name is used to identify the build in the list view in OttoDeploy. It is not required, but it is recommended to give your build a name that is descriptive of what the build does.
+
+### Build ID
+
+The build Id is the unique identifier for the build. It should be unique to the build and will be the name of the build zip file and hte folder for the build in the OttoFMS outbox. it is recommended that you use the build Id to add a version number if you are using builds to version your application.
+
+### Pre-build Script
+
+The pre-build script is a script that will be run before the build is started. This is useful for setting up the environment for the build. For example, you may want to run a script to update the version number in your application before the build starts.
+
+### Overwrite existing build with this name
+
+This setting can be used to overwrite an existing build with this ID. If this is not checked, and a build with the same ID already exists, the build will fail.
+
+### Compression Level
+
+The compression setting allows you to specify the compression level for the build. The values for compression level go from 0 to 9, with 0 being an uncompressed build and 9 being the highest level of compression. An uncompressed zip file is the same size as the files that were put into it, with the file getting smaller the higher the compression level setting is. If you are having issues with files pulling down across the network for being too large it may be helpful to increase the compression level. A higher compression level will require more CPU usage and will take longer.
+
+### Memory Level
+
+The memory setting allows you to specify the amount of RAM to use for the build. For servers without much RAM we recommend keeping this low. Increasing this setting will speed up the zipping process that we do as part of the build.
