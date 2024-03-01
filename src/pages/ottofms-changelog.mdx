@@ -1,5 +1,19 @@
 # OttoFMS Version History
 
+## 4.2.1
+
+Released: 3/1/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.2.1/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.2.1/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.2.1/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.2.1/mac)
+
+### Patch Changes
+
+- fixed file not found error when running a deployment with the same source and destination server. Files in a local just in time build will no longer be zipped into an archive, they will just be moved from the outbox to the inbox as unzipped files.
+- added log message that just in time build has started on source server.
+- increased just in time build timeout from 10 minutes to 30 minutes
+- added a log message when a deployment crashes
+- fixed a bug in the duration cell for multi-stage deployments. The duration was not displaying or calculating correctly.
+
 ## 4.2.0
 
 Released: 2/29/2024
