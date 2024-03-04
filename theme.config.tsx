@@ -6,7 +6,6 @@ import { IconExternalLink } from "@tabler/icons-react";
 import "./src/styles/globals.css";
 import NoSsr from "@/components/no-ssr";
 import { TopRightLogo } from "@/components/ui/top-right-logo";
-import { TitleComponent } from "@/components/sidebar-title";
 
 const config: DocsThemeConfig = {
   primaryHue: 201,
