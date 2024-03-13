@@ -1,6 +1,29 @@
 import { Callout } from "nextra/components";
 
-<Callout type="info">
-	This page is still under construction, come back later to see what we've
-	cooked up!
-</Callout>
+## Webhooks
+
+Webhooks are a way to recieve real time updates from external applications or services. Setting up OttoFMS webhooks to work with your FileMaker files requires some configuration See our [webhooks guide](/guides/webhooks) for more information on webhooks and how to set them up.
+
+OttoFMS Webhook urls have the following structure:
+
+```url copy
+https://[your.server.host]/otto/receiver/[filename.fmp12]/[channel_name]?apiKey=[data_api_key]
+```
+
+The filename is the name of the file the webhook will be sent to. The channel name can be used inside of the file to route your webhook to the correct script. The data api key is used to authenticate the webhook into the file.
+
+![Webhook Viewer](/img/ottofms/console/webhooks-list.png)
+
+### AutoRegister Webhooks
+
+OttoFMS has the ability to autoregister incoming webhooks. If the autoregister webhooks setting is turned on, any webhooks that are sent with the proper format and credentials will be automatically registered in the system. This is useful for setting up a large number of webhooks at once.
+
+If this setting is turned off, unregistered webhooks will be rejected by OttoFMS.
+
+### Manually Register Webhooks
+
+If the autoregister webhooks setting is turned off, webhooks will need to be manually registered in the system. This can be done by navigating to the webhooks page and clicking the "Register" button. You will need to provide the fmp file to send the event to, the data api key to use, the channel, and a label for the webhook.
+
+### SimpleQ
+
+SimpleQ is a FileMaker based queueing system that can handle incoming webhooks and route them to the correct file and script. It is a great way to handle a large volume of webhooks and ensure that they are processed in the correct order. It can be installed on your server directly from the OttoFMS Console. See our [SimpleQ guide](/guides/simpleq) for more information on how to set up and use SimpleQ.

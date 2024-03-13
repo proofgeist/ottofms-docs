@@ -10,6 +10,11 @@ const nextConfig = {
         destination: "/guides/webhooks",
         permanent: true,
       },
+      {
+        source: "/guides/webhook-response",
+        destination: "/guides/webhooks/webhook-response",
+        permanent: true,
+      },
     ];
   },
   rewrites: async () => {
