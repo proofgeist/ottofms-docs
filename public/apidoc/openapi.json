@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.2.2",
+    "version": "4.2.3",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -2870,7 +2870,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_TkXTgfDZ9c15"
+            "default": "build_p8QPZQtH1Nh0"
           }
         },
         "required": [
@@ -3353,6 +3353,7 @@
                         "reverting",
                         "done",
                         "aborted",
+                        "parsing options",
                         "unknown phase"
                       ]
                     },
@@ -3451,11 +3452,19 @@
                             "minimum": -1.7976931348623157e+308,
                             "maximum": 1.7976931348623157e+308,
                             "description": "The previous deployment id"
+                          },
+                          "batchId": {
+                            "type": "number",
+                            "format": "double",
+                            "minimum": -1.7976931348623157e+308,
+                            "maximum": 1.7976931348623157e+308,
+                            "description": "The batch id of the previous deployment"
                           }
                         },
                         "required": [
                           "type",
-                          "deploymentId"
+                          "deploymentId",
+                          "batchId"
                         ]
                       },
                       {
@@ -4480,11 +4489,19 @@
                                   "minimum": -1.7976931348623157e+308,
                                   "maximum": 1.7976931348623157e+308,
                                   "description": "The previous deployment id"
+                                },
+                                "batchId": {
+                                  "type": "number",
+                                  "format": "double",
+                                  "minimum": -1.7976931348623157e+308,
+                                  "maximum": 1.7976931348623157e+308,
+                                  "description": "The batch id of the previous deployment"
                                 }
                               },
                               "required": [
                                 "type",
-                                "deploymentId"
+                                "deploymentId",
+                                "batchId"
                               ]
                             },
                             {
@@ -5266,11 +5283,19 @@
                                   "minimum": -1.7976931348623157e+308,
                                   "maximum": 1.7976931348623157e+308,
                                   "description": "The previous deployment id"
+                                },
+                                "batchId": {
+                                  "type": "number",
+                                  "format": "double",
+                                  "minimum": -1.7976931348623157e+308,
+                                  "maximum": 1.7976931348623157e+308,
+                                  "description": "The batch id of the previous deployment"
                                 }
                               },
                               "required": [
                                 "type",
-                                "deploymentId"
+                                "deploymentId",
+                                "batchId"
                               ]
                             },
                             {
