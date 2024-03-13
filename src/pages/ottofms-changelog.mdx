@@ -1,5 +1,30 @@
 # OttoFMS Version History
 
+## 4.2.3
+
+Released: 3/13/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.2.3/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.2.3/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.2.3/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.2.3/mac)
+
+### Patch Changes
+
+- deployment backups now create folders and delete folders based off of full deployments instead of sub-deployments. This change means that your "deployment backups to keep" setting will now reflect the number of full deployments rather than sub-deployments. This change is not compatible with previous deployment backups, so make sure any deployment reverts or other processes you need to do with your backups through OttoFMS are done before upgrading to this version
+- when in a deployment detail screen, the page title will now be the title of the deployment rather than the id.
+- updated log message for file unzipped to say that the file is unzipping, as the log gets written at the start of the file unzipping
+- the deployment logs csv now has formatted durations
+- Fixed an issue with FileManager uploads on ubuntu
+- ottofms will no longer fail to start if there are extra folders in the File Manager root directory.
+- the deployment log csv now has the file column properly populated
+- hardening OttoFMS against an issue with the FileMaker Server Admin API
+- errors in the deployment log now have a filename where applicable
+- fixed issue with searching and filtering in the logs on the web console
+- Attempt to avoid ECONNRESET error on windows when building
+- undoing a deployment will now only revert changes for files that have backups. installs will be ignored. previously attempting to undo an install would result in a failed deployment.
+- ottofms will now more gracefully handle errors caused by the FileMaker admin server restarting in the middle of a process.
+- removed duplicate logs for number of completed files
+- fixed an issue causing the entire file path to be written in the migration log on windows. now it will just write the filename
+- fix issue with offsite backups on AWS regions other thatn us-east-1
+
 ## 4.2.2
 
 Released: 3/5/2024
