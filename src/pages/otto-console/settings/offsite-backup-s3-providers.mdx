@@ -1,0 +1,43 @@
+# Offsite Backup Providers Configuration
+
+s3 compatible providers are supported. Each provider may provide their S3 compatible settings in a slightly different way. But to setup with OttoFMS you will need the following information.
+
+- Endpoint
+- Access Key Id
+- Access Key Secret
+- Region (optional) - But add if you have it
+- Bucket
+
+Each provider may also require a specific configuration to be setup in its backend setup. Please refer to the provider's documentation for more information.
+
+Below we have provided some examples and notes for some of the providers
+
+## Ottomatic Cloud storage
+
+Ottomatic Cloud storage is a S3 compatible storage is available to purchase through the Ottomatic Cloud Console. You can configure servers with a single click from the console. If you don't already use a provider, we recommend using Ottomatic Cloud storage, as it is the simplest to setup.
+
+- endpoint: (region).vultrobjects.com
+- Access Key Id: (access-key)
+- Access Key Secret: (secret-key)
+- Region: (region)
+- Bucket: (bucket-name)
+
+## Wasabi
+
+All of the Wasabi regions can be found [here](https://knowledgebase.wasabi.com/hc/en-us/articles/360015106031-What-are-the-service-URLs-for-Wasabi-s-different-storage-regions).
+
+- endpoint: s3.(region).backblazeb2.com
+- Access Key Id: (access-key)
+- Access Key Secret: (secret-key)
+- Region: (region)
+- Bucket: (bucket-name)
+
+## Backblaze B2
+
+**Important!** You will need to setup a key that has access to all bucket. The master key will not work.
+
+- endpoint: s3.(region).backblazeb2.com
+- Access Key Id: (access-key)
+- Access Key Secret: (secret-key)
+- Region: (region)
+- Bucket: (bucket-name)
