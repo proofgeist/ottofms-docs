@@ -1,5 +1,29 @@
 # OttoDeploy Version History
 
+## 1.2.0
+
+Released: 3/18/2024
+
+### Minor Changes
+
+- builds can now be deleted from your OttoFMS outbox on your server directly from OttoDeploy. This option is available in the three dots menu on the build screen
+- OttoDeploy now allows files within a deployment or sub-deployment to be duplicated. This will allow you to add the same file to a deployment multiple times with different destination filenames. You are unable to add the same file with the same destination filename multiple times. This option is available when using advanced options.
+- Added the ability to run a single sub-deployment when using advanced options. This lets you choose a specific sub-deployment from your list to run rather than having to deselect all sub-deployments and select the one you want to run. This action can be performed using the new button in the top right of a sub-deployment
+- builds that have been run on a server can now be downloaded from the three dot menu in the top right of the build screen. The build can only be downloaded if it is present on the server you have selected on the build screen.
+
+### Patch Changes
+
+- added the files column to the builds table
+- added a description to builds and deployments so comments can be added
+- there is now an option to delete a build from the OttoFMS outbox when you delete it from OttoDeploy. This allows you to do more discrete build management from ottoDeploy.
+- password input fields will no longer autocorrect or autocomplete
+- removed validation from schedule time in OttoDeploy. This will allow you to schedule deployments for servers in different timezones. The schedule time you enter is for the server timezone, not your current timezone. OttoFMS still does validation to ensure that the time you enter is in the future, but that validation is based on the server timezone.
+- otto theme color and tag are now stored locally, preventing a short instant of no color or tag on load into OttoDeploy
+- the sidebar will now remember whether it was opened or closed the last time you used OttoDeploy and will match that behavior
+- turned off fuzzy matching on the deployment and builds table, only exact matching will be used for searching.
+- fixed an issue where validation messages would be applied to the incorrect sub-deployment when only running some sub-deployments
+- increased the size of the close button in the review deployment screen
+
 ## 1.1.1
 
 Released: 3/1/2024
