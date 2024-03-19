@@ -1,5 +1,22 @@
 # OttoFMS Version History
 
+## 4.2.4
+
+Released: 3/19/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.2.4/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.2.4/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.2.4/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.2.4/mac)
+
+### Patch Changes
+
+- Prevent an unnecessary error in the logs on otto-cli symlink creation during startup.
+- Overhauled the FMS admin databases and clients table, as well as the deployments table. New tables have better filtering, sorting, and the ability to go fullscreen.
+- OttoFMS will now prevent two builds from running simultaneously
+- Better uncaught exception and unhandled rejection logging
+- Fetched failed errors will no longer cause OttoFMS to crash unecessarily
+- Actions can now be taken on multiple rows in the fms admin databases table
+- Added the source to the Deployment details page
+- Added files column to the deployments table
+
 ## 4.2.3
 
 Released: 3/13/2024
