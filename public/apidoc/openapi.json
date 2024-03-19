@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.2.3",
+    "version": "4.2.4",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -2870,7 +2870,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_p8QPZQtH1Nh0"
+            "default": "build_l81x3Z29TWqO"
           }
         },
         "required": [
@@ -3713,92 +3713,6 @@
                               }
                             },
                             "description": "The build options that get passed along to the source server"
-                          }
-                        },
-                        "required": [
-                          "type",
-                          "serverUrl",
-                          "auth"
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "enum": [
-                              "otto3"
-                            ],
-                            "description": "Fetches clones from an Otto v3 server"
-                          },
-                          "serverUrl": {
-                            "type": "string"
-                          },
-                          "auth": {
-                            "oneOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "token"
-                                    ]
-                                  },
-                                  "token": {
-                                    "type": "string",
-                                    "description": "The bearer token"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "token"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "apiKey"
-                                    ]
-                                  },
-                                  "apiKey": {
-                                    "type": "string",
-                                    "description": "The admin api key"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "apiKey"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "userpass"
-                                    ]
-                                  },
-                                  "user": {
-                                    "type": "string",
-                                    "description": "FileMaker Server Admin Console username"
-                                  },
-                                  "password": {
-                                    "type": "string",
-                                    "description": "FileMaker Server Admin Console password"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "user",
-                                  "password"
-                                ]
-                              }
-                            ]
                           }
                         },
                         "required": [
@@ -4757,92 +4671,6 @@
                                 "serverUrl",
                                 "auth"
                               ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "otto3"
-                                  ],
-                                  "description": "Fetches clones from an Otto v3 server"
-                                },
-                                "serverUrl": {
-                                  "type": "string"
-                                },
-                                "auth": {
-                                  "oneOf": [
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "token"
-                                          ]
-                                        },
-                                        "token": {
-                                          "type": "string",
-                                          "description": "The bearer token"
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "token"
-                                      ]
-                                    },
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "apiKey"
-                                          ]
-                                        },
-                                        "apiKey": {
-                                          "type": "string",
-                                          "description": "The admin api key"
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "apiKey"
-                                      ]
-                                    },
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "userpass"
-                                          ]
-                                        },
-                                        "user": {
-                                          "type": "string",
-                                          "description": "FileMaker Server Admin Console username"
-                                        },
-                                        "password": {
-                                          "type": "string",
-                                          "description": "FileMaker Server Admin Console password"
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "user",
-                                        "password"
-                                      ]
-                                    }
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "serverUrl",
-                                "auth"
-                              ]
                             }
                           ]
                         },
@@ -5544,92 +5372,6 @@
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "serverUrl",
-                                "auth"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "otto3"
-                                  ],
-                                  "description": "Fetches clones from an Otto v3 server"
-                                },
-                                "serverUrl": {
-                                  "type": "string"
-                                },
-                                "auth": {
-                                  "oneOf": [
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "token"
-                                          ]
-                                        },
-                                        "token": {
-                                          "type": "string",
-                                          "description": "The bearer token"
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "token"
-                                      ]
-                                    },
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "apiKey"
-                                          ]
-                                        },
-                                        "apiKey": {
-                                          "type": "string",
-                                          "description": "The admin api key"
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "apiKey"
-                                      ]
-                                    },
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "userpass"
-                                          ]
-                                        },
-                                        "user": {
-                                          "type": "string",
-                                          "description": "FileMaker Server Admin Console username"
-                                        },
-                                        "password": {
-                                          "type": "string",
-                                          "description": "FileMaker Server Admin Console password"
-                                        }
-                                      },
-                                      "required": [
-                                        "type",
-                                        "user",
-                                        "password"
-                                      ]
-                                    }
-                                  ]
                                 }
                               },
                               "required": [
