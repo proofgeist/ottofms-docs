@@ -27,6 +27,8 @@ The source can also be a prebuilt set of files from a URL. This can be used to r
 
 A backup is made of all files in the deployment. If any part of the deployment fails, the backups are restored, and the deployment is aborted. This ensures that the server is always in a consistent state where either all the files deployed successfully or none of them did.
 
+Complex deployments can be made up of multiple [sub-deployments](/concepts/deployments/advanced-deployments#sub-deployments), and each sub-deployment is atomic.
+
 ### Scheduled Deployments
 
 OttoFMS leverages the FileMaker Server's built-in scheduling to run deployments at a scheduled time. When you configure a deployment to run via schedule, OttoFMS will create a FileMaker Server schedule that triggers OttoFMS on the server to run the deployment. This technique does not require the OttoDeploy file to be hosted on the server that is running the deployment.
