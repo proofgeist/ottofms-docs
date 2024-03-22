@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
 import { useTheme } from "nextra-theme-docs";
 
@@ -24,4 +24,8 @@ export function OttoFMSLogo({ scale = 1 }) {
       alt="OttoFms Logo"
     />
   );
+}
+
+export function BaseOttoFMSLogo(props: Omit<ImageProps, "src" | "alt">) {
+  return <Image {...props} src={ottofmsLite} alt="OttoFMS Logo" />;
 }

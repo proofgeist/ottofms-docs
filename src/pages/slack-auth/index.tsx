@@ -17,8 +17,9 @@ import {
 } from "@mantine/core";
 import { IconCopy, IconExternalLink } from "@tabler/icons-react";
 import "@mantine/core/styles.css";
-import ottofmsLite from "../../../public/img/OttoFMS/ottofms-lite.svg";
+import ottofmsLite from "/img/OttoFMS/ottofms-lite.svg";
 import NextImage from "next/image";
+import { BaseOttoFMSLogo } from "@/components/logos/ottofms";
 
 async function getTokens(code: string) {
   const url = `https://slack.com/api/oauth.v2.access`;
@@ -99,13 +100,7 @@ export default function Page({
       <Center w="100%" h="100vh" bg="var(--mantine-color-gray-2)">
         <Paper w="70%" maw={"700px"} p="lg" withBorder shadow="md" py="xl">
           <Stack align="center" w="100%" gap="lg">
-            <Image
-              component={NextImage}
-              src={ottofmsLite}
-              alt="OttoFMS Logo"
-              h={"100px"}
-              w={"280px"}
-            />
+            <BaseOttoFMSLogo height={100} width={280} />
             <Title style={{ textAlign: "center" }}>
               Slack Notification Webhook
             </Title>
