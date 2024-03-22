@@ -3,11 +3,8 @@ import {
   ActionIcon,
   Alert,
   Anchor,
-  Box,
-  Card,
   Center,
   CopyButton,
-  Group,
   Image,
   MantineProvider,
   Paper,
@@ -20,6 +17,8 @@ import {
 } from "@mantine/core";
 import { IconCopy, IconExternalLink } from "@tabler/icons-react";
 import "@mantine/core/styles.css";
+import ottofmsLite from "../../../public/img/OttoFMS/ottofms-lite.svg";
+import NextImage from "next/image";
 
 async function getTokens(code: string) {
   const url = `https://slack.com/api/oauth.v2.access`;
@@ -101,7 +100,8 @@ export default function Page({
         <Paper w="70%" maw={"700px"} p="lg" withBorder shadow="md" py="xl">
           <Stack align="center" w="100%" gap="lg">
             <Image
-              src="/img/OttoFMS/ottofms-lite.svg"
+              component={NextImage}
+              src={ottofmsLite}
               alt="OttoFMS Logo"
               h={"100px"}
               w={"280px"}
