@@ -1,27 +1,7 @@
-# Post Deployment Scripts
+# Post Deployment Scripts in OttoDeploy
 
-When you deploy a file to a server you may need to run a script to set up the file for use or to complete an upgrade process that can't be done as part of data migration.
+[Post Deployment Scripts](/concepts/deployments/post-deployment-scripts) are scripts that are run after a file has been deployed to a server. See the [section](/concepts/deployments/post-deployment-scripts) in Concepts for more information on what Post Deployment Scripts are, and why you might want to use them.
 
 ## How to use
 
 [OttoDeploy](/ottodeploy) includes an option to run a Post Deployment script after a file has been deployed to a server. This script can be used to do any setup that is required after the file has been deployed. You will need to specify the file to run the script on, the script name, and the login information for the file in question (since it may be a file not in your deployment). You can also specify the script parameters that will be passed to the script.
-
-## Example use cases
-
-### Data cleanup
-
-Imagine that as part of an upgrade you want to split a field into two fields. Lets say you have a field called `Name` that contains a full name and you want to split it into `FirstName` and `LastName`. You can't do this as part of the data migration because `FirstName` and `LastName` don't have values in the old version. They will be empty after a data migration.
-
-So you can run a post deployment script that splits the value from the `Name` field into `FirstName` and `LastName` after the data migration has completed.
-
-### Setup a file for first use
-
-If you have an application that you sell to many customers, you may want to run a script after it get's installed on to a server for the first time. This script could setup the database, create a user account, or do any other setup that is required before the application can be used.
-
-### Resetting static data
-
-You may have some tables that should only contain certain values. You can use a Post Deployment script to reset these tables to their default values.
-
-### Clearing log data
-
-You may want to clear out log data from a table after a certain period of time. Since a data migration will copy all the data in to your new file, you can use a Post Deployment script to do this.

@@ -1,0 +1,54 @@
+# Post Deployment Scripts
+
+When you deploy a file to a server you may need to run a script to set up the file for use or to complete an upgrade process that can't be done as part of data migration.
+
+## Example use cases
+
+### Data cleanup
+
+Imagine that as part of an upgrade you want to split a field into two fields. Lets say you have a field called `Name` that contains a full name and you want to split it into `FirstName` and `LastName`. You can't do this as part of the data migration because `FirstName` and `LastName` don't have values in the old version. They will be empty after a data migration.
+
+So you can run a post deployment script that splits the value from the `Name` field into `FirstName` and `LastName` after the data migration has completed.
+
+### Setup a file for first use
+
+If you have an application that you sell to many customers, you may want to run a script after it get's installed on to a server for the first time. This script could setup the database, create a user account, or do any other setup that is required before the application can be used.
+
+### Resetting static data
+
+You may have some tables that should only contain certain values. You can use a Post Deployment script to reset these tables to their default values.
+
+### Clearing log data
+
+You may want to clear out log data from a table after a certain period of time. Since a data migration will copy all the data in to your new file, you can use a Post Deployment script to do this.
+
+## Reverting a Deployment or Sub-deployment
+
+When you configure your deployment to use a Post Deployment script, you can also configure it to revert the entire Deployment or Sub-deployment if the script fails. This is useful if the script is critical to the deployment and you don't want to leave the system in an inconsistent state if the script fails. You will see this option in OttoDeploy when you configure your Post Deployment script.
+
+If you set it to Revert, then you will need to make sure your script calls a few specific steps (see example below) at the end to indicate success or failure. We refer to this as "calling done". If your script completes as you want and you call done, then the deployment will continue. If you don't call done, then the deployment will be reverted.
+
+### Calling "done"
+
+```
+# post deployment Done in file PostDeploymentScriptEx
+
+#
+#  these script lets OttoFMS know that the post-deployment script completed successfully.
+#
+#
+Set Variable [ $filepath ; Value: "file:" & Get(DocumentsPath) & "/otto-pms-result.txt" ]
+Set Variable [ $done ; Value: "done" ]
+#
+Create Data File [ “$filepath” ; Create folders: Off ]
+Open Data File [ “$filepath” ; Target: $fileId ]
+Write to Data File [ File ID: $fileId ; Data source: $done ; Write as: UTF-8 ; Append line feed ]
+Close Data File [ File ID: $fileId ]
+#
+```
+
+### Example File
+
+This example file contains the script steps you need to call "done".
+
+Download [PostDeploymentScriptEx.fmp12](/PostDeploymentScriptEx.fmp12)
