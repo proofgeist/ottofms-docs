@@ -1,3 +1,6 @@
+{/* @ts-check */}
+import { RaycastSnippet } from "@/components/raycast-snippets";
+
 # Post Deployment Scripts
 
 When you deploy a file to a server you may need to run a script to set up the file for use or to complete an upgrade process that can't be done as part of data migration.
@@ -30,13 +33,9 @@ If you set it to Revert, then you will need to make sure your script calls a few
 
 ### Calling "done"
 
-```
-# post deployment Done in file PostDeploymentScriptEx
+This script lets OttoFMS know that the migration script completed successfully.
 
-#
-#  these script lets OttoFMS know that the post-deployment script completed successfully.
-#
-#
+```
 Set Variable [ $filepath ; Value: "file:" & Get(DocumentsPath) & "/otto-pms-result.txt" ]
 Set Variable [ $done ; Value: "done" ]
 #
@@ -44,8 +43,13 @@ Create Data File [ “$filepath” ; Create folders: Off ]
 Open Data File [ “$filepath” ; Target: $fileId ]
 Write to Data File [ File ID: $fileId ; Data source: $done ; Write as: UTF-8 ; Append line feed ]
 Close Data File [ File ID: $fileId ]
-#
 ```
+
+<RaycastSnippet
+  title="Post Deployment Done Example Scripts"
+  snippetType="script"
+  deeplink="raycast://extensions/eluce2/filemaker-snippets/view-snippets?context=%7B%22type%22%3A%22import%22%2C%22action%22%3A%22copy%22%2C%22snippet%22%3A%22https%3A%2F%2Fdocs.ottofms.com%2Fsnippets%2Fpost-deployment-script.json%22%2C%22showForm%22%3Afalse%2C%22values%22%3A%7B%7D%7D"
+/>
 
 ### Example File
 

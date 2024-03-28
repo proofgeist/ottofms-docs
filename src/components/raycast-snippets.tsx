@@ -12,7 +12,7 @@ import {
 
 type RaycastSnippetProps = {
   title?: string;
-  snippetType?: "custom-function";
+  snippetType?: "custom-function" | "script";
   deeplink: string;
 };
 export function RaycastSnippet({ snippetType, ...props }: RaycastSnippetProps) {
@@ -55,6 +55,11 @@ export function RaycastSnippet({ snippetType, ...props }: RaycastSnippetProps) {
                       <p>
                         After copying, paste directly into the{" "}
                         <b>Custom Functions Dialog</b> of your FileMaker file.
+                      </p>
+                    ) : snippetType === "script" ? (
+                      <p>
+                        After copying, paste directly into the{" "}
+                        <b>Script Workspace</b> of your FileMaker file
                       </p>
                     ) : null}
                     <p className="text-xs">
