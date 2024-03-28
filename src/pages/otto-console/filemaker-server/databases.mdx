@@ -20,4 +20,12 @@ OttoFMS can download a hosted FileMaker file without needing to close it first. 
 
 ![FileMaker Databases](/img/ottofms/console/fms-databases.png)
 
-{/* ### Save As XML */}
+### Save As XML
+
+<Callout type="info">
+  This feature requires FileMaker Server 20.3 or later
+</Callout>
+
+You can use the **Save As XML** option to generate an XML representation of the database. Full Access credentials are required to generate the XML, then the XML file is downloaded to your computer. You can optionally save the XML file to the server Documents folder as well. The XML contains a timestamp so you can compare two versions of the same database to see what has changed using a tool like [FMComparison](https://www.fmcomparison.com/).
+
+**We want your feedback!** Post on the [community forum](https://community.proofgeist.com/) to let us know how OttoFMS can make it easier for you to use this new XML feature. This feature is intentionally excluded from the OttoFMS Developer API until we have a better understanding of how it will be used so we can define the right interface for it.
