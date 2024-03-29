@@ -1,12 +1,12 @@
 import { Callout } from "nextra/components";
 import Vimeo from "../components/vimeo";
 
-# Handling very large files
+# Handling very large files on Windows servers
 
 <Callout type="warning">
-  If you are trying to move very large FileMaker files, anything over 2 or 3
-  gbs, using replace or install, we recommend that you run a
-  [build](/concepts/builds) ahead of time and use the [Build
+  If you are trying to move very large FileMaker files from a Windows server,
+  anything over 2 or 3 gbs, using replace or install, we recommend that you run
+  a [build](/concepts/builds) ahead of time and use the [Build
   URL](/concepts/public-builds) method to do deployment.
 </Callout>
 
@@ -16,14 +16,12 @@ import Vimeo from "../components/vimeo";
 
 ## The problem
 
-Transferring large files between FileMaker servers with OttoFMS is currently very slow. We are aware of this problem and are working on a solution. We hope to validate the new method in the next week or two.
+Transferring large files off of a Windows FileMaker servers with OttoFMS is currently very slow. We are aware of this problem and are working on a solution.
 
 This only effects deployments that are using install or replace as the file operation. The `migrate` file operation is not affected by this limitation.
 
 ## The solution for now
 
 You can build ahead of time using the [build](/concepts/builds) process and a manual transfer to a webserver or other location. Then use the [Build URL](/concepts/public-builds) method to do deployment.
-
-## Video of building ahead of time
 
 <Vimeo id={"916336707"} />
