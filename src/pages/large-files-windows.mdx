@@ -16,11 +16,15 @@ import Vimeo from "../components/vimeo";
 
 ## The problem
 
-Transferring large files off of a Windows FileMaker servers with OttoFMS is currently very slow. We are aware of this problem and are working on a solution.
+Transferring large files off of a Windows FileMaker servers with OttoFMS is currently very slow. The problem is that Windows IIS servers throttle large file transfers very aggressibly. We are looking for ways to remove this limit.
 
 This only effects deployments that are using install or replace as the file operation. The `migrate` file operation is not affected by this limitation.
 
-## The solution for now
+## Macs and Linux servers are not affected
+
+Both mac and linux servers are not affected by. The problem is only with Windows servers.
+
+## The solution.
 
 You can build ahead of time using the [build](/concepts/builds) process and a manual transfer to a webserver or other location. Then use the [Build URL](/concepts/public-builds) method to do deployment.
 
