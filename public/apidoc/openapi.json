@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.2.4",
+    "version": "4.3.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -276,6 +276,64 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/settings/serverPrefs": {
+      "get": {
+        "operationId": "GetOttoApiSettingsServerPrefs",
+        "summary": "Get Server Preferences",
+        "description": "Get FileMaker server preferences for this server",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/settings/serverPrefs Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsServerPrefsPositiveResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 0,
+                          "text": "ok"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/settings/serverPrefs Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsServerPrefsNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -587,6 +645,11 @@
             "description": "GET /otto/api/fm-file/download/:token Parameter",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenParameterToken"
+            },
+            "examples": {
+              "example1": {
+                "value": "JWTTOKEN"
+              }
             }
           }
         ],
@@ -630,6 +693,11 @@
             "description": "GET /otto/api/download Parameter",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiDownloadParameterToken"
+            },
+            "examples": {
+              "example1": {
+                "value": "JWTTOKEN"
+              }
             }
           }
         ],
@@ -985,8 +1053,8 @@
     "/otto/api/deployment/{id}": {
       "get": {
         "operationId": "GetOttoApiDeploymentId",
-        "summary": "Get a Deployment",
-        "description": "Returns the Deployment data for the given deployment Id",
+        "summary": "Get a Sub-Deployment",
+        "description": "Returns the sub-deployment data for the given sub-deployment Id",
         "tags": [
           "Deployment"
         ],
@@ -995,7 +1063,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "GET /otto/api/deployment/:id Parameter",
+            "description": "Sub-deployment Id to get",
             "schema": {
               "$ref": "#/components/schemas/GetOttoApiDeploymentIdParameterId"
             }
@@ -1042,7 +1110,7 @@
       "post": {
         "operationId": "PostOttoApiDeployment",
         "summary": "Start a deployment",
-        "description": "Use this endpoint to start a deployment. The deployment will be started asynchronously and you can use the `/deployments` endpoint to check the status of the deployment.",
+        "description": "Use this endpoint to start a deployment. The deployment will be started asynchronously and you can use the `/deployment` endpoint to check the status of the sub-deployments.",
         "tags": [
           "Deployment"
         ],
@@ -1091,13 +1159,56 @@
             }
           }
         }
+      },
+      "get": {
+        "operationId": "GetOttoApiDeployment",
+        "summary": "List Deployments",
+        "description": "Returns a list of deployments",
+        "tags": [
+          "Deployment"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/deployment Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiDeploymentPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/deployment Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiDeploymentNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/otto/api/deployment/undo": {
       "post": {
         "operationId": "PostOttoApiDeploymentUndo",
-        "summary": "Undo a Deployment",
-        "description": "Restores the backup created before the given deployment Id to \n",
+        "summary": "Undo a Sub-Deployment",
+        "description": "Restores the backup created before the given deployment Id to the state before the deployment was started.",
         "tags": [
           "Deployment"
         ],
@@ -1128,6 +1239,171 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostOttoApiDeploymentUndoNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/deployment/undoFull": {
+      "post": {
+        "operationId": "PostOttoApiDeploymentUndoFull",
+        "summary": "Undo a Deployment",
+        "description": "Restores the backup created before the given deployment Id to the state before the deployment was started.",
+        "tags": [
+          "Deployment"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/deployment/undoFull Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiDeploymentUndoFullRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/deployment/undoFull Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentUndoFullPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/deployment/undoFull Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentUndoFullNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/deployment/rerun": {
+      "post": {
+        "operationId": "PostOttoApiDeploymentRerun",
+        "summary": "Rerun a Deployment or Sub-deployment",
+        "description": "Rebuilds the original deployment input and reruns the deployment with the same options. Can be used to rerun a full deployment or a specific sub-deployment",
+        "tags": [
+          "Deployment"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/deployment/rerun Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiDeploymentRerunRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/deployment/rerun Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentRerunPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/deployment/rerun Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentRerunNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/deployment/abort": {
+      "post": {
+        "operationId": "PostOttoApiDeploymentAbort",
+        "summary": "Abort a deployment",
+        "description": "Use this endpoint to abort the running deployment.",
+        "tags": [
+          "Deployment"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/deployment/abort Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiDeploymentAbortRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/deployment/abort Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentAbortPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/deployment/abort Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiDeploymentAbortNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1444,10 +1720,10 @@
     "/otto/api/api-key": {
       "post": {
         "operationId": "PostOttoApiApiKey",
-        "summary": "Create an API Key",
-        "description": "### Create an OttoFMS Api Key\n\nThis endpoint creates an API Key for the FileMaker file with the specified user and password.",
+        "summary": "Create a Data API Key",
+        "description": "### Create an OttoFMS Data API Key\n\nThis endpoint creates a Data API Key for the FileMaker file with the specified user and password.",
         "tags": [
-          "API Keys"
+          "Data API Keys"
         ],
         "requestBody": {
           "description": "POST /otto/api/api-key Request body",
@@ -1497,10 +1773,10 @@
       },
       "get": {
         "operationId": "GetOttoApiApiKey",
-        "summary": "Get all API Keys",
-        "description": "### Get all Api Keys",
+        "summary": "Get all Data API Keys",
+        "description": "### Get all Data API Keys",
         "tags": [
-          "API Keys"
+          "Data API Keys"
         ],
         "responses": {
           "200": {
@@ -1542,10 +1818,10 @@
     "/otto/api/api-key/{key}": {
       "get": {
         "operationId": "GetOttoApiApiKeyKey",
-        "summary": "Get an API Key",
-        "description": "### Get an Api Key",
+        "summary": "Get a Data API Key",
+        "description": "### Get a Data Api Key",
         "tags": [
-          "API Keys"
+          "Data API Keys"
         ],
         "parameters": [
           {
@@ -1596,10 +1872,10 @@
       },
       "delete": {
         "operationId": "DeleteOttoApiApiKeyKey",
-        "summary": "Remove an API Key",
-        "description": "### Remove an Api Key",
+        "summary": "Remove a Data API Key",
+        "description": "### Remove a Data Api Key",
         "tags": [
-          "API Keys"
+          "Data API Keys"
         ],
         "parameters": [
           {
@@ -1652,10 +1928,10 @@
     "/otto/api/api-key/{key}/logout": {
       "post": {
         "operationId": "PostOttoApiApiKeyKeyLogout",
-        "summary": "Logout an API Key",
-        "description": "### Logout an Api Key",
+        "summary": "Logout a Data API Key",
+        "description": "### Logout a Data API Key",
         "tags": [
-          "API Keys"
+          "Data API Keys"
         ],
         "parameters": [
           {
@@ -1695,6 +1971,61 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/app-log": {
+      "post": {
+        "operationId": "PostOttoApiAppLog",
+        "summary": "Write to App Log",
+        "description": "Write a new log line to the app log.",
+        "tags": [
+          "Miscellaneous"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/app-log Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiAppLogRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/app-log Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiAppLogPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/app-log Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiAppLogNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1934,6 +2265,30 @@
             "required": [
               "Otto",
               "FileMakerServer"
+            ],
+            "examples": [
+              {
+                "Otto": {
+                  "version": "4.2.4",
+                  "build": "4.2.4.240318483",
+                  "themeColor": "#12b886",
+                  "environmentTag": "dev",
+                  "serverNickname": "OttoFMS Dev",
+                  "isLicenseValid": true
+                },
+                "FileMakerServer": {
+                  "version": {
+                    "long": "20.3.2 205(01-24-2024)",
+                    "short": "20.3.2",
+                    "major": 20,
+                    "minor": 3,
+                    "patch": 2
+                  },
+                  "fmsRunning": true,
+                  "serverId": "AFSDLKFJH0197283451LK32JHG4ASO9D8FYALKSDHGBJFG",
+                  "host": "fms.example.com"
+                }
+              }
             ]
           },
           "messages": {
@@ -2214,7 +2569,8 @@
         "type": "object",
         "properties": {
           "endpoint": {
-            "type": "string"
+            "type": "string",
+            "description": "S3 endpoint to use for offsite backup"
           },
           "region": {
             "type": "string",
@@ -2237,7 +2593,8 @@
           },
           "setupBackupSchedule": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "description": "If true, will setup an offsite backup schedule with the update of the settings."
           }
         },
         "required": [
@@ -2330,6 +2687,117 @@
           "messages"
         ]
       },
+      "GetOttoApiSettingsServerPrefsPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "UseOtherDatabaseRoot": {
+                "type": "boolean"
+              },
+              "UseOtherDatabaseRoot2": {
+                "type": "boolean"
+              },
+              "UseOtherDatabaseRoot3": {
+                "type": "boolean"
+              },
+              "DatabaseRootPath": {
+                "type": "string"
+              },
+              "DatabaseRootPath2": {
+                "type": "string"
+              },
+              "DatabaseRootPath3": {
+                "type": "string"
+              },
+              "BackupPath": {
+                "type": "string"
+              },
+              "UseDatabaseRoot1_RC": {
+                "type": "boolean"
+              },
+              "UseDatabaseRoot3_RC": {
+                "type": "boolean"
+              },
+              "DatabaseRootPath1_RC": {
+                "type": "string"
+              },
+              "DatabaseRootPath3_RC": {
+                "type": "string"
+              },
+              "BackupDatabaseRoot1_RC": {
+                "type": "boolean"
+              },
+              "BackupDatabaseRoot3_RC": {
+                "type": "boolean"
+              }
+            }
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsServerPrefsNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
       "PostOttoApiRestartPositiveResponse": {
         "type": "object",
         "properties": {
@@ -2340,7 +2808,10 @@
                 "type": "boolean"
               },
               "message": {
-                "type": "string"
+                "type": "string",
+                "examples": [
+                  "OttoFMS restarting"
+                ]
               }
             },
             "required": [
@@ -2530,7 +3001,8 @@
               "name",
               "user",
               "password"
-            ]
+            ],
+            "description": "File to run script on"
           },
           "script": {
             "type": "object",
@@ -2546,7 +3018,8 @@
             },
             "required": [
               "name"
-            ]
+            ],
+            "description": "Script information"
           }
         },
         "required": [
@@ -2788,13 +3261,21 @@
                 "encryptionKey": {
                   "type": "string",
                   "description": "required if the file is encrypted"
+                },
+                "size": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1.7976931348623157e+308,
+                  "maximum": 1.7976931348623157e+308,
+                  "description": "the size of the file in bytes"
                 }
               },
               "required": [
                 "fileName"
               ]
             },
-            "minItems": 1
+            "minItems": 1,
+            "description": "Array of FileMaker files to include in the build"
           },
           "force": {
             "type": "boolean",
@@ -2823,7 +3304,8 @@
                   "name",
                   "user",
                   "password"
-                ]
+                ],
+                "description": "File to run script on"
               },
               "script": {
                 "type": "object",
@@ -2839,7 +3321,8 @@
                 },
                 "required": [
                   "name"
-                ]
+                ],
+                "description": "Script information"
               },
               "stopBuildOnFail": {
                 "type": "boolean",
@@ -2850,7 +3333,8 @@
             "required": [
               "file",
               "script"
-            ]
+            ],
+            "description": "script to be run before files are backed up"
           },
           "compressionLevel": {
             "type": "number",
@@ -2870,7 +3354,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_l81x3Z29TWqO"
+            "default": "build_GtqRn77acxEf"
           }
         },
         "required": [
@@ -2894,7 +3378,8 @@
                         "started",
                         "failed",
                         "zipping",
-                        "completed"
+                        "completed",
+                        "crashed"
                       ]
                     },
                     "buildId": {
@@ -2929,6 +3414,13 @@
                           "encryptionKey": {
                             "type": "string",
                             "description": "required if the file is encrypted"
+                          },
+                          "size": {
+                            "type": "number",
+                            "format": "double",
+                            "minimum": -1.7976931348623157e+308,
+                            "maximum": 1.7976931348623157e+308,
+                            "description": "the size of the file in bytes"
                           }
                         },
                         "required": [
@@ -2955,6 +3447,56 @@
                     "message": {
                       "type": "string",
                       "description": "success or failure message"
+                    },
+                    "log": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "level": {
+                            "type": "string",
+                            "enum": [
+                              "info",
+                              "success",
+                              "error"
+                            ]
+                          },
+                          "phase": {
+                            "type": "string",
+                            "enum": [
+                              "starting",
+                              "pre-build script",
+                              "backing up",
+                              "moving files",
+                              "zipping",
+                              "done",
+                              "unknown phase"
+                            ]
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "timeElapsed": {
+                            "type": "number",
+                            "format": "double",
+                            "minimum": -1.7976931348623157e+308,
+                            "maximum": 1.7976931348623157e+308
+                          },
+                          "file": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "level",
+                          "phase",
+                          "message",
+                          "timeElapsed"
+                        ]
+                      }
+                    },
+                    "startedAt": {
+                      "type": "string",
+                      "description": "the date the build started"
                     },
                     "lastUpdated": {
                       "type": "string",
@@ -3165,7 +3707,8 @@
                   "started",
                   "failed",
                   "zipping",
-                  "completed"
+                  "completed",
+                  "crashed"
                 ]
               },
               "buildId": {
@@ -3200,6 +3743,13 @@
                     "encryptionKey": {
                       "type": "string",
                       "description": "required if the file is encrypted"
+                    },
+                    "size": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308,
+                      "description": "the size of the file in bytes"
                     }
                   },
                   "required": [
@@ -3226,6 +3776,56 @@
               "message": {
                 "type": "string",
                 "description": "success or failure message"
+              },
+              "log": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "type": "string",
+                      "enum": [
+                        "info",
+                        "success",
+                        "error"
+                      ]
+                    },
+                    "phase": {
+                      "type": "string",
+                      "enum": [
+                        "starting",
+                        "pre-build script",
+                        "backing up",
+                        "moving files",
+                        "zipping",
+                        "done",
+                        "unknown phase"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "timeElapsed": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308
+                    },
+                    "file": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "level",
+                    "phase",
+                    "message",
+                    "timeElapsed"
+                  ]
+                }
+              },
+              "startedAt": {
+                "type": "string",
+                "description": "the date the build started"
               },
               "downloadUrl": {
                 "type": "string"
@@ -3307,7 +3907,11 @@
         ]
       },
       "GetOttoApiDeploymentIdParameterId": {
-        "type": "string"
+        "type": "integer",
+        "format": "int64",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991,
+        "description": "Sub-deployment Id to get"
       },
       "GetOttoApiDeploymentIdPositiveResponse": {
         "type": "object",
@@ -3320,7 +3924,7 @@
                 "format": "int64",
                 "exclusiveMinimum": 0,
                 "maximum": 9007199254740991,
-                "description": "The deployment id"
+                "description": "The sub-deployment id"
               },
               "log": {
                 "type": "array",
@@ -3378,6 +3982,20 @@
                   ]
                 }
               },
+              "status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "queued",
+                  "running",
+                  "scheduled",
+                  "complete",
+                  "aborted",
+                  "unknown"
+                ]
+              },
               "final_result": {
                 "format": "any"
               },
@@ -3385,6 +4003,156 @@
                 "type": [
                   "string",
                   "null"
+                ]
+              },
+              "file_count": {
+                "type": "number",
+                "format": "double",
+                "minimum": 1,
+                "maximum": 1.7976931348623157e+308,
+                "description": "Number of files in the deployment"
+              },
+              "build_manifest": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "started",
+                          "failed",
+                          "zipping",
+                          "completed",
+                          "crashed"
+                        ]
+                      },
+                      "buildId": {
+                        "type": "string",
+                        "description": "the id of the build"
+                      },
+                      "zipArchive": {
+                        "type": "string",
+                        "description": "the name of the zip file"
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "fileName": {
+                              "type": "string",
+                              "description": "FileMaker File Name ending with .fmp12"
+                            },
+                            "clone": {
+                              "type": "boolean",
+                              "default": true
+                            },
+                            "user": {
+                              "type": "string",
+                              "description": "required if the build will be used in a future data migration"
+                            },
+                            "password": {
+                              "type": "string",
+                              "description": "required if the build will be used in a future data migration"
+                            },
+                            "encryptionKey": {
+                              "type": "string",
+                              "description": "required if the file is encrypted"
+                            },
+                            "size": {
+                              "type": "number",
+                              "format": "double",
+                              "minimum": -1.7976931348623157e+308,
+                              "maximum": 1.7976931348623157e+308,
+                              "description": "the size of the file in bytes"
+                            }
+                          },
+                          "required": [
+                            "fileName"
+                          ]
+                        },
+                        "minItems": 1,
+                        "description": "the files included the build"
+                      },
+                      "zipSize": {
+                        "type": "number",
+                        "format": "double",
+                        "minimum": -1.7976931348623157e+308,
+                        "maximum": 1.7976931348623157e+308,
+                        "description": "the size of the zip file in bytes"
+                      },
+                      "completedFiles": {
+                        "type": "number",
+                        "format": "double",
+                        "minimum": -1.7976931348623157e+308,
+                        "maximum": 1.7976931348623157e+308,
+                        "description": "The number of files finished and in the zip"
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "success or failure message"
+                      },
+                      "log": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "level": {
+                              "type": "string",
+                              "enum": [
+                                "info",
+                                "success",
+                                "error"
+                              ]
+                            },
+                            "phase": {
+                              "type": "string",
+                              "enum": [
+                                "starting",
+                                "pre-build script",
+                                "backing up",
+                                "moving files",
+                                "zipping",
+                                "done",
+                                "unknown phase"
+                              ]
+                            },
+                            "message": {
+                              "type": "string"
+                            },
+                            "timeElapsed": {
+                              "type": "number",
+                              "format": "double",
+                              "minimum": -1.7976931348623157e+308,
+                              "maximum": 1.7976931348623157e+308
+                            },
+                            "file": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "level",
+                            "phase",
+                            "message",
+                            "timeElapsed"
+                          ]
+                        }
+                      },
+                      "startedAt": {
+                        "type": "string",
+                        "description": "the date the build started"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "buildId",
+                      "zipArchive"
+                    ]
+                  },
+                  {
+                    "type": "object"
+                  }
                 ]
               },
               "deployment_payload": {
@@ -3397,9 +4165,7 @@
                         "properties": {
                           "type": {
                             "type": "string",
-                            "enum": [
-                              "url"
-                            ],
+                            "const": "url",
                             "description": "Fetches a build from a URL"
                           },
                           "url": {
@@ -3417,10 +4183,8 @@
                         "properties": {
                           "type": {
                             "type": "string",
-                            "enum": [
-                              "local"
-                            ],
-                            "description": "Fetches files from the local file system's uploads folder"
+                            "const": "local",
+                            "description": "Fetches files from the local file system."
                           },
                           "fileNames": {
                             "type": "array",
@@ -3429,6 +4193,14 @@
                               "description": "FileMaker File Name ending with .fmp12"
                             },
                             "description": "FileMaker File Name ending with .fmp12"
+                          },
+                          "folderPath": {
+                            "type": "string",
+                            "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                          },
+                          "copy": {
+                            "type": "boolean",
+                            "default": false
                           }
                         },
                         "required": [
@@ -3441,30 +4213,27 @@
                         "properties": {
                           "type": {
                             "type": "string",
-                            "enum": [
-                              "backup"
-                            ],
+                            "const": "backup",
                             "description": "Fetches files from a backup of a previous deployment"
                           },
                           "deploymentId": {
-                            "type": "number",
-                            "format": "double",
-                            "minimum": -1.7976931348623157e+308,
-                            "maximum": 1.7976931348623157e+308,
-                            "description": "The previous deployment id"
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "The previous sub-deployment id"
                           },
                           "batchId": {
-                            "type": "number",
-                            "format": "double",
-                            "minimum": -1.7976931348623157e+308,
-                            "maximum": 1.7976931348623157e+308,
-                            "description": "The batch id of the previous deployment"
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "The batch id of the previous deployment. Required in OttoFMS version 4.2.3 and later"
                           }
                         },
                         "required": [
                           "type",
-                          "deploymentId",
-                          "batchId"
+                          "deploymentId"
                         ]
                       },
                       {
@@ -3472,9 +4241,7 @@
                         "properties": {
                           "type": {
                             "type": "string",
-                            "enum": [
-                              "otto4"
-                            ],
+                            "const": "otto4",
                             "description": "Fetches a build from another OttoFMS server"
                           },
                           "buildId": {
@@ -3490,9 +4257,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "token"
-                                    ]
+                                    "const": "token"
                                   },
                                   "token": {
                                     "type": "string",
@@ -3509,9 +4274,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "apiKey"
-                                    ]
+                                    "const": "apiKey"
                                   },
                                   "apiKey": {
                                     "type": "string",
@@ -3528,9 +4291,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "userpass"
-                                    ]
+                                    "const": "userpass"
                                   },
                                   "user": {
                                     "type": "string",
@@ -3562,9 +4323,7 @@
                         "properties": {
                           "type": {
                             "type": "string",
-                            "enum": [
-                              "otto4jit"
-                            ],
+                            "const": "otto4jit",
                             "description": "Produces a just in time build on another OttoFMS server and fetches it"
                           },
                           "serverUrl": {
@@ -3577,9 +4336,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "token"
-                                    ]
+                                    "const": "token"
                                   },
                                   "token": {
                                     "type": "string",
@@ -3596,9 +4353,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "apiKey"
-                                    ]
+                                    "const": "apiKey"
                                   },
                                   "apiKey": {
                                     "type": "string",
@@ -3615,9 +4370,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "userpass"
-                                    ]
+                                    "const": "userpass"
                                   },
                                   "user": {
                                     "type": "string",
@@ -3666,7 +4419,8 @@
                                       "name",
                                       "user",
                                       "password"
-                                    ]
+                                    ],
+                                    "description": "File to run script on"
                                   },
                                   "script": {
                                     "type": "object",
@@ -3682,7 +4436,8 @@
                                     },
                                     "required": [
                                       "name"
-                                    ]
+                                    ],
+                                    "description": "Script information"
                                   },
                                   "stopBuildOnFail": {
                                     "type": "boolean",
@@ -3693,7 +4448,8 @@
                                 "required": [
                                   "file",
                                   "script"
-                                ]
+                                ],
+                                "description": "script to be run before files are backed up"
                               },
                               "compressionLevel": {
                                 "type": "number",
@@ -3753,7 +4509,8 @@
                           "name",
                           "user",
                           "password"
-                        ]
+                        ],
+                        "description": "File to run script on"
                       },
                       "script": {
                         "type": "object",
@@ -3769,7 +4526,8 @@
                         },
                         "required": [
                           "name"
-                        ]
+                        ],
+                        "description": "Script information"
                       },
                       "rollbackIfScriptFails": {
                         "type": "boolean",
@@ -3792,9 +4550,7 @@
                           "properties": {
                             "operation": {
                               "type": "string",
-                              "enum": [
-                                "migrate"
-                              ]
+                              "const": "migrate"
                             },
                             "clone": {
                               "type": "object",
@@ -3900,9 +4656,7 @@
                           "properties": {
                             "operation": {
                               "type": "string",
-                              "enum": [
-                                "install"
-                              ]
+                              "const": "install"
                             },
                             "overwrite": {
                               "type": "boolean",
@@ -3973,9 +4727,7 @@
                           "properties": {
                             "operation": {
                               "type": "string",
-                              "enum": [
-                                "replace"
-                              ]
+                              "const": "replace"
                             },
                             "source": {
                               "type": "object",
@@ -4021,9 +4773,7 @@
                           "properties": {
                             "operation": {
                               "type": "string",
-                              "enum": [
-                                "close"
-                              ]
+                              "const": "close"
                             },
                             "target": {
                               "type": "object",
@@ -4058,6 +4808,43 @@
                     "maximum": 10,
                     "default": 1,
                     "description": "Number of concurrent file operations to run"
+                  },
+                  "options": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "notifications": {
+                        "type": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "const": "slack"
+                            },
+                            "channelUrl": {
+                              "type": "string",
+                              "format": "url"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "channelUrl"
+                          ]
+                        },
+                        "description": "Array of notification settings"
+                      },
+                      "closeFilesAfterBuild": {
+                        "type": "boolean",
+                        "default": false
+                      }
+                    },
+                    "description": "Options for the deployment"
                   }
                 },
                 "required": [
@@ -4083,6 +4870,17 @@
                   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
                 }
               },
+              "started_at": {
+                "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "externalDocs": {
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                }
+              },
               "updated_at": {
                 "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
                 "type": "string",
@@ -4095,6 +4893,8 @@
             "required": [
               "id",
               "log",
+              "status",
+              "file_count",
               "deployment_payload",
               "running",
               "updated_at"
@@ -4176,15 +4976,25 @@
                     "type": "boolean"
                   },
                   "batchId": {
-                    "type": "number",
-                    "format": "double",
-                    "minimum": -1.7976931348623157e+308,
-                    "maximum": 1.7976931348623157e+308
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
                   }
                 },
                 "required": [
                   "started",
-                  "batchId"
+                  "batchId",
+                  "subDeploymentIds"
                 ]
               },
               {
@@ -4194,10 +5004,19 @@
                     "type": "boolean"
                   },
                   "batchId": {
-                    "type": "number",
-                    "format": "double",
-                    "minimum": -1.7976931348623157e+308,
-                    "maximum": 1.7976931348623157e+308
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
                   },
                   "schedule": {
                     "type": "object",
@@ -4241,7 +5060,8 @@
                 },
                 "required": [
                   "scheduled",
-                  "batchId"
+                  "batchId",
+                  "subDeploymentIds"
                 ]
               }
             ]
@@ -4316,22 +5136,10 @@
             "type": "object"
           },
           {
-            "oneOf": [
+            "allOf": [
               {
                 "type": "object",
                 "properties": {
-                  "scheduled": {
-                    "type": "boolean",
-                    "enum": [
-                      true
-                    ],
-                    "description": "boolean to determine whether or not to schedule the deployment(s) for later"
-                  },
-                  "timestamp": {
-                    "type": "string",
-                    "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])",
-                    "description": "timestamp to use to schedule the deployment. See Claris FileMaker scheduling APi docs for formatting."
-                  },
                   "label": {
                     "type": "string",
                     "description": "batch label, used only for descriptive purposes"
@@ -4348,9 +5156,7 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "url"
-                                  ],
+                                  "const": "url",
                                   "description": "Fetches a build from a URL"
                                 },
                                 "url": {
@@ -4368,10 +5174,8 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "local"
-                                  ],
-                                  "description": "Fetches files from the local file system's uploads folder"
+                                  "const": "local",
+                                  "description": "Fetches files from the local file system."
                                 },
                                 "fileNames": {
                                   "type": "array",
@@ -4380,6 +5184,14 @@
                                     "description": "FileMaker File Name ending with .fmp12"
                                   },
                                   "description": "FileMaker File Name ending with .fmp12"
+                                },
+                                "folderPath": {
+                                  "type": "string",
+                                  "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                },
+                                "copy": {
+                                  "type": "boolean",
+                                  "default": false
                                 }
                               },
                               "required": [
@@ -4392,30 +5204,27 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "backup"
-                                  ],
+                                  "const": "backup",
                                   "description": "Fetches files from a backup of a previous deployment"
                                 },
                                 "deploymentId": {
-                                  "type": "number",
-                                  "format": "double",
-                                  "minimum": -1.7976931348623157e+308,
-                                  "maximum": 1.7976931348623157e+308,
-                                  "description": "The previous deployment id"
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "The previous sub-deployment id"
                                 },
                                 "batchId": {
-                                  "type": "number",
-                                  "format": "double",
-                                  "minimum": -1.7976931348623157e+308,
-                                  "maximum": 1.7976931348623157e+308,
-                                  "description": "The batch id of the previous deployment"
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "The batch id of the previous deployment. Required in OttoFMS version 4.2.3 and later"
                                 }
                               },
                               "required": [
                                 "type",
-                                "deploymentId",
-                                "batchId"
+                                "deploymentId"
                               ]
                             },
                             {
@@ -4423,9 +5232,7 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "otto4"
-                                  ],
+                                  "const": "otto4",
                                   "description": "Fetches a build from another OttoFMS server"
                                 },
                                 "buildId": {
@@ -4441,9 +5248,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "token"
-                                          ]
+                                          "const": "token"
                                         },
                                         "token": {
                                           "type": "string",
@@ -4460,9 +5265,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "apiKey"
-                                          ]
+                                          "const": "apiKey"
                                         },
                                         "apiKey": {
                                           "type": "string",
@@ -4479,9 +5282,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "userpass"
-                                          ]
+                                          "const": "userpass"
                                         },
                                         "user": {
                                           "type": "string",
@@ -4513,9 +5314,7 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "otto4jit"
-                                  ],
+                                  "const": "otto4jit",
                                   "description": "Produces a just in time build on another OttoFMS server and fetches it"
                                 },
                                 "serverUrl": {
@@ -4528,9 +5327,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "token"
-                                          ]
+                                          "const": "token"
                                         },
                                         "token": {
                                           "type": "string",
@@ -4547,9 +5344,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "apiKey"
-                                          ]
+                                          "const": "apiKey"
                                         },
                                         "apiKey": {
                                           "type": "string",
@@ -4566,9 +5361,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "userpass"
-                                          ]
+                                          "const": "userpass"
                                         },
                                         "user": {
                                           "type": "string",
@@ -4617,7 +5410,8 @@
                                             "name",
                                             "user",
                                             "password"
-                                          ]
+                                          ],
+                                          "description": "File to run script on"
                                         },
                                         "script": {
                                           "type": "object",
@@ -4633,7 +5427,8 @@
                                           },
                                           "required": [
                                             "name"
-                                          ]
+                                          ],
+                                          "description": "Script information"
                                         },
                                         "stopBuildOnFail": {
                                           "type": "boolean",
@@ -4644,7 +5439,8 @@
                                       "required": [
                                         "file",
                                         "script"
-                                      ]
+                                      ],
+                                      "description": "script to be run before files are backed up"
                                     },
                                     "compressionLevel": {
                                       "type": "number",
@@ -4704,7 +5500,8 @@
                                 "name",
                                 "user",
                                 "password"
-                              ]
+                              ],
+                              "description": "File to run script on"
                             },
                             "script": {
                               "type": "object",
@@ -4720,7 +5517,8 @@
                               },
                               "required": [
                                 "name"
-                              ]
+                              ],
+                              "description": "Script information"
                             },
                             "rollbackIfScriptFails": {
                               "type": "boolean",
@@ -4743,9 +5541,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "migrate"
-                                    ]
+                                    "const": "migrate"
                                   },
                                   "clone": {
                                     "type": "object",
@@ -4851,9 +5647,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "install"
-                                    ]
+                                    "const": "install"
                                   },
                                   "overwrite": {
                                     "type": "boolean",
@@ -4924,9 +5718,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "replace"
-                                    ]
+                                    "const": "replace"
                                   },
                                   "source": {
                                     "type": "object",
@@ -4972,9 +5764,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "close"
-                                    ]
+                                    "const": "close"
                                   },
                                   "target": {
                                     "type": "object",
@@ -5009,6 +5799,43 @@
                           "maximum": 10,
                           "default": 1,
                           "description": "Number of concurrent file operations to run"
+                        },
+                        "options": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "notifications": {
+                              "type": [
+                                "array",
+                                "null"
+                              ],
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "const": "slack"
+                                  },
+                                  "channelUrl": {
+                                    "type": "string",
+                                    "format": "url"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "channelUrl"
+                                ]
+                              },
+                              "description": "Array of notification settings"
+                            },
+                            "closeFilesAfterBuild": {
+                              "type": "boolean",
+                              "default": false
+                            }
+                          },
+                          "description": "Options for the deployment"
                         }
                       },
                       "required": [
@@ -5024,29 +5851,296 @@
                   }
                 },
                 "required": [
-                  "scheduled",
-                  "timestamp",
                   "label",
                   "deployments"
                 ]
               },
               {
-                "type": "object",
-                "properties": {
-                  "scheduled": {
-                    "type": "boolean",
-                    "enum": [
-                      false
-                    ],
-                    "description": "boolean to determine whether or not to schedule the deployment(s) for later"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "scheduled": {
+                        "type": "boolean",
+                        "const": true,
+                        "description": "boolean to determine whether or not to schedule the deployment(s) for later"
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])",
+                        "description": "timestamp to use to schedule the deployment. See Claris FileMaker scheduling APi docs for formatting."
+                      }
+                    },
+                    "required": [
+                      "scheduled",
+                      "timestamp"
+                    ]
                   },
-                  "label": {
-                    "type": "string",
-                    "description": "batch label, used only for descriptive purposes"
-                  },
-                  "deployments": {
-                    "type": "array",
-                    "items": {
+                  {
+                    "type": "object",
+                    "properties": {
+                      "scheduled": {
+                        "type": "boolean",
+                        "const": false,
+                        "description": "boolean to determine whether or not to schedule the deployment(s) for later",
+                        "default": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "GetOttoApiDeploymentPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "deployments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991,
+                      "description": "The sub-deployment id"
+                    },
+                    "log": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "level": {
+                            "type": "string",
+                            "enum": [
+                              "info",
+                              "success",
+                              "error"
+                            ]
+                          },
+                          "phase": {
+                            "type": "string",
+                            "enum": [
+                              "scheduled",
+                              "queued",
+                              "starting",
+                              "building",
+                              "closing",
+                              "connecting to source",
+                              "fetching",
+                              "migrating",
+                              "installing",
+                              "opening",
+                              "post-deployment script",
+                              "post-deployment steps",
+                              "reverting",
+                              "done",
+                              "aborted",
+                              "parsing options",
+                              "unknown phase"
+                            ]
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "timeElapsed": {
+                            "type": "number",
+                            "format": "double",
+                            "minimum": -1.7976931348623157e+308,
+                            "maximum": 1.7976931348623157e+308
+                          },
+                          "file": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "level",
+                          "phase",
+                          "message",
+                          "timeElapsed"
+                        ]
+                      }
+                    },
+                    "status": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "enum": [
+                        "queued",
+                        "running",
+                        "scheduled",
+                        "complete",
+                        "aborted",
+                        "unknown"
+                      ]
+                    },
+                    "final_result": {
+                      "format": "any"
+                    },
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "file_count": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": 1,
+                      "maximum": 1.7976931348623157e+308,
+                      "description": "Number of files in the deployment"
+                    },
+                    "build_manifest": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "started",
+                                "failed",
+                                "zipping",
+                                "completed",
+                                "crashed"
+                              ]
+                            },
+                            "buildId": {
+                              "type": "string",
+                              "description": "the id of the build"
+                            },
+                            "zipArchive": {
+                              "type": "string",
+                              "description": "the name of the zip file"
+                            },
+                            "files": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "fileName": {
+                                    "type": "string",
+                                    "description": "FileMaker File Name ending with .fmp12"
+                                  },
+                                  "clone": {
+                                    "type": "boolean",
+                                    "default": true
+                                  },
+                                  "user": {
+                                    "type": "string",
+                                    "description": "required if the build will be used in a future data migration"
+                                  },
+                                  "password": {
+                                    "type": "string",
+                                    "description": "required if the build will be used in a future data migration"
+                                  },
+                                  "encryptionKey": {
+                                    "type": "string",
+                                    "description": "required if the file is encrypted"
+                                  },
+                                  "size": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "minimum": -1.7976931348623157e+308,
+                                    "maximum": 1.7976931348623157e+308,
+                                    "description": "the size of the file in bytes"
+                                  }
+                                },
+                                "required": [
+                                  "fileName"
+                                ]
+                              },
+                              "minItems": 1,
+                              "description": "the files included the build"
+                            },
+                            "zipSize": {
+                              "type": "number",
+                              "format": "double",
+                              "minimum": -1.7976931348623157e+308,
+                              "maximum": 1.7976931348623157e+308,
+                              "description": "the size of the zip file in bytes"
+                            },
+                            "completedFiles": {
+                              "type": "number",
+                              "format": "double",
+                              "minimum": -1.7976931348623157e+308,
+                              "maximum": 1.7976931348623157e+308,
+                              "description": "The number of files finished and in the zip"
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "success or failure message"
+                            },
+                            "log": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "level": {
+                                    "type": "string",
+                                    "enum": [
+                                      "info",
+                                      "success",
+                                      "error"
+                                    ]
+                                  },
+                                  "phase": {
+                                    "type": "string",
+                                    "enum": [
+                                      "starting",
+                                      "pre-build script",
+                                      "backing up",
+                                      "moving files",
+                                      "zipping",
+                                      "done",
+                                      "unknown phase"
+                                    ]
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  },
+                                  "timeElapsed": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "minimum": -1.7976931348623157e+308,
+                                    "maximum": 1.7976931348623157e+308
+                                  },
+                                  "file": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "level",
+                                  "phase",
+                                  "message",
+                                  "timeElapsed"
+                                ]
+                              }
+                            },
+                            "startedAt": {
+                              "type": "string",
+                              "description": "the date the build started"
+                            }
+                          },
+                          "required": [
+                            "status",
+                            "buildId",
+                            "zipArchive"
+                          ]
+                        },
+                        {
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "deployment_payload": {
                       "type": "object",
                       "properties": {
                         "source": {
@@ -5056,9 +6150,7 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "url"
-                                  ],
+                                  "const": "url",
                                   "description": "Fetches a build from a URL"
                                 },
                                 "url": {
@@ -5076,10 +6168,8 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "local"
-                                  ],
-                                  "description": "Fetches files from the local file system's uploads folder"
+                                  "const": "local",
+                                  "description": "Fetches files from the local file system."
                                 },
                                 "fileNames": {
                                   "type": "array",
@@ -5088,6 +6178,14 @@
                                     "description": "FileMaker File Name ending with .fmp12"
                                   },
                                   "description": "FileMaker File Name ending with .fmp12"
+                                },
+                                "folderPath": {
+                                  "type": "string",
+                                  "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                },
+                                "copy": {
+                                  "type": "boolean",
+                                  "default": false
                                 }
                               },
                               "required": [
@@ -5100,30 +6198,27 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "backup"
-                                  ],
+                                  "const": "backup",
                                   "description": "Fetches files from a backup of a previous deployment"
                                 },
                                 "deploymentId": {
-                                  "type": "number",
-                                  "format": "double",
-                                  "minimum": -1.7976931348623157e+308,
-                                  "maximum": 1.7976931348623157e+308,
-                                  "description": "The previous deployment id"
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "The previous sub-deployment id"
                                 },
                                 "batchId": {
-                                  "type": "number",
-                                  "format": "double",
-                                  "minimum": -1.7976931348623157e+308,
-                                  "maximum": 1.7976931348623157e+308,
-                                  "description": "The batch id of the previous deployment"
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "The batch id of the previous deployment. Required in OttoFMS version 4.2.3 and later"
                                 }
                               },
                               "required": [
                                 "type",
-                                "deploymentId",
-                                "batchId"
+                                "deploymentId"
                               ]
                             },
                             {
@@ -5131,9 +6226,7 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "otto4"
-                                  ],
+                                  "const": "otto4",
                                   "description": "Fetches a build from another OttoFMS server"
                                 },
                                 "buildId": {
@@ -5149,9 +6242,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "token"
-                                          ]
+                                          "const": "token"
                                         },
                                         "token": {
                                           "type": "string",
@@ -5168,9 +6259,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "apiKey"
-                                          ]
+                                          "const": "apiKey"
                                         },
                                         "apiKey": {
                                           "type": "string",
@@ -5187,9 +6276,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "userpass"
-                                          ]
+                                          "const": "userpass"
                                         },
                                         "user": {
                                           "type": "string",
@@ -5221,9 +6308,7 @@
                               "properties": {
                                 "type": {
                                   "type": "string",
-                                  "enum": [
-                                    "otto4jit"
-                                  ],
+                                  "const": "otto4jit",
                                   "description": "Produces a just in time build on another OttoFMS server and fetches it"
                                 },
                                 "serverUrl": {
@@ -5236,9 +6321,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "token"
-                                          ]
+                                          "const": "token"
                                         },
                                         "token": {
                                           "type": "string",
@@ -5255,9 +6338,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "apiKey"
-                                          ]
+                                          "const": "apiKey"
                                         },
                                         "apiKey": {
                                           "type": "string",
@@ -5274,9 +6355,7 @@
                                       "properties": {
                                         "type": {
                                           "type": "string",
-                                          "enum": [
-                                            "userpass"
-                                          ]
+                                          "const": "userpass"
                                         },
                                         "user": {
                                           "type": "string",
@@ -5325,7 +6404,8 @@
                                             "name",
                                             "user",
                                             "password"
-                                          ]
+                                          ],
+                                          "description": "File to run script on"
                                         },
                                         "script": {
                                           "type": "object",
@@ -5341,7 +6421,8 @@
                                           },
                                           "required": [
                                             "name"
-                                          ]
+                                          ],
+                                          "description": "Script information"
                                         },
                                         "stopBuildOnFail": {
                                           "type": "boolean",
@@ -5352,7 +6433,8 @@
                                       "required": [
                                         "file",
                                         "script"
-                                      ]
+                                      ],
+                                      "description": "script to be run before files are backed up"
                                     },
                                     "compressionLevel": {
                                       "type": "number",
@@ -5412,7 +6494,8 @@
                                 "name",
                                 "user",
                                 "password"
-                              ]
+                              ],
+                              "description": "File to run script on"
                             },
                             "script": {
                               "type": "object",
@@ -5428,7 +6511,8 @@
                               },
                               "required": [
                                 "name"
-                              ]
+                              ],
+                              "description": "Script information"
                             },
                             "rollbackIfScriptFails": {
                               "type": "boolean",
@@ -5451,9 +6535,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "migrate"
-                                    ]
+                                    "const": "migrate"
                                   },
                                   "clone": {
                                     "type": "object",
@@ -5559,9 +6641,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "install"
-                                    ]
+                                    "const": "install"
                                   },
                                   "overwrite": {
                                     "type": "boolean",
@@ -5632,9 +6712,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "replace"
-                                    ]
+                                    "const": "replace"
                                   },
                                   "source": {
                                     "type": "object",
@@ -5680,9 +6758,7 @@
                                 "properties": {
                                   "operation": {
                                     "type": "string",
-                                    "enum": [
-                                      "close"
-                                    ]
+                                    "const": "close"
                                   },
                                   "target": {
                                     "type": "object",
@@ -5717,6 +6793,43 @@
                           "maximum": 10,
                           "default": 1,
                           "description": "Number of concurrent file operations to run"
+                        },
+                        "options": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "notifications": {
+                              "type": [
+                                "array",
+                                "null"
+                              ],
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "const": "slack"
+                                  },
+                                  "channelUrl": {
+                                    "type": "string",
+                                    "format": "url"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "channelUrl"
+                                ]
+                              },
+                              "description": "Array of notification settings"
+                            },
+                            "closeFilesAfterBuild": {
+                              "type": "boolean",
+                              "default": false
+                            }
+                          },
+                          "description": "Options for the deployment"
                         }
                       },
                       "required": [
@@ -5724,21 +6837,122 @@
                         "fileOperations"
                       ]
                     },
-                    "description": "Array of deployments to be run. These are run in the sequence they are provided."
+                    "running": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "0 = false, 1 = true"
+                    },
+                    "created_at": {
+                      "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time",
+                      "externalDocs": {
+                        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                      }
+                    },
+                    "started_at": {
+                      "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time",
+                      "externalDocs": {
+                        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                      }
+                    },
+                    "updated_at": {
+                      "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                      "type": "string",
+                      "format": "date-time",
+                      "externalDocs": {
+                        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                      }
+                    }
                   },
-                  "abortRemaining": {
-                    "type": "boolean",
-                    "description": "Abort remaining deployments if one fails"
-                  }
-                },
-                "required": [
-                  "scheduled",
-                  "label",
-                  "deployments"
-                ]
+                  "required": [
+                    "id",
+                    "log",
+                    "status",
+                    "file_count",
+                    "deployment_payload",
+                    "running",
+                    "updated_at"
+                  ]
+                }
               }
+            },
+            "required": [
+              "deployments"
             ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
           }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiDeploymentNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
         ]
       },
       "PostOttoApiDeploymentUndoPositiveResponse": {
@@ -5753,15 +6967,25 @@
                     "type": "boolean"
                   },
                   "batchId": {
-                    "type": "number",
-                    "format": "double",
-                    "minimum": -1.7976931348623157e+308,
-                    "maximum": 1.7976931348623157e+308
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
                   }
                 },
                 "required": [
                   "started",
-                  "batchId"
+                  "batchId",
+                  "subDeploymentIds"
                 ]
               },
               {
@@ -5771,10 +6995,19 @@
                     "type": "boolean"
                   },
                   "batchId": {
-                    "type": "number",
-                    "format": "double",
-                    "minimum": -1.7976931348623157e+308,
-                    "maximum": 1.7976931348623157e+308
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
                   },
                   "schedule": {
                     "type": "object",
@@ -5818,7 +7051,8 @@
                 },
                 "required": [
                   "scheduled",
-                  "batchId"
+                  "batchId",
+                  "subDeploymentIds"
                 ]
               }
             ]
@@ -5891,18 +7125,534 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "minimum": -1.7976931348623157e+308,
-            "maximum": 1.7976931348623157e+308
+            "type": "integer",
+            "format": "int64",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
           }
         },
         "required": [
           "id"
         ]
+      },
+      "PostOttoApiDeploymentUndoFullPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "started": {
+                    "type": "boolean"
+                  },
+                  "batchId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  }
+                },
+                "required": [
+                  "started",
+                  "batchId",
+                  "subDeploymentIds"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "scheduled": {
+                    "type": "boolean"
+                  },
+                  "batchId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "schedule": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nextRun": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "systemScriptType": {
+                        "type": "object",
+                        "properties": {
+                          "osScript": {
+                            "type": "string"
+                          },
+                          "osScriptParam": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "osScript",
+                          "osScriptParam"
+                        ]
+                      },
+                      "startTimeStamp": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "nextRun",
+                      "name",
+                      "systemScriptType",
+                      "startTimeStamp"
+                    ]
+                  }
+                },
+                "required": [
+                  "scheduled",
+                  "batchId",
+                  "subDeploymentIds"
+                ]
+              }
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiDeploymentUndoFullNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiDeploymentUndoFullRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "PostOttoApiDeploymentRerunPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "started": {
+                    "type": "boolean"
+                  },
+                  "batchId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  }
+                },
+                "required": [
+                  "started",
+                  "batchId",
+                  "subDeploymentIds"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "scheduled": {
+                    "type": "boolean"
+                  },
+                  "batchId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "subDeploymentIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "schedule": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nextRun": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "systemScriptType": {
+                        "type": "object",
+                        "properties": {
+                          "osScript": {
+                            "type": "string"
+                          },
+                          "osScriptParam": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "osScript",
+                          "osScriptParam"
+                        ]
+                      },
+                      "startTimeStamp": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "nextRun",
+                      "name",
+                      "systemScriptType",
+                      "startTimeStamp"
+                    ]
+                  }
+                },
+                "required": [
+                  "scheduled",
+                  "batchId",
+                  "subDeploymentIds"
+                ]
+              }
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiDeploymentRerunNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiDeploymentRerunRequestBody": {
+        "allOf": [
+          {
+            "type": "object"
+          },
+          {
+            "allOf": [
+              {
+                "discriminator": {
+                  "propertyName": "type"
+                },
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "const": "deployment"
+                      },
+                      "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991,
+                        "description": "deployment id to rerun"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "id"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "const": "sub-deployment"
+                      },
+                      "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991,
+                        "description": "sub-deployment id to rerun"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "id"
+                    ]
+                  }
+                ]
+              },
+              {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "scheduled": {
+                        "type": "boolean",
+                        "const": true,
+                        "description": "boolean to determine whether or not to schedule the deployment(s) for later"
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])",
+                        "description": "timestamp to use to schedule the deployment. See Claris FileMaker scheduling APi docs for formatting."
+                      }
+                    },
+                    "required": [
+                      "scheduled",
+                      "timestamp"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "scheduled": {
+                        "type": "boolean",
+                        "const": false,
+                        "description": "boolean to determine whether or not to schedule the deployment(s) for later",
+                        "default": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "PostOttoApiDeploymentAbortPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiDeploymentAbortNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiDeploymentAbortRequestBody": {
+        "type": "object"
       },
       "PostOttoApiFmsProcessPositiveResponse": {
         "type": "object",
@@ -5986,83 +7736,25 @@
         "type": "object",
         "properties": {
           "command": {
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "start"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "stop"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "restart"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "start",
+              "stop",
+              "restart"
             ]
           },
           "service": {
-            "oneOf": [
-              {
-                "type": "string",
-                "enum": [
-                  "wpe"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "fmse"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "adminserver"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "httpserver"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "fmsib"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "xdbc"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "server"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "fmdapi"
-                ]
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "odata"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "wpe",
+              "fmse",
+              "adminserver",
+              "httpserver",
+              "fmsib",
+              "xdbc",
+              "server",
+              "fmdapi",
+              "odata"
             ]
           }
         },
@@ -6549,6 +8241,11 @@
           },
           "pass": {
             "type": "string"
+          },
+          "returnExisting": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, will return an existing key for this file"
           }
         },
         "required": [
@@ -6923,6 +8620,111 @@
         "type": "object",
         "properties": {},
         "required": []
+      },
+      "PostOttoApiAppLogPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "success"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiAppLogNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiAppLogRequestBody": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "error",
+              "warn",
+              "info",
+              "http",
+              "verbose",
+              "debug"
+            ],
+            "default": "info"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "message"
+        ]
       }
     },
     "responses": {},
@@ -6937,10 +8739,7 @@
   "tags": [
     {
       "name": "OttoFMS Info",
-      "description": "OttoFMS and Server Information",
-      "externalDocs": {
-        "url": "https://ottofms.com"
-      }
+      "description": "OttoFMS and Server Information"
     },
     {
       "name": "Server Processes",
@@ -6960,24 +8759,15 @@
     },
     {
       "name": "Build",
-      "description": "Build releases and updates",
-      "externalDocs": {
-        "url": "https://ottofms.com/docs/build"
-      }
+      "description": "Build releases and updates"
     },
     {
       "name": "Deployment",
-      "description": "Deployments are the process of *deploying* files to a FileMaker Server. Each deployment can have multiple files. Each file can be either a new file or an existing file. If the file already exists on the server, it can be replaced or the data can be migrated into the new file using the Data Migration Tool.\n\t\t\t",
-      "externalDocs": {
-        "url": "https://ottofms.com"
-      }
+      "description": "Deployments are the process of *deploying* files to a FileMaker Server. Each deployment can have multiple files. Each file can be either a new file or an existing file. If the file already exists on the server, it can be replaced or the data can be migrated into the new file using the Data Migration Tool.\n\t\t\t"
     },
     {
-      "name": "API Keys",
-      "description": "API Keys are used as a proxy for the FileMaker Data API.",
-      "externalDocs": {
-        "url": "https://ottofms.com/docs/api-keys"
-      }
+      "name": "Data API Keys",
+      "description": "Data API Keys are used as a proxy for the FileMaker Data API."
     },
     {
       "name": "Admin API Keys",
