@@ -4,6 +4,8 @@ import { Callout } from "nextra/components";
 
 On this tab you can find a list of all the FileMaker database files that are on the server. You can upload new database files to the FileMaker Server from here as well.
 
+![FileMaker Databases](/img/ottofms/console/fms-databases.png)
+
 ## Uploading Files
 
 Click the **Upload** button to upload one or more database files to the server.
@@ -14,10 +16,16 @@ After the files are uploaded, OttoFMS will automatically open the files for you.
 
 ## File Actions
 
-Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **download**, or **delete** the database file.
+Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **pause**, **resume**, **download**, **encrypt**, or **delete** the database file.
 
 OttoFMS can download a hosted FileMaker file without needing to close it first. When you download a file from this interface, OttoFMS makes an ad-hoc backup of the file and then downloads the backup. When you download a clone, no data is included which can often result in a much smaller file size.
 
-![FileMaker Databases](/img/ottofms/console/fms-databases.png)
+Files can be managed en masse by selecting multiple files and using the buttons at the top of the list.
 
-{/* ### Save As XML */}
+### File Encryption
+
+Servers running FileMaker Server 20.3 or higher can encrypt and decrypt files right from the OttoFMS console.
+
+To encrypt a file, click the **Encrypt** option in the file menu. You will be prompted to enter a password for the encryption as well as an account and sharedId for the file.
+
+To decrypt a file, click the **Decrypt** option in the file menu. You will be prompted to enter the password you used to encrypt the file and an account to use for running the decryption.

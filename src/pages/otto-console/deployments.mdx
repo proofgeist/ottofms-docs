@@ -18,4 +18,18 @@ If you haven't installed OttoDeploy on this server, a banner appears at the top 
 
 ## Deployment Details
 
-Each deployment has a details page which can show you the deployment logs, run time, and specific information on files the deployment worked with. You can access the deployments details page by clicking on the deployment name in the deployments list.
+Each sub-deployment has a details page which can show you the deployment logs, run time, and specific information on files the deployment worked with. You can access the deployments details page by clicking on the deployment name in the deployments list. The deployment details page has a summary of the deployment, a detailed log of everything that happened during the deployment, and a log of the source build (if available). Scheduled deployents will also have FMS schedule information displayed here.
+
+![Deployment Details Page](/img/ottofms/console/deployment-details.png)
+
+In the top right of the deployment detail view there are a variety of options, including downloading the deployment logs or json payload, deleting the deployment, re-running the deployment with the same settings, or undoing the deployment by restoring any available deployment backups.
+
+![Deployment Detail Options](/img/ottofms/console/deployment-details-options.png)
+
+The Undo option is only available if there are available backups for the deployment. Backups are kept based on the retention policy in the [OttoFMS settings](/otto-console/settings#deployment-settings). If you need to restore a different backup, you can do so by restoring it directly from the [File Manager](/otto-console/file-manager).
+
+### Running Deployments
+
+If a deployment is currently running, you will see an updating status on the list pageXOffset, and clicking into the deployments detail page will show you an updating summary log and timer. You can optionally show the full deployment log in the running deployment details view.
+
+A running deployment can also be aborted by clicking the "Abort Deployment" button in the top right of the deployment details page. Aborting a deployment will stop any running process and clean up after itself. A deployment cannot be aborted after files have already been installed. If you need to revert a deployment that has already been installed, you can do so by using the undo option.

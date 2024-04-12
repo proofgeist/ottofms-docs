@@ -4,15 +4,13 @@ import { Callout } from "nextra/components";
 
 On this page you can manage the API Keys that have been configured for the databases on your server. The API Keys allow you to use the FileMaker Data API to access the data in your databases, without having to use usernames and passwords. Learn more about how to create and use API Keys in the [API Keys Guide](/guides/api-keys).
 
-## List view
-
-The list view shows all the API Keys that have been configured for the databases on your server. You can add a new Key by clicking the "Create API Key" button in the top right corner. You can also edit or delete existing keys by clicking the "Edit" or trash can buttons on the right edge of the list.
-
 ![API Keys List](/img/ottofms/console/api-keys.png)
 
 ## Data API Keys
 
-Docs coming soon!
+Data API Keys can be used to proxy to the Data API on your FileMaker server. This allows you to use the Data API without having to worry about token session management or expiration. Data API keys are specific to a file and an account on that file. You can create a new Data API Key by clicking the "Create Data API Key" button in the top right corner of the list view. See the [API Proxy](/api-proxy#data-api-proxy) page for more information on using your Data API Keys.
+
+These keys can also be used to set up [Webhooks](/otto-console/webhooks) for your files.
 
 ## Admin API Keys
 
@@ -20,4 +18,4 @@ Admin API Keys are what OttoFMS uses to manage your FileMaker Server login for a
 
 We use Admin API Keys to proxy to the Admin API of your FileMaker Server. This allows us to use the API without constantly having to create new admin sessions with FileMaker. You can create Admin API tokens for any process that needs to query the FileMaker or OttoFMS APIs. To use the FileMaker API with an OttoFMS Admin API key, you will need to prefix the api path with `/otto`. For more information on the proxy, see the [API Proxy](/api-proxy) page.
 
-Admin API Keys are used to query your server from OttoDeploy.
+Admin API Keys are used to query your server from OttoDeploy and the Ottomatic Cloud Console.

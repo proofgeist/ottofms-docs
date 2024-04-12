@@ -1,0 +1,45 @@
+# Configuration using .env files
+
+Most OttoFMS settings are available from the OttoFMS console, but some settings are only available by editing an `.env` file directly. The `.env` file is a text file that contains key-value pairs that are used to configure the OttoFMS server. the `.env` file is located in the OttoFMS config directory, which is located inside of the OttoFMS application folder. It can also be found in the OttoFMS File Manager under OttoFMS Config.
+
+## Environment level settings
+
+### Custom FileMaker Server Configuration
+
+If you are using a custom FileMaker server configuration (ie. a non-standard install directory or a different fmserver username and password) you can set these values in the `.env` file. The following keys are available:
+
+- FMS_SERVER_PATH=/path/to/fmserver
+- FMSERVER_USERNAME=username
+- FMSERVER_PASSWORD=password
+
+### Just In Time Build Management
+
+By default, OttoFMS deletes Just In Time builds from the source server after they are used. If you would like to keep just in time builds on the source, you can set the following key on the destination server:
+
+- KEEPJIT=1
+
+### App Log Debug logs
+
+The App Log can be configured to log an extra level of messages for debugging purposes. To enable debug logs, set the following key:
+
+- DEBUG_APP_LOG=true
+
+This enables sending logs with the "debug","verbose", and "http" levels to a new log file called `app-debug.log`. See the App Log Guide for details on setting up application logging with OttoFMS.
+
+### File Manager Logging
+
+The File Manager in the OttoFMS console can be configured to send logs to the otto-info.log for access and changes to teh file system. to enable this logging set the following key:
+
+- FILE_MANAGER_LOG=true
+
+## Example .env File
+
+Here is an example of an `.env` file for OttoFMS:
+
+```env
+FMS_SERVER_PATH=/path/to/fmserver
+FMSERVER_USERNAME=username
+FMSERVER_PASSWORD=password
+KEEPJIT=1
+DEBUG_APP_LOG=true
+```

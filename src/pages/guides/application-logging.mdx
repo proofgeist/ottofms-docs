@@ -1,0 +1,37 @@
+# Application logging with OttoFMS
+
+OttoFMS has the ability to log messages from your FileMaker application to a log file on the server. This is useful for debugging and monitoring your application. The log file is stored in the OttoFMS application directory and can be viewed from the OttoFMS console.
+
+## Setting up application logging
+
+To set up application logging with OttoFMS, you will need to generate an App Log token from the OttoFMS console. This token is used to authenticate your application when sending log messages to the server. Generate this token from the [OttoFMS Settings page](/otto-console/settings#app-log).
+
+## Sending log messages
+
+To send log messages to the server, you will need to make a POST request to the `/otto/api/app-log` endpoint on your FileMaker server. The request should have the following information in the body:
+
+```json
+{
+  "token": "YOUR_APP_LOG_TOKEN",
+  "level": "info",
+  "message": "This is an info message from my application"
+}
+```
+
+As long as you have the correct token, you can send log messages from any FileMaker file or application. The log messages will be written to the log file on the server. You can view these messages from the OttoFMS console.
+
+Messages can be sent with different levels, which will write to different log files on the server. The available levels are:
+
+- `info`
+- `warn`
+- `error`
+
+If you would like to send more levels, take a look at the [env configuration options](/managing-ottofms/configuring-with-env#app-log-debug-logs) for setting up debug logs.
+
+### FileMaker Script example
+
+Check out this file for an example of how to set up application logging in FileMaker:
+
+Download [AppLogExample.fmp12](/AppLogExample.fmp12)
+
+Application Logging does not have to be done from within a FileMaker file. Any system that can send http requests to your FileMaker server can send log messages.
