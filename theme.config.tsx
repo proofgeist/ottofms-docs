@@ -28,7 +28,7 @@ const config: DocsThemeConfig = {
     },
   },
   docsRepositoryBase: "https://pr.new/proofgeist/ottofms-docs/edit/main",
-  footer: { text: Footer },
+  footer: { component: Footer },
   feedback: { content: null },
   editLink: {
     component: withoutServerEditLink,

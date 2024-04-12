@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
@@ -17,16 +13,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": [
-      "next"
-    ],
+    "types": ["next"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@ui/*": [
-        "../../packages/ui/*"
-      ]
+      "@/*": ["./src/*"],
+      "@ui/*": ["../../packages/ui/*"]
     },
     "plugins": [
       {
@@ -40,11 +30,11 @@
     "**/*.tsx",
     "theme.config.tsx",
     "scripts/build-known-issues.ts",
-    ".next/types/**/*.ts"
-, "next.config.js"  ],
-  "exclude": [
-    "node_modules"
+    ".next/types/**/*.ts",
+    "next.config.js",
+    "src/pages/guides/application-logging.mdx"
   ],
+  "exclude": ["node_modules"],
   "plugins": [
     {
       "name": "next"

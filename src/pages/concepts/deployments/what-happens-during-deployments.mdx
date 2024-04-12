@@ -19,6 +19,8 @@ First we will close all of the files in the deployment on the destination server
 
 If there are no files to close, this step is skipped.
 
+This step can optionally take place after the fetch files step. This is useful if you have a long build or fetch which may cause the files to be closed for an extended period of time.
+
 ### Run Build on Source
 
 We run a [build](/concepts/builds) on the source server. Depending on the [file operations](/ottodeploy-features/deployments/file-operations) in the deployment, a copy or a clone of the source files will be created and put into a .zip file.
