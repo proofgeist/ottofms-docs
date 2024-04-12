@@ -26,6 +26,12 @@ The App Log can be configured to log an extra level of messages for debugging pu
 
 This enables sending logs with the "debug","verbose", and "http" levels to a new log file called `app-debug.log`. See the App Log Guide for details on setting up application logging with OttoFMS.
 
+### File Manager Logging
+
+The File Manager in the OttoFMS console can be configured to send logs to the otto-info.log for access and changes to teh file system. to enable this logging set the following key:
+
+- FILE_MANAGER_LOG=true
+
 ## Example .env File
 
 Here is an example of an `.env` file for OttoFMS:
