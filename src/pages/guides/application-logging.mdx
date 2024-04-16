@@ -1,3 +1,6 @@
+import { Callout } from "nextra/components";
+import { RaycastSnippet } from "@/components/raycast-snippets";
+
 # Application logging with OttoFMS
 
 OttoFMS has the ability to log messages from your FileMaker application to a log file on the server. This is useful for debugging and monitoring your application. The log file is stored in the OttoFMS application directory and can be viewed from the OttoFMS console.
@@ -28,10 +31,22 @@ Messages can be sent with different levels, which will write to different log fi
 
 If you would like to send more levels, take a look at the [env configuration options](/managing-ottofms/configuring-with-env#app-log-debug-logs) for setting up debug logs.
 
-### FileMaker Script example
+### FileMaker Example
+
+<Callout type="info">
+  Application Logging does not have to be done from within a FileMaker file. Any
+  system that can send http requests to your FileMaker server can send log
+  messages.
+</Callout>
 
 Check out this file for an example of how to set up application logging in FileMaker:
 
-Download [AppLogExample.fmp12](/AppLogExample.fmp12)
+Download: [AppLogExample.fmp12](/AppLogExample.fmp12)
 
-Application Logging does not have to be done from within a FileMaker file. Any system that can send http requests to your FileMaker server can send log messages.
+<br />
+
+<RaycastSnippet
+  title="Application Scripts Module"
+  snippetType="script"
+  deeplink="raycast://extensions/eluce2/filemaker-snippets/view-snippets?context=%7B%22type%22%3A%22import%22%2C%22action%22%3A%22copy%22%2C%22snippet%22%3A%22https%3A%2F%2Fdocs.ottofms.com%2Fsnippets%2Fapplication-logging.json%22%2C%22showForm%22%3Afalse%2C%22values%22%3A%7B%7D%7D"
+/>
