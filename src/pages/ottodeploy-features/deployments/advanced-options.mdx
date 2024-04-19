@@ -53,6 +53,27 @@ Each sub-deployment requires a name and source files. The name is used to identi
 
 Each sub-deployment can use an alternate source to fetch its source files. The source can be a different build on the same source server, a different server, or even an external url. If you do not turn on the "Use Anternate Source" toggle, the sub-deployment will use the default source that you selected at the top of your deployment.
 
+### Slack Notifications
+
+<Callout type="info">Coming soon to OttoDeploy!</Callout>
+
+Slack Notifications allow you to setup a Slack channel to receive notifications when a deployment is started, completed, or fails. This fetaure is currently only available through the [OttoFMS Developer API](/apidoc#tag/Deployment/operation/PostOttoApiDeployment).
+
+The easiest way to set this up before this setting it added natively to OttoDeploy is to get a channel Url at the link below, copy your deployment JSON using the menu in the top right of your deployment, and paste the channel Url into the json at the path `deployments[0].options.notifications[0].channelUrl`. This JSON can then be sent to the OttoFMS API with a service like Postman to create a deployment with Slack notifications.
+
+If you would like to send notifications to different channels, you can add multiple channel urls to the `notifications` array in the deployment JSON. Notifications can be customized per sub-deployment.
+
+<br />
+<a href="https://slack.com/oauth/v2/authorize?client_id=9720328660.6839689854469&scope=incoming-webhook&user_scope=">
+  <img
+    alt="Add to Slack"
+    height="40"
+    width="139"
+    src="https://platform.slack-edge.com/img/add_to_slack.png"
+    srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+  />
+</a>
+
 ### Running part of a Deployment
 
 When advanced options are turned on a checkbox will appear at the top of each sub-deployment and on each file in a sub-deployment. Unchecking these checkboxes will prevent that sub-deployment or file from being added to the deployment that gets sent to OttoFMS. This can be useful if you want to run a specific part of a deployment or if you want to run a specific file in a sub-deployment. When deselecting a sub-deployment, the sub-deployment will collapse so that you can focus on the sub-deployments that are selected.
