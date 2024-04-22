@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.3.1",
+    "version": "4.3.2",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -670,54 +670,6 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/GetOttoApiFmFileDownloadTokenNegativeResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/otto/api/download": {
-      "get": {
-        "operationId": "GetOttoApiDownload",
-        "summary": "Signed Download Link",
-        "description": "This endpoint is for streaming a file from a download link returned from another endpoint, it's not intended to be used directly.",
-        "tags": [
-          "Miscellaneous"
-        ],
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "required": true,
-            "description": "GET /otto/api/download Parameter",
-            "schema": {
-              "$ref": "#/components/schemas/GetOttoApiDownloadParameterToken"
-            },
-            "examples": {
-              "example1": {
-                "value": "JWTTOKEN"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "GET /otto/api/download Positive response",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiDownloadPositiveResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "GET /otto/api/download Negative response",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOttoApiDownloadNegativeResponse"
                 }
               }
             }
@@ -3146,16 +3098,6 @@
       "GetOttoApiFmFileDownloadTokenNegativeResponse": {
         "type": "string"
       },
-      "GetOttoApiDownloadParameterToken": {
-        "type": "string"
-      },
-      "GetOttoApiDownloadPositiveResponse": {
-        "type": "string",
-        "format": "binary"
-      },
-      "GetOttoApiDownloadNegativeResponse": {
-        "type": "string"
-      },
       "PostOttoApiBuildPositiveResponse": {
         "type": "object",
         "properties": {
@@ -3354,7 +3296,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_lGDPiLC3YC4u"
+            "default": "build_hyLCIqfuUNCb"
           }
         },
         "required": [
@@ -4842,6 +4784,11 @@
                       "closeFilesAfterBuild": {
                         "type": "boolean",
                         "default": false
+                      },
+                      "keepFilesClosedAfterComplete": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If set to true, files will not be reopened at the end of a deployment. Setting this to true will prevent any post-deployment scripts from running on the files."
                       }
                     },
                     "description": "Options for the deployment"
@@ -5833,6 +5780,11 @@
                             "closeFilesAfterBuild": {
                               "type": "boolean",
                               "default": false
+                            },
+                            "keepFilesClosedAfterComplete": {
+                              "type": "boolean",
+                              "default": false,
+                              "description": "If set to true, files will not be reopened at the end of a deployment. Setting this to true will prevent any post-deployment scripts from running on the files."
                             }
                           },
                           "description": "Options for the deployment"
@@ -6827,6 +6779,11 @@
                             "closeFilesAfterBuild": {
                               "type": "boolean",
                               "default": false
+                            },
+                            "keepFilesClosedAfterComplete": {
+                              "type": "boolean",
+                              "default": false,
+                              "description": "If set to true, files will not be reopened at the end of a deployment. Setting this to true will prevent any post-deployment scripts from running on the files."
                             }
                           },
                           "description": "Options for the deployment"
