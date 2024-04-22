@@ -1,11 +1,25 @@
 # OttoFMS Version History
 
+## 4.3.2
+
+Released: 4/22/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.3.2/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.3.2/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.3.2/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.3.2/mac)
+
+
+### Patch Changes
+
+- files used in multiple sub-deployments will no longer be duplicated in the deployments table
+- files closed during a deployment (using the close additional files option) will no longer be included in the files or file count in the deployments table.
+- added the keepFilesClosedAfterComplete option to the deployment input, which prevents files from opening at the end of a sub-deployment.
+- fixed an issue in the data api proxy causing the token refresh to fail.
+- fixed an issue in which an unhandled rejection could occur in the file backup process during builds.
+
 ## 4.3.1
 
 Released: 4/16/2024
 
 Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.3.1/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.3.1/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.3.1/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.3.1/mac)
-
 
 ### Patch Changes
 
