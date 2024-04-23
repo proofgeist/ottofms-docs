@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 # Technical Information
 
 ## Operating system
@@ -14,15 +16,30 @@ FileMaker Server 19.6 is currently supported by Claris. However, on Dec 31, 2024
 
 You can check the current schedule for End of Life dates for FileMaker Server on the [Claris website](https://support.claris.com/s/answerview?anum=000034564&language=en_US).
 
-## Production Servers
+## Minimum requirements
 
-In addition to the base FileMaker Server requirement, OttoFMS' minimum requirements for a production server are:
+OttoFMS' minimum requirements for a server are:
 
 - 4 CPU cores
 - 8GB RAM
 - Available virtual memory or swap file.
 
 Migrations make copies of your database files both in RAM and on disk as part of the migration process. A good general rule is that if you need to have 3x the size of your production database files in available disk space, and at least 2x the size of your production database files in RAM or virtual memory.
+
+### Bigger is better.
+
+Builds and migration will be faster with more CPU cores and more RAM. Each file migration consumes 2.5 Gb of RAM and a significant amount of CPU. If you want to run concurent migrations, you will need more CPU and RAM.
+
+### Burst-able instances are not recommended
+
+<Callout type="warning">
+  **Burst-able Instances Should be Avoided.** <br /> They are not suitable for
+  hosting FileMaker Server with or without OttoFMS. Do not use them.
+</Callout>
+
+It will causes services to be throttled when the server is under load. This can cause FileMaker Server to be unresponsive and can cause migrations and other OttoFMS operations to appear to stall out. A single file migration may cause a burst-able instance to throttle, and it may remain throttled for hours.
+
+AWS T-Types are a common example of burst-able instances. Don't use them.
 
 ### Virtual memory
 
@@ -31,7 +48,3 @@ Mac and Windows have virtual memory. They can use available disk space as RAM as
 ### Linux swap files
 
 Linux may or may not have a swap file by default. We recommend that you don't install OttoFMS on a Linux production server without a swap file configured.
-
-## Dev servers
-
-Dev servers may not need the resources that a production server needs. It isn't doing migrations. It isn't doing backups. It isn't doing a lot of things. It is just running the server. So you can get away with fewer resources. The minimum requirements for a dev server are the same as FileMaker Server.
