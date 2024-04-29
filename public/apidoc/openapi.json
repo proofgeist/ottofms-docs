@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.3.2",
+    "version": "4.3.3",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -3203,13 +3203,6 @@
                 "encryptionKey": {
                   "type": "string",
                   "description": "required if the file is encrypted"
-                },
-                "size": {
-                  "type": "number",
-                  "format": "double",
-                  "minimum": -1.7976931348623157e+308,
-                  "maximum": 1.7976931348623157e+308,
-                  "description": "the size of the file in bytes"
                 }
               },
               "required": [
@@ -3278,6 +3271,11 @@
             ],
             "description": "script to be run before files are backed up"
           },
+          "closeFiles": {
+            "type": "boolean",
+            "default": false,
+            "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
+          },
           "compressionLevel": {
             "type": "number",
             "format": "double",
@@ -3296,7 +3294,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_hyLCIqfuUNCb"
+            "default": "build_moEwXDVe9RGn"
           }
         },
         "required": [
@@ -3369,7 +3367,6 @@
                           "fileName"
                         ]
                       },
-                      "minItems": 1,
                       "description": "the files included the build"
                     },
                     "zipSize": {
@@ -3412,6 +3409,8 @@
                               "moving files",
                               "zipping",
                               "done",
+                              "closing",
+                              "opening",
                               "unknown phase"
                             ]
                           },
@@ -3698,7 +3697,6 @@
                     "fileName"
                   ]
                 },
-                "minItems": 1,
                 "description": "the files included the build"
               },
               "zipSize": {
@@ -3741,6 +3739,8 @@
                         "moving files",
                         "zipping",
                         "done",
+                        "closing",
+                        "opening",
                         "unknown phase"
                       ]
                     },
@@ -4014,7 +4014,6 @@
                             "fileName"
                           ]
                         },
-                        "minItems": 1,
                         "description": "the files included the build"
                       },
                       "zipSize": {
@@ -4057,6 +4056,8 @@
                                 "moving files",
                                 "zipping",
                                 "done",
+                                "closing",
+                                "opening",
                                 "unknown phase"
                               ]
                             },
@@ -4392,6 +4393,11 @@
                                   "script"
                                 ],
                                 "description": "script to be run before files are backed up"
+                              },
+                              "closeFiles": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
                               },
                               "compressionLevel": {
                                 "type": "number",
@@ -4772,6 +4778,9 @@
                             "channelUrl": {
                               "type": "string",
                               "format": "url"
+                            },
+                            "label": {
+                              "type": "string"
                             }
                           },
                           "required": [
@@ -5389,6 +5398,11 @@
                                       ],
                                       "description": "script to be run before files are backed up"
                                     },
+                                    "closeFiles": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
+                                    },
                                     "compressionLevel": {
                                       "type": "number",
                                       "format": "double",
@@ -5768,6 +5782,9 @@
                                   "channelUrl": {
                                     "type": "string",
                                     "format": "url"
+                                  },
+                                  "label": {
+                                    "type": "string"
                                   }
                                 },
                                 "required": [
@@ -6009,7 +6026,6 @@
                                   "fileName"
                                 ]
                               },
-                              "minItems": 1,
                               "description": "the files included the build"
                             },
                             "zipSize": {
@@ -6052,6 +6068,8 @@
                                       "moving files",
                                       "zipping",
                                       "done",
+                                      "closing",
+                                      "opening",
                                       "unknown phase"
                                     ]
                                   },
@@ -6388,6 +6406,11 @@
                                       ],
                                       "description": "script to be run before files are backed up"
                                     },
+                                    "closeFiles": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
+                                    },
                                     "compressionLevel": {
                                       "type": "number",
                                       "format": "double",
@@ -6767,6 +6790,9 @@
                                   "channelUrl": {
                                     "type": "string",
                                     "format": "url"
+                                  },
+                                  "label": {
+                                    "type": "string"
                                   }
                                 },
                                 "required": [
