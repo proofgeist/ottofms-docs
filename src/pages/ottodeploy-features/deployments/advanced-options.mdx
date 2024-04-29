@@ -8,12 +8,21 @@ OttoDeploy exposes a set of Advanced options for deployments which can be used f
 - Add sub-deployment
 - Use a different source for each deployment
 - Abort remaining sub-deployments if one fails
-- Compression and memory settings for just in time builds
+- Build settings for Just In Time builds
 - Using a build as a source for a deployment
 - Concurrency settings for sub-deployments
 - Selecting a specific sub-deployment or set of files to run
+- Slack notifications
+- Keeping files closed at the end of a sub-deployment
+- Waiting to close files after the files are fetched for a sub-deployment
 
 ![Advanced Deployment](/img/ottodeploy/advanced-dep.png)
+
+Many of the advanced options are contained on their own tab in each sub-deployment:
+
+![Advanced Sub-Deployment](/img/ottodeploy/advanced-options-tab.png)
+
+The Post-Deployment Script setup also moves into this tab when advanced options are turned on.
 
 If you would like to turn the advanced options on for new deployments by default, you can change that in the [OttoDeploy settings](/ottodeploy-features/settings).
 
@@ -53,15 +62,19 @@ Each sub-deployment requires a name and source files. The name is used to identi
 
 Each sub-deployment can use an alternate source to fetch its source files. The source can be a different build on the same source server, a different server, or even an external url. If you do not turn on the "Use Anternate Source" toggle, the sub-deployment will use the default source that you selected at the top of your deployment.
 
+### Running part of a Deployment
+
+When advanced options are turned on a checkbox will appear at the top of each sub-deployment and on each file in a sub-deployment. Unchecking these checkboxes will prevent that sub-deployment or file from being added to the deployment that gets sent to OttoFMS. This can be useful if you want to run a specific part of a deployment or if you want to run a specific file in a sub-deployment. When deselecting a sub-deployment, the sub-deployment will collapse so that you can focus on the sub-deployments that are selected.
+
+You can also choose to only run one sub-deployment using the button in the top-right corner of each sub-deployment. This will deselect all other sub-deployments and only run the selected sub-deployment.
+
+### Close Files After Build
+
+The Close Files After Build option allows you to close the files after they are fetched from the source server. This can be useful if you want to keep the files open on the source server for longer while the deployment is running. By default, this option is turned off.
+
 ### Slack Notifications
 
-<Callout type="info">Coming soon to OttoDeploy!</Callout>
-
-Slack Notifications allow you to setup a Slack channel to receive notifications when a deployment is started, completed, or fails. This fetaure is currently only available through the [OttoFMS Developer API](/apidoc#tag/Deployment/operation/PostOttoApiDeployment).
-
-The easiest way to set this up before this setting it added natively to OttoDeploy is to get a channel Url at the link below, copy your deployment JSON using the menu in the top right of your deployment, and paste the channel Url into the json at the path `deployments[0].options.notifications[0].channelUrl`. This JSON can then be sent to the OttoFMS API with a service like Postman to create a deployment with Slack notifications.
-
-If you would like to send notifications to different channels, you can add multiple channel urls to the `notifications` array in the deployment JSON. Notifications can be customized per sub-deployment.
+You can setup Slack channels to receive notifications when a deployment is started, completed, or fails. Slack channels can be set in each sub-deployment and in the OttoDeploy settings. Deleting a channel url from the settings will not affect existing deployment, but will prevent new deployments from selecting that url.
 
 <br />
 <a href="https://slack.com/oauth/v2/authorize?client_id=9720328660.6839689854469&scope=incoming-webhook&user_scope=">
@@ -74,11 +87,9 @@ If you would like to send notifications to different channels, you can add multi
   />
 </a>
 
-### Running part of a Deployment
+### Keep Files Closed After Deployment
 
-When advanced options are turned on a checkbox will appear at the top of each sub-deployment and on each file in a sub-deployment. Unchecking these checkboxes will prevent that sub-deployment or file from being added to the deployment that gets sent to OttoFMS. This can be useful if you want to run a specific part of a deployment or if you want to run a specific file in a sub-deployment. When deselecting a sub-deployment, the sub-deployment will collapse so that you can focus on the sub-deployments that are selected.
-
-You can also choose to only run one sub-deployment using the button in the top-right corner of each sub-deployment. This will deselect all other sub-deployments and only run the selected sub-deployment.
+The Keep Files Closed After Deployment option allows you to keep the files closed after the deployment is completed. This can be useful if you want to keep the files closed on the destination server while you undertake some manual post-deployment steps. By default, this option is turned off.
 
 ### Concurrency
 
@@ -88,7 +99,7 @@ You can also choose to only run one sub-deployment using the button in the top-r
   your Server, and if your server runs out of RAM the Operating System will
   start shutting down processes, starting with FileMaker Server and OttoFMS. We
   recommend keeping this setting at 1 unless you have a specific reason to
-  increase it.
+  increase it. Each concurrent migration can use up to 2.5 GB of RAM.
 </Callout>
 
 The sub-deployment level concurrency setting allows fine-grained control over how many file operations run at once. This can be useful if deploying a large number of files to a server with a large number of resource. By default this is set to 1, meaning that only one file operation will run at a time.

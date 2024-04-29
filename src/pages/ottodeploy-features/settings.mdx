@@ -6,6 +6,12 @@ Setting this to "on" will make it the default for new deployments. Existing depl
 
 ![Set Advanced Deployment settings](/img/ottodeploy/advanced-settings-default.png)
 
+## Notification Settings
+
+Notifications can be set up in the settings screen. These notification channels can then be added to each sub-deployment to receive notifications when a deployment is started, completed, or fails. Deleting a channel url from the settings will not affect existing deployment, but will prevent new deployments from selecting that url.
+
+![Notification Settings](/img/ottodeploy/notification-settings.png)
+
 ## Pause Scripts
 
 The Pause Scripts button will open a window and pause all running scripts in OttoDeploy. Closing the window it opened will resume the scripts. This setting is intended to be used if you are trying to debug other FileMaker files while running OttoDeploy. Pausing the running scripts in OttoDeploy will avoid any conflicts with the scripts you are trying to debug.
