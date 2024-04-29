@@ -28,9 +28,21 @@ This enables sending logs with the "debug","verbose", and "http" levels to a new
 
 ### File Manager Logging
 
-The File Manager in the OttoFMS console can be configured to send logs to the otto-info.log for access and changes to teh file system. to enable this logging set the following key:
+The File Manager in the OttoFMS console can be configured to send logs to the otto-info.log for access and changes to the file system. to enable this logging set the following key:
 
 - FILE_MANAGER_LOG=true
+
+### Just In Time Build timeout
+
+When running a deployment, Just in Time builds can be used to create a build on the source server. If creating copies of very large files these can take a long time. By default, OttoFMS will time out of a Just In Time build after 30 minutes. If you would like to change this timeout, you can set the following key:
+
+- JIT_BUILD_TIMEOUT_IN_SEC=3600
+
+### Backup Timeout
+
+When running a backup, the backup process can take a long time. By default, OttoFMS will time out of a backup after 10 minutes. If you would like to change this timeout, you can set the following key:
+
+- BACKUP_FILE_TIMEOUT_IN_SEC=600
 
 ## Example .env File
 
@@ -43,3 +55,5 @@ FMSERVER_PASSWORD=password
 KEEPJIT=1
 DEBUG_APP_LOG=true
 ```
+
+import { TIMEOUT } from "dns";
