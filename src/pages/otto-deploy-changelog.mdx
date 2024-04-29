@@ -1,5 +1,30 @@
 # OttoDeploy Version History
 
+## 1.2.2
+
+Released: 4/29/2024
+
+### Patch Changes
+
+- added the option to keep files closed after a deployment is completed
+- added some clarification to the settings in OttoDeploy
+- added the option to close files after the build is completed for a sub-deployment, reducing the downtime of a file
+- the build source server select no longer has the option to select a build url
+- you can now edit the clone/copy setting on each file in a build inline rather than having to open the overrides modal.
+- added validation to prevent migrating a copy
+- changed the exit button in the review deployment window to say "Return"
+- added an ongoing build log to the review screen after a build is sent. It is updated every few seconds with the log from the server.
+- added a select all button for the close additional files option. This will select all files to close (if filtering the list it will only select filtered items).
+- added validation to prompt for encryption keys for encrypted files
+- the deployment, build, and server tables now have a better loading state
+- added OttoFMS and Filemaker versions to the servers table
+- when using a build as a source, we will now display whether a file is a clone or copy inline in the deployment
+- added http error handling to most calls to servers, giving better error responses on sending off builds, reviewing deployments, reviewing builds, and more
+- Updated sidebar close button
+- added Slack Notifications as a sub-deployment option
+- if using advanced options and there is only one sub-deployment the name of the sub-deployment will be synced with the name of the deployment as a whole. This can be overriden on the sub-deployment simply by changing the name.
+- added the option to close files during a build when running copies. This will speed builds dramatically for copies.
+
 ## 1.2.1
 
 Released: 4/3/2024
