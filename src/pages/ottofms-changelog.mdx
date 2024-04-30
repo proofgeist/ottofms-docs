@@ -8,13 +8,13 @@ Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.3.3/amd
 
 ### Patch Changes
 
-- the backup timeout time can now be overrided using the BACKUP_FILE_TIMEOUT_IN_SEC env variable. this defaults to 600 seconds (10 minutes).
+- the backup timeout time can now be overridden using the BACKUP_FILE_TIMEOUT_IN_SEC env variable. this defaults to 600 seconds (10 minutes).
 - fixed links in the PLEASE-READ-FIRST.txt file
 - The Just In Time build timeout can now be adjusted using the JIT_BUILD_TIMEOUT_IN_SEC env variable. This timeout is 30 minutes (1800 seconds) by default.
 - moved the OttoFMSTempUploads folder from the fms Data directory into the OttoFMS folder inside of the FMS Backups folder. This should ensure that large files go onto a drive that has enough storage.
-- the running deployment timer (and the values in the deployment log) will no longer roll back to 0 when the time surpasses 24 hours.
+- the running deployment timer (and the values in the deployment log) will now show times longer than 24 hours.
 - copies can now be run on closed files in builds. copies run on closed files run much faster than copies on open files.
-- encode special characters in fmp urls
+- Special characters in filenames are now properly encoded for fmp:// launch urls
 - added the closeFiles option to the build input, allowing copies to be closed before running, speeding up the build dramatically.
 - Webhooks used to upload files can now be registered in the OttoFMS console UI.
 
