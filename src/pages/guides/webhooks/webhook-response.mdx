@@ -3,15 +3,15 @@
 There are cases where you need to modify the response of a webhook. Usually this is for some kind of validation that the webhook is setup correctly and can handle the response.
 
 OttoFMS will use the value in the Exit Script step to set the response to the webhook. The response will be in JSON format.
-
+{}
 The following is an example of a webhook response:
 
 ```json
 {
   "useScriptResult": true,
-  "status" : 200,
+  "status": 200,
   "statusMessage": "OK",
-  "headers": [ "content-type": "application/json" ],
+  "headers": { "Content-Type": "application/json" },
   "body": "{}"
 }
 ```
