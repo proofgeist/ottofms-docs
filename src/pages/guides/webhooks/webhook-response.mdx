@@ -11,11 +11,11 @@ The following is an example of a webhook response:
   "useScriptResult": true,
   "status" : 200,
   "statusMessage": "OK",
-  "headers": ["content-type": "application/json" ],
+  "headers": [ "content-type": "application/json" ],
   "body": "{}"
 }
 ```
 
-The `useScriptResult` property should be set to true. This will signal OttoFMS to use the properties in that JSO to set the response to the webhook.
+The `useScriptResult` property should be set to true. This will signal OttoFMS to use the properties in that JSON to set the response to the webhook.
 
 In the response above the status is set to 200, the status message is set to "OK", the content type is set to "application/json" and the body is set to an empty JSON object.
