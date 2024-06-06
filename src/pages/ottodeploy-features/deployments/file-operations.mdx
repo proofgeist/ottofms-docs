@@ -1,4 +1,4 @@
-import { Cards, Card } from "nextra/components";
+import { Cards, Card, Callout } from "nextra/components";
 
 # File Operations
 
@@ -7,6 +7,12 @@ There are three main operations that you can perform on a file via OttoDeploy: M
 ## Migrate
 
 In a migration, data from the destination file will be migrated into a clone of the file from the source. This is useful if you want to make changes to the schema of a file and need to migrate the destination data into the new schema. This will be the most used file operation if you are using OttoDeploy to migrate changes from a development environment to a production environment. Additional options can be configured for each file, such as which file OttoFMS will pull the accounts, value lists, and fonts from. These additional options can be seen in the file options menu.
+
+<Callout type="info">
+  The destination credentials for migrations are not required to be full access
+  credentials. They only need to have migration privelages to run the migration
+  successfully.
+</Callout>
 
 ## Install
 
