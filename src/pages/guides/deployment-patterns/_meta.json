@@ -1,0 +1,7 @@
+{
+  "dev-to-prod": "Dev to Prod",
+  "refresh-staging": "Refresh Staging",
+  "multi-tenant": "Multi-tenant Pattern",
+  "refresh-dev": "Refresh Dev",
+  "recurring-deployments": "Recurring Deployments"
+}
