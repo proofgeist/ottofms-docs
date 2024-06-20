@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.3.5",
+    "version": "4.4.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -609,6 +609,61 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetOttoApiFmFileFilenameLinkNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/fm-file/rename": {
+      "post": {
+        "operationId": "PostOttoApiFmFileRename",
+        "summary": "Rename a File",
+        "description": "Rename a File",
+        "tags": [
+          "FileMaker Files"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/fm-file/rename Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiFmFileRenameRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/fm-file/rename Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiFmFileRenamePositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/fm-file/rename Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiFmFileRenameNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1380,7 +1435,7 @@
       "post": {
         "operationId": "PostOttoApiFmsProcess",
         "summary": "Start and stop processes",
-        "description": "### Start, stop and restart various FileMaker Server processes.\n\n**Caution:** Restarting or Stopping a process will kill anything that might be running on that process. Use with caution.\n\nThe `service` property can be one of the following:\n- `wpe`\n- `fmse`\n- `adminserver`\n- `httpserver`\n- `fmsib`\n- `xdbc`\n- `server` - requires HTTP Basic Auth\n- `fmdapi`\n- `odata`\n\nThe `command` property can be one of the following:\n- `start`\n- `stop`\n- `restart`",
+        "description": "### Start, stop and restart various FileMaker Server processes.\n\n**Caution:** Restarting or Stopping a process will kill anything that might be running on that process. Use with caution.\n\nThe `service` property can be one of the following:\n- `wpe`\n- `fmse`\n- `adminserver`\n- `httpserver`\n- `fmsib`\n- `xdbc`\n- `server`\n- `fmdapi`\n- `odata`\n\nThe `command` property can be one of the following:\n- `start`\n- `stop`\n- `restart`",
         "tags": [
           "Server Processes"
         ],
@@ -2134,11 +2189,12 @@
                     "type": [
                       "string",
                       "null"
-                    ],
-                    "enum": [
-                      "dev",
-                      "stg",
-                      "prod"
+                    ]
+                  },
+                  "environmentTagColor": {
+                    "type": [
+                      "string",
+                      "null"
                     ]
                   },
                   "serverNickname": {
@@ -2153,6 +2209,7 @@
                   "build",
                   "themeColor",
                   "environmentTag",
+                  "environmentTagColor",
                   "serverNickname",
                   "isLicenseValid"
                 ]
@@ -2225,6 +2282,7 @@
                   "build": "4.2.4.240318483",
                   "themeColor": "#12b886",
                   "environmentTag": "dev",
+                  "environmentTagColor": null,
                   "serverNickname": "OttoFMS Dev",
                   "isLicenseValid": true
                 },
@@ -3088,6 +3146,106 @@
           "messages"
         ]
       },
+      "PostOttoApiFmFileRenamePositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "ok",
+              "message"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiFmFileRenameNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiFmFileRenameRequestBody": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "newFileName": {
+            "type": "string"
+          },
+          "encryptionKey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fileName",
+          "newFileName"
+        ]
+      },
       "GetOttoApiFmFileDownloadTokenParameterToken": {
         "type": "string"
       },
@@ -3276,6 +3434,11 @@
             "default": false,
             "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
           },
+          "ensureFilesOpen": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
+          },
           "compressionLevel": {
             "type": "number",
             "format": "double",
@@ -3294,7 +3457,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_Ax3AWINHlA4I"
+            "default": "build_wcYgNhY9Hcbk"
           }
         },
         "required": [
@@ -4399,6 +4562,11 @@
                                 "default": false,
                                 "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
                               },
+                              "ensureFilesOpen": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
+                              },
                               "compressionLevel": {
                                 "type": "number",
                                 "format": "double",
@@ -5402,6 +5570,11 @@
                                       "type": "boolean",
                                       "default": false,
                                       "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
+                                    },
+                                    "ensureFilesOpen": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
                                     },
                                     "compressionLevel": {
                                       "type": "number",
@@ -6410,6 +6583,11 @@
                                       "type": "boolean",
                                       "default": false,
                                       "description": "Close files before backing up. This setting is ignored for clones. If the file is encrypted, it will be closed and reopened with the encryption key."
+                                    },
+                                    "ensureFilesOpen": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
                                     },
                                     "compressionLevel": {
                                       "type": "number",
