@@ -1,11 +1,44 @@
 # OttoFMS Version History
 
+## 4.4.0
+
+Released: 6/20/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.4.0/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.4.0/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.4.0/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.4.0/mac)
+
+### Minor Changes
+
+- OttoFMS now supports recurring deployments. To set up a recurring deployment, schedule your deployment through OttoDeploy. Once it is scheduled, go to the FMS admin console and update the schedule (named OTTO\_<deployment title>\_<string of 5 random characters>) to whatever frequency you want the deployment to run. When the deployment finishes, a new deployment will be created and the schedule will be updated to run the new deployment the next time it runs.
+- You can now set a custom environment tag and environment tag color.
+- OttoFMS now allows for custom theme colors.
+- Files can now be renamed via the api and from the databases list in the ottofms console. This rename is does not currently handle external file references or other plcaes where the filename is referenced.
+- Expanded OttoFMS to support the File Browser and Log Viewer in the Ottomatic Cloud Console.
+- Added the "ensureFilesOpen" option to the build API. This option will ensure that all files in the build are open after the build completes.
+
+### Patch Changes
+
+- Added database health checks on OttoFMS restart to prevent certain types of database corruption.
+- Prevented an issue where the "sync custom hostname" setting would not stop syncing the custom hostname when turned off.
+- Added a column for the next run time of scheduled deployments.
+- The log select on the log viewer is now more responsive to long log names. we have also removed the ".log" from the end of the log names since they are all .log files.
+- Fixed an issue where the status on the databases page would be vertically offset outside of the status badge when in a "loading" status (ie. when it was closing).
+- The extended privelages column in the databases table will now allow filtering on multiple privelage sets and will allow selection of all privelage sets available in the files rather than a specific set.
+- Fixed a typo causing "large_yellow_square" to appear in the aborted slack notification rather than a large yellow square.
+- When aborting a deployment during a data migration, we will no longer migrate files after the one that was running when the deployment was aborted.
+- There will no longer be a shortcut to the uninstaller stored right next to the uninstaller on Windows.
+- When deleting a scheduled deployment, OttoFMS will now also delete the script schedule that will run said deployment.
+- Added retries to the database fetching for the database page on the FileMaker admin tab in the OttoFMS console. This should harden the page to issues caused by 502 errors on Windows servers.
+- The clients table will now account for the server timezone when displaying the time when a client logged in.
+- Fix typo in the crashed slack notification.
+- The data api proxy and webhooks now add the .fmp12 to the filename in the url if not present. It is no longer necessary to include the .fmp12 in the url when using the proxy or webhooks.
+- OttoFMS no longer logs an error when redirecting to login since it is intended behavior.
+- Starting, stopping, and restarting the FMS Database Server can now be performed via the API with an OttoFMS Admin API Key rather than requiring Basic Authentication. This means that the FMS Database Server can now be managed from the Ottomatic Cloud Console.
+
 ## 4.3.5
 
 Released: 5/7/2024
 
 Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.3.5/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.3.5/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.3.5/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.3.5/mac)
-
 
 ### Patch Changes
 
