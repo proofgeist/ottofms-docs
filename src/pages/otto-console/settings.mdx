@@ -13,9 +13,19 @@ This section allows you to control the appearance of the OttoFMS console. The se
 
 The only appearance setting that is **not** saved with the server is the light/dark mode toggle in the top-right of every page. In our experience, each user has their own preference for light/dark mode, so we leave this setting up to the user.
 
+### Theme Color
+
+The theme color is the primary color used throughout the console. It is also the color used to identify the server in the Ottomatic Cloud Console and in OttoDeploy. The color can be specified using the theme color picker or by entering a hexadecimal color code. OttoFMS will take the color you enter and convert it to a set of values that can be used with the ui. This means that the color of the console sidebar may not exactly match the color you input, as it will generate a color based off of the color you input. If you choose a very dark color, the console primary color will most often generate to a lighter color.
+
 ### Environment Tag and Server Nickname
 
 The environment tag and Server Nickname fields are also simply for appearance and can be another way for you to easily identify which server you are working with. If you turn on the "Override FileMaker Server Name" toggle, OttoFMS will change the name of your FileMaker Server to match the Server Nickname you enter here. While this setting is on and OttoFMS is running, this name will always take precedence, even if someone were to change the host name of the FileMaker Server using the FileMaker Server Admin Console.
+
+With OttoFMS version 4.4.0 and later, you can specify a custom environment tag and environment tag color, allowing you to use tags such as "TEST" or "TEMP" to identify your servers. This option can be managed by choosing the "+ Add Custom" option in the environment tag dropdown.
+
+![Custom Environment Tag](/img/ottofms/console/custom-tag-dropdown.png)
+
+![Custom Environment Tag Setup](/img/ottofms/console/custom-tag-setup.png)
 
 This feature allows you to reliably identify your server from the FileMaker Pro client, using the `Get ( HostName )` function. If an environment tag is set, it will be prepended to the nickname and in brackets. We suggest using some portable custom functions to read this value.
 
