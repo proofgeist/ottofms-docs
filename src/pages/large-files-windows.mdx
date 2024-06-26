@@ -1,4 +1,4 @@
-import { Callout } from "nextra/components";
+import { Callout, FileTree } from "nextra/components";
 import Vimeo from "../components/vimeo";
 
 # Handling very large files on Windows servers
@@ -29,3 +29,30 @@ Mac and Linux servers are not affected by these limitations.
 You can build ahead of time using the [build](/concepts/builds) process and a manual transfer to a webserver or other location. Then use the [Build URL](/concepts/public-builds) method to do deployment.
 
 <Vimeo id={"916336707"} />
+
+### Manual Upload
+
+You can also manually upload the build to the destination server. Simply download the build from your source server (you will need the full build zip, or the .build.zip file and the manifest.json file), and upload it to the destination server OttoFMS Inbox in the following structure:
+
+<FileTree>
+  <FileTree.Folder name="OttoFMS Inbox" defaultOpen>
+    <FileTree.Folder name="build-id" defaultOpen>
+      <FileTree.File name="manifest.json" />
+      <FileTree.File name="build-id.build.zip" />
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
+
+<Callout type="info">
+  We recommend uploading your build using the Ottomatic Cloud Console File
+  Manager or via ftp, as the OttoFMS File Manager does not handle uploads larger
+  than a couple hundred MBs well. This will be fixed in a future version of
+  OttoFMS.
+</Callout>
+
+When running the deployment, you can specify the build via the build id on the source server, just like you would for a pre-built build. Instead of fetching the build from the source server, it will use the build that already exists in the OttoFMS Inbox.
+
+<Callout type="warning">
+  At the end of the deployment, the build will be removed from the inbox. If you
+  need to run the deployment again, you will need to upload the build again.
+</Callout>
