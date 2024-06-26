@@ -1,0 +1,51 @@
+import { Callout } from "nextra/components";
+
+# Webhook Options
+
+The webhook payload can be customized to include more information about the webhook request.
+
+## URL Query Parameters
+
+Query parameters can be added to the webhook url to include more information. The query parameters can be used in two ways:
+
+1. By default, the query parameters are sent through to the OttoReciever script as the script parameter. You can retrieve the query parameters in the script using a `Get(ScriptParameter)` function.
+
+2. You can optionally include the query parameters in the webhook payload by including the "includeQuery" query parameter in the webhook url. This will include the query parameters in the webhook payload at the "request-query" key as follows:
+
+```json
+{
+  "request-query": {
+    "query-parameter-name": "query-parameter-value"
+  },
+  "rest-of-payload":{
+    ...
+  }
+}
+```
+
+<Callout type="info">
+  The "includeQuery", "includeHeaders", and "apiKey" query parameters are not
+  included in the query params that are passed to the OttoReceiver script.
+</Callout>
+
+## Request Headers
+
+You can optionally include the headers in the webhook payload by including the "includeHeaders" query parameter in the webhook url. This will include the headers in the webhook payload at the "request-headers" key as follows:
+
+```json
+{
+  "request-headers": {
+    "header-name": "header-value"
+  },
+  "rest-of-payload":{
+    ...
+  }
+}
+```
+
+<Callout type="warning">
+  If you are sending the headers in the webhook payload and you are sending your
+  Data API Key as the Authorization header, the Data API Key will be included in
+  the payload. If you do not want this to happen, you can use the "apiKey" query
+  parameter to specify the Data API Key instead of the Authorization header.
+</Callout>
