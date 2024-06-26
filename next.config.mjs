@@ -15,6 +15,11 @@ const nextConfig = {
         destination: "/guides/webhooks/webhook-response",
         permanent: true,
       },
+      {
+        source: "/concepts/concurrency",
+        destination: "/concepts/deployments/concurrency",
+        permanent: true,
+      },
     ];
   },
   rewrites: async () => {
