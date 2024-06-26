@@ -1,3 +1,5 @@
+import { Steps, Tabs } from "nextra/components";
+
 # Troubleshooting OttoFMS
 
 This page walks through some common errors in OttoFMS and how to fix them. If you don't see your problem on this list, check out our [support](/support) options.
@@ -20,3 +22,137 @@ OttoFMS requires a Valid SSL Certificate to communicate with other servers and i
 This is likely caused by running out of memory. On many Operating Systems a process that uses up too much memory will be killed directly by the OS, causing a SIGKILL error for the process. If you are running a Linux server without a swap file or if your server does not have enough RAM or virtual memory this can happen. Check out our [recommended specifications](/tech-specs#production-servers) for OttoFMS servers for some base specifications.
 
 A similar error can be caused by having corrupted FileMaker files when you try to run a migration. If you are getting Segmentation Fault errors, try to run recovery on your file and migrate it again.
+
+## I installed or updated OttoFMS but I can't access the web console
+
+If you've just installed or upgraded OttoFMS and you cannot access the web console, there may be an issue with the http server or an error on startup. You can try the following to resolve the issue:
+
+<Steps>
+
+### Restart the FileMaker HTTP Server
+
+If you have an issue connecting to the web console, the FileMaker HTTP Server may not have properly restarted when OttoFMS was installed. You can try restarting the FileMaker HTTP Server to see if that resolves the issue.
+
+```bash copy
+fmsadmin restart httpserver
+```
+
+### Check if OttoFMS is running
+
+<Tabs items={["Linux", "Windows", "MacOS"]}>
+  <Tabs.Tab>
+    On Linux, you can check if OttoFMS is running by running the following command:
+
+    ```bash copy
+    sudo systemctl status ottofms-proofgeist-com.service
+    ```
+
+    If OttoFMS is not running, you can start it by running the following command:
+
+    ```bash copy
+    sudo systemctl start ottofms-proofgeist-com.service
+    ```
+
+    If this fails to start, there may be an issue with OttoFMS. Proceed to the next step to check the logs.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+  On Windows, you can check the status of OttoFMS by going to Computer Management > Services and Applications > Services. Find the OttoFMS service and check if it is running.
+
+If OttoFMS is not running, you can start it by right-clicking on the OttoFMS service and selecting "Start".
+
+If this fails to start, there may be an issue with OttoFMS. Proceed to the next step to check the logs.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+  
+On MacOS, you can check the status of OttoFMS by running the following command:
+
+```bash copy
+sudo launchctl list | grep ottofms
+```
+
+If OttoFMS is not running, you can start it by running the following command:
+
+```bash copy
+sudo launchctl bootstrap system /Library/LaunchDaemons/com.proofgeist.ottofms.plist
+```
+
+If this fails to start, there may be an issue with OttoFMS. Proceed to the next step to check the logs.
+
+  </Tabs.Tab>
+</Tabs>
+
+### Check the OttoFMS logs
+
+If you are still unable to access the web console, there may be an error when OttoFMS starts. You can check the OttoFMS logs to see if there are any errors. The OttoFMS logs are located in the OttoFMS application folder.
+
+In the otto-info.log you will be able to see if OttoFMS is starting up properly. A successful OttoFMS startup will look like this:
+
+```
+info	otto internal database up to date
+info	Listening on http://localhost:3061
+info	environment "production"
+info	version "4.4.0"
+info	node version v20.11.1
+info	started watching offsite backup
+info	started watching for hostname changes
+info	Restarted httpserver
+info	Reverse Proxy installed or updated
+info	Ottomatic License status: valid
+```
+
+The log messages may vary slightly based on your system, OttoFMS version, and Operating System.
+
+If your otto-info.log does not have any errors and it does not have the above start up messages, OttoFMS may have a problem starting up. proceed to the next step to take a look at system logs.
+
+If you have an error in the otto-info.log file, review it and attempt to resolve the issue. If you are unfamiliar with the error, search or reach out in the [Community Forum](https://community.proofgeist.com) for help.
+
+### Check the system logs
+
+If OttoFMS is not starting up properly, the system logs may have more details about the issue.
+
+<Tabs items={["Linux", "Windows", "MacOS"]}>
+  <Tabs.Tab>
+    On Linux, you can get the ottofms system logs by running the following command:
+
+    ```bash copy
+    journalctl -u ottofms-proofgeist-com
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+On Windows, the system error log for OttoFMS is a file named "stderr.log" located in the same folder as the OttoFMS logs.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+  
+On MacOS, the system error log for OttoFMS is a file named "stderr.log" located in the same folder as the OttoFMS logs.
+
+  </Tabs.Tab>
+
+</Tabs>
+These logs will have raw Node errors. These are often not very user friendly, but they can help you determine what is going on. We hvae listed a few common errors below, but if you are still unable to resolve the issue, please reach out in the [Community Forum](https://community.proofgeist.com) for help.
+
+### Reach out in the Community Forum
+
+If you are still unable to access the web console, please reach out in the [Community Forum](https://community.proofgeist.com) for help.
+
+</Steps>
+
+# Common Errors
+
+## TypeError: terminated or Signal Killed (SIGKILL) or Segmentation Fault
+
+This error is caused by OttoFMS running out of memory and being terminated by the OS. This may happen if you run multiple processes in parallel, or if OttoFMS attempts to use too much memory. If you did not attempt to run mutiple OttoFMS actions simultaneously and this error is occuring, please reach out in the [Community Forum](https://community.proofgeist.com) for help.
+
+You should also make sure your serer has enough memory and virtual memory to run OttoFMS. See our [recommended specifications](/tech-specs#production-servers) for OttoFMS servers for some base specifications.
+
+## Error: EACCES: permission denied, mkdir '/backups/OttoFMS'
+
+This error is caused by a permissions issue on the backup folder. OttoFMS uses the fmserver user to create the OttoFMS folder in the backups directory. To correct, ensure that your fmserver user has the necessary permissions to create the OttoFMS folder.
+
+## DeprecationWarning: Buffer() is deprecated ...
+
+This error is expected when you are running OttoFMS. It does not cause any problems, but we are working on a fix to remove this warning.
