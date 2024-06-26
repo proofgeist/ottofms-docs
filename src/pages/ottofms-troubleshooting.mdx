@@ -23,6 +23,15 @@ This is likely caused by running out of memory. On many Operating Systems a proc
 
 A similar error can be caused by having corrupted FileMaker files when you try to run a migration. If you are getting Segmentation Fault errors, try to run recovery on your file and migrate it again.
 
+## I ran a migration with OttoFMS and now FileMaker reports that my file is corrupted
+
+OttoFMS uses the FileMaker Data Migration Tool to migrate files. OttoFMS does not have the ability to cause corruption in your file, but it is possible that the file may be in a corrupted state before migration. If you are getting errors when migrating a file try the following:
+
+1. Run recovery on the source and destination files. This will tell you where the corruption is.
+2. Handle the corruption. For help with this, please check our the [Claris Recovery docs](https://help.claris.com/en/pro-help/content/recovering.html) or reach out in the [Claris Community Forum](https://community.claris.com).
+3. Ensure all Recovered Libraries in the files are removed before running the migration again.
+4. Run the migration again.
+
 ## I installed or updated OttoFMS but I can't access the web console
 
 If you've just installed or upgraded OttoFMS and you cannot access the web console, there may be an issue with the http server or an error on startup. You can try the following to resolve the issue:
