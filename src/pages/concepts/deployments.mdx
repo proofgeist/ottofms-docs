@@ -3,6 +3,8 @@ subTitle: "Understanding Deployments with OttoFMS"
 description: "This section covers the basics of Deployments in OttoFMS. They are a key part of how automated data migrations and other deployment types work with OttoFMS and FileMaker Server"
 ---
 
+import { Callout } from "nextra/components";
+
 # Deployments
 
 Deployments are what we used to call Migrations. They automate the process of moving files from server to server or from a prebuilt set of files to a server. They will often involve migrating data from a previous version of a file into a new version of a file, but they don't have to.
@@ -14,6 +16,12 @@ Deployments can be used to migrate data onto a new version of your schema, to in
 Deployments are configured using [OttoDeploy.fmp12](/ottodeploy), (formerly called Migrator.fmp12 from Otto v3) and then sent to the destination server running OttoFMS using OttoDeploy or the [OttoFMS Developer API](/apidoc).
 
 The destination server will then run the deployment immediately or at a scheduled time (configured in the deployment payload).
+
+<Callout type="info">
+  You can think of Deployments in OttoDeploy as your deployment recipes, while
+  Deployments in OttoFMS are the actual deployments that have been or will be
+  run.
+</Callout>
 
 ### Sources and Destinations
 
