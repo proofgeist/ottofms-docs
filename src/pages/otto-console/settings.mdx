@@ -74,6 +74,10 @@ After entering this information, click the "Test" button to verify that OttoFMS 
 
 OttoFMS will create a FileMaker Server Scheduled Backup named `OTTO_OFFSITE`. By default it will backup all databases, to a folder it creates within the Remote Folder Path that you setup. You can modify the schedule to adjust what gets backed up and when, but you **should not change the name of the backup schedule**.
 
+### Including External Container Data
+
+If you have additional Container Data Folders, they can be included in the backup to your offsite storage. Simply toggle the "Include External Container Data Folder" toggles for whichever folders you want to include in your backups and they will be included going forward.
+
 ## Deployment Settings
 
 During each deployment, OttoFMS creates a backup of each file before making any changes. This setting here allows to choose how many backups from these deployments you want to keep. The larger the number, the more space it will take up on your server.
