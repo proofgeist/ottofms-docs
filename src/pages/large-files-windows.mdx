@@ -24,7 +24,11 @@ This only effects deployments that are using install or replace as the file oper
 
 Mac and Linux servers are not affected by these limitations.
 
-## The solution
+## Recommended soution
+
+Our recommended solution is to use the ["Push Build"](/ottodeploy-features/deployments/advanced-options#build-options) option (available in OttoFMS version 4.5.0 and OttoDeploy 1.2.6) to push the build from the source server to the destination server. This will avoid the Windows IIS throttling issue and allow for faster transfers.
+
+## Alternate solution
 
 You can build ahead of time using the [build](/concepts/builds) process and a manual transfer to a webserver or other location. Then use the [Build URL](/concepts/public-builds) method to do deployment.
 
