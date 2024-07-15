@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.4.0",
+    "version": "4.5.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -1037,6 +1037,72 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetOttoApiBuildBuildIdStatusNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/build/{buildId}/publish": {
+      "post": {
+        "operationId": "PostOttoApiBuildBuildIdPublish",
+        "summary": "Publish Build",
+        "description": "Publish a build to another server or an offsite location",
+        "tags": [
+          "Build"
+        ],
+        "parameters": [
+          {
+            "name": "buildId",
+            "in": "path",
+            "required": true,
+            "description": "POST /otto/api/build/:buildId/publish Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PostOttoApiBuildBuildIdPublishParameterBuildId"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/build/:buildId/publish Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiBuildBuildIdPublishRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/build/:buildId/publish Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiBuildBuildIdPublishPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/build/:buildId/publish Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiBuildBuildIdPublishNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -3455,9 +3521,97 @@
             "default": 1,
             "description": "The amount of memory used by OttoFMS to zip the build. Higher values will let the process use more memory to zip and will make the process faster. Lower values will use less memory and will make the process slower."
           },
+          "publish": {
+            "type": "object",
+            "properties": {
+              "destinations": {
+                "type": "array",
+                "items": {
+                  "discriminator": {
+                    "propertyName": "type"
+                  },
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "const": "server"
+                        },
+                        "serverUrl": {
+                          "type": "string"
+                        },
+                        "apiKey": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "serverUrl",
+                        "apiKey"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "const": "http_folder"
+                        },
+                        "subFolder": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "destinations"
+            ]
+          },
+          "chainedAction": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "build_start",
+                  "deployment_start"
+                ]
+              },
+              "sendOnFailure": {
+                "type": "boolean",
+                "default": false,
+                "description": "If set to true, the subsequent action will be sent even if the previous action fails"
+              },
+              "url": {
+                "type": "string",
+                "format": "url",
+                "description": "URL to send subsequent action to"
+              },
+              "apiKey": {
+                "type": "string",
+                "description": "API Key for subsequent action"
+              },
+              "input": {
+                "format": "any",
+                "description": "Input for subsequent action"
+              }
+            },
+            "required": [
+              "type",
+              "url",
+              "apiKey"
+            ]
+          },
           "buildId": {
             "type": "string",
-            "default": "build_wcYgNhY9Hcbk"
+            "default": "build_N7zq0cbFCUhV"
           }
         },
         "required": [
@@ -3574,6 +3728,7 @@
                               "done",
                               "closing",
                               "opening",
+                              "post-build steps",
                               "unknown phase"
                             ]
                           },
@@ -3904,6 +4059,7 @@
                         "done",
                         "closing",
                         "opening",
+                        "post-build steps",
                         "unknown phase"
                       ]
                     },
@@ -4009,6 +4165,144 @@
         "required": [
           "response",
           "messages"
+        ]
+      },
+      "PostOttoApiBuildBuildIdPublishParameterBuildId": {
+        "type": "string"
+      },
+      "PostOttoApiBuildBuildIdPublishPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "message": {
+                "type": "string"
+              },
+              "uploadId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "success",
+              "message"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiBuildBuildIdPublishNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiBuildBuildIdPublishRequestBody": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "discriminator": {
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "server"
+                  },
+                  "serverUrl": {
+                    "type": "string"
+                  },
+                  "apiKey": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type",
+                  "serverUrl",
+                  "apiKey"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "http_folder"
+                  },
+                  "subFolder": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "destination"
         ]
       },
       "GetOttoApiDeploymentIdParameterId": {
@@ -4221,6 +4515,7 @@
                                 "done",
                                 "closing",
                                 "opening",
+                                "post-build steps",
                                 "unknown phase"
                               ]
                             },
@@ -4415,6 +4710,10 @@
                                 ]
                               }
                             ]
+                          },
+                          "pushBuild": {
+                            "type": "boolean",
+                            "description": "Push the build to the destination rather than pulling. This option can be faster than pulling the build, but requires different firewall settings. See docs for more information."
                           }
                         },
                         "required": [
@@ -4585,6 +4884,10 @@
                               }
                             },
                             "description": "The build options that get passed along to the source server"
+                          },
+                          "pushBuild": {
+                            "type": "boolean",
+                            "description": "Push the build to the destination rather than pulling. This option can be faster than pulling the build, but requires different firewall settings. See docs for more information."
                           }
                         },
                         "required": [
@@ -5424,6 +5727,10 @@
                                       ]
                                     }
                                   ]
+                                },
+                                "pushBuild": {
+                                  "type": "boolean",
+                                  "description": "Push the build to the destination rather than pulling. This option can be faster than pulling the build, but requires different firewall settings. See docs for more information."
                                 }
                               },
                               "required": [
@@ -5594,6 +5901,10 @@
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
+                                },
+                                "pushBuild": {
+                                  "type": "boolean",
+                                  "description": "Push the build to the destination rather than pulling. This option can be faster than pulling the build, but requires different firewall settings. See docs for more information."
                                 }
                               },
                               "required": [
@@ -5990,6 +6301,41 @@
                   "abortRemaining": {
                     "type": "boolean",
                     "description": "Abort remaining deployments if one fails"
+                  },
+                  "chainedAction": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "build_start",
+                          "deployment_start"
+                        ]
+                      },
+                      "sendOnFailure": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "If set to true, the subsequent action will be sent even if the previous action fails"
+                      },
+                      "url": {
+                        "type": "string",
+                        "format": "url",
+                        "description": "URL to send subsequent action to"
+                      },
+                      "apiKey": {
+                        "type": "string",
+                        "description": "API Key for subsequent action"
+                      },
+                      "input": {
+                        "format": "any",
+                        "description": "Input for subsequent action"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "url",
+                      "apiKey"
+                    ]
                   }
                 },
                 "required": [
@@ -6243,6 +6589,7 @@
                                       "done",
                                       "closing",
                                       "opening",
+                                      "post-build steps",
                                       "unknown phase"
                                     ]
                                   },
@@ -6437,6 +6784,10 @@
                                       ]
                                     }
                                   ]
+                                },
+                                "pushBuild": {
+                                  "type": "boolean",
+                                  "description": "Push the build to the destination rather than pulling. This option can be faster than pulling the build, but requires different firewall settings. See docs for more information."
                                 }
                               },
                               "required": [
@@ -6607,6 +6958,10 @@
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
+                                },
+                                "pushBuild": {
+                                  "type": "boolean",
+                                  "description": "Push the build to the destination rather than pulling. This option can be faster than pulling the build, but requires different firewall settings. See docs for more information."
                                 }
                               },
                               "required": [
