@@ -1,5 +1,36 @@
 # OttoFMS Version History
 
+## 4.5.0
+
+Released: 7/15/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.5.0/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.5.0/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.5.0/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.5.0/mac)
+
+### Minor Changes
+
+- Builds can now be published from the source server build outbox to a destination server build inbox or to the source server's HTTP folder. More options for build publish locations are planned, including web servers and offsite storage locations. This will be useful to set up public URLs to pull builds from, send builds for a deployment ahead of time so you can ensure that downtimes occur precisely when you expect them to, and more.
+- Overhauled the OttoFMS File Manager with a whole new UI and backend. The new file manager has resumable uploads, faster handling, a refresh button, and more customizable settings.
+- The FileMaker Database folders are now exposed in the OttoFMS File Manager under the "Live Databases" folder. These will not allow you to make any changes to live FileMaker files, but you will be able to see folder structure, manage external container data, and access the Removed_by_FM folders.
+- Added the additional container data folders to the OttoFMS file manager. These are displayed within the "Live Databases" folder.
+- Builds and deployments can now be chained off of each other. This allows for multi-stage deployments to different destination servers, as well as more complex build and deployment management. Support for this feature is coming to OttoDeploy soon.
+- Deployments now have a "pushBuild" option in the API. This option will upload the build from the source instead of downloading the build to the destination. When using this option, transfers of large builds from Windows servers should be significantly faster as we avoid the IIS issues that cause slow downloads.
+- OttoFMS now uses a login redirect to navigate you to your originally intended page after login. This means that if you follow a link to OttoFMS and are presented with the login page you can continue to the original page instead of being redirected to the dashboard page.
+- The webhook reciever now accepts GET requests. By default this will include all query parameters in the body sent to the reciever script, and the includeHeaders query option is still respected.
+- Converted the "Download both" button on the deployment page to download a full set of debug information. This zip will include the deployment log, the build log, the otto-info.log for 5 minutes before the deployment until 5 minutes after it end, the Event.log for that same time period, a combined log which has all four of these logs sorted by time, and a json file of server details.
+
+### Patch Changes
+
+- Made the admin api running from the OttoFMS server even hardier to issues
+- If a migration errors, subsequent migrations will no longer attempt to run while the rest of the deployment continues.
+- The settings you choose for the Databases table in the filemaker server tab will now be saved to your browser so your settings are kept across sessions.
+- Added the option to download the build log for a deployment if available.
+- Fixed an issue where the Additional Contianer Data Folder 2 would not be properly uploaded to offsite backups.
+- Prevented a bug where webhooks without .fmp12 in the url would be saved separately from webhooks with .fmp12 in the url.
+- The databases table on the filemaker server tab can now group files by status, client count, folder, sub folder, and privelage sets. This grouping will be saved off to your browser and carried across sessions.
+- The cancel button in the ip filter settings modal on the OttoFMS console works now.
+- Prevented blocking when restoring large backups.
+- Removed the 32 character limit on the encryption modal confirm field.
+
 ## 4.4.0
 
 Released: 6/20/2024
