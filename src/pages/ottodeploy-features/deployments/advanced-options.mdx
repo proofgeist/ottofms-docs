@@ -8,7 +8,7 @@ OttoDeploy exposes a set of Advanced options for deployments which can be used f
 - Add sub-deployment
 - Use a different source for each deployment
 - Abort remaining sub-deployments if one fails
-- Build settings for Just In Time builds
+- Build options
 - Using a build as a source for a deployment
 - Concurrency settings for sub-deployments
 - Selecting a specific sub-deployment or set of files to run
@@ -38,9 +38,17 @@ Using the advanced options allows you to specify a source build to deploy to you
 
 For more information on builds, see our [Builds](/concepts/builds) documentation.
 
-### Just In Time Build Options
+### Build Options
 
-For Just In Time builds in advanced deployments you can set the build options for the just in time build. See the [compression and memory](/ottodeploy-features/builds#compression-level) settings for more information.
+Advanced Deployments expose a set of build options for Just In Time builds as well as a single option for all builds.
+
+For Just In Time builds in advanced deployments you can set the build options for the build that gets run as part of the deployment. See the [compression and memory](/ottodeploy-features/builds#compression-level) settings for more information.
+
+![Build Options](/img/ottodeploy/JIT-build-options.png)
+
+For all builds in advanced deployments we expose an option to push the build from the source server to the destination server instead of the normal build pull process. This option can be used to avoid [issues with Windows IIS](/large-files-windows) when your source server is a windows server. By default this option is turned off. The "Push Build" option was introduced in OttoFMS version 4.5.0.
+
+![Deployment Build Options](/img/ottodeploy/deployment-build-options.png)
 
 ### Abort Remaining on Failure
 

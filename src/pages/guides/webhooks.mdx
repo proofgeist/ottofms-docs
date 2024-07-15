@@ -118,6 +118,12 @@ You can also use a tool like [Postman](https://www.postman.com/) to test your we
 }
 ```
 
+You can also send a GET request, but you will need to add the `?apiKey=YOUR_API_KEY` to the end of the URL. GET requests do not include a payload in the body, but you can include other query parameters in the URL:
+
+```
+https://[your.server.host]/otto/receiver/Database.fmp12/[channel]?apiKey=dk_12395874&message=Hello%20World
+```
+
 You should get something similar to this and the status code should be 200.
 
 ```json
