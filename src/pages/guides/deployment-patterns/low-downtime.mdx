@@ -1,0 +1,21 @@
+import Vimeo from "../../../components/vimeo";
+
+# Low Downtime Deployments
+
+This pattern is an example of the fastest possible deployment using OttoFMS. This pattern uses features from OttoFMS 4.5.0 and OttoDeploy 1.2.6, make sure you are running the latest version of both OttoFMS and OttoDeploy.
+
+## Problem
+
+You may have noticed when running a deployment with a Just In Time build or even with a build ahead of time, that the building and fetching process can take a long time. This process is highly reliant on your dev server and your network speed, as well as just the number of files you are deploying. While there is an option to not close the files on your destination until after the build has been fully fetched, this can cause uncertainty on downtime, and if you have a strict downtime window, this may not be an option.
+
+## Solution
+
+The solution to this problem is to create a build ahead of time and use the [Publish Build](/ottodeploy-features/builds#publish-build) option. This option will publish the build from the source server to the destination server at the end of the build. This allows you to do the entire build and fetch process ahead of time, and then use the build id to deploy the build to the destination server.
+
+## Video walkthrough
+
+<Vimeo id={"985939872"} />
+
+## Alternative solution
+
+If you would rather not run a build ahead of time, you can use the [Close files after build](/ottodeploy-features/deployments/close-additional-files) option to close the files on the destination server after the build has been fetched. This will not lower the time of the total deployment, but it will keep the file downtime lower. The issue with this option is that you have less control over when the files are close, so users may be kicked out at an unexpected time.
