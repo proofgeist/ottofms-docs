@@ -2,5 +2,6 @@
   "installing-uninstalling": "Installing / Uninstalling",
   "updating": "Updating",
   "starting-stopping": "Starting / Stopping",
-  "configuring-with-env": "Configuring OttoFMS"
+  "configuring-with-env": "Configuring OttoFMS",
+  "migrating-servers": "Migrating Servers"
 }
