@@ -4,9 +4,21 @@ import { FileTree, Steps } from "nextra/components";
 
 Public builds are builds that are hosted on a webserver and are accessible to anyone. They are used to distribute your app to your users. How widely you distribute your app is up to you. You can distribute it to a small group of testers, or you can distribute it to the entire world.
 
+There are two ways to get your build public: publish it in the HTTP folder, or place it on a seperate webserver.
+
+## Option #1: Publish a build in the HTTP folder
+
+Since FileMaker Server is running on a web server, you can use your FileMaker Server's HTTP folder to host your builds. This is the easiest way to get your build public. You can use the [Publish Builds](/concepts/builds/publishing-builds) page to learn more about how to publish a build to the HTTP folder.
+
+Once your build is published to the HTTP folder, you will be able to deploy from it from a url similar to `https://[server]/[subfolder (if defined)]/[build_id]/manifest.json`. For example, if I made a build with the id `my-build` and I published it to the HTTP folder with a subfolder of 'example_1', I could deploy it from the url `https://[server]/example_1/my-build/manifest.json`.
+
+## Option #2: Host a build on a webserver
+
+If you want to use a different webserver or web publishing service, you'll need to set it up manually.
+
 <Steps>
 ### Use OttoDeploy to configure your build.
-OttoDeploy's build interface walks you through the process of choosing the files to include in the build, and whether to clone or copy them, and how to run a script before the build to prepare your files.
+[OttoDeploy's build interface](/ottodeploy-features/builds#build-detail) walks you through the process of choosing the files to include in the build, and whether to clone or copy them, and how to run a script before the build to prepare your files.
 
 ### Run the build
 

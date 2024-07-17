@@ -1,0 +1,7 @@
+{
+  "what-happens-during-deployments": "What happens during a deployment?",
+  "advanced-deployments": "Advanced Deployments",
+  "schedules": "Scheduled Deployments",
+  "concurrency": "Concurrency",
+  "post-deployment-scripts": "Post Deployment Scripts"
+}

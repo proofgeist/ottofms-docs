@@ -20,6 +20,16 @@ const nextConfig = {
         destination: "/concepts/deployments/concurrency",
         permanent: true,
       },
+      {
+        source: "/concepts/schedules",
+        destination: "/concepts/deployments/schedules",
+        permanent: true,
+      },
+      {
+        source: "/concepts/public-builds",
+        destination: "/concepts/builds/public-builds",
+        permanent: true,
+      },
     ];
   },
   rewrites: async () => {
