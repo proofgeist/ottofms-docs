@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 # Migrating OttoFMS install to a new server
 
 There may come a time when you need to redeploy a server and need to keep all of your OttoFMS Data so that the new server will work on startup. Generally webhooks and API Keys will need to be copied to the new server so that they will continue to work.
@@ -5,3 +7,8 @@ There may come a time when you need to redeploy a server and need to keep all of
 OttoFMS stores all of your API Keys and Webhooks in a SQLite database, which can be copied to your new server. The database is stored in the 'db.sqlite' file in the data folder of the OttoFMS application directory. Copy this file to the same location on the new server and it will be picked up by OttoFMS on startup.
 
 If you have set up offsite backups for your server or you are using any environment variables, you should also copy the contents of the 'config' directory from the old server to the new server. This should ensure that your offsite backups continue working and that your envirnment variables are set correctly. You will also need to copy over the offsite backup schedule to make sure that the backups continue to run. Make sure to keep the name and details fo the schedule the same as OttoFMS relies on the name of the schedule to send the backups to the offsite storage.
+
+<Callout type="info">
+  Make sure to make the fmserver:fmsadmin user the owner of any files that you
+  move to the new server.
+</Callout>
