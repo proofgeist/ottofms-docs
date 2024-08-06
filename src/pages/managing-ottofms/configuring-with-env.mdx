@@ -18,6 +18,14 @@ By default, OttoFMS deletes Just In Time builds from the source server after the
 
 - KEEPJIT=1
 
+### OttoFMS Debug Logging
+
+OttoFMS has a debug logging mode that can be enabled by setting the following key:
+
+- DEBUG=true
+
+OttoFMS debug logs include more information than the default logging. This can be useful for debugging issues with builds, deployments, and other OttoFMS processes.
+
 ### App Log Debug logs
 
 The App Log can be configured to log an extra level of messages for debugging purposes. To enable debug logs, set the following key:
@@ -25,12 +33,6 @@ The App Log can be configured to log an extra level of messages for debugging pu
 - DEBUG_APP_LOG=true
 
 This enables sending logs with the "debug","verbose", and "http" levels to a new log file called `app-debug.log`. See the App Log Guide for details on setting up application logging with OttoFMS.
-
-### File Manager Logging
-
-The File Manager in the OttoFMS console can be configured to send logs to the otto-info.log for access and changes to the file system. to enable this logging set the following key:
-
-- FILE_MANAGER_LOG=true
 
 ### Just In Time Build timeout
 
@@ -43,6 +45,15 @@ When running a deployment, Just in Time builds can be used to create a build on 
 When running a backup, the backup process can take a long time. By default, OttoFMS will time out of a backup after 10 minutes. If you would like to change this timeout, you can set the following key:
 
 - BACKUP_FILE_TIMEOUT_IN_SEC=600
+
+### Build and Deployment script timeouts
+
+When running a build or deployment, OttoFMS exposes a pre-build and post-deployment script. These scripts can take a long time to run, and OttoFMS has a default timeout of 1 hour, at which point OttoFMS will throw an error and possibly abort the build or deployment. If you would like to change this timeout, you can set the following keys:
+
+- PRE_BUILD_SCRIPT_TIMEOUT_IN_SEC=3600
+- POST_DEPLOYMENT_SCRIPT_TIMEOUT_IN_SEC=3600
+
+These timeouts can also be overriden on a per-build or per-deployment basis by setting the timeout in the script options.
 
 ## Example .env File
 

@@ -1,13 +1,9 @@
 import { Callout } from "nextra/components";
 import { RaycastSnippet } from "../../components/raycast-snippets";
 
-# Settings
+# Appearance Settings
 
-The settings page is where you can configure various features of OttoFMS, such as the Appearance, Offsite Backups, and more. Each section is explained on the screen.
-
-![Settings](/img/ottofms/console/settings-page.png)
-
-## Appearance
+![Appearance Settings](/img/ottofms/console/settings/appearance-settings.png)
 
 This section allows you to control the appearance of the OttoFMS console. The settings within this section are stored with the server and will apply for any user that logs into the console and from any browser. Some settings (such as the color) are also used by OttoDeploy and the Ottomatic Cloud Console to help you recognize which server you are working with.
 
@@ -47,7 +43,9 @@ Left ( Get ( HostName ) ; 7 ) = "[PROD] "
   deeplink="raycast://extensions/eluce2/filemaker-snippets/view-snippets?context=%7B%22type%22%3A%22import%22%2C%22action%22%3A%22copy%22%2C%22snippet%22%3A%7B%22id%22%3A%22d82e3b58-b9ab-441f-919b-d4361ad39e3d%22%2C%22name%22%3A%22Otto%20Environment%20Tag%20CFs%22%2C%22type%22%3A%22customFunction%22%2C%22snippet%22%3A%22%3Cfmxmlsnippet%20type%3D%5C%22FMObjectList%5C%22%3E%3CCustomFunction%20id%3D%5C%224%5C%22%20functionArity%3D%5C%220%5C%22%20visible%3D%5C%22True%5C%22%20parameters%3D%5C%22%5C%22%20name%3D%5C%22isDevServer%5C%22%3E%3CCalculation%3E%3C!%5BCDATA%5BLeft%20(%20Get%20(%20HostName%20)%20%3B%206%20)%20%3D%20%5C%22%5BDEV%5D%20%5C%22%5D%5D%3E%3C%2FCalculation%3E%3C%2FCustomFunction%3E%3CCustomFunction%20id%3D%5C%225%5C%22%20functionArity%3D%5C%220%5C%22%20visible%3D%5C%22True%5C%22%20parameters%3D%5C%22%5C%22%20name%3D%5C%22isStagingServer%5C%22%3E%3CCalculation%3E%3C!%5BCDATA%5BLeft%20(%20Get%20(%20HostName%20)%20%3B%206%20)%20%3D%20%5C%22%5BSTG%5D%20%5C%22%5D%5D%3E%3C%2FCalculation%3E%3C%2FCustomFunction%3E%3CCustomFunction%20id%3D%5C%226%5C%22%20functionArity%3D%5C%220%5C%22%20visible%3D%5C%22True%5C%22%20parameters%3D%5C%22%5C%22%20name%3D%5C%22isProdServer%5C%22%3E%3CCalculation%3E%3C!%5BCDATA%5BLeft%20(%20Get%20(%20HostName%20)%20%3B%207%20)%20%3D%20%5C%22%5BPROD%5D%20%5C%22%5D%5D%3E%3C%2FCalculation%3E%3C%2FCustomFunction%3E%3C%2Ffmxmlsnippet%3E%22%2C%22tags%22%3A%5B%22%22%5D%2C%22description%22%3A%22Custom%20Functions%20to%20check%20the%20environment%20tag%20according%20to%20OttoFMS%22%2C%22locId%22%3A%22bf7b68e6-2795-45f0-bdda-da148a1db3ec%22%2C%22customXML%22%3Afalse%2C%22dynamicFields%22%3A%5B%5D%2C%22path%22%3A%22%2FUsers%2Fericluce%2FDocuments%2FCode%2Fwork%2Fclaris-snippets%2Fsnippets%2Fd82e3b58-b9ab-441f-919b-d4361ad39e3d.json%22%7D%2C%22showForm%22%3Afalse%2C%22values%22%3A%7B%7D%7D"
 />
 
-## Offsite Backups
+# Offsite Backups
+
+![Offsite Settings](/img/ottofms/console/settings/offsite-settings.png)
 
 If configured, OttoFMS will automatically upload backups to an offsite location. This allows you to keep more backups without taking up space on your FileMaker Server and also provides an extra layer of protection in case your server is compromised.
 
@@ -57,26 +55,46 @@ If configured, OttoFMS will automatically upload backups to an offsite location.
   offers a built-in integration to easily configure offsite backups in OttoFMS.
 </Callout>
 
+Multiple offsite backup locations and schedules can be configured for each server as of OttoFMS version 4.6.0. This allows you to back up ceratin sets of files to different locations, or with different frequencies.
+
 To configure offsite backups, you will need credentials for an S3-compatible storage provider. Upon configuration, you'll be prompted for the following information from your storage provider:
 
 - **Endpoint**: The URL of your S3-compatible storage provider.
 - **Access Key ID**
 - **Secret Access Key**
 - **Region**: Optional, but required for some storage providers
-- **Bucket Name**: The name of the bucket where backups should be stored.
-- **Remote Folder Path**: A sub-folder to store backups in, so that you can use the same bucket for multiple servers.
+- **Bucket Name**: The name of the bucket where backups should be stored.(only required if OttoFMS is unable to check for access by listing the buckets)
+- **Remote Folder Path**: A sub-folder to store backups in, so that you can use the same bucket for multiple servers. (only required if OttoFMS is unable to check for access by listing the buckets)
 
 Additional notes and examples of some of the common providers are [available here](/otto-console/settings/offsite-backup-s3-providers).
 
 After entering this information, click the "Test" button to verify that OttoFMS can connect to your storage provider. If the test is successful, click "Save" to save the configuration. If the test fails, you will be prompted to correct the information and try again.
 
-### Backup Schedule
+## Backup Schedules
 
-OttoFMS will create a FileMaker Server Scheduled Backup named `OTTO_OFFSITE`. By default it will backup all databases, to a folder it creates within the Remote Folder Path that you setup. You can modify the schedule to adjust what gets backed up and when, but you **should not change the name of the backup schedule**.
+![Offsite Schedule](/img/ottofms/console/settings/offsite-schedule.png)
+
+Offsite schedules can be created from scratch or from an existing schedule in the OttoFMS console. You can modify the schedules in the FMS Admin Console to adjust what gets backed up, which folder it backs up to, and when it backs up, but you **should not change the name of the backup schedule**.
+
+Changing the name of the schedule in the FMS Admin Console will break your offsite backups, as OttoFMS uses the name to determine that the schedule has run. If you need to change the name of your schedule, you will need to reconnect it to OttoFMS in the OttoFMS console by using adding a new schedule and using the "Use Existing Schedule" option.
+
+OttoFMS will backup the files in the folder that you specify to the offsite location and path that you setup in the schedule. The folder on the offsite location will be created if it does not exist. Backups are stored within a 'dbs' folder in the backup location.
+
+### Using an Existing Schedule
+
+If you have an existing FileMaker Server Backup Schedule in the FMS Admin Console, you can use it by selecting the "Use Existing Schedule" option when creating a new offsite backup schedule in the OttoFMS console. OttoFMS will pick up the folder the schedule backs up to and will send all files within that folder to the offsite storage.
+
+### Creating a New Schedule
+
+When creating a new schedule, OttoFMS will create a FileMaker Server Backup Schedule with the specified name. By default it will backup all databases, to a folder it creates within the Remote Folder Path that you setup. All schedule details other than the name can be modified in the FMS Admin Console.
 
 ### Including External Container Data
 
-If you have additional Container Data Folders, they can be included in the backup to your offsite storage. Simply toggle the "Include External Container Data Folder" toggles for whichever folders you want to include in your backups and they will be included going forward.
+If you have additional Container Data Folders, they can be included in the backup to your offsite storage. Simply toggle the "Include External Container Data Folder" toggles on the schedule for whichever folders you want to include in your backups and they will be included going forward.
+
+# OttoFMS Config
+
+![Config Settings](/img/ottofms/console/settings/config-settings.png)
 
 ## Deployment Settings
 

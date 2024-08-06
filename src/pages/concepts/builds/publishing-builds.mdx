@@ -15,3 +15,7 @@ Publishing a build to the source server's HTTP folder allows you to use the buil
 ### Publishing to a destination server's build inbox
 
 Publishing a build to a destination server's build inbox allows you to skip the fetching process when running a deployment using that build. This is useful if you want to reduce deployment times. For an example of how to use this feature, see the [Low Downtime Deployments](/guides/deployment-patterns/low-downtime) guide.
+
+### Publishing to an offsite storage location
+
+OttoFMS version 4.6.0 introduces the ability to publish builds to an offsite storage location. This can be useful for storing a library of previous application versions or for deploying a build to other servers that can connect to the same offsite storage location. For information on how to set up offsite storage, see the [Offsite Backups](/concepts/backups#offsite-backups) page.
