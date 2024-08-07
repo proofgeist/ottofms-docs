@@ -1,5 +1,35 @@
 # OttoFMS Version History
 
+## 4.6.0
+
+Released: 8/7/2024
+
+Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.6.0/amd), [Linux (arm)](https://console.ottomatic.cloud/downloads/ottofms/4.6.0/arm), [Windows](https://console.ottomatic.cloud/downloads/ottofms/4.6.0/win), [Mac](https://console.ottomatic.cloud/downloads/ottofms/4.6.0/mac)
+
+### Minor Changes
+
+- Offsite backups now support multiple offsite locations and offsite schedules. Multiple schedules can point at a single offsite location or different offsite locations. Existing offsite schedules and setups are converted to the new format automatically.
+- Builds can now be deployed from offsite storage locations. With publishing functionality, this allows you to put builds up on s3 locations and pull them back down onto a different server.
+- Existing backup schedules can now be used as offsite schedules. Simply select "Use Existing Schedule" when setting up an offsite schedule to send backups from that schedule offsite, no changes to the schedule needed!
+- Builds can now be published to any of the server's offsite storage locations.
+- Added a full suite of APIs to the developer API which can manage OttoFMS webhooks. Check out the API documentation for more information.
+- Exposed new APIs in the Developer API that allow you to get and set OttoFMS settings like theme color, auto register webhooks, and the number of deployment backups to keep.
+- The message sent when closing files during a deployment can now be customized.
+- Added a new endpoint in the developer API to get details about an Admin API Key.
+
+### Patch Changes
+
+- Fixed an issue where the JIT_BUILD_TIMEOUT_IN_SEC env variable was not properly applied.
+- Added a new env option DEBUG which will print extra logs to a new otto-debug.log file. This provides deeper insight into webhooks, builds, deployment, and server api calls. It can be a useful tool to provide for support questions and for troubleshooting.
+- Added more details to the response from the data api key and admin api key endpoints in the developer API.
+- Setting the "Max backups to keep" setting on an offsite backup schedule to 0 will now properly rename the backup folder to include the timestamp, send the timestamped folder to your offsite location, and delete the folder after the offsite is sent. This ensures that the offsite backups do not take up any space on your server after they have been sent to your offsite location.
+- Added a "Run Now" button to the OttoFMS Offsite Backup Settings which will immediately run the selected offsite backup schedule and send the backups to your offsite.
+- Usage data now includes a count of webhooks sent.
+- Made the JIT build poller hardier to errors.
+- Increased the default timeout time of pre-build and post-deployment scripts from 2 minutes to 1 hour. These values can be overriden using new env variables POST_DEPLOYMENT_SCRIPT_TIMEOUT_IN_SEC and PRE_BUILD_SCRIPT_TIMEOUT_IN_SEC.
+- Usage data now includes offsite backups. Data sent is the number of files, size of the files, and time elapsed.
+- Fixed an error where using a Data API Key for the incorrect database would crash OttoFMS.
+
 ## 4.5.0
 
 Released: 7/15/2024
@@ -15,7 +45,7 @@ Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.5.0/amd
 - Builds and deployments can now be chained off of each other. This allows for multi-stage deployments to different destination servers, as well as more complex build and deployment management. Support for this feature is coming to OttoDeploy soon.
 - Deployments now have a "pushBuild" option in the API. This option will upload the build from the source instead of downloading the build to the destination. When using this option, transfers of large builds from Windows servers should be significantly faster as we avoid the IIS issues that cause slow downloads.
 - OttoFMS now uses a login redirect to navigate you to your originally intended page after login. This means that if you follow a link to OttoFMS and are presented with the login page you can continue to the original page instead of being redirected to the dashboard page.
-- The webhook reciever now accepts GET requests. By default this will include all query parameters in the body sent to the reciever script, and the includeHeaders query option is still respected.
+- The webhook receiver now accepts GET requests. By default this will include all query parameters in the body sent to the reciever script, and the includeHeaders query option is still respected.
 - Converted the "Download both" button on the deployment page to download a full set of debug information. This zip will include the deployment log, the build log, the otto-info.log for 5 minutes before the deployment until 5 minutes after it end, the Event.log for that same time period, a combined log which has all four of these logs sorted by time, and a json file of server details.
 
 ### Patch Changes
@@ -24,9 +54,9 @@ Download for [Linux](https://console.ottomatic.cloud/downloads/ottofms/4.5.0/amd
 - If a migration errors, subsequent migrations will no longer attempt to run while the rest of the deployment continues.
 - The settings you choose for the Databases table in the filemaker server tab will now be saved to your browser so your settings are kept across sessions.
 - Added the option to download the build log for a deployment if available.
-- Fixed an issue where the Additional Contianer Data Folder 2 would not be properly uploaded to offsite backups.
+- Fixed an issue where the Additional Container Data Folder 2 would not be properly uploaded to offsite backups.
 - Prevented a bug where webhooks without .fmp12 in the url would be saved separately from webhooks with .fmp12 in the url.
-- The databases table on the filemaker server tab can now group files by status, client count, folder, sub folder, and privelage sets. This grouping will be saved off to your browser and carried across sessions.
+- The databases table on the filemaker server tab can now group files by status, client count, folder, sub folder, and privilege sets. This grouping will be saved off to your browser and carried across sessions.
 - The cancel button in the ip filter settings modal on the OttoFMS console works now.
 - Prevented blocking when restoring large backups.
 - Removed the 32 character limit on the encryption modal confirm field.
