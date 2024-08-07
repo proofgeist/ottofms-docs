@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.5.0",
+    "version": "4.6.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -130,11 +130,129 @@
         }
       }
     },
+    "/otto/api/settings": {
+      "patch": {
+        "operationId": "PatchOttoApiSettings",
+        "summary": "Update Server Settings",
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/settings Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiSettingsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/settings Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiSettingsPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/settings Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiSettingsNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "GetOttoApiSettings",
+        "summary": "Get Server Settings",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/settings Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsPositiveResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {
+                        "environmentTag": null,
+                        "environmentTagColor": null,
+                        "serverNickname": "",
+                        "maxDeploymentBackups": 3,
+                        "maxOutboxBuilds": 3,
+                        "syncToHostname": false,
+                        "auto-register-webhook": true,
+                        "custom-color": null,
+                        "theme-color": null
+                      },
+                      "messages": [
+                        {
+                          "code": 0,
+                          "text": "ok"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/settings Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/otto/api/settings/offsite": {
       "get": {
         "operationId": "GetOttoApiSettingsOffsite",
-        "summary": "Get Offsite Backup Settings",
-        "description": "Get Offsite Backup Settings",
+        "summary": "[Deprecated] Get Offsite Backup Settings",
         "tags": [
           "Settings"
         ],
@@ -176,8 +294,7 @@
       },
       "post": {
         "operationId": "PostOttoApiSettingsOffsite",
-        "summary": "Update Offsite Backup Settings",
-        "description": "Update Offsite Backup Settings with new S3 information",
+        "summary": "[Deprecated] Update Offsite Backup Settings",
         "tags": [
           "Settings"
         ],
@@ -191,9 +308,9 @@
               "examples": {
                 "example1": {
                   "value": {
+                    "endpoint": "https://my-endpoint.com",
                     "access_key_id": "my-access-key",
                     "secret_access_key": "my-secret-key",
-                    "endpoint": "https://my-endpoint.com",
                     "bucketName": "my-bucket-name",
                     "remotePath": "/remote-path",
                     "setupBackupSchedule": true
@@ -254,8 +371,7 @@
       },
       "delete": {
         "operationId": "DeleteOttoApiSettingsOffsite",
-        "summary": "Remove Offsite Backup Settings",
-        "description": "Remove Offsite Backup Settings",
+        "summary": "[Deprecated] Remove Offsite Backup Settings",
         "tags": [
           "Settings"
         ],
@@ -276,6 +392,515 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/settings/offsite/remotes": {
+      "get": {
+        "operationId": "GetOttoApiSettingsOffsiteRemotes",
+        "summary": "Get Offsite Remotes",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/settings/offsite/remotes Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteRemotesPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/settings/offsite/remotes Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteRemotesNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "PostOttoApiSettingsOffsiteRemotes",
+        "summary": "Add Offsite Remote",
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/settings/offsite/remotes Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRemotesRequestBody"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "remote_name": "remote_name_1",
+                    "endpoint": "https://s3.us-east-1.amazonaws.com",
+                    "access_key_id": "AKIAIGMFG4BqweWD3T7Q",
+                    "secret_access_key": "ewqewd3T7Q",
+                    "region": "us-east-1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/settings/offsite/remotes Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRemotesPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/settings/offsite/remotes Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRemotesNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/settings/offsite/remotes/{remote_name}": {
+      "delete": {
+        "operationId": "DeleteOttoApiSettingsOffsiteRemotesRemoteName",
+        "summary": "Delete Offsite Remote",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "remote_name",
+            "in": "path",
+            "required": true,
+            "description": "DELETE /otto/api/settings/offsite/remotes/:remote_name Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteRemotesRemoteNameParameterRemoteName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DELETE /otto/api/settings/offsite/remotes/:remote_name Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteRemotesRemoteNamePositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "DELETE /otto/api/settings/offsite/remotes/:remote_name Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteRemotesRemoteNameNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "PatchOttoApiSettingsOffsiteRemotesRemoteName",
+        "summary": "Edit Offsite Remote",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "remote_name",
+            "in": "path",
+            "required": true,
+            "description": "remote location name. this value will be slugified",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteRemotesRemoteNameParameterRemoteName"
+            },
+            "examples": {
+              "example1": {
+                "value": "remote_name_1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/settings/offsite/remotes/:remote_name Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteRemotesRemoteNameRequestBody"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "endpoint": "https://s3.us-east-1.amazonaws.com",
+                    "access_key_id": "AKIAIGMFG4BqweWD3T7Q",
+                    "secret_access_key": "ewqewd3T7Q",
+                    "region": "us-east-1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/settings/offsite/remotes/:remote_name Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteRemotesRemoteNamePositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/settings/offsite/remotes/:remote_name Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteRemotesRemoteNameNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/settings/offsite/remotes/{remote_name}/buckets": {
+      "get": {
+        "operationId": "GetOttoApiSettingsOffsiteRemotesRemoteNameBuckets",
+        "summary": "Get Buckets for Offsite Remote",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "remote_name",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/settings/offsite/remotes/:remote_name/buckets Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteRemotesRemoteNameBucketsParameterRemoteName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/settings/offsite/remotes/:remote_name/buckets Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteRemotesRemoteNameBucketsPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/settings/offsite/remotes/:remote_name/buckets Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteRemotesRemoteNameBucketsNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/settings/offsite/schedules": {
+      "get": {
+        "operationId": "GetOttoApiSettingsOffsiteSchedules",
+        "summary": "Get Offsite Schedules",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/settings/offsite/schedules Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteSchedulesPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/settings/offsite/schedules Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiSettingsOffsiteSchedulesNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "PostOttoApiSettingsOffsiteSchedules",
+        "summary": "Create Offsite Schedule",
+        "tags": [
+          "Settings"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/settings/offsite/schedules Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteSchedulesRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/settings/offsite/schedules Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteSchedulesPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/settings/offsite/schedules Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteSchedulesNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/settings/offsite/schedules/{name}": {
+      "patch": {
+        "operationId": "PatchOttoApiSettingsOffsiteSchedulesName",
+        "summary": "Edit Offsite Schedule",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "PATCH /otto/api/settings/offsite/schedules/:name Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteSchedulesNameParameterName"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/settings/offsite/schedules/:name Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteSchedulesNameRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/settings/offsite/schedules/:name Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteSchedulesNamePositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/settings/offsite/schedules/:name Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiSettingsOffsiteSchedulesNameNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiSettingsOffsiteSchedulesName",
+        "summary": "Delete Offsite Schedule",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "DELETE /otto/api/settings/offsite/schedules/:name Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteSchedulesNameParameterName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DELETE /otto/api/settings/offsite/schedules/:name Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteSchedulesNamePositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "DELETE /otto/api/settings/offsite/schedules/:name Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiSettingsOffsiteSchedulesNameNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -358,7 +983,6 @@
       "post": {
         "operationId": "PostOttoApiRestart",
         "summary": "Restart OttoFMS",
-        "description": "Restart OttoFMS",
         "tags": [
           "Settings"
         ],
@@ -413,7 +1037,7 @@
       "post": {
         "operationId": "PostOttoApiScriptRunViaSchedule",
         "summary": "Run a script via schedule",
-        "description": "### Run a script via schedule  \nRun a script using the FileMaker Scheduled Script Scripting Engine.\nIt is an altertantive to running a script via the Data API, oData API\nor Custom Web Publishing. Unlike those, this method doesn't require an\nan accoint with an extended privelege set, other than the one required\nto run on a Server.  \n\nThe Schedule will be created, run and then deleted.",
+        "description": "### Run a script via schedule  \nRun a script using the FileMaker Scheduled Script Scripting Engine.\nIt is an alterantive to running a script via the Data API, oData API,\nor Custom Web Publishing. Unlike those, this method doesn't require an\nan account with an extended privelege set, other than the one required\nto run on a Server.  \n\nThe Schedule will be created, run and then deleted.",
         "tags": [
           "Scripts"
         ],
@@ -633,7 +1257,6 @@
       "post": {
         "operationId": "PostOttoApiFmFileRename",
         "summary": "Rename a File",
-        "description": "Rename a File",
         "tags": [
           "FileMaker Files"
         ],
@@ -790,7 +1413,7 @@
       "get": {
         "operationId": "GetOttoApiBuildList",
         "summary": "List Builds",
-        "description": "List all builds on the server",
+        "description": "List all builds in the server outbox",
         "tags": [
           "Build"
         ],
@@ -940,7 +1563,6 @@
       "delete": {
         "operationId": "DeleteOttoApiBuildBuildId",
         "summary": "Remove a build",
-        "description": "### Remove a build",
         "tags": [
           "Build"
         ],
@@ -996,7 +1618,6 @@
       "get": {
         "operationId": "GetOttoApiBuildBuildIdStatus",
         "summary": "Get build status",
-        "description": "### Get build status",
         "tags": [
           "Build"
         ],
@@ -1236,7 +1857,6 @@
       "get": {
         "operationId": "GetOttoApiDeployment",
         "summary": "List Deployments",
-        "description": "Returns a list of deployments",
         "tags": [
           "Deployment"
         ],
@@ -1586,6 +2206,15 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PostOttoApiAdminApiKeyRequestBody"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "label": "OttoFMS Admin API Key",
+                    "user": "admin",
+                    "pass": "admin"
+                  }
+                }
               }
             }
           }
@@ -1629,7 +2258,6 @@
       "get": {
         "operationId": "GetOttoApiAdminApiKey",
         "summary": "Get all Admin API Keys",
-        "description": "### Get all Admin Api Keys",
         "tags": [
           "Admin API Keys"
         ],
@@ -1673,8 +2301,7 @@
     "/otto/api/admin-api-key/{key}": {
       "patch": {
         "operationId": "PatchOttoApiAdminApiKeyKey",
-        "summary": "Update an Admin API Key",
-        "description": "### Update an Admin Api Key",
+        "summary": "Update an Admin API Key label",
         "tags": [
           "Admin API Keys"
         ],
@@ -1686,6 +2313,11 @@
             "description": "PATCH /otto/api/admin-api-key/:key Parameter",
             "schema": {
               "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyParameterKey"
+            },
+            "examples": {
+              "example1": {
+                "value": "ak_KFji7VzNDOasdfqwerqOXFLJOhW"
+              }
             }
           }
         ],
@@ -1695,6 +2327,13 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyRequestBody"
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "label": "OttoFMS Admin API Key (updated)"
+                  }
+                }
               }
             }
           }
@@ -1737,8 +2376,7 @@
       },
       "delete": {
         "operationId": "DeleteOttoApiAdminApiKeyKey",
-        "summary": "Remove an API Key",
-        "description": "### Remove an Api Key",
+        "summary": "Remove an Admin API Key",
         "tags": [
           "Admin API Keys"
         ],
@@ -1750,6 +2388,11 @@
             "description": "DELETE /otto/api/admin-api-key/:key Parameter",
             "schema": {
               "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyParameterKey"
+            },
+            "examples": {
+              "example1": {
+                "value": "ak_KFji7VzNDOasdfqwerqOXFLJOhW"
+              }
             }
           }
         ],
@@ -1770,6 +2413,64 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteOttoApiAdminApiKeyKeyNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "GetOttoApiAdminApiKeyKey",
+        "summary": "Get an Admin API Key",
+        "tags": [
+          "Admin API Keys"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/admin-api-key/:key Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiAdminApiKeyKeyParameterKey"
+            },
+            "examples": {
+              "example1": {
+                "value": "ak_KFji7VzNDOasdfqwerqOXFLJOhW"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/admin-api-key/:key Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeyKeyPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/admin-api-key/:key Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiAdminApiKeyKeyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -1847,7 +2548,6 @@
       "get": {
         "operationId": "GetOttoApiApiKey",
         "summary": "Get all Data API Keys",
-        "description": "### Get all Data API Keys",
         "tags": [
           "Data API Keys"
         ],
@@ -1892,7 +2592,6 @@
       "get": {
         "operationId": "GetOttoApiApiKeyKey",
         "summary": "Get a Data API Key",
-        "description": "### Get a Data Api Key",
         "tags": [
           "Data API Keys"
         ],
@@ -1946,7 +2645,6 @@
       "delete": {
         "operationId": "DeleteOttoApiApiKeyKey",
         "summary": "Remove a Data API Key",
-        "description": "### Remove a Data Api Key",
         "tags": [
           "Data API Keys"
         ],
@@ -2002,7 +2700,6 @@
       "post": {
         "operationId": "PostOttoApiApiKeyKeyLogout",
         "summary": "Logout a Data API Key",
-        "description": "### Logout a Data API Key",
         "tags": [
           "Data API Keys"
         ],
@@ -2044,6 +2741,273 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/webhooks": {
+      "get": {
+        "operationId": "GetOttoApiWebhooks",
+        "summary": "Get Webhooks",
+        "tags": [
+          "Webhooks"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/webhooks Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiWebhooksPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/webhooks Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiWebhooksNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "PostOttoApiWebhooks",
+        "summary": "Register Webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/webhooks Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiWebhooksRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/webhooks Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiWebhooksPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/webhooks Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiWebhooksNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/webhooks/{id}": {
+      "get": {
+        "operationId": "GetOttoApiWebhooksId",
+        "summary": "Get Webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Webhook ID (retreive from GET /webhooks)",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiWebhooksIdParameterId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/webhooks/:id Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiWebhooksIdPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/webhooks/:id Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiWebhooksIdNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "PatchOttoApiWebhooksId",
+        "summary": "Update Webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Webhook ID (retreive from GET /webhooks)",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiWebhooksIdParameterId"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/webhooks/:id Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiWebhooksIdRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/webhooks/:id Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiWebhooksIdPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/webhooks/:id Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiWebhooksIdNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiWebhooksId",
+        "summary": "Unregister Webhook",
+        "tags": [
+          "Webhooks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Webhook ID (retreive from GET /webhooks)",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiWebhooksIdParameterId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DELETE /otto/api/webhooks/:id Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiWebhooksIdPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "DELETE /otto/api/webhooks/:id Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiWebhooksIdNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -2431,6 +3395,274 @@
           "messages"
         ]
       },
+      "PatchOttoApiSettingsPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsRequestBody": {
+        "type": "object",
+        "properties": {
+          "environmentTag": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 5
+          },
+          "environmentTagColor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": null,
+            "description": "a hex value that will be set as the theme color"
+          },
+          "serverNickname": {
+            "type": "string",
+            "default": ""
+          },
+          "maxDeploymentBackups": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "default": 3
+          },
+          "maxOutboxBuilds": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "default": 3
+          },
+          "syncToHostname": {
+            "default": false,
+            "format": "boolean (preprocessed)"
+          },
+          "auto-register-webhook": {
+            "default": true,
+            "format": "boolean (preprocessed)"
+          },
+          "themeColor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": null,
+            "description": "a hex value that will be set as the theme color"
+          }
+        }
+      },
+      "GetOttoApiSettingsPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "environmentTag": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "environmentTagColor": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "serverNickname": {
+                "type": "string",
+                "default": ""
+              },
+              "maxDeploymentBackups": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "default": 3
+              },
+              "maxOutboxBuilds": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "default": 3
+              },
+              "syncToHostname": {
+                "type": "boolean",
+                "default": false
+              },
+              "auto-register-webhook": {
+                "type": "boolean",
+                "default": true
+              },
+              "custom-color": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "default": null
+              },
+              "theme-color": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "default": null
+              }
+            }
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
       "GetOttoApiSettingsOffsitePositiveResponse": {
         "type": "object",
         "properties": {
@@ -2677,8 +3909,7 @@
           "endpoint",
           "access_key_id",
           "secret_access_key",
-          "bucketName",
-          "remotePath"
+          "bucketName"
         ]
       },
       "DeleteOttoApiSettingsOffsitePositiveResponse": {
@@ -2729,6 +3960,947 @@
         ]
       },
       "DeleteOttoApiSettingsOffsiteNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsOffsiteRemotesPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "remotes": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "access_key_id": {
+                      "type": "string"
+                    },
+                    "region": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "endpoint",
+                    "access_key_id",
+                    "region"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "remotes"
+            ],
+            "examples": [
+              {
+                "remotes": {
+                  "remote_name_1": {
+                    "type": "s3",
+                    "endpoint": "https://s3.us-east-1.amazonaws.com",
+                    "access_key_id": "AKIAIGMFG4BqweWD3T7Q",
+                    "region": "us-east-1"
+                  }
+                }
+              }
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsOffsiteRemotesNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiSettingsOffsiteRemotesPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiSettingsOffsiteRemotesNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiSettingsOffsiteRemotesRequestBody": {
+        "type": "object",
+        "properties": {
+          "remote_name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "remote location name. this value will be slugified"
+          },
+          "endpoint": {
+            "type": "string",
+            "minLength": 1
+          },
+          "access_key_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "secret_access_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "region": {
+            "type": "string"
+          },
+          "bucket_name": {
+            "type": "string",
+            "description": "Used to validate access if ListBuckets permission is not set"
+          },
+          "remote_path": {
+            "type": "string",
+            "description": "Used to validate access if ListBuckets permission is not set"
+          }
+        },
+        "required": [
+          "remote_name",
+          "endpoint",
+          "access_key_id",
+          "secret_access_key"
+        ]
+      },
+      "DeleteOttoApiSettingsOffsiteRemotesRemoteNameParameterRemoteName": {
+        "type": "string"
+      },
+      "DeleteOttoApiSettingsOffsiteRemotesRemoteNamePositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "DeleteOttoApiSettingsOffsiteRemotesRemoteNameNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsOffsiteRemotesRemoteNameParameterRemoteName": {
+        "type": "string",
+        "minLength": 1,
+        "description": "remote location name. this value will be slugified"
+      },
+      "PatchOttoApiSettingsOffsiteRemotesRemoteNamePositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsOffsiteRemotesRemoteNameNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsOffsiteRemotesRemoteNameRequestBody": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string",
+            "minLength": 1
+          },
+          "access_key_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "secret_access_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "region": {
+            "type": "string"
+          },
+          "bucket_name": {
+            "type": "string",
+            "description": "Used to validate access if ListBuckets permission is not set"
+          },
+          "remote_path": {
+            "type": "string",
+            "description": "Used to validate access if ListBuckets permission is not set"
+          }
+        },
+        "required": []
+      },
+      "GetOttoApiSettingsOffsiteRemotesRemoteNameBucketsParameterRemoteName": {
+        "type": "string"
+      },
+      "GetOttoApiSettingsOffsiteRemotesRemoteNameBucketsPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "buckets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "remote_name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "buckets",
+              "remote_name"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsOffsiteRemotesRemoteNameBucketsNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsOffsiteSchedulesPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "schedules": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "remote_name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "bucket_name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "remote_path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "include_external_container_data_1": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "include_external_container_data_2": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "last_backup": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "running": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "remote_name",
+                    "bucket_name",
+                    "remote_path",
+                    "last_backup",
+                    "running"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "schedules"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiSettingsOffsiteSchedulesNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiSettingsOffsiteSchedulesPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiSettingsOffsiteSchedulesNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiSettingsOffsiteSchedulesRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "remote_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bucket_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "remote_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "include_external_container_data_1": {
+            "type": "boolean",
+            "default": false
+          },
+          "include_external_container_data_2": {
+            "type": "boolean",
+            "default": false
+          },
+          "useExistingSchedule": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "name",
+          "remote_name",
+          "bucket_name",
+          "remote_path"
+        ]
+      },
+      "PatchOttoApiSettingsOffsiteSchedulesNameParameterName": {
+        "type": "string",
+        "minLength": 1
+      },
+      "PatchOttoApiSettingsOffsiteSchedulesNamePositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsOffsiteSchedulesNameNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiSettingsOffsiteSchedulesNameRequestBody": {
+        "type": "object",
+        "properties": {
+          "remote_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bucket_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "remote_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "include_external_container_data_1": {
+            "type": "boolean",
+            "default": false
+          },
+          "include_external_container_data_2": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": []
+      },
+      "DeleteOttoApiSettingsOffsiteSchedulesNameParameterName": {
+        "type": "string"
+      },
+      "DeleteOttoApiSettingsOffsiteSchedulesNamePositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "DeleteOttoApiSettingsOffsiteSchedulesNameNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
@@ -3090,6 +5262,13 @@
               "param": {
                 "type": "string",
                 "description": "Text string passed to the FileMaker Script"
+              },
+              "timeout": {
+                "type": "integer",
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Script timeout in seconds"
               }
             },
             "required": [
@@ -3476,6 +5655,13 @@
                   "param": {
                     "type": "string",
                     "description": "Text string passed to the FileMaker Script"
+                  },
+                  "timeout": {
+                    "type": "integer",
+                    "format": "int64",
+                    "minimum": 0,
+                    "maximum": 9007199254740991,
+                    "description": "Script timeout in seconds"
                   }
                 },
                 "required": [
@@ -3506,16 +5692,16 @@
             "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
           },
           "compressionLevel": {
-            "type": "number",
-            "format": "double",
+            "type": "integer",
+            "format": "int64",
             "minimum": -1,
             "maximum": 9,
             "default": 0,
             "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
           },
           "memoryLevel": {
-            "type": "number",
-            "format": "double",
+            "type": "integer",
+            "format": "int64",
             "minimum": 1,
             "maximum": 9,
             "default": 1,
@@ -3527,9 +5713,6 @@
               "destinations": {
                 "type": "array",
                 "items": {
-                  "discriminator": {
-                    "propertyName": "type"
-                  },
                   "oneOf": [
                     {
                       "type": "object",
@@ -3564,6 +5747,41 @@
                       },
                       "required": [
                         "type"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "const": "offsite_storage"
+                        },
+                        "offsiteLocation": {
+                          "type": "object",
+                          "properties": {
+                            "remote_name": {
+                              "type": "string"
+                            },
+                            "bucket_name": {
+                              "type": "string"
+                            },
+                            "remote_path": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "remote_name",
+                            "bucket_name",
+                            "remote_path"
+                          ]
+                        },
+                        "subFolder": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "offsiteLocation"
                       ]
                     }
                   ]
@@ -3611,7 +5829,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_N7zq0cbFCUhV"
+            "default": "build_1PDjNs8NrTT0"
           }
         },
         "required": [
@@ -3689,15 +5907,15 @@
                     "zipSize": {
                       "type": "number",
                       "format": "double",
-                      "minimum": -1.7976931348623157e+308,
+                      "minimum": 0,
                       "maximum": 1.7976931348623157e+308,
                       "description": "the size of the zip file in bytes"
                     },
                     "completedFiles": {
-                      "type": "number",
-                      "format": "double",
-                      "minimum": -1.7976931348623157e+308,
-                      "maximum": 1.7976931348623157e+308,
+                      "type": "integer",
+                      "format": "int64",
+                      "minimum": 0,
+                      "maximum": 9007199254740991,
                       "description": "The number of files finished and in the zip"
                     },
                     "message": {
@@ -3736,10 +5954,11 @@
                             "type": "string"
                           },
                           "timeElapsed": {
-                            "type": "number",
-                            "format": "double",
-                            "minimum": -1.7976931348623157e+308,
-                            "maximum": 1.7976931348623157e+308
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "time elapsed in milliseconds"
                           },
                           "file": {
                             "type": "string"
@@ -4020,15 +6239,15 @@
               "zipSize": {
                 "type": "number",
                 "format": "double",
-                "minimum": -1.7976931348623157e+308,
+                "minimum": 0,
                 "maximum": 1.7976931348623157e+308,
                 "description": "the size of the zip file in bytes"
               },
               "completedFiles": {
-                "type": "number",
-                "format": "double",
-                "minimum": -1.7976931348623157e+308,
-                "maximum": 1.7976931348623157e+308,
+                "type": "integer",
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991,
                 "description": "The number of files finished and in the zip"
               },
               "message": {
@@ -4067,10 +6286,11 @@
                       "type": "string"
                     },
                     "timeElapsed": {
-                      "type": "number",
-                      "format": "double",
-                      "minimum": -1.7976931348623157e+308,
-                      "maximum": 1.7976931348623157e+308
+                      "type": "integer",
+                      "format": "int64",
+                      "minimum": 0,
+                      "maximum": 9007199254740991,
+                      "description": "time elapsed in milliseconds"
                     },
                     "file": {
                       "type": "string"
@@ -4259,9 +6479,6 @@
         "type": "object",
         "properties": {
           "destination": {
-            "discriminator": {
-              "propertyName": "type"
-            },
             "oneOf": [
               {
                 "type": "object",
@@ -4296,6 +6513,41 @@
                 },
                 "required": [
                   "type"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "offsite_storage"
+                  },
+                  "offsiteLocation": {
+                    "type": "object",
+                    "properties": {
+                      "remote_name": {
+                        "type": "string"
+                      },
+                      "bucket_name": {
+                        "type": "string"
+                      },
+                      "remote_path": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "remote_name",
+                      "bucket_name",
+                      "remote_path"
+                    ]
+                  },
+                  "subFolder": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "type",
+                  "offsiteLocation"
                 ]
               }
             ]
@@ -4364,10 +6616,11 @@
                       "type": "string"
                     },
                     "timeElapsed": {
-                      "type": "number",
-                      "format": "double",
-                      "minimum": -1.7976931348623157e+308,
-                      "maximum": 1.7976931348623157e+308
+                      "type": "integer",
+                      "format": "int64",
+                      "minimum": 0,
+                      "maximum": 9007199254740991,
+                      "description": "time elapsed in milliseconds"
                     },
                     "file": {
                       "type": "string"
@@ -4405,10 +6658,10 @@
                 ]
               },
               "file_count": {
-                "type": "number",
-                "format": "double",
+                "type": "integer",
+                "format": "int64",
                 "minimum": 1,
-                "maximum": 1.7976931348623157e+308,
+                "maximum": 9007199254740991,
                 "description": "Number of files in the deployment"
               },
               "build_manifest": {
@@ -4476,15 +6729,15 @@
                       "zipSize": {
                         "type": "number",
                         "format": "double",
-                        "minimum": -1.7976931348623157e+308,
+                        "minimum": 0,
                         "maximum": 1.7976931348623157e+308,
                         "description": "the size of the zip file in bytes"
                       },
                       "completedFiles": {
-                        "type": "number",
-                        "format": "double",
-                        "minimum": -1.7976931348623157e+308,
-                        "maximum": 1.7976931348623157e+308,
+                        "type": "integer",
+                        "format": "int64",
+                        "minimum": 0,
+                        "maximum": 9007199254740991,
                         "description": "The number of files finished and in the zip"
                       },
                       "message": {
@@ -4523,10 +6776,11 @@
                               "type": "string"
                             },
                             "timeElapsed": {
-                              "type": "number",
-                              "format": "double",
-                              "minimum": -1.7976931348623157e+308,
-                              "maximum": 1.7976931348623157e+308
+                              "type": "integer",
+                              "format": "int64",
+                              "minimum": 0,
+                              "maximum": 9007199254740991,
+                              "description": "time elapsed in milliseconds"
                             },
                             "file": {
                               "type": "string"
@@ -4620,7 +6874,7 @@
                           "deploymentId": {
                             "type": "integer",
                             "format": "int64",
-                            "minimum": 0,
+                            "exclusiveMinimum": 0,
                             "maximum": 9007199254740991,
                             "description": "The previous sub-deployment id"
                           },
@@ -4837,6 +7091,13 @@
                                       "param": {
                                         "type": "string",
                                         "description": "Text string passed to the FileMaker Script"
+                                      },
+                                      "timeout": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991,
+                                        "description": "Script timeout in seconds"
                                       }
                                     },
                                     "required": [
@@ -4867,16 +7128,16 @@
                                 "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
                               },
                               "compressionLevel": {
-                                "type": "number",
-                                "format": "double",
+                                "type": "integer",
+                                "format": "int64",
                                 "minimum": -1,
                                 "maximum": 9,
                                 "default": 0,
                                 "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
                               },
                               "memoryLevel": {
-                                "type": "number",
-                                "format": "double",
+                                "type": "integer",
+                                "format": "int64",
                                 "minimum": 1,
                                 "maximum": 9,
                                 "default": 1,
@@ -4894,6 +7155,46 @@
                           "type",
                           "serverUrl",
                           "auth"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "offsite_storage",
+                            "description": "Fetches a backup from an offsite storage location"
+                          },
+                          "buildId": {
+                            "type": "string"
+                          },
+                          "offsiteLocation": {
+                            "type": "object",
+                            "properties": {
+                              "remote_name": {
+                                "type": "string"
+                              },
+                              "bucket_name": {
+                                "type": "string"
+                              },
+                              "remote_path": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "remote_name",
+                              "bucket_name",
+                              "remote_path"
+                            ]
+                          },
+                          "subFolder": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "buildId",
+                          "offsiteLocation"
                         ]
                       }
                     ]
@@ -4941,6 +7242,13 @@
                           "param": {
                             "type": "string",
                             "description": "Text string passed to the FileMaker Script"
+                          },
+                          "timeout": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "Script timeout in seconds"
                           }
                         },
                         "required": [
@@ -5234,6 +7542,10 @@
                       "null"
                     ],
                     "properties": {
+                      "closeFilesMessage": {
+                        "type": "string",
+                        "maxLength": 200
+                      },
                       "notifications": {
                         "type": [
                           "array",
@@ -5280,8 +7592,8 @@
                 ]
               },
               "running": {
-                "type": "number",
-                "format": "double",
+                "type": "integer",
+                "format": "int64",
                 "minimum": 0,
                 "maximum": 1,
                 "description": "0 = false, 1 = true"
@@ -5637,7 +7949,7 @@
                                 "deploymentId": {
                                   "type": "integer",
                                   "format": "int64",
-                                  "minimum": 0,
+                                  "exclusiveMinimum": 0,
                                   "maximum": 9007199254740991,
                                   "description": "The previous sub-deployment id"
                                 },
@@ -5854,6 +8166,13 @@
                                             "param": {
                                               "type": "string",
                                               "description": "Text string passed to the FileMaker Script"
+                                            },
+                                            "timeout": {
+                                              "type": "integer",
+                                              "format": "int64",
+                                              "minimum": 0,
+                                              "maximum": 9007199254740991,
+                                              "description": "Script timeout in seconds"
                                             }
                                           },
                                           "required": [
@@ -5884,16 +8203,16 @@
                                       "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
                                     },
                                     "compressionLevel": {
-                                      "type": "number",
-                                      "format": "double",
+                                      "type": "integer",
+                                      "format": "int64",
                                       "minimum": -1,
                                       "maximum": 9,
                                       "default": 0,
                                       "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
                                     },
                                     "memoryLevel": {
-                                      "type": "number",
-                                      "format": "double",
+                                      "type": "integer",
+                                      "format": "int64",
                                       "minimum": 1,
                                       "maximum": 9,
                                       "default": 1,
@@ -5911,6 +8230,46 @@
                                 "type",
                                 "serverUrl",
                                 "auth"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "offsite_storage",
+                                  "description": "Fetches a backup from an offsite storage location"
+                                },
+                                "buildId": {
+                                  "type": "string"
+                                },
+                                "offsiteLocation": {
+                                  "type": "object",
+                                  "properties": {
+                                    "remote_name": {
+                                      "type": "string"
+                                    },
+                                    "bucket_name": {
+                                      "type": "string"
+                                    },
+                                    "remote_path": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "remote_name",
+                                    "bucket_name",
+                                    "remote_path"
+                                  ]
+                                },
+                                "subFolder": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "buildId",
+                                "offsiteLocation"
                               ]
                             }
                           ]
@@ -5958,6 +8317,13 @@
                                 "param": {
                                   "type": "string",
                                   "description": "Text string passed to the FileMaker Script"
+                                },
+                                "timeout": {
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "Script timeout in seconds"
                                 }
                               },
                               "required": [
@@ -6251,6 +8617,10 @@
                             "null"
                           ],
                           "properties": {
+                            "closeFilesMessage": {
+                              "type": "string",
+                              "maxLength": 200
+                            },
                             "notifications": {
                               "type": [
                                 "array",
@@ -6438,10 +8808,11 @@
                             "type": "string"
                           },
                           "timeElapsed": {
-                            "type": "number",
-                            "format": "double",
-                            "minimum": -1.7976931348623157e+308,
-                            "maximum": 1.7976931348623157e+308
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "time elapsed in milliseconds"
                           },
                           "file": {
                             "type": "string"
@@ -6479,10 +8850,10 @@
                       ]
                     },
                     "file_count": {
-                      "type": "number",
-                      "format": "double",
+                      "type": "integer",
+                      "format": "int64",
                       "minimum": 1,
-                      "maximum": 1.7976931348623157e+308,
+                      "maximum": 9007199254740991,
                       "description": "Number of files in the deployment"
                     },
                     "build_manifest": {
@@ -6550,15 +8921,15 @@
                             "zipSize": {
                               "type": "number",
                               "format": "double",
-                              "minimum": -1.7976931348623157e+308,
+                              "minimum": 0,
                               "maximum": 1.7976931348623157e+308,
                               "description": "the size of the zip file in bytes"
                             },
                             "completedFiles": {
-                              "type": "number",
-                              "format": "double",
-                              "minimum": -1.7976931348623157e+308,
-                              "maximum": 1.7976931348623157e+308,
+                              "type": "integer",
+                              "format": "int64",
+                              "minimum": 0,
+                              "maximum": 9007199254740991,
                               "description": "The number of files finished and in the zip"
                             },
                             "message": {
@@ -6597,10 +8968,11 @@
                                     "type": "string"
                                   },
                                   "timeElapsed": {
-                                    "type": "number",
-                                    "format": "double",
-                                    "minimum": -1.7976931348623157e+308,
-                                    "maximum": 1.7976931348623157e+308
+                                    "type": "integer",
+                                    "format": "int64",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991,
+                                    "description": "time elapsed in milliseconds"
                                   },
                                   "file": {
                                     "type": "string"
@@ -6694,7 +9066,7 @@
                                 "deploymentId": {
                                   "type": "integer",
                                   "format": "int64",
-                                  "minimum": 0,
+                                  "exclusiveMinimum": 0,
                                   "maximum": 9007199254740991,
                                   "description": "The previous sub-deployment id"
                                 },
@@ -6911,6 +9283,13 @@
                                             "param": {
                                               "type": "string",
                                               "description": "Text string passed to the FileMaker Script"
+                                            },
+                                            "timeout": {
+                                              "type": "integer",
+                                              "format": "int64",
+                                              "minimum": 0,
+                                              "maximum": 9007199254740991,
+                                              "description": "Script timeout in seconds"
                                             }
                                           },
                                           "required": [
@@ -6941,16 +9320,16 @@
                                       "description": "If true, OttoFMS will ensure that the files are open at the end of the build. This is useful if the files were closed when the build started but you want to ensure they are open when the build is complete."
                                     },
                                     "compressionLevel": {
-                                      "type": "number",
-                                      "format": "double",
+                                      "type": "integer",
+                                      "format": "int64",
                                       "minimum": -1,
                                       "maximum": 9,
                                       "default": 0,
                                       "description": "The compression level used by OttoFMS to compress the build zip. Higher values of this will make the zip smaller but will use more resources. Lower values will keep the .zip file big but will use less resources."
                                     },
                                     "memoryLevel": {
-                                      "type": "number",
-                                      "format": "double",
+                                      "type": "integer",
+                                      "format": "int64",
                                       "minimum": 1,
                                       "maximum": 9,
                                       "default": 1,
@@ -6968,6 +9347,46 @@
                                 "type",
                                 "serverUrl",
                                 "auth"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "offsite_storage",
+                                  "description": "Fetches a backup from an offsite storage location"
+                                },
+                                "buildId": {
+                                  "type": "string"
+                                },
+                                "offsiteLocation": {
+                                  "type": "object",
+                                  "properties": {
+                                    "remote_name": {
+                                      "type": "string"
+                                    },
+                                    "bucket_name": {
+                                      "type": "string"
+                                    },
+                                    "remote_path": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "remote_name",
+                                    "bucket_name",
+                                    "remote_path"
+                                  ]
+                                },
+                                "subFolder": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "buildId",
+                                "offsiteLocation"
                               ]
                             }
                           ]
@@ -7015,6 +9434,13 @@
                                 "param": {
                                   "type": "string",
                                   "description": "Text string passed to the FileMaker Script"
+                                },
+                                "timeout": {
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "Script timeout in seconds"
                                 }
                               },
                               "required": [
@@ -7308,6 +9734,10 @@
                             "null"
                           ],
                           "properties": {
+                            "closeFilesMessage": {
+                              "type": "string",
+                              "maxLength": 200
+                            },
                             "notifications": {
                               "type": [
                                 "array",
@@ -7354,8 +9784,8 @@
                       ]
                     },
                     "running": {
-                      "type": "number",
-                      "format": "double",
+                      "type": "integer",
+                      "format": "int64",
                       "minimum": 0,
                       "maximum": 1,
                       "description": "0 = false, 1 = true"
@@ -8291,6 +10721,11 @@
             },
             "required": [
               "key"
+            ],
+            "examples": [
+              {
+                "key": "ak_123987"
+              }
             ]
           },
           "messages": {
@@ -8388,10 +10823,10 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "number",
-                      "format": "double",
-                      "minimum": -1.7976931348623157e+308,
-                      "maximum": 1.7976931348623157e+308
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "key": {
                       "type": "string"
@@ -8401,18 +10836,45 @@
                         "string",
                         "null"
                       ]
+                    },
+                    "created_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "last_used": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
                     }
                   },
                   "required": [
                     "id",
                     "key",
-                    "label"
+                    "label",
+                    "created_at",
+                    "last_used"
                   ]
                 }
               }
             },
             "required": [
               "api-keys"
+            ],
+            "examples": [
+              {
+                "api-keys": [
+                  {
+                    "id": 1,
+                    "key": "ak_KFji7VzNDOasdfqwerqOXFLJOhW",
+                    "label": "OttoFMS Admin API Key",
+                    "created_at": "2024-03-02 03:39:37",
+                    "last_used": "2024-08-05 22:32:20"
+                  }
+                ]
+              }
             ]
           },
           "messages": {
@@ -8501,6 +10963,12 @@
             "required": [
               "key",
               "label"
+            ],
+            "examples": [
+              {
+                "key": "ak_KFji7VzNDOasdfqwerqOXFLJOhW",
+                "label": "OttoFMS Admin API Key (updated)"
+              }
             ]
           },
           "messages": {
@@ -8659,6 +11127,124 @@
           "messages"
         ]
       },
+      "GetOttoApiAdminApiKeyKeyParameterKey": {
+        "type": "string"
+      },
+      "GetOttoApiAdminApiKeyKeyPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "key": {
+                "type": "string"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "created_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_used": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "key",
+              "label",
+              "created_at",
+              "last_used"
+            ],
+            "examples": [
+              {
+                "id": 1,
+                "key": "ak_KFji7VzNDOasdfqwerqOXFLJOhW",
+                "label": "OttoFMS Admin API Key",
+                "created_at": "2024-03-02 03:39:37",
+                "last_used": "2024-08-05 22:32:20"
+              }
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiAdminApiKeyKeyNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
       "PostOttoApiApiKeyPositiveResponse": {
         "type": "object",
         "properties": {
@@ -8782,10 +11368,10 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "number",
-                      "format": "double",
-                      "minimum": -1.7976931348623157e+308,
-                      "maximum": 1.7976931348623157e+308
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
                     },
                     "key": {
                       "type": "string"
@@ -8795,13 +11381,38 @@
                     },
                     "user": {
                       "type": "string"
+                    },
+                    "database": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "created_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "updated_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
                     }
                   },
                   "required": [
                     "id",
                     "key",
                     "token",
-                    "user"
+                    "user",
+                    "database",
+                    "label",
+                    "created_at",
+                    "updated_at"
                   ]
                 }
               }
@@ -8884,10 +11495,10 @@
             "type": "object",
             "properties": {
               "id": {
-                "type": "number",
-                "format": "double",
-                "minimum": -1.7976931348623157e+308,
-                "maximum": 1.7976931348623157e+308
+                "type": "integer",
+                "format": "int64",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
               },
               "key": {
                 "type": "string"
@@ -8897,13 +11508,38 @@
               },
               "user": {
                 "type": "string"
+              },
+              "database": {
+                "type": "string"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "created_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
               }
             },
             "required": [
               "id",
               "key",
               "token",
-              "user"
+              "user",
+              "database",
+              "label",
+              "created_at",
+              "updated_at"
             ]
           },
           "messages": {
@@ -9137,6 +11773,819 @@
         "properties": {},
         "required": []
       },
+      "GetOttoApiWebhooksPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "webhooks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "database": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "created_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "updated_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "last_used": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "last_result": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "last_result_is_error": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "format": "int64",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "0 or 1, 1 if the last result was an error"
+                    },
+                    "active": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "format": "int64",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "0 or 1, 1 if the webhook is active"
+                    },
+                    "number_of_times_used": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "format": "int64",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "bytes_received": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "format": "double",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "url",
+                    "database",
+                    "label",
+                    "created_at",
+                    "updated_at",
+                    "last_used",
+                    "last_result",
+                    "last_result_is_error",
+                    "active",
+                    "number_of_times_used",
+                    "bytes_received"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "webhooks"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiWebhooksNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiWebhooksPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "url": {
+                "type": "string"
+              },
+              "database": {
+                "type": "string"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "created_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_used": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result_is_error": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "0 or 1, 1 if the last result was an error"
+              },
+              "active": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "0 or 1, 1 if the webhook is active"
+              },
+              "number_of_times_used": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "bytes_received": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "format": "double",
+                "minimum": 0,
+                "maximum": 1.7976931348623157e+308
+              }
+            },
+            "required": [
+              "id",
+              "url",
+              "database",
+              "label",
+              "created_at",
+              "updated_at",
+              "last_used",
+              "last_result",
+              "last_result_is_error",
+              "active",
+              "number_of_times_used",
+              "bytes_received"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiWebhooksNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiWebhooksRequestBody": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Webhook Channel"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Filename"
+          },
+          "useFileReciever": {
+            "type": "boolean",
+            "default": false,
+            "description": "Use FileReciever"
+          },
+          "label": {
+            "type": "string",
+            "description": "Label for the webhook"
+          }
+        },
+        "required": [
+          "channel",
+          "filename",
+          "label"
+        ]
+      },
+      "GetOttoApiWebhooksIdParameterId": {
+        "type": "integer",
+        "format": "int64",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991,
+        "description": "Webhook ID (retreive from GET /webhooks)"
+      },
+      "GetOttoApiWebhooksIdPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "url": {
+                "type": "string"
+              },
+              "database": {
+                "type": "string"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "created_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_used": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result_is_error": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "0 or 1, 1 if the last result was an error"
+              },
+              "active": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "0 or 1, 1 if the webhook is active"
+              },
+              "number_of_times_used": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "bytes_received": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "format": "double",
+                "minimum": 0,
+                "maximum": 1.7976931348623157e+308
+              }
+            },
+            "required": [
+              "id",
+              "url",
+              "database",
+              "label",
+              "created_at",
+              "updated_at",
+              "last_used",
+              "last_result",
+              "last_result_is_error",
+              "active",
+              "number_of_times_used",
+              "bytes_received"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiWebhooksIdNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiWebhooksIdParameterId": {
+        "type": "integer",
+        "format": "int64",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991,
+        "description": "Webhook ID (retreive from GET /webhooks)"
+      },
+      "PatchOttoApiWebhooksIdPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "url": {
+                "type": "string"
+              },
+              "database": {
+                "type": "string"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "created_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_used": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result_is_error": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "0 or 1, 1 if the last result was an error"
+              },
+              "active": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "0 or 1, 1 if the webhook is active"
+              },
+              "number_of_times_used": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "format": "int64",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "bytes_received": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "format": "double",
+                "minimum": 0,
+                "maximum": 1.7976931348623157e+308
+              }
+            },
+            "required": [
+              "id",
+              "url",
+              "database",
+              "label",
+              "created_at",
+              "updated_at",
+              "last_used",
+              "last_result",
+              "last_result_is_error",
+              "active",
+              "number_of_times_used",
+              "bytes_received"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiWebhooksIdNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiWebhooksIdRequestBody": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Label for the webhook"
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "DeleteOttoApiWebhooksIdParameterId": {
+        "type": "integer",
+        "format": "int64",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991,
+        "description": "Webhook ID (retreive from GET /webhooks)"
+      },
+      "DeleteOttoApiWebhooksIdPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "DeleteOttoApiWebhooksIdNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
       "PostOttoApiAppLogPositiveResponse": {
         "type": "object",
         "properties": {
@@ -9259,7 +12708,7 @@
     },
     {
       "name": "Server Processes",
-      "description": "Server Processes"
+      "description": "Manage FileMaker Server Processes"
     },
     {
       "name": "Settings",
@@ -9288,6 +12737,10 @@
     {
       "name": "Admin API Keys",
       "description": "Admin API Keys are used as a proxy to the FileMaker Server Admin API"
+    },
+    {
+      "name": "Webhooks",
+      "description": "Webhooks are used to send data from external services to your FileMaker solutions."
     },
     {
       "name": "Miscellaneous",
