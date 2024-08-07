@@ -164,18 +164,18 @@ If you are still unable to access the web console, please reach out in the [Comm
 
 </Steps>
 
-# Common Errors
+## Common Errors
 
-## TypeError: terminated or Signal Killed (SIGKILL) or Segmentation Fault
+### TypeError: terminated or Signal Killed (SIGKILL) or Segmentation Fault
 
 This error is caused by OttoFMS running out of memory and being terminated by the OS. This may happen if you run multiple processes in parallel, or if OttoFMS attempts to use too much memory. If you did not attempt to run mutiple OttoFMS actions simultaneously and this error is occuring, please reach out in the [Community Forum](https://community.proofgeist.com) for help.
 
 You should also make sure your serer has enough memory and virtual memory to run OttoFMS. See our [recommended specifications](/tech-specs#production-servers) for OttoFMS servers for some base specifications.
 
-## Error: EACCES: permission denied, mkdir '/backups/OttoFMS'
+### Error: EACCES: permission denied, mkdir '/backups/OttoFMS'
 
 This error is caused by a permissions issue on the backup folder. OttoFMS uses the fmserver user to create the OttoFMS folder in the backups directory. To correct, ensure that your fmserver user has the necessary permissions to create the OttoFMS folder.
 
-## DeprecationWarning: Buffer() is deprecated ...
+### DeprecationWarning: Buffer() is deprecated ...
 
 This error is expected when you are running OttoFMS. It does not cause any problems, but we are working on a fix to remove this warning.
