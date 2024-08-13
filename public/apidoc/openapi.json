@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.6.0",
+    "version": "4.6.1",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -2495,7 +2495,7 @@
       "post": {
         "operationId": "PostOttoApiApiKey",
         "summary": "Create a Data API Key",
-        "description": "### Create an OttoFMS Data API Key\n\nThis endpoint creates a Data API Key for the FileMaker file with the specified user and password.",
+        "description": "### Create an OttoFMS Data API Key\n\nThis endpoint creates a Data API Key for the FileMaker file with the specified user and password. These credentials must have the `fmrest` privilege set for the file",
         "tags": [
           "Data API Keys"
         ],
@@ -2741,6 +2741,61 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostOttoApiApiKeyKeyLogoutNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/api-key/create-only": {
+      "post": {
+        "operationId": "PostOttoApiApiKeyCreateOnly",
+        "summary": "Create a Data API Key (unauthenticated)",
+        "description": "This special endpoint doesn't require OttoFMS authentication, allowing you to create API keys with only the FileMaker File credentials. This method doesn't support the returnExisting option, so it will always create a new key if the credentials are valid.",
+        "tags": [
+          "Data API Keys"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/api-key/create-only Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiApiKeyCreateOnlyRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/api-key/create-only Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiApiKeyCreateOnlyPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/api-key/create-only Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiApiKeyCreateOnlyNegativeResponse"
                 },
                 "examples": {
                   "example1": {
@@ -5829,7 +5884,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_1PDjNs8NrTT0"
+            "default": "build_Rpk7SOKQ25Fr"
           }
         },
         "required": [
@@ -11773,6 +11828,112 @@
         "properties": {},
         "required": []
       },
+      "PostOttoApiApiKeyCreateOnlyPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "token": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "token"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiApiKeyCreateOnlyNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiApiKeyCreateOnlyRequestBody": {
+        "type": "object",
+        "properties": {
+          "database": {
+            "type": "string",
+            "description": "FileMaker File Name ending with .fmp12"
+          },
+          "label": {
+            "type": "string",
+            "default": "(no label)"
+          },
+          "user": {
+            "type": "string"
+          },
+          "pass": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "database",
+          "user",
+          "pass"
+        ]
+      },
       "GetOttoApiWebhooksPositiveResponse": {
         "type": "object",
         "properties": {
@@ -12127,10 +12288,10 @@
             "type": "string",
             "description": "Filename"
           },
-          "useFileReciever": {
+          "useFileReceiver": {
             "type": "boolean",
             "default": false,
-            "description": "Use FileReciever"
+            "description": "Use FileReceiver"
           },
           "label": {
             "type": "string",
