@@ -6,7 +6,8 @@
     "known-issues": "pnpx tsx ./scripts/build-known-issues",
     "dev": "next dev -p 3063",
     "check-links": "pnpx linkinator http://localhost:3063 --recurse --verbosity error -s \"https://console.ottomatic.cloud/downloads/ottofms/*\"",
-    "build": "pnpm known-issues && next build",
+    "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,6 +23,7 @@
     "dotenv": "^16.4.1",
     "lucide-react": "^0.317.0",
     "next": "^14.1.0",
+    "next-sitemap": "^4.2.3",
     "nextra": "^2.13.2",
     "nextra-theme-docs": "^2.13.2",
     "qs": "^6.11.2",
