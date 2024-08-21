@@ -38,6 +38,10 @@ const nextConfig = {
         source: "/apidoc",
         destination: "/apidoc/index.html",
       },
+      {
+        source: "/downloads/:path*",
+        destination: "https://console.ottomatic.cloud/downloads/:path*",
+      },
     ];
   },
 };
