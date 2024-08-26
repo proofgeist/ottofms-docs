@@ -1,5 +1,22 @@
 # OttoFMS Version History
 
+## 4.6.2
+
+Released: 8/26/2024
+
+Download for [Linux](/downloads/ottofms/4.6.2/amd), [Linux (arm)](/downloads/ottofms/4.6.2/arm), [Windows](/downloads/ottofms/4.6.2/win), [Mac](/downloads/ottofms/4.6.2/mac)
+
+### Patch Changes
+
+- Fixed an issue where scheduled deployments would send 127.0.0.1 in the slack notifications instead of the server hostname.
+- Added a new "inboxOrOutbox" query parameter to the list build endpoint which allows for listing of builds in the inbox. This option defaults to "outbox", which matches previous behavior.
+- Expanded logging for offsite backups will now list how many files and how much data was sent to the offsite location with each backup.
+- Fixed an issue where JIT build options would not all be passed through to the build on the source server.
+- Fixed an error caused by errors in the license check response causing servers to stop working.
+- Added a new "build_inbox" deployment source type. This does not change deployment behavior in any way, it just more discretely states that you are pulling the build from the build inbox rather than from a source server.
+- Fixed an issue where the webhook test would incorrectly show that a webhook failed if the webhook had a custom response.
+- Fixed an issue where folders would be parsed improperly for databases on windows servers.
+
 ## 4.6.1
 
 Released: 8/13/2024
