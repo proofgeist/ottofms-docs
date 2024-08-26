@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.6.1",
+    "version": "4.6.2",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -1416,6 +1416,17 @@
         "description": "List all builds in the server outbox",
         "tags": [
           "Build"
+        ],
+        "parameters": [
+          {
+            "name": "inboxOrOutbox",
+            "in": "query",
+            "required": false,
+            "description": "GET /otto/api/build/list Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiBuildListParameterInboxOrOutbox"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -5884,12 +5895,20 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_Rpk7SOKQ25Fr"
+            "default": "build_mzNwEda8fwbq"
           }
         },
         "required": [
           "files"
         ]
+      },
+      "GetOttoApiBuildListParameterInboxOrOutbox": {
+        "type": "string",
+        "enum": [
+          "inbox",
+          "outbox"
+        ],
+        "default": "outbox"
       },
       "GetOttoApiBuildListPositiveResponse": {
         "type": "object",
@@ -7251,6 +7270,23 @@
                           "buildId",
                           "offsiteLocation"
                         ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "build_inbox",
+                            "description": "Fetches a build from the local server's inbox"
+                          },
+                          "buildId": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "buildId"
+                        ]
                       }
                     ]
                   },
@@ -8325,6 +8361,23 @@
                                 "type",
                                 "buildId",
                                 "offsiteLocation"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "build_inbox",
+                                  "description": "Fetches a build from the local server's inbox"
+                                },
+                                "buildId": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "buildId"
                               ]
                             }
                           ]
@@ -9442,6 +9495,23 @@
                                 "type",
                                 "buildId",
                                 "offsiteLocation"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "build_inbox",
+                                  "description": "Fetches a build from the local server's inbox"
+                                },
+                                "buildId": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "buildId"
                               ]
                             }
                           ]
