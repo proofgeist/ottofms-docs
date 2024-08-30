@@ -2,7 +2,7 @@
   "deployments": "Deployments",
   "builds": "Builds",
   "servers": "Servers",
-  "auto-updates": "Auto Updater",
+  "auto-updater": "Auto Updater",
   "history": {
     "display": "hidden"
   }
