@@ -1,0 +1,9 @@
+# Otto Deploy Auto Updates
+
+Otto Deploy has a built in auto updater that will check for updates to Otto Deploy. If an update is available, it will notify you and prompt you to install the update. The notification appears in the bottom left of the screen.
+
+If it is only a UI update then the update will be very fast.  If it requires a new FileMaker file then Otto Deploy will use OttoGMS to download the new file to the server and perform a data migration. This fearure only works if you are running OttoDeploy on a server that has OttoFMS installed and running.
+
+## Requires Internet Access
+
+Otto Deploy needs to check this domain `appupdates.geistinteractive.net` to see if there is an update available. If you do not have access to this domain, Otto Deploy will not be able to check for updates. You may need to add it to your firewall or network settings.
