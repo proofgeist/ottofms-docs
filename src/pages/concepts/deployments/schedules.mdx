@@ -14,6 +14,14 @@ When you send a deployment to OttoFMS, it checks a scheduled flag and timestamp.
 
 We generate a name for the schedule, but this name can be changed. If you need to change information about a schedule after it has been set up, you can edit the scheduled time and name from the FileMaker Server Admin Console.
 
+## Cancelling a Scheduled Deployment
+
+If you need to cancel a scheduled deployment, you can do so from the Deployments List or Deployment detail view. Click the three dots menu and select "Delete". This will also delete the FileMaker Server schedule that was created for the deployment.
+
+## Scheduling Recurring Deployments
+
+In OttoFMS version 4.4.0 or later, you can set up a recurring deployment. See the guide [here](/guides/deployment-patterns/recurring-deployments) for more details.
+
 <Callout type="warning">
   Editing the selected system script or the script parameters will break the
   schedule, ensure that they are not changed if you edit the name or scheduled
