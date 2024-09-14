@@ -28,6 +28,14 @@ In OttoFMS version 4.4.0 and later, you can rename files by clicking the three d
 
 Renaming a file will close the file, change the filename, and reopen the file. This allows you to quickly rename files without having to download a copy and rename it locally. This function does not currently handle external file references or other places that reference the file name. 
 
+### Save As XML
+
+<Callout type="info">
+  This feature requires FileMaker Server 20.3 or later
+</Callout>
+
+You can use the **Save As XML** option to generate an XML representation of the database. Full Access credentials are required to generate the XML, then the XML file is downloaded to your computer. You can optionally save the XML file to the server Documents folder as well. The XML contains a timestamp so you can compare two versions of the same database to see what has changed using a tool like [FMComparison](https://www.fmcomparison.com/).
+
 ### File Encryption
 
 Servers running FileMaker Server 20.3 or higher can encrypt and decrypt files right from the OttoFMS console.
