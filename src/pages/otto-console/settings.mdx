@@ -80,6 +80,8 @@ Changing the name of the schedule in the FMS Admin Console will break your offsi
 
 OttoFMS will backup the files in the folder that you specify to the offsite location and path that you setup in the schedule. The folder on the offsite location will be created if it does not exist. Backups are stored within a 'dbs' folder in the backup location.
 
+Backup schedules can be enabled/disabled using the toggle in the Schedules table on the OttoFMS console. Disabling an offsite schedule disables the FMS Backup Schedule, so the backups will not be created or sent to the offsite location.
+
 <Callout type="warning">
   When sending an offsite backup, OttoFMS will send all files within the folder
   that you specify in your FileMaker schedule to the offsite location. Ensure

@@ -3,5 +3,5 @@
   "advanced-deployments": "Advanced Deployments",
   "schedules": "Scheduled Deployments",
   "concurrency": "Concurrency",
-  "post-deployment-scripts": "Post Deployment Scripts"
+  "deployment-scripts": "Deployment Scripts"
 }

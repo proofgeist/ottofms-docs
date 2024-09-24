@@ -1,0 +1,37 @@
+import { RaycastSnippet } from "@/components/raycast-snippets";
+
+# Pre-build Script
+
+Pre-build scripts are similar to [post-deployment scripts](/concepts/deployments/post-deployment-scripts), but they run on the build server before the build is run. They are useful for performing any necessary setup before the build is run.
+
+Pre-build scripts are defined in OttoDeploy or in the OttoFMS developer API when creating a build.
+
+## Example Use cases
+
+### File Setup
+
+If you are creating copies of a file to deploy to other servers, you may want to remove some data or set certain fields in your file before dpeloying.
+
+### Removing sensitive data
+
+If your file contains any API Keys or other data that will be different on the server you are deploying to (or that the users of your file will need to set themselves), you may want to remove that data before creating the build.
+
+## Canceling a build on error
+
+If you want to ensure your pre-build script will succeed before the build runs, you can toggle the "Stop build on script error" option in OttoDeploy. This will prevent the build from running if the pre-build script does not return a "done" status.
+
+```
+Set Variable [ $filepath ; Value: "file:" & Get(DocumentsPath) & "/otto-prebuild-result.txt" ]
+Set Variable [ $done ; Value: "done" ]
+#
+Create Data File [ “$filepath” ; Create folders: Off ]
+Open Data File [ “$filepath” ; Target: $fileId ]
+Write to Data File [ File ID: $fileId ; Data source: $done ; Write as: UTF-8 ; Append line feed ]
+Close Data File [ File ID: $fileId ]
+```
+
+<RaycastSnippet
+  title="Pre Build Done Example Scripts"
+  snippetType="script"
+  deeplink="raycast://extensions/eluce2/filemaker-snippets/view-snippets?context=%7B%22type%22%3A%22import%22%2C%22action%22%3A%22copy%22%2C%22snippet%22%3A%22https%3A%2F%2Fdocs.ottofms.com%2Fsnippets%2Fpre-build-script.json%22%2C%22showForm%22%3Afalse%2C%22values%22%3A%7B%7D%7D"
+/>

@@ -24,15 +24,12 @@
   },
   "ottofms": "Overview",
   "managing-ottofms": "Managing OttoFMS",
-  "otto-console": "OttoFMS Web Console",
+  "otto-console": "Web Console",
+  "ottofms-features": "Features",
   "dev-api": {
     "title": "Developer API Docs ↗",
     "href": "/apidoc",
     "newWindow": true
-  },
-  "api-proxy": {
-    "title": "API Proxy",
-    "href": "/api-proxy"
   },
   "ottofms-changelog": "Version History",
   "ottofms-troubleshooting": "Troubleshooting",

@@ -30,6 +30,16 @@ const nextConfig = {
         destination: "/concepts/builds/public-builds",
         permanent: true,
       },
+      {
+        source: "/api-proxy",
+        destination: "/ottofms-features/api-proxy",
+        permanent: true,
+      },
+      {
+        source: "/concepts/deployments/post-deployment-scripts",
+        destination: "/concepts/deployments/deployment-scripts",
+        permanent: true,
+      },
     ];
   },
   rewrites: async () => {

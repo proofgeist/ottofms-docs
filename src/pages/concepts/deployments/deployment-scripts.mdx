@@ -1,9 +1,9 @@
 {/* @ts-check */}
 import { RaycastSnippet } from "@/components/raycast-snippets";
 
-# Post Deployment Scripts
+# Deployment Scripts
 
-When you deploy a file to a server you may need to run a script to set up the file for use or to complete an upgrade process that can't be done as part of data migration.
+When you deploy a file to a server you may need to run a script to set up the file for use or to complete an upgrade process that can't be done as part of data migration. OttoFMS exposes both a post-deployment and a pre-deployment script. Both of these scripts happen on the destination server and can be run in any file on that server, whether or not the file is part of the deployment. The pre-deployment script runs before any other actions take place, and the post-deployment script runs after the new files are installed and opened.
 
 ## Example use cases
 
@@ -25,15 +25,15 @@ You may have some tables that should only contain certain values. You can use a 
 
 You may want to clear out log data from a table after a certain period of time. Since a data migration will copy all the data in to your new file, you can use a Post Deployment script to do this.
 
-## Reverting a Deployment or Sub-deployment
+## Reverting or Cancelling a Deployment or Sub-deployment
 
-When you configure your deployment to use a Post Deployment script, you can also configure it to revert the entire Deployment or Sub-deployment if the script fails. This is useful if the script is critical to the deployment and you don't want to leave the system in an inconsistent state if the script fails. You will see this option in OttoDeploy when you configure your Post Deployment script.
+When you configure your deployment to use a Deployment script, you can also configure it to revert or cancel the entire Deployment or Sub-deployment if the script fails. This is useful if the script is critical to the deployment and you don't want to leave the system in an inconsistent state if the script fails. You will see this option in OttoDeploy when you configure your Deployment script.
 
-If you set it to Revert, then you will need to make sure your script calls a few specific steps (see example below) at the end to indicate success or failure. We refer to this as "calling done". If your script completes as you want and you call done, then the deployment will continue. If you don't call done, then the deployment will be reverted.
+If you set it to Revert(for post-deployment scripts) or Cancel(for pre-deployment scripts), then you will need to make sure your script calls a few specific steps (see example below) at the end to indicate success or failure. We refer to this as "calling done". If your script completes as you want and you call done, then the deployment will continue. If you don't call done, then the deployment will be reverted or cancelled.
 
 ### Calling "done"
 
-This script lets OttoFMS know that the migration script completed successfully.
+This script lets OttoFMS know that the migration script completed successfully. For Pre-Deployment scripts, the filename in the script below will need to be adjusted to `/otto-predeploy-result.txt`.
 
 ```
 Set Variable [ $filepath ; Value: "file:" & Get(DocumentsPath) & "/otto-pms-result.txt" ]

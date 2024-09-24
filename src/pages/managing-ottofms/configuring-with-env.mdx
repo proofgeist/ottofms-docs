@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 # Configuration using .env files
 
 Most OttoFMS settings are available from the OttoFMS console, but some settings are only available by editing an `.env` file directly. The `.env` file is a text file that contains key-value pairs that are used to configure the OttoFMS server. the `.env` file is located in the OttoFMS config directory, which is located inside of the OttoFMS application folder. It can also be found in the OttoFMS File Manager under OttoFMS Config.
@@ -48,12 +50,28 @@ When running a backup, the backup process can take a long time. By default, Otto
 
 ### Build and Deployment script timeouts
 
-When running a build or deployment, OttoFMS exposes a pre-build and post-deployment script. These scripts can take a long time to run, and OttoFMS has a default timeout of 1 hour, at which point OttoFMS will throw an error and possibly abort the build or deployment. If you would like to change this timeout, you can set the following keys:
+When running a build or deployment, OttoFMS exposes a pre-build, pre-deployment, and post-deployment script. These scripts can take a long time to run, and OttoFMS has a default timeout of 1 hour, at which point OttoFMS will throw an error and possibly abort the build or deployment. If you would like to change this timeout, you can set the following keys:
 
 - PRE_BUILD_SCRIPT_TIMEOUT_IN_SEC=3600
+- PRE_DEPLOYMENT_SCRIPT_TIMEOUT_IN_SEC=3600
 - POST_DEPLOYMENT_SCRIPT_TIMEOUT_IN_SEC=3600
 
 These timeouts can also be overriden on a per-build or per-deployment basis by setting the timeout in the script options.
+
+### Changing the migration folder
+
+When running a deployment that migrates files, OttoFMS migrates the data from your current live file to a temporary file which is stored in the build inbox. This works well for servers where there is only a single disk, but it can cause slow-downs on servers where the backup folder is on a different disk than the live databases as the build inbox is stored within the default backup directory.
+
+To get around this issue, you can set the `USE_DATABASE_FOLDER_FOR_MIGRATIONS` key to "true" in your env file. This will perform the migration into the `Removed_By_FMS/Removed` folder within your database folder, avoiding the need to migrate large quentities of data across disk boundaries. .
+
+<Callout type="warning">
+  Be aware that migrating within the database folder has fewer protections than
+  performing the migration in the build inbox, as OttoFMS will not check to see
+  that you have enough disk space to perform the migration on your database disk
+  and the migrated file may not be deleted if the deployment does not complete
+</Callout>
+
+- USE_DATABASE_FOLDER_FOR_MIGRATIONS=true
 
 ## Example .env File
 

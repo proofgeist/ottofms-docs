@@ -1,0 +1,30 @@
+import { Callout } from "nextra/components";
+
+# FileMaker File Redirect
+
+OttoFMS exposes a url to redirect a user to a FileMaker file and to run a script upon opening that file. This can be useful for OAuth redirects within FileMaker, kicking off a specific action from an external link, or for anything where you may need to pass dynamic arguments to FileMaker from the web.
+
+The FileMaker File Redirect feature is available in OttoFMS 4.7.0 and later.
+
+## Usage
+
+The Redirect URL has the following format:
+
+```
+https://<server>/otto/redirect/fm/[filename]/[script-name]?arg1=[value1]&arg2=[value2]&...
+```
+
+<Callout type="info">
+  To run a script upon opening a file from the redirect url, the user must have
+  the `fmurlscript` extended privilege.
+</Callout>
+
+### Arguments
+
+- `filename`: The name of the FileMaker file to open.
+- `script`: The name of the script to run.
+- `arg`: The arguments to pass to the script. These values are passed into the script as variables with the name of the parameter in the query (eg. `?token=abc123` in the url becomes `$token="abc123"` in the script).
+
+<Callout type="info">
+  The `filename` and `script` parameters are required.
+</Callout>
