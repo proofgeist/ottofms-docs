@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.6.2",
+    "version": "4.7.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -5859,43 +5859,94 @@
             ]
           },
           "chainedAction": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "build_start",
-                  "deployment_start"
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "sendOnFailure": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If set to true, the subsequent action will be sent even if the previous action fails"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "build_start",
+                      "deployment_start"
+                    ]
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "url",
+                    "description": "URL to send subsequent action to"
+                  },
+                  "apiKey": {
+                    "type": "string",
+                    "description": "API Key for subsequent action"
+                  },
+                  "input": {
+                    "format": "any",
+                    "description": "Input for subsequent action"
+                  }
+                },
+                "required": [
+                  "type",
+                  "url",
+                  "apiKey"
                 ]
               },
-              "sendOnFailure": {
-                "type": "boolean",
-                "default": false,
-                "description": "If set to true, the subsequent action will be sent even if the previous action fails"
-              },
-              "url": {
-                "type": "string",
-                "format": "url",
-                "description": "URL to send subsequent action to"
-              },
-              "apiKey": {
-                "type": "string",
-                "description": "API Key for subsequent action"
-              },
-              "input": {
-                "format": "any",
-                "description": "Input for subsequent action"
+              {
+                "type": "object",
+                "properties": {
+                  "sendOnFailure": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If set to true, the subsequent action will be sent even if the previous action fails"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "generic_api"
+                    ]
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "url",
+                    "description": "URL to send subsequent action to"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "GET",
+                      "POST",
+                      "PUT",
+                      "DELETE"
+                    ],
+                    "description": "HTTP method",
+                    "default": "POST"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "HTTP headers"
+                  },
+                  "body": {
+                    "format": "any",
+                    "description": "HTTP body"
+                  }
+                },
+                "required": [
+                  "type",
+                  "url"
+                ]
               }
-            },
-            "required": [
-              "type",
-              "url",
-              "apiKey"
             ]
           },
           "buildId": {
             "type": "string",
-            "default": "build_mzNwEda8fwbq"
+            "default": "build_4Rl6kWgHEdPr"
           }
         },
         "required": [
@@ -6670,10 +6721,12 @@
                         "scheduled",
                         "queued",
                         "starting",
+                        "pre-deployment script",
                         "building",
                         "closing",
                         "connecting to source",
                         "fetching",
+                        "parsing options",
                         "migrating",
                         "installing",
                         "opening",
@@ -6682,7 +6735,6 @@
                         "reverting",
                         "done",
                         "aborted",
-                        "parsing options",
                         "unknown phase"
                       ]
                     },
@@ -7287,6 +7339,49 @@
                           "type",
                           "buildId"
                         ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "offsite_backup",
+                            "description": "Fetches a backup from an offsite storage location"
+                          },
+                          "offsiteLocation": {
+                            "type": "object",
+                            "properties": {
+                              "remote_name": {
+                                "type": "string"
+                              },
+                              "bucket_name": {
+                                "type": "string"
+                              },
+                              "remote_path": {
+                                "type": "string",
+                                "description": "The remote path to the folder containing the .fmp12 files"
+                              }
+                            },
+                            "required": [
+                              "remote_name",
+                              "bucket_name",
+                              "remote_path"
+                            ]
+                          },
+                          "fileNames": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "description": "FileMaker File Name ending with .fmp12"
+                            },
+                            "description": "FileMaker File Name ending with .fmp12"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "offsiteLocation",
+                          "fileNames"
+                        ]
                       }
                     ]
                   },
@@ -7296,6 +7391,68 @@
                       "null"
                     ],
                     "description": "Descriptive name for the deployment (appears in UI)"
+                  },
+                  "preDeploymentScript": {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "FileMaker File Name ending with .fmp12"
+                          },
+                          "user": {
+                            "type": "string",
+                            "description": "FileMaker User Name"
+                          },
+                          "password": {
+                            "type": "string",
+                            "description": "FileMaker User Password"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "user",
+                          "password"
+                        ],
+                        "description": "File to run script on"
+                      },
+                      "script": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the FileMaker Script to run"
+                          },
+                          "param": {
+                            "type": "string",
+                            "description": "Text string passed to the FileMaker Script"
+                          },
+                          "timeout": {
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0,
+                            "maximum": 9007199254740991,
+                            "description": "Script timeout in seconds"
+                          }
+                        },
+                        "required": [
+                          "name"
+                        ],
+                        "description": "Script information"
+                      },
+                      "abortIfScriptFails": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "If true and the script doesn't complete successfully, the deployment will not be run."
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "script"
+                    ],
+                    "description": "A script to run before the deployment is run."
                   },
                   "postDeploymentScript": {
                     "type": "object",
@@ -7350,7 +7507,7 @@
                       "rollbackIfScriptFails": {
                         "type": "boolean",
                         "default": false,
-                        "description": "if true and the Script doesn't complete successfully, then the deployment will be rolled back."
+                        "description": "If true and the script doesn't complete successfully, then the deployment will be rolled back."
                       }
                     },
                     "required": [
@@ -8379,6 +8536,49 @@
                                 "type",
                                 "buildId"
                               ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "offsite_backup",
+                                  "description": "Fetches a backup from an offsite storage location"
+                                },
+                                "offsiteLocation": {
+                                  "type": "object",
+                                  "properties": {
+                                    "remote_name": {
+                                      "type": "string"
+                                    },
+                                    "bucket_name": {
+                                      "type": "string"
+                                    },
+                                    "remote_path": {
+                                      "type": "string",
+                                      "description": "The remote path to the folder containing the .fmp12 files"
+                                    }
+                                  },
+                                  "required": [
+                                    "remote_name",
+                                    "bucket_name",
+                                    "remote_path"
+                                  ]
+                                },
+                                "fileNames": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "FileMaker File Name ending with .fmp12"
+                                  },
+                                  "description": "FileMaker File Name ending with .fmp12"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "offsiteLocation",
+                                "fileNames"
+                              ]
                             }
                           ]
                         },
@@ -8388,6 +8588,68 @@
                             "null"
                           ],
                           "description": "Descriptive name for the deployment (appears in UI)"
+                        },
+                        "preDeploymentScript": {
+                          "type": "object",
+                          "properties": {
+                            "file": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "description": "FileMaker File Name ending with .fmp12"
+                                },
+                                "user": {
+                                  "type": "string",
+                                  "description": "FileMaker User Name"
+                                },
+                                "password": {
+                                  "type": "string",
+                                  "description": "FileMaker User Password"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "user",
+                                "password"
+                              ],
+                              "description": "File to run script on"
+                            },
+                            "script": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "description": "Name of the FileMaker Script to run"
+                                },
+                                "param": {
+                                  "type": "string",
+                                  "description": "Text string passed to the FileMaker Script"
+                                },
+                                "timeout": {
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "Script timeout in seconds"
+                                }
+                              },
+                              "required": [
+                                "name"
+                              ],
+                              "description": "Script information"
+                            },
+                            "abortIfScriptFails": {
+                              "type": "boolean",
+                              "default": true,
+                              "description": "If true and the script doesn't complete successfully, the deployment will not be run."
+                            }
+                          },
+                          "required": [
+                            "file",
+                            "script"
+                          ],
+                          "description": "A script to run before the deployment is run."
                         },
                         "postDeploymentScript": {
                           "type": "object",
@@ -8442,7 +8704,7 @@
                             "rollbackIfScriptFails": {
                               "type": "boolean",
                               "default": false,
-                              "description": "if true and the Script doesn't complete successfully, then the deployment will be rolled back."
+                              "description": "If true and the script doesn't complete successfully, then the deployment will be rolled back."
                             }
                           },
                           "required": [
@@ -8781,38 +9043,89 @@
                     "description": "Abort remaining deployments if one fails"
                   },
                   "chainedAction": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "build_start",
-                          "deployment_start"
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "sendOnFailure": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "If set to true, the subsequent action will be sent even if the previous action fails"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "build_start",
+                              "deployment_start"
+                            ]
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "url",
+                            "description": "URL to send subsequent action to"
+                          },
+                          "apiKey": {
+                            "type": "string",
+                            "description": "API Key for subsequent action"
+                          },
+                          "input": {
+                            "format": "any",
+                            "description": "Input for subsequent action"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "url",
+                          "apiKey"
                         ]
                       },
-                      "sendOnFailure": {
-                        "type": "boolean",
-                        "default": false,
-                        "description": "If set to true, the subsequent action will be sent even if the previous action fails"
-                      },
-                      "url": {
-                        "type": "string",
-                        "format": "url",
-                        "description": "URL to send subsequent action to"
-                      },
-                      "apiKey": {
-                        "type": "string",
-                        "description": "API Key for subsequent action"
-                      },
-                      "input": {
-                        "format": "any",
-                        "description": "Input for subsequent action"
+                      {
+                        "type": "object",
+                        "properties": {
+                          "sendOnFailure": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "If set to true, the subsequent action will be sent even if the previous action fails"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "generic_api"
+                            ]
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "url",
+                            "description": "URL to send subsequent action to"
+                          },
+                          "method": {
+                            "type": "string",
+                            "enum": [
+                              "GET",
+                              "POST",
+                              "PUT",
+                              "DELETE"
+                            ],
+                            "description": "HTTP method",
+                            "default": "POST"
+                          },
+                          "headers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            },
+                            "description": "HTTP headers"
+                          },
+                          "body": {
+                            "format": "any",
+                            "description": "HTTP body"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "url"
+                        ]
                       }
-                    },
-                    "required": [
-                      "type",
-                      "url",
-                      "apiKey"
                     ]
                   }
                 },
@@ -8896,10 +9209,12 @@
                               "scheduled",
                               "queued",
                               "starting",
+                              "pre-deployment script",
                               "building",
                               "closing",
                               "connecting to source",
                               "fetching",
+                              "parsing options",
                               "migrating",
                               "installing",
                               "opening",
@@ -8908,7 +9223,6 @@
                               "reverting",
                               "done",
                               "aborted",
-                              "parsing options",
                               "unknown phase"
                             ]
                           },
@@ -9513,6 +9827,49 @@
                                 "type",
                                 "buildId"
                               ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "offsite_backup",
+                                  "description": "Fetches a backup from an offsite storage location"
+                                },
+                                "offsiteLocation": {
+                                  "type": "object",
+                                  "properties": {
+                                    "remote_name": {
+                                      "type": "string"
+                                    },
+                                    "bucket_name": {
+                                      "type": "string"
+                                    },
+                                    "remote_path": {
+                                      "type": "string",
+                                      "description": "The remote path to the folder containing the .fmp12 files"
+                                    }
+                                  },
+                                  "required": [
+                                    "remote_name",
+                                    "bucket_name",
+                                    "remote_path"
+                                  ]
+                                },
+                                "fileNames": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "FileMaker File Name ending with .fmp12"
+                                  },
+                                  "description": "FileMaker File Name ending with .fmp12"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "offsiteLocation",
+                                "fileNames"
+                              ]
                             }
                           ]
                         },
@@ -9522,6 +9879,68 @@
                             "null"
                           ],
                           "description": "Descriptive name for the deployment (appears in UI)"
+                        },
+                        "preDeploymentScript": {
+                          "type": "object",
+                          "properties": {
+                            "file": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "description": "FileMaker File Name ending with .fmp12"
+                                },
+                                "user": {
+                                  "type": "string",
+                                  "description": "FileMaker User Name"
+                                },
+                                "password": {
+                                  "type": "string",
+                                  "description": "FileMaker User Password"
+                                }
+                              },
+                              "required": [
+                                "name",
+                                "user",
+                                "password"
+                              ],
+                              "description": "File to run script on"
+                            },
+                            "script": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "description": "Name of the FileMaker Script to run"
+                                },
+                                "param": {
+                                  "type": "string",
+                                  "description": "Text string passed to the FileMaker Script"
+                                },
+                                "timeout": {
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991,
+                                  "description": "Script timeout in seconds"
+                                }
+                              },
+                              "required": [
+                                "name"
+                              ],
+                              "description": "Script information"
+                            },
+                            "abortIfScriptFails": {
+                              "type": "boolean",
+                              "default": true,
+                              "description": "If true and the script doesn't complete successfully, the deployment will not be run."
+                            }
+                          },
+                          "required": [
+                            "file",
+                            "script"
+                          ],
+                          "description": "A script to run before the deployment is run."
                         },
                         "postDeploymentScript": {
                           "type": "object",
@@ -9576,7 +9995,7 @@
                             "rollbackIfScriptFails": {
                               "type": "boolean",
                               "default": false,
-                              "description": "if true and the Script doesn't complete successfully, then the deployment will be rolled back."
+                              "description": "If true and the script doesn't complete successfully, then the deployment will be rolled back."
                             }
                           },
                           "required": [
