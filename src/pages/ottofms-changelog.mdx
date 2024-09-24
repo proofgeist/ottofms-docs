@@ -1,5 +1,34 @@
 # OttoFMS Version History
 
+## 4.7.0
+
+Released: 9/24/2024
+
+Download for [Linux](/downloads/ottofms/4.7.0/amd), [Linux (arm)](/downloads/ottofms/4.7.0/arm), [Windows](/downloads/ottofms/4.7.0/win), [Mac](/downloads/ottofms/4.7.0/mac)
+
+### Minor Changes
+
+- Added a new redirect url to OttoFMS. This redirect is at /otto/redirect/fm/[filename]/[scriptname] and it will redirect the user to a filemaker file (using an fmp url) and it will run the specified script. It will also take all query parameters on the url and set them as variables when running the script. This can be used as a redirect for an OAuth flow or for other circukstances where you need to redirect a user to a FileMaker file and collect information from the url as you do.
+- OttoFMS now has support for a pre-deployment script. This is very similar in setup to post-deployment scripts, just with a different results filename and it will default to prevent your deployment if the pre-deployment script fails or does not return a "done" results file. This script is run before files are closed during the deployment.
+- Chained actions can now be sent as a generic api call to any url. The method, body, and headers can be specified. This can be used to kick off non-OttoFMS processes when deployments or builds complete.
+- Added a new env variable USE_DATABASE_FOLDER_FOR_MIGRATIONS which will perform migrations in the database folder instead of in the build inbox in the backup directory. Migrations are performed within the Removed_By_FMS folder so that partially migrated files will be ignored by the server in the case a deployment crashes. When a migration completes the files will be moved out of the Removed_By_FMS folder and into the databases folder.
+- In some cases, the migration process should now be significantly faster.
+
+### Patch Changes
+
+- OttoFMS will no longer throw an error if the folder is not found for a file that is not in the deployment
+- Offsite locations without delete access or list buckets access can now be connected to OttoFMS.
+- Files can now be deployed from a folder in an offsite location. This enables deploying files directly from offsite backups.
+- Fixed an issue where old uploads were not being cleaned up from the temp uploads and uploads folders. All files in these folders older than 72 hours will be removed.
+- Fixed an error where filenames containing non-Ascii characters would be improperly handled in the backend.
+- Fixed an issue were renaming a file would fail due to the file id not being recognized.
+- Added a new toggle in the offsite schedules table that can enable or disable the filemaker backup schedule right from the ottofms console
+- Fixed an issue where folders and subfolders in the database folders which did not allow read access would cause deployments to fail.
+- Fixed an issue where servers running FileMaker Server version 21 or higher would be unable to create new offsite backup schedules.
+- Added a bit of clarification to the offsite schedule modal.
+- Fixed an issue causing the console to flash the plain version of the navbar for a second when opening if using hte colored variant of the navbar.
+- When a deployment completes successfully but has errors (ie. the post-deplopyment script fails, but it is not set to fail the entire deployment), the OttoFMS console will display a warning in the deployments table and the slack notification will include a warning count.
+
 ## 4.6.2
 
 Released: 8/26/2024
