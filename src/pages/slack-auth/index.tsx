@@ -108,7 +108,7 @@ export default function Page({
               <>
                 <WebhookInput url={token?.incoming_webhook.url}></WebhookInput>
                 <Text>
-                  <Anchor href="https://docs.ottofms.com/guides/notifications#slack">
+                  <Anchor href="https://docs.ottofms.com/ottodeploy-features/deployments/advanced-options#slack-notifications">
                     Learn more{" "}
                     <IconExternalLink style={{ verticalAlign: "sub" }} />
                   </Anchor>{" "}
