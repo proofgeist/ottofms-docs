@@ -40,6 +40,12 @@ const nextConfig = {
         destination: "/concepts/deployments/deployment-scripts",
         permanent: true,
       },
+      {
+        source: "/guides/notifications",
+        destination:
+          "/ottodeploy-features/deployments/advanced-options#slack-notifications",
+        permanent: true,
+      },
     ];
   },
   rewrites: async () => {
