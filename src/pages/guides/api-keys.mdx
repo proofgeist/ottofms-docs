@@ -1,7 +1,7 @@
 import { Steps, Callout } from "nextra/components";
 import Vimeo from "../../components/vimeo";
 
-# How to use API Keys
+# How to use Data API Keys
 
 ## Introduction
 
@@ -33,9 +33,9 @@ Login to the [OttoFMS web console](/otto-console).
 
 Navigate to the [API Keys page](/otto-console/api-keys) in the web console.
 
-### Create a new API Key
+### Create a new Data API Key
 
-Click the "Create API Key" button in the upper right to create a new API Key.
+Click the "Create Data API Key" button in the upper right to create a new Data API Key.
 ![New API Key Button](/img/ottofms/guides/new-api-key-button.png)
 
 ### Fill out the form
@@ -43,27 +43,27 @@ Click the "Create API Key" button in the upper right to create a new API Key.
 Fill out the form in the modal dialog that pops ups. When you have entered everything correctly click the Create Button. If you have everything configured correctly and you have the right user name and password, you won't get an error.
 ![New API Key Form](/img/ottofms/guides/new-api-key-form.png)
 
-### Copy the API Key
+### Copy the Data API Key
 
-If you have everything correct you will be able to copy the newly created API Key.
+If you have everything correct you will be able to copy the newly created Data API Key.
 ![New API Key Form](/img/ottofms/guides/copy-api-key.png)
 
 ### Success
 
-You have successfully created an API Key. You can now use this API Key to access the FileMaker Data API.
+You have successfully created an Data API Key. You can now use this Data API Key to access the FileMaker Data API.
 
 </Steps>
 
-## Using an API Key to make a Request
+## Using a Data API Key to make a Request
 
 ### Use a different url
 
 <Callout type="info">
   **Important** You will need to use a slightly different url when access the
-  data api with a an API Key.
+  data api with a Data API Key.
 </Callout>
 
-Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it can use the API Key.
+Add `/otto` just before the `/fmi/` segment in any Data API request. This will send the request through OttoFMS and it can use the Data API Key.
 
 For example, change this URL path:
 
@@ -84,7 +84,7 @@ to this path
 
 ### Authentication
 
-Pass the API Key to the request in one of 2 ways.
+Pass the Data API Key to the request in one of 2 ways.
 
 - As Bearer Token in an Authorization header, just like you would do with the access token.
 - As query parameter `?apiKey={API_KEY}`
@@ -96,7 +96,7 @@ https://apiKey:{API_KEY}@your.server.com/otto/fmi/data/vLatest/databases/{databa
 
 ## Video
 
-Here is a video that shows how to create an API Key and use it to make a request to the Data API.
+Here is a video that shows how to create an Data API Key and use it to make a request to the Data API.
 
 ---
 
