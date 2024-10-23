@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.7.0",
+    "version": "4.7.1",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -3298,6 +3298,9 @@
                   },
                   "isLicenseValid": {
                     "type": "boolean"
+                  },
+                  "isOCCConnected": {
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -3307,7 +3310,8 @@
                   "environmentTag",
                   "environmentTagColor",
                   "serverNickname",
-                  "isLicenseValid"
+                  "isLicenseValid",
+                  "isOCCConnected"
                 ]
               },
               "FileMakerServer": {
@@ -3380,7 +3384,8 @@
                   "environmentTag": "dev",
                   "environmentTagColor": null,
                   "serverNickname": "OttoFMS Dev",
-                  "isLicenseValid": true
+                  "isLicenseValid": true,
+                  "isOCCConnected": false
                 },
                 "FileMakerServer": {
                   "version": {
@@ -5946,7 +5951,7 @@
           },
           "buildId": {
             "type": "string",
-            "default": "build_4Rl6kWgHEdPr"
+            "default": "build_kTPk15fM2UST"
           }
         },
         "required": [
@@ -6293,7 +6298,10 @@
         "type": "string"
       },
       "GetOttoApiBuildBuildIdStatusParameterDelay": {
-        "type": "number",
+        "type": [
+          "number",
+          "null"
+        ],
         "format": "double",
         "minimum": -1.7976931348623157e+308,
         "maximum": 1.7976931348623157e+308
