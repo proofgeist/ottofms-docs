@@ -1,5 +1,32 @@
 # OttoFMS Version History
 
+## 4.7.1
+
+Released: 10/23/2024
+
+Download for [Linux](/downloads/ottofms/4.7.1/amd), [Linux (arm)](/downloads/ottofms/4.7.1/arm), [Windows](/downloads/ottofms/4.7.1/win), [Mac](/downloads/ottofms/4.7.1/mac)
+
+### Patch Changes
+
+- Exposed an option to create an XML of a file from the OttoFMS console. This process creates a clone of the file and an xml of the clone. This xml can then be downloaded immediately or saved to the documents directory to be downloaded later.
+- Added a loading state to the OttoFMS dashboard, so the page will now load in before all of the data is fully fetched. This means the page will render faster if server-side processes are slowed down for some reason.
+- Fixed an issue where a deployment with multiple sub-deployments using a build-inbox source with the same build would fail to find the build on all but the first sub-deployment.
+- The data api proxy will now properly pass the Content-Type header from the request along to the Data API.
+- The schedule created to run scripts (pre-build, pre-deployment, post-deployment, and scripts via the API) will now have a timeout that matches the input timeout, if one is provided. If not, the default timeout will be 30 minutes.
+- Fixed an issue where the log would be stored improperly when initially storing a deployment.
+- When uploading files, you can now choose to keep the files closed after the deployment completes.
+- All dates in the OttoFMS console should now internationalize to the users browser setup.
+- The admin api key creation modal will no longer clear the form when entering invalid credentials.
+- Added protections for instances where Filemaker Server is in an unstable state and the fmsadmin CLI command hangs, which can cause long (or infinite) load times on the OttoFMS console, interminable hangs in deployments, and more.
+- Fixed an issue where webhooks with a space in the database name would be encoded with a %20 when auto-registered and not encoded when registered manually. Now they should all be stored without a %20 to ensure database parsing works properly.
+- Added a notification menu to the top right of the OttoFMS console. This menu will show you processes that are currently running or recently ran (clones, copies, xmls). This menu will be extended to more process types and more general notifications in the future.
+- Fixed improperly stored webhooks errors that appeared in the UI as successes sometimes. Also fixed improperly formatted error messages for webhooks.
+- Added a new env variable PUBLIC_HIDE_SERVER_INFO which can obfuscate urls and ip addresses in the OttoFMS console if you need to do demos or show people your console who should not see your server/user information.
+- The error page on the OttoFMS web console now displays the error message for the offending error.
+- The "Admin API token refreshed" log and other logs related to the handling of the first failure of Admin API calls in OttoFMS have been adjusted to be debug logs rather than base info logs. This means they will no longer appear in the logs unless the DEBUG env variable has been set.
+- Fixed an issue where builds in which the zip file fails to create (due to running out of space or other errors) would be improperly marked as successful.
+- Fixed an issue where deployments with multiple sub-deployments that had a crash in an earlier sub-deployment (causing subsequent sub-deployments to remain queued) would display an incorrect status badge on the deployments table.
+
 ## 4.7.0
 
 Released: 9/24/2024
@@ -8,7 +35,7 @@ Download for [Linux](/downloads/ottofms/4.7.0/amd), [Linux (arm)](/downloads/ott
 
 ### Minor Changes
 
-- Added a new redirect url to OttoFMS. This redirect is at /otto/redirect/fm/[filename]/[scriptname] and it will redirect the user to a filemaker file (using an fmp url) and it will run the specified script. It will also take all query parameters on the url and set them as variables when running the script. This can be used as a redirect for an OAuth flow or for other circumstances where you need to redirect a user to a FileMaker file and collect information from the url as you do.
+- Added a new redirect url to OttoFMS. This redirect is at /otto/redirect/fm/[filename]/[scriptname] and it will redirect the user to a filemaker file (using an fmp url) and it will run the specified script. It will also take all query parameters on the url and set them as variables when running the script. This can be used as a redirect for an OAuth flow or for other circukstances where you need to redirect a user to a FileMaker file and collect information from the url as you do.
 - OttoFMS now has support for a pre-deployment script. This is very similar in setup to post-deployment scripts, just with a different results filename and it will default to prevent your deployment if the pre-deployment script fails or does not return a "done" results file. This script is run before files are closed during the deployment.
 - Chained actions can now be sent as a generic api call to any url. The method, body, and headers can be specified. This can be used to kick off non-OttoFMS processes when deployments or builds complete.
 - Added a new env variable USE_DATABASE_FOLDER_FOR_MIGRATIONS which will perform migrations in the database folder instead of in the build inbox in the backup directory. Migrations are performed within the Removed_By_FMS folder so that partially migrated files will be ignored by the server in the case a deployment crashes. When a migration completes the files will be moved out of the Removed_By_FMS folder and into the databases folder.
