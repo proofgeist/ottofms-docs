@@ -78,3 +78,12 @@
 p img {
   @apply shadow-md;
 }
+
+.item-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.file-tree-small-top-margin .nextra-filetree {
+  margin-top: 8px;
+}
