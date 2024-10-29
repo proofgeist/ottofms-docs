@@ -6,7 +6,7 @@
     "known-issues": "pnpx tsx ./scripts/build-known-issues",
     "dev": "next dev -p 3063",
     "check-links": "pnpx linkinator http://localhost:3063 --recurse --verbosity error -s \"https://console.ottomatic.cloud/downloads/ottofms/*\"",
-    "build": "next build",
+    "build": "pnpm known-issues && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
