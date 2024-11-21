@@ -1,0 +1,15 @@
+# Interactions with FileMaker Server
+
+OttoFMS is closely tied with FileMaker Server, so the status and settings in FileMaker server can have effects on OttoFMS.
+
+## FileMaker Server Status
+
+If your FileMaker Server is offline or not working for some reason, OttoFMS will not be able to perform most operations. You will see a message in the OttoFMS interface letting you know that FileMaker Server is offline and that you need to check the status of FileMaker Server.
+
+Similarly, if your FileMaker Server is running slowly or not performing as expected, this can also affect OttoFMS. If you notice deployments taking a long time to complete, or other issues, you may need to check the status of FileMaker Server or try rebooting FileMaker Server.
+
+## Default Backup Location
+
+OttoFMS stores its information in 2 main folders: The application folder, and the FileMaker Default backups folder. OttoFMS uses the default backup location to store everything that may involve a FileMaker file. This means that deployment backups, the build inbox/outbox, offsite backups, and more are all stored in the FileMaker Default backups folder.
+
+If you change the default backup location in FileMaker Server, OttoFMS will recreate these folders in the new location. However, OttoFMS will not move the existing folders to the new location. This means that if you change the default backup location, you will need to manually move the existing folders to the new location if you want to keep the existing builds, backups, or other information.

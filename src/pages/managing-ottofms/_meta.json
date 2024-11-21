@@ -4,5 +4,6 @@
   "updating": "Updating",
   "starting-stopping": "Starting / Stopping",
   "configuring-with-env": "Configuring OttoFMS",
-  "migrating-servers": "Migrating Servers"
+  "migrating-servers": "Migrating Servers",
+  "interactions-with-fms": "Interactions with FileMaker Server"
 }

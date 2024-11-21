@@ -37,6 +37,14 @@ The easy solution is to perform a replace from the `PROD` server to the `DEV` se
 
 To migrate from `PROD` to `DEV` without wiping out our development, you can use sub-deployments. This pattern will require three sub-deployments:
 
+<Callout type="info">
+  Note: You can also run this deployment as 2 sub-deployments if you run a build
+  before the deployment. Creating a build of clones of your development files
+  allows you to combine steps 2 and 3 below. Simply replace your development
+  files in step 1 and use the build as your source for the migration in step 2.
+  Now you have fresh new files!
+</Callout>
+
 <Steps>
 
 ### Copy data from Production
@@ -61,7 +69,7 @@ The source for this sub-deployment will be the `DEV` server.
 
   </Steps>
 
-You will need to use alternate sources for 1-2 of these sub-deployments (depending on whether you choose the source as your `DEV` or `PROD` server). Switch on the `Abort remaining sub-deployments` option so that you will not pereform subsequent sub-deployments if one fails.
+You will need to use alternate sources for 1-2 of these sub-deployments (depending on whether you choose the source as your `DEV` or `PROD` server). Switch on the `Abort remaining sub-deployments` option so that you will not perform subsequent sub-deployments if one fails.
 
 ### Advanced options
 

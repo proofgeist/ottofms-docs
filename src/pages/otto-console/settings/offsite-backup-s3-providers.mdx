@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 # Offsite Backup Providers Configuration
 
 s3 compatible providers are supported. Each provider may provide their S3 compatible settings in a slightly different way. But to setup with OttoFMS you will need the following information.
@@ -29,6 +31,19 @@ Ottomatic Cloud storage is a S3 compatible storage is available to purchase thro
 - Access Key Secret: (secret-key)
 - Region: (region)
 - Bucket: (bucket-name)
+
+<Callout type="info">
+OttoFMS uses the following AWS permissions to do file transfers to AWS S3 storage:
+* `ListBucket`
+* `DeleteObject`
+* `GetObject`
+* `PutObject`
+* `PutObjectACL`
+* `CreateBucket`
+
+The `ListAllMyBuckets` permission is also recommended, as that allows OttoFMS to give you a list of buckets to choose from when creating offsite schedules. Without this you will need to enter a full path when adding an offsite location and manually enter the bucket when creating a schedule.
+
+</Callout>
 
 ## Wasabi
 
