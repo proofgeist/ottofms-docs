@@ -4,21 +4,33 @@
 
 Setting this to "on" will make it the default for new deployments. Existing deployments will not be affected.
 
-![Set Advanced Deployment settings](/img/ottodeploy/advanced-settings-default.png)
+![Set Advanced Deployment settings](/img/ottodeploy/settings/advanced-settings-default.png)
+
+## Open OttoFMS console when running a deployment
+
+Setting this to "on" will open the OttoFMS console automatically when a deployment is started. so that you can watch the logs.
+
+![Open OttoFMS console](/img/ottodeploy/settings/open-ottofms-console.png)
+
+## Fill credentials from build
+
+Having this setting enabled will fill the source credentials on a deployment from the build when using a build as a source. This setting is on by default.
+
+![Fill credentials from build](/img/ottodeploy/settings/fill-credentials-from-build.png)
 
 ## Notification Settings
 
 Notifications can be set up in the settings screen. These notification channels can then be added to each sub-deployment to receive notifications when a deployment is started, completed, or fails. Deleting a channel url from the settings will not affect existing deployment, but will prevent new deployments from selecting that url.
 
-![Notification Settings](/img/ottodeploy/notification-settings.png)
+![Notification Settings](/img/ottodeploy/settings/notification-settings.png)
 
 ## Pause Scripts
 
 The Pause Scripts button will open a window and pause all running scripts in OttoDeploy. Closing the window it opened will resume the scripts. This setting is intended to be used if you are trying to debug other FileMaker files while running OttoDeploy. Pausing the running scripts in OttoDeploy will avoid any conflicts with the scripts you are trying to debug.
 
-![Pause Scripts](/img/ottodeploy/pause-scripts.png)
+![Pause Scripts](/img/ottodeploy/settings/pause-scripts.png)
 
 ## App info
 
 Shows the current version of the app, and has a button you can click to check for updates.
-![App Info](/img/ottodeploy/appinfo.png)
+![App Info](/img/ottodeploy/settings/appinfo.png)

@@ -1,26 +1,28 @@
 import { Server } from "http";
 import { Callout } from "nextra/components";
 
-## Advanced Options
+# Advanced Options
 
 OttoDeploy exposes a set of Advanced options for deployments which can be used for more advanced use cases. When you turn on the Advanced options you will see a set of new options, including:
 
-- Add sub-deployment
-- Use a different source for each deployment
-- Abort remaining sub-deployments if one fails
-- Build options
 - Using a build as a source for a deployment
-- Concurrency settings for sub-deployments
+- Build options
+- Adding a sub-deployment
+- Aborting remaining sub-deployments if one fails
+- Using a different source for each sub-deployment
 - Selecting a specific sub-deployment or set of files to run
-- Slack notifications
-- Keeping files closed at the end of a sub-deployment
+- Renaming files while maintaining external file references
+- Pre Deployment Scripts
 - Waiting to close files after the files are fetched for a sub-deployment
-
-![Advanced Deployment](/img/ottodeploy/advanced-dep.png)
+- Keeping files closed at the end of a sub-deployment
+- Transferring external container data with installs or replacements
+- Custom file close message
+- Slack notifications
+- Concurrency settings for sub-deployments
 
 Many of the advanced options are contained on their own tab in each sub-deployment:
 
-![Advanced Sub-Deployment](/img/ottodeploy/advanced-options-tab.png)
+![Advanced Sub-Deployment](/img/ottodeploy/advanced-options/advanced-options-tab.png)
 
 The Post-Deployment Script setup also moves into this tab when advanced options are turned on.
 
@@ -30,7 +32,9 @@ If you would like to turn the advanced options on for new deployments by default
 
 If you need the Advanced Options you can turn them on and off by clicking on the three dots in the top right corner of the deployment view.
 
-![Switch to advanced](/img/ottodeploy/switch-to-adv.png)
+![Switch to advanced](/img/ottodeploy/advanced-options/switch-to-adv.png)
+
+## Builds
 
 ### Selecting a Build
 
@@ -44,21 +48,13 @@ Advanced Deployments expose a set of build options for Just In Time builds as we
 
 For Just In Time builds in advanced deployments you can set the build options for the build that gets run as part of the deployment. See the [compression and memory](/ottodeploy-features/builds#compression-level) settings for more information.
 
-![Build Options](/img/ottodeploy/JIT-build-options.png)
+![Build Options](/img/ottodeploy/advanced-options/JIT-build-options.png)
 
 For all builds in advanced deployments we expose an option to push the build from the source server to the destination server instead of the normal build pull process. This option can be used to avoid [issues with Windows IIS](/large-files-windows) when your source server is a windows server. By default this option is turned off. The "Push Build" option was introduced in OttoFMS version 4.5.0.
 
-![Deployment Build Options](/img/ottodeploy/deployment-build-options.png)
+![Deployment Build Options](/img/ottodeploy/advanced-options/deployment-build-options.png)
 
-### Abort Remaining on Failure
-
-The Abort Remaining on Failure option allows you to prevent running subsequent sub-deployments if one fails. This may be useful if you are running a series of sub-deployments that depend on the preceding sub-deployment to succeed. Setting the Abort Remaining on Failure option will prevent the subsequent sub-deployments from running if a preceding sub-deployment fails. The failing sub-deployment will still be fully reverted and the deployment will be marked as failed.
-
-For example, if you have a deployment with three sub-deployments and the second sub-deployment fails, the third sub-deployment will not run. The first sub-deployment will not be reverted, as it was fully successful.
-
-If you do not want to abort the remaining sub-deployments if one fails, turn off the Abort Remaining on Failure option. This would be the case if you were deploying a single file to three different files on the destination server and they did not depend on one another. This is the default setting.
-
-### Sub-Deployments
+## Sub-Deployments
 
 Sub-Deployments are described in detail in the [Sub-Deployments](/concepts/deployments#sub-deployments) section of the documentation.
 
@@ -66,19 +62,89 @@ Each sub-deployment gets the option to use an alternate source (including a diff
 
 Each sub-deployment requires a name and source files. The name is used to identify that sub-deployment in the OttoFMS console.
 
+Sub-Deployments can be added from the "Add Sub-Deployment" Button at the bottom of the deployment view.
+
+![Add Sub-Deployment](/img/ottodeploy/advanced-options/add-sub-deployment.png)
+
+You can also run a single sub-deployment, move sub-deployments up and down, duplicate sub-deployments, and delete sub-deployments from the icons in the top-right corner of each sub-deployment.
+
+![Sub-Deployment Icons](/img/ottodeploy/advanced-options/sub-deployment-icons.png)
+
+### Abort Remaining on Failure
+
+![Abort Remaining on Failure](/img/ottodeploy/advanced-options/abort-remaining.png)
+
+The Abort Remaining on Failure option allows you to prevent running subsequent sub-deployments if one fails. This may be useful if you are running a series of sub-deployments that depend on the preceding sub-deployment to succeed. The failing sub-deployment will still be fully reverted and the deployment will be marked as failed.
+
+For example, if you have a deployment with three sub-deployments and the second sub-deployment fails, the third sub-deployment will not run if this option is turned on. The first sub-deployment will not be reverted, as it was fully successful.
+
+If you do not want to abort the remaining sub-deployments if one fails, turn off the Abort Remaining on Failure option. This would be the case if you were deploying a single file to three different destination files and they did not depend on one another. This is the default setting.
+
 ### Use Alternate Source
 
 Each sub-deployment can use an alternate source to fetch its source files. The source can be a different build on the same source server, a different server, or even an external url. If you do not turn on the "Use Anternate Source" toggle, the sub-deployment will use the default source that you selected at the top of your deployment.
 
+![Use Alternate Source](/img/ottodeploy/advanced-options/alternate-source.png)
+
 ### Running part of a Deployment
 
-When advanced options are turned on a checkbox will appear at the top of each sub-deployment and on each file in a sub-deployment. Unchecking these checkboxes will prevent that sub-deployment or file from being added to the deployment that gets sent to OttoFMS. This can be useful if you want to run a specific part of a deployment or if you want to run a specific file in a sub-deployment. When deselecting a sub-deployment, the sub-deployment will collapse so that you can focus on the sub-deployments that are selected.
+When advanced options are turned on a checkbox will appear at the top-left of each sub-deployment and on each file in a sub-deployment. Unchecking these checkboxes will prevent that sub-deployment or file from being added to the deployment that gets sent to OttoFMS. This can be useful if you want to run a specific part of a deployment or if you want to run a specific file in a sub-deployment. When deselecting a sub-deployment, the sub-deployment will collapse so that you can focus on the sub-deployments that are selected.
 
 You can also choose to only run one sub-deployment using the button in the top-right corner of each sub-deployment. This will deselect all other sub-deployments and only run the selected sub-deployment.
+
+![Run Single Sub-Deployment](/img/ottodeploy/advanced-options/sub-deployment-file-select.png)
+
+## Renaming Files and Maintaining External File References
+
+OttoFMS has the ability to use the FMDeveloperTool to rename your set of files and update any external file references. This is useful if you have a set of development files with external file references and you need to change their names as a group when deploying. Think of a set of files that all start with "dev*" but need to be renamed to "prod*" when deployed.
+
+You can turn this feature on by toggling the "Rename maintaining External Links" toggle in the top right corner of each sub-deployment.
+
+![Rename Files maintaining External Links](/img/ottodeploy/advanced-options/rename-fmdevtool.png)
+
+This feature uses a pair of strings to rename your files. All files on the source server should contain the first string, which will be replaed with the second string on the destination server. For example, in the image below, we have two files: test_api_test_1 and test_api_test_2. Our first string is "test_api" and our replacement string is "new". OttoDeploy will show you the calculated filenames in the area below, which in this case are new_test_1 and new_test_2.
+
+![Rename Files maintaining External Links](/img/ottodeploy/advanced-options/rename-fmdevtool-example.png)
+
+## Pre Deployment Script
+
+Similar to the [Post Deployment Script](/ottodeploy-features/deployments/post-deployment-scripts), the Pre Deployment Script allows you to run a script before the deployment is started on the destination server. This can be useful if you want to run a script to prepare for a deployment or if you want to run a script to clean up after a deployment. This option is found in the "Options" tab of each sub-deployment.
+
+The Pre Deployment Script is run before files are closed or fetched from the source server. You can also optionally stop the entire sub-deployment if your pre-deployment script does not create a file with a certain format after completing. Find details on the file structure in our [Deployment Scripts](/concepts/deployments/deployment-scripts) documentation.
+
+![Pre Deployment Script](/img/ottodeploy/advanced-options/pre-deployment-script.png)
+
+## File Options
+
+The following options are all found in the "Options" tab of each sub-deployment.
+
+![File Options](/img/ottodeploy/advanced-options/file-options.png)
 
 ### Close Files After Build
 
 The Close Files After Build option allows you to close the files after they are fetched from the source server. This can be useful if you want to keep the files open on the source server for longer while the deployment is running. By default, this option is turned off.
+
+### Keep Files Closed After Deployment
+
+The Keep Files Closed After Deployment option allows you to keep the files closed after the deployment is completed. This can be useful if you want to keep the files closed on the destination server while you undertake some manual post-deployment steps. By default, this option is turned off.
+
+### Transfer Container data
+
+If this setting is toggled on, OttoFMS will transfer any container data from the source to the destination server for installs or replacements. Existing container data on the source server will be backed up and replaced with the container data from the source. This can be useful if you are deploying databases to a new server and want to transfer any existing container data from the source to the destination server. By default, this option is turned off.
+
+If you are using a build as a source, the container data will only be transferred if the build was created with the container data option turned on.
+
+If you are running your deployment with a Just In Time build, the build will be created with the container data option turned on if this option is turned on in the deployment.
+
+### Custom File Close Message
+
+The Custom File Close Message option allows you to enter a custom message to display to users when files are closed. This can be useful if you want to provide more information to users about what files were closed. By default, this option is blank and the value "Closed by OttoFMS" is displayed.
+
+## Sub-Deployment Options
+
+The following options are all found in the "Options" tab of each sub-deployment.
+
+![Deployment Options](/img/ottodeploy/advanced-options/deployment-options.png)
 
 ### Slack Notifications
 
@@ -94,10 +160,6 @@ You can setup Slack channels to receive notifications when a deployment is start
     srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
   />
 </a>
-
-### Keep Files Closed After Deployment
-
-The Keep Files Closed After Deployment option allows you to keep the files closed after the deployment is completed. This can be useful if you want to keep the files closed on the destination server while you undertake some manual post-deployment steps. By default, this option is turned off.
 
 ### Concurrency
 

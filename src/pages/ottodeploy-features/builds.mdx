@@ -6,7 +6,7 @@ The Builds view is where you can setup and manage your builds. You can access th
 
 The list view is the default view for the Builds view. It displays a list of all the builds you have configured. Add a new build by clicking the `New Build` button. Click on a build to view the build detail view.
 
-![Builds list](/img/ottodeploy/builds-list.png)
+![Builds list](/img/ottodeploy/builds/builds-list.png)
 
 Builds can be managed with the three dot menu on the right hand side of the list. You can duplicate, delete, and manage your build on your OttoFMS server from this menubar. This menu is also available in the build detail view.
 
@@ -14,7 +14,7 @@ Builds can be managed with the three dot menu on the right hand side of the list
 
 The build detail view is where you can configure your build.
 
-![Builds list](/img/ottodeploy/build-detail.png)
+![Builds list](/img/ottodeploy/builds/build-detail.png)
 
 ## Build Options
 
@@ -37,6 +37,10 @@ This setting can be used to overwrite an existing build with this ID. If this is
 ### Close Files During Build
 
 This setting can be used to close files that are being copied during the build. Copies of closed files are generally much faster than copies of open files, as OttoFMS does not need to use FileMaker to copy the files and can copy them directly. Additionally, copying a closed file does not need to create a backup of the external container data that may be used with the file, speeding up the process further.
+
+### Include Container Data
+
+This setting can be used to include external container data in the build. If this is toggled on, container data for copies will be copied to the build and zipped into the .build.zip file that is created. When deploying from this build, you can then transfer the container data to the destination server using the [Transfer Container Data](/ottodeploy-features/deployments/advanced-options#transfer-container-data) option in the advanced options.
 
 ### Publish Build
 
