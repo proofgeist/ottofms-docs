@@ -140,9 +140,9 @@ Download for [Linux](/downloads/ottofms/4.5.0/amd), [Linux (arm)](/downloads/ott
 ### Minor Changes
 
 - Builds can now be published from the source server build outbox to a destination server build inbox or to the source server's HTTP folder. More options for build publish locations are planned, including web servers and offsite storage locations. This will be useful to set up public URLs to pull builds from, send builds for a deployment ahead of time so you can ensure that downtimes occur precisely when you expect them to, and more.
-- Overhauled the OttoFMS File Manager with a whole new UI and backend. The new file manager has resumable uploads, faster handling, a refresh button, and more customizable settings.
-- The FileMaker Database folders are now exposed in the OttoFMS File Manager under the "Live Databases" folder. These will not allow you to make any changes to live FileMaker files, but you will be able to see folder structure, manage external container data, and access the Removed_by_FM folders.
-- Added the additional container data folders to the OttoFMS file manager. These are displayed within the "Live Databases" folder.
+- Overhauled the OttoFMS File Browser with a whole new UI and backend. The new File Browser has resumable uploads, faster handling, a refresh button, and more customizable settings.
+- The FileMaker Database folders are now exposed in the OttoFMS File Browser under the "Live Databases" folder. These will not allow you to make any changes to live FileMaker files, but you will be able to see folder structure, manage external container data, and access the Removed_by_FM folders.
+- Added the additional container data folders to the OttoFMS File Browser. These are displayed within the "Live Databases" folder.
 - Builds and deployments can now be chained off of each other. This allows for multi-stage deployments to different destination servers, as well as more complex build and deployment management. Support for this feature is coming to OttoDeploy soon.
 - Deployments now have a "pushBuild" option in the API. This option will upload the build from the source instead of downloading the build to the destination. When using this option, transfers of large builds from Windows servers should be significantly faster as we avoid the IIS issues that cause slow downloads.
 - OttoFMS now uses a login redirect to navigate you to your originally intended page after login. This means that if you follow a link to OttoFMS and are presented with the login page you can continue to the original page instead of being redirected to the dashboard page.
@@ -265,7 +265,7 @@ Released: 4/12/2024
 ### Minor Changes
 
 - Files can now be encrypted and decrypted from the FMS Admin databases tab. This feature is only available on servers running FMS 20.3 or later.
-- File backups can now be restored directly from the OttoFMS file manager.
+- File backups can now be restored directly from the OttoFMS File Browser.
 - OttoFMS now has the ability to only allow access to a list of IP addresses. This will only allow access to the OttoFMS api, console, and webhooks from the listed IP addresses or IP ranges. See the documentation for details on setting up a specific set of IPs or ranges of IPs.
 - Added OttoFMS app log at /otto/api/app-log. See docs for instructions on setting up the OttoFMS app log to use logging in your FileMaker solutions or other systems.
 - Added Slack notifications as an option to each sub-deployment. Notifications are sent when a sub-deployment starts, succeeds, fails, or crashes. See OttoFMS docs for details on setting up the slack integration.
@@ -295,7 +295,7 @@ Released: 4/12/2024
 - File Launch links can not be copied from the databases table.
 - A table with no deployments is now handled better in the deployments table.
 - Usage data now includes durations and total size of built or deployed files.
-- The Ottomatic backups folder in the file manager is now only created for Ottomatic servers.
+- The Ottomatic backups folder in the File Browser is now only created for Ottomatic servers.
 - Added crashed deployment events to the usage data.
 - Deployments and sub-deployments can now be renamed from the OttoFMS console after they have been run.
 - If deployment is longer than 1 hour, the hours spot will always be displayed for each log message. This ensures that the first number you see is always the hours spot rather than suddenly becoming the hours spot at the hour mark.
@@ -305,7 +305,7 @@ Released: 4/12/2024
 - The get deployment endpoint now returns more information about the deployment.
 - Added the fms extended privelages column to the FMS admin databases table. This column is hidden by default and can be revealed in the top right of the table.
 - Added folder and subfolder to databases table in the fms admin tab. These columns are hidden by default but can be revealed in the menus in the top right. Full file path can be revealed by hovering over the folder field in the table.
-- The file manager no longer logs information about access to the otto-info.log. this can be reverted by setting the FILE_MANAGER_LOGGING environment variable to true.
+- The File Browser no longer logs information about access to the otto-info.log. this can be reverted by setting the FILE_MANAGER_LOGGING environment variable to true.
 
 ## 4.2.4
 
@@ -332,8 +332,8 @@ Released: 3/13/2024
 - when in a deployment detail screen, the page title will now be the title of the deployment rather than the id.
 - updated log message for file unzipped to say that the file is unzipping, as the log gets written at the start of the file unzipping
 - the deployment logs csv now has formatted durations
-- Fixed an issue with FileManager uploads on ubuntu
-- ottofms will no longer fail to start if there are extra folders in the File Manager root directory.
+- Fixed an issue with File Browser uploads on ubuntu
+- ottofms will no longer fail to start if there are extra folders in the File Browser root directory.
 - the deployment log csv now has the file column properly populated
 - hardening OttoFMS against an issue with the FileMaker Server Admin API
 - errors in the deployment log now have a filename where applicable
@@ -535,7 +535,7 @@ Released: 1/22/2024
 
 - Fix error running migrations using encrypted files.
 - added OttoFMS build number to the info api and settings page.
-- fix padding in file manager
+- fix padding in File Browser
 - added loading indicator to login button
 - adding an admin api token via the api before logging into the web console will now properly set up authentication
 - added a log of the license status on OttoFMS startup
@@ -689,7 +689,7 @@ Released: 12/15/2023
 
 ### Patch Changes
 
-- fix padding in file manager
+- fix padding in File Browser
 - added lots of docs links
 - make settings scroll inside main shell rather than full shell
 - removed http access on windows

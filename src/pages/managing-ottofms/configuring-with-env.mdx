@@ -2,11 +2,11 @@ import { Callout, FileTree } from "nextra/components";
 
 # Configuration using .env files
 
-Most OttoFMS settings are available from the OttoFMS console, but some settings are only available by editing an `.env` file directly. The `.env` file is a text file that contains key-value pairs that are used to configure the OttoFMS server. the `.env` file is located in the OttoFMS config directory, which is located inside of the OttoFMS application folder. It can also be found in the OttoFMS File Manager under OttoFMS Config.
+Most OttoFMS settings are available from the OttoFMS console, but some settings are only available by editing an `.env` file directly. The `.env` file is a text file that contains key-value pairs that are used to configure the OttoFMS server. the `.env` file is located in the OttoFMS config directory, which is located inside of the OttoFMS application folder. It can also be found in the OttoFMS File Browser under OttoFMS Config.
 
 <div className="item-group">
   <div className="file-tree-small-top-margin">
-    <p style={{ marginTop: 16, fontSize: "1.1rem", fontWeight: "bold" }}>In the File Manager:</p>
+    <p style={{ marginTop: 16, fontSize: "1.1rem", fontWeight: "bold" }}>In the File Browser:</p>
     <FileTree>
       <FileTree.Folder name="OttoFMS Config" defaultOpen>
         <FileTree.File name=".env" />
@@ -100,6 +100,12 @@ To get around this issue, you can set the `USE_DATABASE_FOLDER_FOR_MIGRATIONS` k
 If you want to do a demo of OttoFMS and you'd like to hide server details like urls and ip addresses, you can set the following key:
 
 - PUBLIC_HIDE_SERVER_INFO=true
+
+### Specify the OttoFMS license key
+
+If you would like to specify the OttoFMS license key programmatically instead of setting it in the OttoFMS console, you can set the following key in the environment or the `.env` file:
+
+- OTTOFMS_LICENSE=your-license-key
 
 ## Example .env File
 

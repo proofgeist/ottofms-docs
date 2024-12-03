@@ -119,6 +119,10 @@ This setting does not apply to "Just-in-time" builds, which are cleared from the
 
 For more information about Builds, see the [Concepts > Builds](/concepts/builds) page.
 
+### Removed File Deletion Settings
+
+When FileMaker Server removes a file from the server, it is moved to a folder called "Removed_by_FMS". This setting allows you to allow OttoFMS to delete these files from the Removed_By_FMS folder after a certain number of days. You can see which files have been deleted by looking at the OttoFMS logs. If you do not enter a number of days here, OttoFMS will not do any file cleanup for you in the Removed_By_FMS folder.
+
 ### IP Filtering
 
 OttoFMS can restrict access to the console and the api to a list of IP addresses. This can be used to prevent access from outside of a specific set of users. Be advised that this will restrict access to the OttoFMS console, the OttoFMS API, and the Data and Admin API proxies. Essentially, this will restrict access to all OttoFMS functionally from users outside of the specified IP addresses.

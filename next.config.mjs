@@ -36,6 +36,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/ottofms-console/file-manager",
+        destination: "/ottofms-console/file-browser",
+        permanent: true,
+      },
+      {
         source: "/concepts/deployments/post-deployment-scripts",
         destination: "/concepts/deployments/deployment-scripts",
         permanent: true,

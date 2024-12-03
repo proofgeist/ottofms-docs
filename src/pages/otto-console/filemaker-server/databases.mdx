@@ -24,9 +24,20 @@ Files can be managed en masse by selecting multiple files and using the buttons 
 
 ### Renaming Files
 
-In OttoFMS version 4.4.0 and later, you can rename files by clicking the three dots on the right of the file and selecting "Rename". This will open a dialog where you can enter a new name for the file. 
+OttoFMS allows you to rename files by either selecting multiple and using the action menu at the top of the file list to rename them, or by clicking the three dots on the right of the file and selecting "Rename". This will open a dialog where you can enter a new name for the file(s).
 
-Renaming a file will close the file, change the filename, and reopen the file. This allows you to quickly rename files without having to download a copy and rename it locally. This function does not currently handle external file references or other places that reference the file name. 
+If you are renaming multiple files, you can use the FMDeveloperTool to do the rename. The FMDeveloperTool will properly handle external file references between files in your fileset.
+
+Renaming files will close all selected files, change the filenames, and reopen the files. This allows you to quickly rename multiple files without having to download and rename them locally.
+
+When renaming files, OttoFMS will also rename External Container Data folders for the file(s).
+
+When using the FMDeveloperTool to rename files, new copies of the files will be created. If you are not using the FMDeveloperTool, you can choose to create copies of the files with the new name, or rename the files in place.
+
+<Callout type="info">
+  Prior to OttoFMS version 4.8.0, you could only rename one file at a time and
+  could not use the FMDeveloperTool to do the rename.
+</Callout>
 
 ### Save As XML
 
