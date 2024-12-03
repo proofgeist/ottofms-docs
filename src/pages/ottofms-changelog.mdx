@@ -2,6 +2,37 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.8.0
+
+Released: 12/3/2024
+
+Download for [Linux](/downloads/ottofms/4.8.0/amd), [Linux (arm)](/downloads/ottofms/4.8.0/arm), [Windows](/downloads/ottofms/4.8.0/win), [Mac](/downloads/ottofms/4.8.0/mac)
+
+### Minor Changes
+
+- When renaming multiple files, you can now use the FMDeveloperTool to rename the files, so file references will be updated when file names are changed.
+- Multiple files can now be renamed simultaneously.
+- Renaming files now updates the name of the remote container data folder of the same name.
+- When renaming files using the file system, files can now be copied instead of renamed in place. This means a new copy of the file can be created in a different folder/subfolder. External container data will be copies along with the .fmp12 file that is copied.
+- Chained Actions can now be passed in as an array, which will all be kicked off at the end of the build/deployment.
+- External container data can now be managed when running a deployment using the "transferContainerData" option. This will transfer the container data from the source to your target server. If the source has container data and this option is turned on, the container data for replacements and installs will be put in place on the target server. For installs it will create the proper folder, for replacements it will replace the existing container data with the source container data. This feature does not currently support container data in the "Additional Container Data" folders or in the "Secure" database folder.
+- External container data can now be included in builds. This will zip the RC_Data_FMS folder for each copy included in the build into the build zip file. This feature does not currently support container data in the "Additional Container Data" folders or in the "Secure" database folder.
+- When opening multiple encrypted files from the OttoFMS console, you can now optionally use the same encryption key for all files.
+- OttoFMS now has a setting for the days to keep files in the Removed_By_FMS folders. If set, OttoFMS will scan the Removed_By_FMS folders once a day and remove any files older than the number of days set. It will also clean up any empty folders left behind by the deletions.
+- The default value for the "pushBuild" option on otto4 and otto4jit deployment source types has changed from false to true. This means that deployments sent without this key specified will now push the build from the source to the destination for these source types.
+
+### Patch Changes
+
+- Fixed an error where deployments with multiple sub deployments would have improperly displayed statuses in the console when they used the "abort remaining on failure" setting and aborted subsequent deployments.
+- The verbose option can now be passed into the migration options for a file. This will log more information for the migration during a deployment.
+- The global filter on the databases table is now persisted in the browser.
+- Fixed errors due to hard links in the FileMaker folder paths.
+- Settings in the File Browser are now persistent. Pagination, filters, sorting, and column visibility are saved off to your browser, and the current folder is saved in the URL, so a page refresh will no longer take you back to the root of the file browser.
+- When using the "push build" feature, OttoFMS will now propely error out when the upload from the source server fails. This requires that both the source and destination servers be on version 4.8.0 to work.
+- Fixed an issue where closed files could not be downloaded when using the download via link method. This affected the Ottomatic Cloud console download functionality.
+- Changed the name of the File Manager to the File Browser to match the Ottomatic Cloud Console and reduce confusion.
+- Fixed an issue where deleting multiple files at the same time via the File Browser would fail and crash OttoFMS if the files were within the Live Databases folder.
+
 ## 4.7.2
 
 Released: 10/24/2024
@@ -332,7 +363,7 @@ Released: 3/13/2024
 - when in a deployment detail screen, the page title will now be the title of the deployment rather than the id.
 - updated log message for file unzipped to say that the file is unzipping, as the log gets written at the start of the file unzipping
 - the deployment logs csv now has formatted durations
-- Fixed an issue with File Browser uploads on ubuntu
+- Fixed an issue with FileManager uploads on ubuntu
 - ottofms will no longer fail to start if there are extra folders in the File Browser root directory.
 - the deployment log csv now has the file column properly populated
 - hardening OttoFMS against an issue with the FileMaker Server Admin API
