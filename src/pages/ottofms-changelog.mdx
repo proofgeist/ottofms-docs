@@ -2,6 +2,28 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.8.1
+
+Released: 12/18/2024
+
+Download for [Linux](/downloads/ottofms/4.8.1/amd), [Linux (arm)](/downloads/ottofms/4.8.1/arm), [Windows](/downloads/ottofms/4.8.1/win), [Mac](/downloads/ottofms/4.8.1/mac)
+
+### Patch Changes
+
+- Added support for container data transfers to/from the additional container data folders. This does not require any additional options other than the "Include Container Data" option introduced in OttoFMS 4.8.0. (NOTE: for additional container data to be included in a build when you are not closing the files, the "Back Up Container Data Folder" option must be enabled in the FileMaker Admin Console.)
+- The API Keys tab has been split into subtabs for the Data API and the Admin API.
+- The File Browser can now display sizes for folders, as well as for individual files. This should help find folders that are taking up a significant amount of space on the server. This will not display sizes for the root folders in the file browser, or for the direct children of the Live Databases folder.
+- The File Browser has been optimized, and should now perform significantly faster for nested folders.
+- The Spotlight search (CMD+K) now has direct links to the subpages of the api keys, filemaker server, and settings pages.
+- Reworked the webhooks table so it is more compact, sortable, and filterable.
+- When sending offsite backups, only files in folders with the schedule name will be sent. Previously all files in the backup destination folder would be sent.
+- When sending offsite backups with a backup schedule that is set to keep 0 backups, OttoFMS will now only delete the folder that was created for that backup rather than emptying the entire directory.
+- Fixed an issue where OttoFMS would not properly pick up changes to offsite schedules made in the admin console if the schedule name did not change.
+- Fixed an error where backups of clones could fail to create if the ClonesOnly folder is not present on the server.
+- Fixed an issue where having concurrency set greater than 1 would throw an error for invalid backup files.
+- Sending a push build request to a source server will now have a better error if the source server returns an errored http code.
+- Fixed an issue where network errors when sending a jit build request to a source server would not log a helpful error.
+
 ## 4.8.0
 
 Released: 12/3/2024
