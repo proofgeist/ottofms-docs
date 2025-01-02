@@ -125,7 +125,20 @@ When FileMaker Server removes a file from the server, it is moved to a folder ca
 
 ### IP Filtering
 
-OttoFMS can restrict access to the console and the api to a list of IP addresses. This can be used to prevent access from outside of a specific set of users. Be advised that this will restrict access to the OttoFMS console, the OttoFMS API, and the Data and Admin API proxies. Essentially, this will restrict access to all OttoFMS functionally from users outside of the specified IP addresses.
+OttoFMS allows you to configure IP filtering directly in the OttoFMS settings. Once enabled, this feature:
+
+- Restricts access to the OttoFMS console.
+- Limits access to the OttoFMS API.
+- Secures the Data and Admin API proxies.
+
+IP Filtering works by specifying a list of allowed IP addresses in your configuration, OttoFMS ensures that requests from outside these IPs are denied. This is an effective way to enforce stricter control over who can interact with OttoFMS, preventing unauthorized access from unknown or untrusted networks.
+
+Things to Keep in Mind:
+
+1. Granularity: IP filtering applies globally across all OttoFMS interfaces, including the console and APIs.
+2. User Access: Ensure that all intended users’ IP addresses are included in the allowed list to avoid inadvertently blocking legitimate access.
+
+This setup is especially valuable for environments with strict compliance requirements or when OttoFMS is deployed in sensitive operational contexts.
 
 <Callout>
   Accidentally locked yourself out of OttoFMS? You can always access the server
