@@ -1,4 +1,5 @@
 import Vimeo from "../../../components/vimeo";
+import { Callout } from "nextra/components";
 
 # Low Downtime Deployments
 
@@ -15,6 +16,12 @@ The solution to this problem is to create a build ahead of time and use the [Pub
 ## Video walkthrough
 
 <Vimeo id={"985939872"} />
+
+<Callout emoji="💡">
+
+In OttoFMS version 4.6.2, we introduced the "Build from Inbox" source type. This allows you to discretely get the build from the build inbox on your destination serveer rather than having to hope that the build is available there when running the deployment. The video above does not reflect this change, but we recommend using this source type for low downtime deployments.
+
+</Callout>
 
 ## Alternative solution
 
