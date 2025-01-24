@@ -55,7 +55,7 @@ If configured, OttoFMS will automatically upload backups to an offsite location.
   offers a built-in integration to easily configure offsite backups in OttoFMS.
 </Callout>
 
-Multiple offsite backup locations and schedules can be configured for each server as of OttoFMS version 4.6.0. This allows you to back up ceratin sets of files to different locations, or with different frequencies.
+Multiple offsite backup locations and schedules can be configured for each server as of OttoFMS version 4.6.0. This allows you to back up certain sets of files to different locations, or with different frequencies.
 
 To configure offsite backups, you will need credentials for an S3-compatible storage provider. Upon configuration, you'll be prompted for the following information from your storage provider:
 
@@ -81,6 +81,8 @@ Changing the name of the schedule in the FMS Admin Console will break your offsi
 OttoFMS will backup the files in the folder that you specify to the offsite location and path that you setup in the schedule. The folder on the offsite location will be created if it does not exist. Backups are stored within a 'dbs' folder in the backup location.
 
 Backup schedules can be enabled/disabled using the toggle in the Schedules table on the OttoFMS console. Disabling an offsite schedule disables the FMS Backup Schedule, so the backups will not be created or sent to the offsite location.
+
+Since version 4.9.0, OttoFMS can show you the contents of your offsite location in the File Browser. You'll see an icon in the Offsite Schedules table that will take you directly to the path in your offsite location where the backups are stored.
 
 <Callout type="warning">
   When sending an offsite backup, OttoFMS will send all files within the folder
