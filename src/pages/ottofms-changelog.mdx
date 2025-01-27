@@ -2,6 +2,38 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.9.0
+
+Released: 1/27/2025
+
+Download for [Linux](/downloads/ottofms/4.9.0/amd), [Linux (arm)](/downloads/ottofms/4.9.0/arm), [Windows](/downloads/ottofms/4.9.0/win), [Mac](/downloads/ottofms/4.9.0/mac)
+
+### Minor Changes
+
+- OttoFMS now supports custom certificates. On Mac and Windows it will use the system certificates and on Linux you can use the NODE_EXTRA_CA_CERTS environment variable to add a cert file.
+- OttoFMS will now automatically update the NGINX config file when it is present on Windows.
+- Files can now be moved using the rename file functionality. This allows for live database files to be closed, moved to a different folder, and reopened without having to do any downloads or accessing the server yourself.
+- There is now an API in the OttoFMS developer API for creating a XML of a file. This API will return a path to download the XML on the server, and gives the option to save the XML to the documents directory.
+- OttoFMS now exposes an api for listing files and getting download links from the file browser folders.
+- Files can now be encrypted and decrypted through the OttoFMS developer API.
+- OttoFMS can now display the contents of your offsite locations in the file browser. Files in the offsite backups can be restored to the server, and files can be downloaded or deleted from the OttoFMS file browser.
+- Added the OttoFMS Offsites folder (the default target folder for created Offsite backup schedules) to the OttoFMS File Browser.
+- Added the FileMaker ClonesOnly folder to the OttoFMS File Browser.
+- You can now get a download link for a file or folder from the file browser. This link has a set expiry time and can be sent to others to download the file in question.
+- In the file browser, there is now a button to get folder size rather than folder size being fetched automatically. This is because getting the folder size can be very slow, especially for folders with a large number of files (like the RC_Data_FMS folders), which cause a significant performance hit. Now you can fetch the folder size for those folders you actually care about without having to wait for the calculation on all folders.
+
+### Patch Changes
+
+- Fixed an issue where the file browser would fail when getting the folder size in the Ottomatic Backups folder on Ottomatic servers.
+- OttoFMS now pulls the build for OttoDeploy from a CDN, meaning downloads should be faster and more widely available.
+- Most modals in the OttoFMS console will now auto-focus the cursor to the first input (if applicable).
+- The OttoDeploy deployment modal will now show available sub-folders for deployment.
+- Fixed an issue where offsite locations without the listAllBuckets permission did not properly verify when a bucket and remote path were supplied in the offsite location modal.
+- Fixed an issue where the credentials stored in the build manifest would always be used when they are present for migrations, even if they are different than the ones sent with the deployment input.
+- Offsite locations and schedules now have an inline link to the file browser in the UI to view files at the proper path.
+- When encrypting and decrypting, files will be reopened even on failure.
+- Fixed an issue where builds that failed to push from one server to another would cause a read lock on the build which would prevent it from being deleted.
+
 ## 4.8.1
 
 Released: 12/18/2024

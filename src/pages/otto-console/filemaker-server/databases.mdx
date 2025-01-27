@@ -16,15 +16,15 @@ After the files are uploaded, OttoFMS will automatically open the files for you.
 
 ## File Actions
 
-Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **pause**, **resume**, **download**, **encrypt**, or **delete** the database file.
+Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **pause**, **resume**, **download**, **encrypt**, **decrypt**, **save as xml**, **rename**, **move**, **copy**, or **delete** the database file.
 
 OttoFMS can download a hosted FileMaker file without needing to close it first. When you download a file from this interface, OttoFMS makes an ad-hoc backup of the file and then downloads the backup. When you download a clone, no data is included which can often result in a much smaller file size.
 
 Files can be managed en masse by selecting multiple files and using the buttons at the top of the list.
 
-### Renaming Files
+### Renaming, Moving, and Copying Files
 
-OttoFMS allows you to rename files by either selecting multiple and using the action menu at the top of the file list to rename them, or by clicking the three dots on the right of the file and selecting "Rename". This will open a dialog where you can enter a new name for the file(s).
+OttoFMS allows you to rename files by either selecting multiple and using the action menu at the top of the file list to rename them, or by clicking the three dots on the right of the file and selecting "Rename/Move/Copy". This will open a dialog where you can enter a new name for the file(s).
 
 If you are renaming multiple files, you can use the FMDeveloperTool to do the rename. The FMDeveloperTool will properly handle external file references between files in your fileset.
 
@@ -32,7 +32,7 @@ Renaming files will close all selected files, change the filenames, and reopen t
 
 When renaming files, OttoFMS will also rename External Container Data folders for the file(s).
 
-When using the FMDeveloperTool to rename files, new copies of the files will be created. If you are not using the FMDeveloperTool, you can choose to create copies of the files with the new name, or rename the files in place.
+When using the FMDeveloperTool to rename files, new copies of the files will be created. If you are not using the FMDeveloperTool, you can choose to create copies of the files with the new name, move the files to a new folder, or rename the files in place.
 
 <Callout type="info">
   Prior to OttoFMS version 4.8.0, you could only rename one file at a time and

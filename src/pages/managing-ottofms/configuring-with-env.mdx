@@ -107,6 +107,12 @@ If you would like to specify the OttoFMS license key programmatically instead of
 
 - OTTOFMS_LICENSE=your-license-key
 
+### Add Trusted Root Certificates on Windows and Linux
+
+To add trusted root certificates on Windows and Linux, you can set the `NODE_EXTRA_CA_CERTS` environment variable to point to a file containing your root certificates.
+
+- NODE_EXTRA_CA_CERTS=/path/to/your/root-certificates.pem
+
 ## Example .env File
 
 Here is an example of an `.env` file for OttoFMS:

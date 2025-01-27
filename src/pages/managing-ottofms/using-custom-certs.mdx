@@ -1,0 +1,37 @@
+# Using Custom Certificates
+
+When running OttoFMS in environments that use custom or self-signed certificates, you'll need to configure your system to trust these certificates. The setup process varies depending on your operating system.
+
+## Windows and Linux
+
+On Windows and Linux systems, you need to:
+
+1. Create a file containing your root certificates (typically with a `.pem` or `.crt` extension)
+2. Set the `NODE_EXTRA_CA_CERTS` environment variable to point to this file using a [.env file](../managing-ottofms/configuring-with-env.mdx#add-trusted-root-certificates-on-windows-and-linux)
+
+## macOS
+
+On macOS, you'll need to add the certificates directly to the system keychain:
+
+1. Open the "Keychain Access" application
+2. Select "System" from the keychains list on the left
+3. Drag and drop your certificate file into the certificate list
+4. Double-click the imported certificate
+5. Expand the "Trust" section
+6. Set "When using this certificate" to "Always Trust"
+7. Close the certificate window (you may be prompted for your administrator password)
+
+## Verifying the Setup
+
+After setting up the certificates, restart OttoFMS for the changes to take effect. You can verify the setup by checking if OttoFMS can successfully connect to your services that use these certificates.
+
+## Common Issues
+
+- Make sure the certificate file is readable by the user running OttoFMS
+- On Windows/Linux, verify the path in `NODE_EXTRA_CA_CERTS` is correct and absolute
+- On macOS, ensure you've added the certificates to the System keychain, not the login keychain
+- Remember to restart OttoFMS after making certificate changes
+
+## Troubleshooting
+
+If you encounter issues, Windows and Linux servers will log errors to the otto-error.log file. If you are still not seeing anything, turn on [debug logging](../managing-ottofms/configuring-with-env.mdx#ottofms-debug-logging) and check the logs.
