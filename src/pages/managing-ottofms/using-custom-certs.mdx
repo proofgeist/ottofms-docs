@@ -35,3 +35,7 @@ After setting up the certificates, restart OttoFMS for the changes to take effec
 ## Troubleshooting
 
 If you encounter issues, Windows and Linux servers will log errors to the otto-error.log file. If you are still not seeing anything, turn on [debug logging](../managing-ottofms/configuring-with-env.mdx#ottofms-debug-logging) and check the logs.
+
+## Using Custom Certs with OttoDeploy
+
+When using OttoDeploy with servers running custom certificates, you'll need to add the certificates to the client with OttoDeploy open (the machine where the OttoDeploy window is open). You can do this on Mac by adding the certificates to the System keychain. On Windows, you'll need to add the certificates as trusted roots into the Edge browser, as this is what FileMaker is using as a browser client.
