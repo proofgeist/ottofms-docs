@@ -146,9 +146,19 @@ The following options are all found in the "Options" tab of each sub-deployment.
 
 ![Deployment Options](/img/ottodeploy/advanced-options/deployment-options.png)
 
-### Slack Notifications
+### Notifications (Webhooks and Slack)
 
-You can setup Slack channels to receive notifications when a deployment is started, completed, or fails. Slack channels can be set in each sub-deployment and in the OttoDeploy settings. Deleting a channel url from the settings will not affect existing deployment, but will prevent new deployments from selecting that url.
+You can set up OttoFMS to send notificaiton via webhook or Slack when a deployment is started, completed, or fails.
+
+#### Webhooks
+
+You can setup webhooks in each sub-deployment and in the OttoDeploy settings. Deleting a webhook url from the settings will not affect existing deployments, but will prevent new deployments from selecting that url. Webhook notifications send a JSON Payload to the webhook url with details about the deployment and the events that trigger the notification.
+
+#### Slack
+
+You can setup Slack channels to receive notifications when a deployment is started, completed, or fails. Slack channels can be set in each sub-deployment and in the OttoDeploy settings. Deleting a channel url from the settings will not affect existing deployments, but will prevent new deployments from selecting that url.
+
+To add a Slack channel, you can use the button below. This will open a new window where you can authorize OttoFMS to send notifications to your Slack channel.
 
 <br />
 <a href="https://slack.com/oauth/v2/authorize?client_id=9720328660.6839689854469&scope=incoming-webhook&user_scope=">

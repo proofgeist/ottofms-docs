@@ -1,6 +1,7 @@
 {
   "dashboard": "Dashboard",
   "deployments": "Deployments",
+  "builds": "Builds",
   "file-browser": "File Browser",
   "api-keys": "API Keys",
   "webhooks": "Webhooks",

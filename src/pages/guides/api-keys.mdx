@@ -84,10 +84,15 @@ to this path
 
 ### Authentication
 
-Pass the Data API Key to the request in one of 2 ways.
+Pass the Data API Key to the request in one of 3 ways.
 
 - As Bearer Token in an Authorization header, just like you would do with the access token.
 - As query parameter `?apiKey={API_KEY}`
+
+```
+https://your.server.com/otto/fmi/data/vLatest/databases/{database.fmp12}/layouts/{layout}/records?apiKey={API_KEY}
+```
+
 - as basic auth in the url
 
 ```

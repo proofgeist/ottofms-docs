@@ -46,6 +46,10 @@ This setting can be used to include external container data in the build. If thi
 
 Publishing a build is a tool that can be used to make working with builds and moving them around simpler. When you publish a build, OttoFMS will create your build normally, and at the end of the build OttoFMS will push the build in a useable state to whichever destiantion you have defined. Publish destinations are defined per build, and can be a different server, or the current server's HTTP folder. Using a different server as the publish destination will allow you to run a deployment on that server without having to fetch the build as part of the deployment (making deployments run faster), while putting the buiild in the HTTP folder of the current server allows you to deploy the build from a public URL.
 
+### Zip Files
+
+By default, OttoFMS zips the build files into a .build.zip file. In OttoFMS 4.10.0 or later, this can be disabled by unchecking the "Zip Files" option. This option is only recommended if you are planning on using the build locally and are not publishing to another location or using the build in a deployment on another server.
+
 ### Compression Level
 
 The compression setting allows you to specify the compression level for the build. The values for compression level go from 0 to 9, with 0 being an uncompressed build and 9 being the highest level of compression. An uncompressed zip file is the same size as the files that were put into it, with the file getting smaller the higher the compression level setting is. If you are having issues with files pulling down across the network for being too large it may be helpful to increase the compression level. A higher compression level will require more CPU usage and will take longer.

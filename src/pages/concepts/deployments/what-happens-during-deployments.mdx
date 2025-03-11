@@ -49,6 +49,12 @@ All files that were closed at the beginning of the deployment are opened again.
 
 Any post deployment scripts that were configured for the deployment are run on the destination server.
 
+### Post Deployment Actions
+
+After the deployment completes, OttoFMS will perform any post deployment actions that were configured for the deployment. This may include things like opening files, cleaning up, or sending notifications.
+
+If a build fails, builds will not be deleted from the inbox automatically. This ensures that you can rerun the deployment without rerunning or refetching the build. If a successful deployment is not run, the build will be deleted from the inbox after 48 hours.
+
 </Steps>
 
 ### Advanced Deployments

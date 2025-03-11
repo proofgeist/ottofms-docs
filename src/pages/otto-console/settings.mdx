@@ -43,6 +43,10 @@ Left ( Get ( HostName ) ; 7 ) = "[PROD] "
   deeplink="raycast://extensions/eluce2/filemaker-snippets/view-snippets?context=%7B%22type%22%3A%22import%22%2C%22action%22%3A%22copy%22%2C%22snippet%22%3A%7B%22id%22%3A%22d82e3b58-b9ab-441f-919b-d4361ad39e3d%22%2C%22name%22%3A%22Otto%20Environment%20Tag%20CFs%22%2C%22type%22%3A%22customFunction%22%2C%22snippet%22%3A%22%3Cfmxmlsnippet%20type%3D%5C%22FMObjectList%5C%22%3E%3CCustomFunction%20id%3D%5C%224%5C%22%20functionArity%3D%5C%220%5C%22%20visible%3D%5C%22True%5C%22%20parameters%3D%5C%22%5C%22%20name%3D%5C%22isDevServer%5C%22%3E%3CCalculation%3E%3C!%5BCDATA%5BLeft%20(%20Get%20(%20HostName%20)%20%3B%206%20)%20%3D%20%5C%22%5BDEV%5D%20%5C%22%5D%5D%3E%3C%2FCalculation%3E%3C%2FCustomFunction%3E%3CCustomFunction%20id%3D%5C%225%5C%22%20functionArity%3D%5C%220%5C%22%20visible%3D%5C%22True%5C%22%20parameters%3D%5C%22%5C%22%20name%3D%5C%22isStagingServer%5C%22%3E%3CCalculation%3E%3C!%5BCDATA%5BLeft%20(%20Get%20(%20HostName%20)%20%3B%206%20)%20%3D%20%5C%22%5BSTG%5D%20%5C%22%5D%5D%3E%3C%2FCalculation%3E%3C%2FCustomFunction%3E%3CCustomFunction%20id%3D%5C%226%5C%22%20functionArity%3D%5C%220%5C%22%20visible%3D%5C%22True%5C%22%20parameters%3D%5C%22%5C%22%20name%3D%5C%22isProdServer%5C%22%3E%3CCalculation%3E%3C!%5BCDATA%5BLeft%20(%20Get%20(%20HostName%20)%20%3B%207%20)%20%3D%20%5C%22%5BPROD%5D%20%5C%22%5D%5D%3E%3C%2FCalculation%3E%3C%2FCustomFunction%3E%3C%2Ffmxmlsnippet%3E%22%2C%22tags%22%3A%5B%22%22%5D%2C%22description%22%3A%22Custom%20Functions%20to%20check%20the%20environment%20tag%20according%20to%20OttoFMS%22%2C%22locId%22%3A%22bf7b68e6-2795-45f0-bdda-da148a1db3ec%22%2C%22customXML%22%3Afalse%2C%22dynamicFields%22%3A%5B%5D%2C%22path%22%3A%22%2FUsers%2Fericluce%2FDocuments%2FCode%2Fwork%2Fclaris-snippets%2Fsnippets%2Fd82e3b58-b9ab-441f-919b-d4361ad39e3d.json%22%7D%2C%22showForm%22%3Afalse%2C%22values%22%3A%7B%7D%7D"
 />
 
+### Popup Settings
+
+There are a few places within the OttoFMS console where we use popups to promote other useful tools that can be installed on your FileMaker Server. If you've dismissed this popups and want to see them again, you can reset them here.
+
 ## Offsite Backups
 
 ![Offsite Settings](/img/ottofms/console/settings/offsite-settings.png)
@@ -103,6 +107,10 @@ When creating a new schedule, OttoFMS will create a FileMaker Server Backup Sche
 
 If you have additional Container Data Folders, they can be included in the backup to your offsite storage. Simply toggle the "Include External Container Data Folder" toggles on the schedule for whichever folders you want to include in your backups and they will be included going forward.
 
+### Zipping Backups
+
+Since version 4.10.0, OttoFMS can zip backups before sending them to your offsite location. This can reduce the number of files sent up to the offsite location by zipping container data and fmp files together. When this is toggled on, OttoFMS will create a zip file of each .fmp12 file and its associated container data into a .fmp12.zip file. All of these files will be sent up to your offsite location in a similar folder structure to the backup that was created. The .fmp12.zip files can be restored by using the "Restore" option in the File Browser.
+
 ## OttoFMS Config
 
 ![Config Settings](/img/ottofms/console/settings/config-settings.png)
@@ -159,10 +167,6 @@ This setup is especially valuable for environments with strict compliance requir
 
 Need help finding your IP address? You can use a service like [WhatIsMyIP.com](https://www.whatismyip.com/) to get your public IP address. Simply add the IP addresses you find there to the list of allowed IPs to let your network access OttoFMS.
 
-### Popup Settings
-
-There are a few places within the OttoFMS console where we use popups to promote other useful tools that can be installed on your FileMaker Server. If you've dismissed this popups and want to see them again, you can reset them here.
-
 ### App Log
 
 The App Log settings can be used to manage the App Log token for application logging through OttoFMS. See the [App Log Guide](/guides/application-logging) for details on setting up application logging with OttoFMS.
@@ -171,6 +175,10 @@ The App Log settings can be used to manage the App Log token for application log
   Regenerating this token will cause existing logging to break, regenerate the
   token cautiously.
 </Callout>
+
+### Debug Logging
+
+OttoFMS Debug logging can be turned on and off in the OttoFMS Config settings. This will turn on debug logging without requiring a full OttoFMS restart. Debug logs can be viewed in the OttoFMS Logs tab by selecting the otto-debug.log file.
 
 ### Server Info
 

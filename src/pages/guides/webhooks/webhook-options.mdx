@@ -51,3 +51,27 @@ You can optionally include the headers in the webhook payload by including the "
   the payload. If you do not want this to happen, you can use the "apiKey" query
   parameter to specify the Data API Key instead of the Authorization header.
 </Callout>
+
+## Webhook Authentication
+
+Webhooks can be authenticated using a Data API Key. The Data API Key can be sent to OttoFMS in three ways:
+
+1. In the Authentication header as a Bearer token
+
+```
+Authorization: Bearer <data-api-key>
+```
+
+2. In the "apiKey" query parameter
+
+```
+https://<server>/my/webhook/path?apiKey=<data-api-key>
+```
+
+3. As a path parameter (OttoFMS 4.10.0 or later)
+
+```
+https://<server>/my/webhook/path/<data-api-key>
+```
+
+All of these methods are equivalent and will authenticate the webhook request using the same Data API Key. They are all exposed to give you flexibility in how you configure your webhook and integrate with third party services.
