@@ -2,6 +2,55 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.10.0
+
+Released: 3/11/2025
+
+Download for [Linux](/downloads/ottofms/4.10.0/amd), [Linux (arm)](/downloads/ottofms/4.10.0/arm), [Windows](/downloads/ottofms/4.10.0/win), [Mac](/downloads/ottofms/4.10.0/mac)
+
+### Minor Changes
+
+- OttoFMS has a new tab for Builds, which displays a historical log of builds run on the server (similar to the deployments view). Builds can be deleted fromt he server, rerun, and their details (files, logs, times, etc.) can be viewed from a build detail page. Builds that are still in the server outbox can be downloaded and deleted from the server.
+- Builds can now be scheduled to run in the future. Builds support recurring schedules (similar to deployments).
+- OttoFMS now stores a historical record of every build run in its database. There are also now a new set of APIs that can get a list of these builds and their information from the database.
+- Builds run in the past can now be rerun using a new endpoint (and the builds ui). This is only possible for builds run after the upgrade to 4.10.0
+- Added the ability to abort an ongoing build with the new abort build api
+- OttoFMS now exposes an option in the start build endpoint to keep the files in the build unzipped. This can be used to run local deployments without zipping or to use builds as a simple programatic way to run backups that you can script for other uses than deployments.
+- Just in time build IDs are now generated deterministically. In conjunction with the change that builds are not deleted from the inbox on deployment failure, this means that a just in time build can be used again from the inbox when a deployment fails. The build id is generated using the deployment name, the filenames, and whether the files are a clone or copy. If any of these values change a different buildId will be generated.
+- Deployment notifications can now be sent using webhooks to a specified url. Notifications send a POST request with a JSON body containing information about deployment events on start, success, failure, abort, and crash.
+- Debug logging can now be turned on from the OttoFMS settings page without a restart of the OttoFMS service. The environment variable is still respected on startup, but once the setting in the config page is used the environment variable will no longer be used.
+- When deployments fail, builds will no longer be automatically deleted from the build inbox. The build will stay in the inbox for 48 hours, at which point it will be deleted. If the deployment is rerun successfully, the build will be removed once the deployment is complete.
+- Offsite backups can now be optionally zipped when sending. This will zip each file and its container data together and send them up. There will be one zip file per FileMaker file in the backup. These files can be restored from the File Browser and their container data can be restored as part of the deployment.
+- Webhooks can now be authenticated by placing the api key as part of the route after the channel (ie. /otto/receiver/channel/apiKey). This ensures that any third party service you want to use webhooks with can properly send them to OttoFMS.
+- OttoFMS now allows you to pass the Data API Key in the Data API Proxy as a query parameter.
+- Added an endpoint for updating Data API Key labels.
+- The Data API Proxy can now be used with the v2 version of the data api routes (previously we only allowed the vLatest paths).
+- Switched the Data API Key and Admin API Key tabs in the OttoFMS console. The Data API Key tab is now the default tab when navigating to the API Keys page.
+- Added a new deployment source type "file_urls" which lets OttoFMS deploy .fmp12 files from any urls the server can access.
+- More settings can now be updated with the Developer API.
+- Added a full suite of deployment APIs to the developer API. you can now list more information about deployments and sub-deployments, get a count of queued deployments, delete deployments and sub-deployments, resume crashed deployments, list existing deployment backups, and rename deployments and sub-deployments
+- Added a 30 second timeout to all calls to the FMS Admin API. If the 30 second timeout is hit the call will be tried again. This should guard against issues with the Admin API hanging on a single call or failing to send a response.
+- Added 3 retries to opening and closing files.
+
+### Patch Changes
+
+- When running builds, only files that were closed by the build will be reopened at the end. Previous behavior opened all files that the build attempted to close (ie. all of the copies when the "close files" option was turned on). This is only changed by the "ensureFilesOpen" option, which will open all files, regardless of whether the build did the closing.
+- OttoFMS will now cleanup generated backup schedules and folders when builds fail.
+- On restart, OttoFMS will now clean up backup schedules and backup folders created during builds that failed.
+- OttoFMS will now properly delete Just In Time Builds when the deployment running the build is aborted during the build.
+- OttoFMS will now properly delete Just In Time builds when the build times out.
+- Fixed an issue where the webhook test modal would switch webhooks after sending tests
+- OttoFMS will now properly send back the body of webhook responses using the "useScriptResult" options when there are no errors in the webhook receiver script.
+- The move file modal will now autofill the filename if it has not been set already.
+- Container data can now be restored from offsite locations when restoring files sent up from Offsite schedules.
+- Added more debug logging to backup creation, builds, schedules, all admin api calls from OttoFMS, and file opoening and closing.
+- OttoFMS will now properly throw an error when the database in a call to the Data API Proxy does not match the database the Data API Key was created for.
+- OttoFMS no longer adds a temp offsite location when verifying offsite connection settings.
+- Prevented an issue causing a "maxBuffer exceeded" error when sending offsite backups. This also ensures that sending offsite backups does not use as much memory.
+- Errors for push builds failing are now more readable.
+- OttoFMS will now throw a better error if you attempt to publish a build to a server with an Admin API Key that has been removed.
+- OttoFMS will now convert filenames in Data API Proxy paths to the correct casing before sending them to the server. This will only convert filenames that match the given Data API Key but with the wrong casing.
+
 ## 4.9.0
 
 Released: 1/27/2025

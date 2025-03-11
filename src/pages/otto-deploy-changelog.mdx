@@ -1,5 +1,39 @@
 # OttoDeploy Version History
 
+## 2.2.0
+
+Released: 3/11/2025
+
+### Minor Changes
+
+- Added a global filter to the add server from occ table.
+- Added a new flow for testing server connections. This lets you check to see if the servers in your deployment can properly connect to each other. If the servers cannot connect the new testing flow will provide recommendations on how to set up your deployment to work around the issue.
+- When sending a deployment, OttoDeploy will now show the deployment logs live in the app without you having to go to the OttoFMS console. IF you are sending multiple sub-deployments, All of their logs will be displayed in order.
+- files in the build and deployment file select are now grouped by database folder and subfolder
+- The toggle for turning off the "Push Build" option is now available in the Simple Options.
+- Added a multi-delete to the deployments table when there are deployments selected.
+- Added support for webhook notifications (introduced in OttoFMS version 4.10.0).
+- Sub-deployments are now collapsible when using advanced options.
+- Added quick icons on the right side of the sub-deployments divider to select all, select none, collapse all, or expand all sub-deployments.
+- Added support for the new OttoFMS option to keep build files unzipped.
+- When renaming maintaining external file references, you can now leave the "With Text" field empty to simply delete the contents of the "Replace Text" field from the filename.
+- The install options will now display a list of sub-folders that are on the server so you can choose an existing folder
+- Deployments can now be reordered in the list.
+
+### Patch Changes
+
+- Switches will no longer toggle when you click on the empty space to the right of the switch.
+- Fixed an issue where existing files on a build would be reset when adding new files.
+- The headers work a bit nicer when the window is very narrow. The spotlight search will now move to the navbar when the window is small enough.
+- The buttons at the bottom of the file options modal will now stick to the bottom of the modal so that they are always visible.
+- When adding a new destination file with the same file source, the row will now match the selected state of the row that is being duplicated.
+- Fixed an error where OttoDeploy would not let you migrate onto a file that was installed in a previous sub-deployment when using any source type other than a just in time build.
+- Decreased load times when there are no records in the file
+- Fixed an issue where servers without a friendly name in the Ottomatic Cloud Console could not be added to OttoDeploy.
+- When a sub-deployment is not being sent (ie. not checked in the sub-deployment list) OttoDeploy will no longer hide the options tab. All options in the sub-deployment are still editable, just now dimmed.
+- Fixed an issue where the file operation was being improperly set to "Install/Replace" when the file exists on the destination. The behavior now matches the intended behavior of the file operation being set to "Migrate" if the selected filename already exists on the destination.
+- For build logs that run beyond the bottom of the screen, OttoDeploy will now automatically scroll to the bottom of the log when new lines come in.
+
 ## 2.1.0
 
 Released: 12/3/2024
