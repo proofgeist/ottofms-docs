@@ -1,5 +1,19 @@
 # OttoDeploy Version History
 
+## 2.2.1
+
+Released: 3/14/2025
+
+### Patch Changes
+
+- Ensure that files are not added to deployments with the .fmp12 since OttoDeploy adds it when sending the deployment.
+- Notification URLs will now wrap to multiple lines, preventing overflow and allowing you to see the entire URL without hovering.
+- Fixed an issue where the collapsed state of a sub-deployment would not be saved off properly if it was the only thing changed in the deployment form.
+- Notifications UI does not overflow quite as much, generally longer URLs and labels are better supported.
+- Notification targets can now be edited in the UI.
+- Webhook notifications now have a test button to send a test payload to the webhook.
+- Single sub-deployments can now be run by themselves without being checked. The checkbox will not be updated, and other subdeployments will not be run.
+
 ## 2.2.0
 
 Released: 3/11/2025
