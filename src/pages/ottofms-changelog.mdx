@@ -2,6 +2,18 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.10.1
+
+Released: 3/17/2025
+
+Download for [Linux](/downloads/ottofms/4.10.1/amd), [Linux (arm)](/downloads/ottofms/4.10.1/arm), [Windows](/downloads/ottofms/4.10.1/win), [Mac](/downloads/ottofms/4.10.1/mac)
+
+### Patch Changes
+
+- Added a validation to ensure the folder specified in a deployment is found on the server. This prevents errors cause by a deployment specifying an install in the additional folder 1 but the additional folder 1 being unset in FileMaker Server.
+- Removed the full deployment log from webhook payloads and replaced it with the path to the deployment info in the OttoFMS API.
+- Fixed an issue introduced in 4.10.0 causing local just in time builds to fail with an error stating that "lastUpdated" was the incorrect type.
+
 ## 4.10.0
 
 Released: 3/11/2025
