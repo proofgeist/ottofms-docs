@@ -132,7 +132,7 @@ export default function Page({
 function WebhookInput({ url }: { url: string }) {
   return (
     <TextInput
-      label="OttoFMS Wehbook URL"
+      label="OttoFMS Webhook URL"
       readOnly
       size="lg"
       rightSection={
@@ -151,6 +151,6 @@ function WebhookInput({ url }: { url: string }) {
       value={url}
       description="Copy and paste this into your OttoDeploy settings, or into your Deployment
       JSON Payload"
-    ></TextInput>
+    />
   );
 }
