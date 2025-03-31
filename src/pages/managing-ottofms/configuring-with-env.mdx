@@ -91,7 +91,7 @@ These timeouts can also be overriden on a per-build or per-deployment basis by s
 
 When running a deployment that migrates files, OttoFMS migrates the data from your current live file to a temporary file which is stored in the build inbox. This works well for servers where there is only a single disk, but it can cause slow-downs on servers where the backup folder is on a different disk than the live databases as the build inbox is stored within the default backup directory.
 
-To get around this issue, you can set the `USE_DATABASE_FOLDER_FOR_MIGRATIONS` key to "true" in your env file. This will perform the migration into the `Removed_By_FMS/Removed` folder within your database folder, avoiding the need to migrate large quentities of data across disk boundaries. .
+To get around this issue, you can set the `USE_DATABASE_FOLDER_FOR_MIGRATIONS` key to "true" in your env file. This will perform the migration into the `Removed_By_FMS/Removed` folder within your database folder, avoiding the need to migrate large quantities of data across disk boundaries. .
 
 <Callout type="warning">
   Be aware that migrating within the database folder has fewer protections than
