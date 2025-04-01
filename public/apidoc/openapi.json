@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.10.0",
+    "version": "4.10.2",
     "x-logo": {
       "url": "https://downloads.ottomatic.cloud/ottofms/OttoFMSDocsLogo.png",
       "altText": "OttoFMS Logo"
@@ -1391,6 +1391,47 @@
         }
       }
     },
+    "/otto/api/fm-file/download": {
+      "get": {
+        "operationId": "GetOttoApiFmFileDownload",
+        "summary": "Get a file with a download link",
+        "description": "Use a get request to download a file from a link obtained from a previous endpoint. This is useful if you want to download the file into a FileMaker Container field for example.",
+        "tags": ["FileMaker Files"],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "description": "GET /otto/api/fm-file/download Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiFmFileDownloadParameterToken"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/fm-file/download Positive response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiFmFileDownloadPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/fm-file/download Negative response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiFmFileDownloadNegativeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/otto/api/fm-file/download/{token}": {
       "get": {
         "operationId": "GetOttoApiFmFileDownloadToken",
@@ -1538,6 +1579,36 @@
         }
       }
     },
+    "/otto/api/build/download": {
+      "get": {
+        "operationId": "GetOttoApiBuildDownload",
+        "summary": "Build Download Link",
+        "description": "### Download a build zip using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
+        "tags": ["Build"],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/build/download Positive response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/build/download Negative response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadNegativeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/otto/api/build/download/{token}": {
       "get": {
         "operationId": "GetOttoApiBuildDownloadToken",
@@ -1561,6 +1632,36 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/GetOttoApiBuildDownloadTokenNegativeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/build/downloadFolder": {
+      "get": {
+        "operationId": "GetOttoApiBuildDownloadFolder",
+        "summary": "Download Build Folder",
+        "description": "### Download a zip containing the build folder using a download url\nThe download url is a signed url that can be used to download a build zip. This endpoint will return a 404 if the build does not exist.\n\nThe url can be obtained from the `Get Build Status` endpoint.\n",
+        "tags": ["Build"],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/build/downloadFolder Positive response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadFolderPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/build/downloadFolder Negative response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiBuildDownloadFolderNegativeResponse"
                 }
               }
             }
@@ -6788,6 +6889,16 @@
           }
         ]
       },
+      "GetOttoApiFmFileDownloadParameterToken": {
+        "type": "string"
+      },
+      "GetOttoApiFmFileDownloadPositiveResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiFmFileDownloadNegativeResponse": {
+        "type": "string"
+      },
       "GetOttoApiFmFileDownloadTokenParameterToken": {
         "type": "string"
       },
@@ -7590,7 +7701,7 @@
                       "description": "the date the manifest was last updated"
                     }
                   },
-                  "required": ["status", "buildId", "zipArchive", "lastUpdated"]
+                  "required": ["status", "buildId", "zipArchive"]
                 },
                 "description": "Array of build manifests"
               }
@@ -7650,11 +7761,25 @@
         },
         "required": ["response", "messages"]
       },
+      "GetOttoApiBuildDownloadPositiveResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiBuildDownloadNegativeResponse": {
+        "type": "string"
+      },
       "GetOttoApiBuildDownloadTokenPositiveResponse": {
         "type": "string",
         "format": "binary"
       },
       "GetOttoApiBuildDownloadTokenNegativeResponse": {
+        "type": "string"
+      },
+      "GetOttoApiBuildDownloadFolderPositiveResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetOttoApiBuildDownloadFolderNegativeResponse": {
         "type": "string"
       },
       "GetOttoApiBuildDownloadFolderTokenPositiveResponse": {
@@ -10252,6 +10377,29 @@
                                           }
                                         },
                                         "required": ["operation", "target"]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "operation": {
+                                            "type": "string",
+                                            "const": "include"
+                                          },
+                                          "target": {
+                                            "type": "object",
+                                            "properties": {
+                                              "fileName": {
+                                                "type": "string",
+                                                "pattern": ".fmp12",
+                                                "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                              }
+                                            },
+                                            "required": ["fileName"],
+                                            "description": "The file to be included in the deployment"
+                                          }
+                                        },
+                                        "required": ["operation", "target"],
+                                        "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                       }
                                     ]
                                   }
@@ -11929,6 +12077,29 @@
                                           }
                                         },
                                         "required": ["operation", "target"]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "operation": {
+                                            "type": "string",
+                                            "const": "include"
+                                          },
+                                          "target": {
+                                            "type": "object",
+                                            "properties": {
+                                              "fileName": {
+                                                "type": "string",
+                                                "pattern": ".fmp12",
+                                                "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                              }
+                                            },
+                                            "required": ["fileName"],
+                                            "description": "The file to be included in the deployment"
+                                          }
+                                        },
+                                        "required": ["operation", "target"],
+                                        "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                       }
                                     ]
                                   }
@@ -13292,6 +13463,29 @@
                                               }
                                             },
                                             "required": ["operation", "target"]
+                                          },
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "operation": {
+                                                "type": "string",
+                                                "const": "include"
+                                              },
+                                              "target": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "fileName": {
+                                                    "type": "string",
+                                                    "pattern": ".fmp12",
+                                                    "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                                  }
+                                                },
+                                                "required": ["fileName"],
+                                                "description": "The file to be included in the deployment"
+                                              }
+                                            },
+                                            "required": ["operation", "target"],
+                                            "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                           }
                                         ]
                                       }
@@ -14869,6 +15063,32 @@
                                                     "operation",
                                                     "target"
                                                   ]
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "operation": {
+                                                      "type": "string",
+                                                      "const": "include"
+                                                    },
+                                                    "target": {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "fileName": {
+                                                          "type": "string",
+                                                          "pattern": ".fmp12",
+                                                          "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                                        }
+                                                      },
+                                                      "required": ["fileName"],
+                                                      "description": "The file to be included in the deployment"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "operation",
+                                                    "target"
+                                                  ],
+                                                  "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                                 }
                                               ]
                                             }
@@ -16597,6 +16817,29 @@
                                           }
                                         },
                                         "required": ["operation", "target"]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "operation": {
+                                            "type": "string",
+                                            "const": "include"
+                                          },
+                                          "target": {
+                                            "type": "object",
+                                            "properties": {
+                                              "fileName": {
+                                                "type": "string",
+                                                "pattern": ".fmp12",
+                                                "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                              }
+                                            },
+                                            "required": ["fileName"],
+                                            "description": "The file to be included in the deployment"
+                                          }
+                                        },
+                                        "required": ["operation", "target"],
+                                        "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                       }
                                     ]
                                   }
@@ -19131,6 +19374,29 @@
                                     }
                                   },
                                   "required": ["operation", "target"]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "operation": {
+                                      "type": "string",
+                                      "const": "include"
+                                    },
+                                    "target": {
+                                      "type": "object",
+                                      "properties": {
+                                        "fileName": {
+                                          "type": "string",
+                                          "pattern": ".fmp12",
+                                          "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                        }
+                                      },
+                                      "required": ["fileName"],
+                                      "description": "The file to be included in the deployment"
+                                    }
+                                  },
+                                  "required": ["operation", "target"],
+                                  "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                 }
                               ]
                             }
@@ -20659,6 +20925,29 @@
                                               }
                                             },
                                             "required": ["operation", "target"]
+                                          },
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "operation": {
+                                                "type": "string",
+                                                "const": "include"
+                                              },
+                                              "target": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "fileName": {
+                                                    "type": "string",
+                                                    "pattern": ".fmp12",
+                                                    "description": "FileMaker File Name ending with .fmp12 or .fmp12.zip"
+                                                  }
+                                                },
+                                                "required": ["fileName"],
+                                                "description": "The file to be included in the deployment"
+                                              }
+                                            },
+                                            "required": ["operation", "target"],
+                                            "description": "Include a file in the deployment to ensure that links get updated, even if you are not deploying the file."
                                           }
                                         ]
                                       }
