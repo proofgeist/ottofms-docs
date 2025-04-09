@@ -2,6 +2,33 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.10.3
+
+Released: 4/9/2025
+
+Download for [Linux](/downloads/ottofms/4.10.3/amd), [Linux (arm)](/downloads/ottofms/4.10.3/arm), [Windows](/downloads/ottofms/4.10.3/win), [Mac](/downloads/ottofms/4.10.3/mac)
+
+### Patch Changes
+
+- When using the "url" source type, deployments are no longer limited to hosted builds that have a manifest.json file sitting next to a .build.zip file in a publicly accessible location. You can now use any url that can access a .build.zip file (as long as .build.zip is in the url) to download and deploy the build.
+- Fixed an issue where deployments using the FMDeveloperTool to maintain external file references could open the files without logging it to the deployment properly.
+- Generated just in time build ids are now approximately 2/3rds of the length they were in the previous version (in 4.10.0-4.10.2 they were 58 characters, now they are 34).
+- Fixed an issue where the "Move File" functionality would fail to move container data across drive partitions.
+- Fixed an issue where builds published to the http folder on Mac and Linux were placed into the htdocs folder instead of the httpsRoot folder, which is where the FileMaker web urls point.
+- Fixed an issue where OttoFMS would match against just in time builds created on servers that are not the deployment source server if the deployment name and the files to be deployed were the the exact same.
+- OttoFMS will now double check that there are usable files in build folders in the inbox before attempting to use them for a deployment.
+- OttoFMS now uses the fmsadmin CLI to create backups rather than creating a FileMaker schedule. This is signigicantly faster (in testing, builds are up to 75% faster) than the admin api method was.
+- When using the "Remove Old Removed Files" Settings, non-.fmp12 files will no longer be erroneously removed before the specified number of days.
+- OttoFMS will now properly clean up builds that are in the database but not in the outbox and set their status to crashed on restart.
+- Added the duration to the builds table.
+- Just In Time builds that fail to download during a deployment will now be deleted no matter what at the end of the deployment so that the deployment will not attempt to use a partially downloaded build when it runs again.
+- OttoFMS now uses the fmsadmin tool to open and close files rather than the Admin API. This should reduce issues with the admin API hanging or timing out.
+- Fixed an issue where build downloads from Windows would fail for long build ids.
+- Fixed an error where OttoFMS would throw an unnecessary error when it cleans up backup schedules if the ClonesOnly folder did not exist.
+- Fixed an issue where builds would be removed from the build inbox based on only the success or failure of the final sub-deployment rather than the success of the subdeployments in which the build was used. Builds will now only be removed from the inbox if all sub-deployments using the build succeed or they fail while the build is being downloaded (to avoid partial downloads causing issues).
+- Fixed an issue where builds that errored while starting would not be set as failed.
+- Fixed an issue where database operations would not properly retry on failure.
+
 ## 4.10.2
 
 Released: 3/19/2025
