@@ -1,3 +1,4 @@
+import { DeployBuild } from "@/components/DeployBuild";
 import { FileTree, Steps } from "nextra/components";
 
 # Public Builds
@@ -58,3 +59,9 @@ Place the zip archive and the manifest.json file next to each other on a webserv
 If the url to your web-accessible folder is `https://myserver.com/public-builds`, then the url to the first build would be `https://myserver.com/public-builds/MyApp_v1.0.1/manifest.json`.
 
 OttoDeploy and [SimpleQ](https://simpleq.proofgeist.com) are both available as public builds.
+
+## Simple Build Deployment
+
+If you want to give users the option to deploy a build to their own FileMaker Server, simply enter your manifest url below, then copy the embeddable html (or the raw link) and paste it anywhere you want the deploy button to appear.
+
+<DeployBuild />
