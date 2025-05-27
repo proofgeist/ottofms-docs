@@ -17,5 +17,8 @@
   ],
   "cSpell.enabled": true,
   "cSpell.enableFiletypes": ["mdx"],
-  "cSpell.ignoreWords": ["Ottom"]
+  "cSpell.ignoreWords": ["Ottom"],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never"
+  }
 }

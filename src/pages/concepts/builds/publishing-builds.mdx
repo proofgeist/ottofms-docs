@@ -1,21 +1,28 @@
+import { Callout } from "nextra/components";
+
 # Publishing Builds
 
-While builds are useful on their source server, their purpose is truly to be a package of files which can be moved around. Deployments normally manage the movement of builds themself, but OttoFMS version 4.5.0 introduces the ability to more granularly control the distribution of builds to other servers or to public URLs.
-
-## Publishing a build
-
-Publishing builds allows you to move the build out of your source server's build outbox. At the moment you can publish a build to the source server's HTTP folder or to a destination server's build inbox.
+While builds are useful on their source server, their purpose is truly to be a package of files which can be moved around. Deployments using Just In Time builds manage the movement of builds themself, but you can use publishing to more granularly control the distribution of builds to other locations or servers.
 
 All builds can be published at the end of the build, simply define your publish destinations in the [build settings in OttoDeploy](/ottodeploy-features/builds#publish-build). Builds can also be published after they are run using the [Developer API](/concepts/developer-api).
 
-### Publishing to the source server's HTTP folder
+## Publishing to the source server's HTTP folder
 
 Publishing a build to the source server's HTTP folder allows you to use the build as a public URL for deployments without having to manage a separate web server to host the build. Check out the [Public Builds](/concepts/builds/public-builds) page for more details on what public builds are and why you might want them.
 
-### Publishing to a destination server's build inbox
+<Callout type="info">
+  To avoid conflicts with the /otto url on the server, builds published to the
+  HTTP folder cannot start with the word "otto".
+</Callout>
+
+## Publishing to a destination server's build inbox
 
 Publishing a build to a destination server's build inbox allows you to skip the fetching process when running a deployment using that build. This is useful if you want to reduce deployment times. For an example of how to use this feature, see the [Low Downtime Deployments](/guides/deployment-patterns/low-downtime) guide.
 
-### Publishing to an offsite storage location
+## Publishing to an offsite storage location
 
 OttoFMS version 4.6.0 introduces the ability to publish builds to an offsite storage location. This can be useful for storing a library of previous application versions or for deploying a build to other servers that can connect to the same offsite storage location. For information on how to set up offsite storage, see the [Offsite Backups](/concepts/backups#offsite-backups) page.
+
+## Publishing via FTP or SFTP
+
+OttoFMS 4.11.0 introduces the ability to publish builds via FTP or SFTP. This is useful if you want to publish your build to a web server or CDN that is FTP or SFTP enabled. If you want to host [Public Builds](/concepts/builds/public-builds) off your FileMaker Server, this is the way to go.

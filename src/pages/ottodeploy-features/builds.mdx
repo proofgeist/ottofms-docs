@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 # Builds
 
 The Builds view is where you can setup and manage your builds. You can access the Builds view by clicking on the `Builds` link in the left hand navigation. Read more about [Builds](/concepts/builds).
@@ -34,6 +36,10 @@ The pre-build script is a script that will be run before the build is started. T
 
 This setting can be used to overwrite an existing build with this ID. If this is not checked, and a build with the same ID already exists, the build will fail.
 
+### Zip Files
+
+By default, OttoFMS zips the build files into a .build.zip file. In OttoFMS 4.10.0 or later, this can be disabled by unchecking the "Zip Files" option. This option is only recommended if you are planning on using the build locally and are not publishing to another location or using the build in a deployment on another server.
+
 ### Close Files During Build
 
 This setting can be used to close files that are being copied during the build. Copies of closed files are generally much faster than copies of open files, as OttoFMS does not need to use FileMaker to copy the files and can copy them directly. Additionally, copying a closed file does not need to create a backup of the external container data that may be used with the file, speeding up the process further.
@@ -42,13 +48,21 @@ This setting can be used to close files that are being copied during the build. 
 
 This setting can be used to include external container data in the build. If this is toggled on, container data for copies will be copied to the build and zipped into the .build.zip file that is created. When deploying from this build, you can then transfer the container data to the destination server using the [Transfer Container Data](/ottodeploy-features/deployments/advanced-options#transfer-container-data) option in the advanced options.
 
+<Callout type="info">
+  If you are building files in the Additional Database Folders that store
+  container data in the Additional Container Data Folders without the "Close
+  files during build" option enabled, you must have the "Back Up Container Data
+  Folder" option enabled in the FileMaker Admin Console for external container
+  data to be included in the build.
+</Callout>
+
 ### Publish Build
 
-Publishing a build is a tool that can be used to make working with builds and moving them around simpler. When you publish a build, OttoFMS will create your build normally, and at the end of the build OttoFMS will push the build in a useable state to whichever destiantion you have defined. Publish destinations are defined per build, and can be a different server, or the current server's HTTP folder. Using a different server as the publish destination will allow you to run a deployment on that server without having to fetch the build as part of the deployment (making deployments run faster), while putting the buiild in the HTTP folder of the current server allows you to deploy the build from a public URL.
+Publishing a build is a tool that can be used to make working with builds and moving them around simpler. When you publish a build, OttoFMS will create your build normally, and at the end of the build OttoFMS will push the build in a useable state to the destinations you have defined. Publish destinations are defined per build. Check out the [Publishing Builds](/concepts/builds/publishing-builds) page for more information on what each publish destination type does and can be used for.
 
-### Zip Files
+### Send Notifications for this build
 
-By default, OttoFMS zips the build files into a .build.zip file. In OttoFMS 4.10.0 or later, this can be disabled by unchecking the "Zip Files" option. This option is only recommended if you are planning on using the build locally and are not publishing to another location or using the build in a deployment on another server.
+This setting can be used to send notifications for this build. Notifications are sent when the build starts and ends (successfully or otherwise). You can send notifications for builds to a webhook URL or to Slack. For details on notification types and their setup, head to the [Notifications](/ottofms-features/notifications) documentation. You can setup notifications in each build and in the OttoDeploy settings. Deleting a notification destination from the settings will not affect existing builds, but will prevent new builds from selecting that notification destination. Webhook notifications send a JSON Payload to the webhook url with details about the build and the events that trigger the notification.
 
 ### Compression Level
 

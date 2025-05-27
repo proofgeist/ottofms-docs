@@ -74,6 +74,20 @@ Additional notes and examples of some of the common providers are [available her
 
 After entering this information, click the "Test" button to verify that OttoFMS can connect to your storage provider. If the test is successful, click "Save" to save the configuration. If the test fails, you will be prompted to correct the information and try again.
 
+<Callout type="info">
+  Offsite Backups with OttoFMS require the following S3 permissions:
+
+- `ListBucket`
+- `DeleteObject`
+- `GetObject`
+- `PutObject`
+- `PutObjectACL`
+- `CreateBucket` (optional after 4.11.0)
+
+The `ListAllMyBuckets` permission is also recommended, as that allows OttoFMS to give you a list of buckets to choose from when creating offsite schedules. Without this you will need to enter a full path when adding an offsite location and manually enter the bucket when creating a schedule.
+
+</Callout>
+
 ## Backup Schedules
 
 ![Offsite Schedule](/img/ottofms/console/settings/offsite-schedule.png)
@@ -110,6 +124,10 @@ If you have additional Container Data Folders, they can be included in the backu
 ### Zipping Backups
 
 Since version 4.10.0, OttoFMS can zip backups before sending them to your offsite location. This can reduce the number of files sent up to the offsite location by zipping container data and fmp files together. When this is toggled on, OttoFMS will create a zip file of each .fmp12 file and its associated container data into a .fmp12.zip file. All of these files will be sent up to your offsite location in a similar folder structure to the backup that was created. The .fmp12.zip files can be restored by using the "Restore" option in the File Browser.
+
+### Offsite Backup Notifications
+
+In version 4.11.0, OttoFMS exposes the option to send notifications when Offsite backups complete. You can set up a single notification destination per server, which can be a webhook or a Slack channel. For details on payloads and setup, see the [Notifications](/ottofms-features/notifications) documentation.
 
 ## OttoFMS Config
 

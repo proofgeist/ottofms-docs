@@ -1,0 +1,193 @@
+import { Tabs } from "nextra/components";
+
+# Notifications
+
+OttoFMS can send notifications for Deployments, Builds, and Offsite Backups. Notifications can be sent to a webhook URL or to a Slack channel.
+
+## Webhooks
+
+Webhooks can be used to get notifications to any service that supports webhooks (including OttoFMS itself!). The webhook payload will change depending on the type of process notifications are being sent for, as well as the status of that process. The best way to get an example payload is to use the test buttons wherever you are setting up notifications. There are some examples of payloads included below for reference.
+
+<Tabs items={["Deployment", "Build", "Offsite Backup"]}>
+  <Tabs.Tab label="Deployment">
+    <Tabs items={[ "Started", "Success", "Failed"]}>
+      <Tabs.Tab label="Started">
+      ```json
+      {
+        "event": "deployment_started",
+        "data": {
+          "status": "started",
+          "deploymentId": 14,
+          "name": "My Deployment",
+          "host": "https://filemaker.yourserver.com",
+          "serverUrl": "https://filemaker.yourserver.com",
+          "deploymentUrl": "https://filemaker.yourserver.com/otto/deployments/14",
+          "getDeploymentUrl": "https://filemaker.yourserver.com/otto/api/deployments/14/",
+          "isSubDeployment": false,
+          "files": ["file1.fmp12", "file2.fmp12"],
+          "fileCount": 2,
+          "timestamp": "2021-01-01T00:00:00Z",
+        }
+      }
+      ```
+      </Tabs.Tab>
+      <Tabs.Tab label="Succeeded">
+      ```json
+      {
+        "event": "deployment_success",
+        "data": {
+          "status": "success",
+          "deploymentId": 14,
+          "name": "My Deployment",
+          "host": "https://filemaker.yourserver.com",
+          "serverUrl": "https://filemaker.yourserver.com",
+          "deploymentUrl": "https://filemaker.yourserver.com/otto/deployments/14",
+          "getDeploymentUrl": "https://filemaker.yourserver.com/otto/api/deployments/14/",
+          "isSubDeployment": false,
+          "files": ["file1.fmp12", "file2.fmp12"],
+          "fileCount": 2,
+          "duration": 84000,
+          "durationFormatted": "23:20:00",
+          "errorCount": 0,
+          "timestamp": "2021-01-01T00:00:00Z",
+        }
+      }
+      ```
+      </Tabs.Tab>
+      <Tabs.Tab label="Failed">
+      ```json
+      {
+        "event": "deployment_failed",
+        "data": {
+          "status": "failed",
+          "deploymentId": 14,
+          "name": "My Deployment",
+          "host": "https://filemaker.yourserver.com",
+          "serverUrl": "https://filemaker.yourserver.com",
+          "deploymentUrl": "https://filemaker.yourserver.com/otto/deployments/14",
+          "getDeploymentUrl": "https://filemaker.yourserver.com/otto/api/deployments/14/",
+          "isSubDeployment": false,
+          "files": ["file1.fmp12", "file2.fmp12"],
+          "fileCount": 2,
+          "duration": 84000,
+          "durationFormatted": "23:20:00",
+          "errorCount": 4,
+          "timestamp": "2021-01-01T00:00:00Z",
+        }
+      }
+      ```
+      </Tabs.Tab>
+    </Tabs>
+  </Tabs.Tab>
+  <Tabs.Tab label="Build">
+    <Tabs items={[ "Started", "Succeeded", "Failed"]}>
+      <Tabs.Tab label="Started">
+      ```json
+      {
+        "event": "build_started",
+        "data": {
+          "status": "started",
+          "buildId": "my_build",
+          "ottofmsId": 123,
+          "serverUrl": "https://filemaker.yourserver.com",
+          "buildUrl": "https://filemaker.yourserver.com/otto/builds/123",
+          "getBuildUrl": "https://filemaker.yourserver.com/otto/api/builds/123/",
+          "files":["file1.fmp12", "file2.fmp12"],
+          "fileCount": 2,
+          "timestamp": "2021-01-01T00:00:00Z",
+        }
+      }
+      ```
+      </Tabs.Tab>
+      <Tabs.Tab label="Succeeded">
+      ```json
+      {
+        "event": "build_succeeded",
+        "data": {
+          "status": "completed",
+          "buildId": "my_build",
+          "ottofmsId": 123,
+          "serverUrl": "https://filemaker.yourserver.com",
+          "buildUrl": "https://filemaker.yourserver.com/otto/builds/123",
+          "getBuildUrl": "https://filemaker.yourserver.com/otto/api/builds/123/",
+          "files":["file1.fmp12", "file2.fmp12"],
+          "fileCount": 2,
+          "duration": 84000,
+          "durationFormatted": "23:20:00",
+          "downloadUrl": "https://filemaker.yourserver.com/otto/builds/123/download",
+          "downloadFolderUrl": "https://filemaker.yourserver.com/otto/builds/123/download/folder",
+          "timestamp": "2021-01-01T00:00:00Z",
+        }
+      }
+      ```
+      </Tabs.Tab>
+      <Tabs.Tab label="Failed">
+      ```json
+      {
+        "event": "build_failed",
+        "data": {
+          "status": "failed",
+          "buildId": "my_build",
+          "ottofmsId": 123,
+          "serverUrl": "https://filemaker.yourserver.com",
+          "buildUrl": "https://filemaker.yourserver.com/otto/builds/123",
+          "getBuildUrl": "https://filemaker.yourserver.com/otto/api/builds/123/",
+          "files":["file1.fmp12", "file2.fmp12"],
+          "fileCount": 2,
+          "duration": 84000,
+          "durationFormatted": "23:20:00",
+          "timestamp": "2021-01-01T00:00:00Z",
+        }
+      }
+      ```
+      </Tabs.Tab>
+    </Tabs>
+  </Tabs.Tab>
+  <Tabs.Tab label="Offsite Backup">
+    <Tabs items={[ "Completed", "Failed"]}>
+      <Tabs.Tab label="Succeeded">
+        ```json
+        {
+          "event": "offsite_backup_success",
+          "data": {
+            "scheduleName": "My Offsite Backup",
+            "serverUrl": "https://filemaker.yourserver.com",
+            "filesTransferred": 100,
+            "totalBackupSizeBytes": 1000000000,
+            "transferDurationSeconds": 100,
+            "timestamp": "2021-01-01T00:00:00Z",
+          }
+        }
+        ```
+      </Tabs.Tab>
+      <Tabs.Tab label="Failed">
+        ```json
+        {
+          "event": "offsite_backup_failed",
+          "data": {
+            "scheduleName": "My Offsite Backup",
+            "serverUrl": "https://filemaker.yourserver.com",
+            "errorMessage": "Backup failed",
+            "timestamp": "2021-01-01T00:00:00Z",
+          }
+        }
+        ```
+      </Tabs.Tab>
+    </Tabs>
+  </Tabs.Tab>
+</Tabs>
+
+## Slack
+
+To get a Slack url for OttoFMS to send notifications to, you can use the button below. This will open a new window where you can authorize OttoFMS to send notifications to your Slack channel.
+
+<br />
+<a href="https://slack.com/oauth/v2/authorize?client_id=9720328660.6839689854469&scope=incoming-webhook&user_scope=">
+  <img
+    alt="Add to Slack"
+    height="40"
+    width="139"
+    src="https://platform.slack-edge.com/img/add_to_slack.png"
+    srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+  />
+</a>

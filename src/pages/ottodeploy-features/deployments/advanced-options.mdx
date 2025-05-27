@@ -106,6 +106,12 @@ This feature uses a pair of strings to rename your files. All files on the sourc
 
 ![Rename Files maintaining External Links](/img/ottodeploy/advanced-options/rename-fmdevtool-example.png)
 
+<Callout type="info">
+  The "Replace Text" and "With Text" fields cannot start with a hyphen, as this
+  collides with the FMDeveloperTool's syntax. We recommend using an underscore
+  rather than a hyphen in your filenames to avoid conflicts like this.
+</Callout>
+
 ## Pre Deployment Script
 
 Similar to the [Post Deployment Script](/ottodeploy-features/deployments/post-deployment-scripts), the Pre Deployment Script allows you to run a script before the deployment is started on the destination server. This can be useful if you want to run a script to prepare for a deployment or if you want to run a script to clean up after a deployment. This option is found in the "Options" tab of each sub-deployment.
@@ -148,28 +154,7 @@ The following options are all found in the "Options" tab of each sub-deployment.
 
 ### Notifications (Webhooks and Slack)
 
-You can set up OttoFMS to send notificaiton via webhook or Slack when a deployment is started, completed, or fails.
-
-#### Webhooks
-
-You can setup webhooks in each sub-deployment and in the OttoDeploy settings. Deleting a webhook url from the settings will not affect existing deployments, but will prevent new deployments from selecting that url. Webhook notifications send a JSON Payload to the webhook url with details about the deployment and the events that trigger the notification.
-
-#### Slack
-
-You can setup Slack channels to receive notifications when a deployment is started, completed, or fails. Slack channels can be set in each sub-deployment and in the OttoDeploy settings. Deleting a channel url from the settings will not affect existing deployments, but will prevent new deployments from selecting that url.
-
-To add a Slack channel, you can use the button below. This will open a new window where you can authorize OttoFMS to send notifications to your Slack channel.
-
-<br />
-<a href="https://slack.com/oauth/v2/authorize?client_id=9720328660.6839689854469&scope=incoming-webhook&user_scope=">
-  <img
-    alt="Add to Slack"
-    height="40"
-    width="139"
-    src="https://platform.slack-edge.com/img/add_to_slack.png"
-    srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-  />
-</a>
+You can set up OttoFMS to send notificaiton via webhook or Slack when a deployment is started, completed, or fails. For details on notification types and their setup, head to the [Notifications](/ottofms-features/notifications) documentation. You can setup notifications in each sub-deployment and in the OttoDeploy settings. Deleting a notification destination from the settings will not affect existing deployments or builds, but will prevent new deployments or builds from selecting that notification destination.
 
 ### Concurrency
 
