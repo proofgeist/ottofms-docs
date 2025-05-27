@@ -1,5 +1,25 @@
 # OttoDeploy Version History
 
+## 2.2.2
+
+Released: 5/27/2025
+
+### Patch Changes
+
+- Fixed an issue where the destination file names could get out of sync when using the "Rename maintaining external links" option.
+- Added support for sending notifications with builds on servers using OttoFMS version 4.11.0
+- When using OttoDeploy, if you switch to a source build that does not have a particular file, a warning will now be displayed before clicking the "Review & Deploy" button.
+- Added support for publishing builds to FTP and SFTP with servers on OttoFMS 4.11.0
+- Fixed an issue where the build symbol would be displayed in the deployment list for deployments without a build
+- OttoDeploy will now shoot off some confetti (don't worry its just digital) when a sub-deployment or build completes successfully.
+- There is now a confirmation popup when deleting a sub-deployment
+- Fixed an issue where attempting to use a build from the destination server inbox on a deployment where advanced options are not turned on would cause an infinite spinner on the file selection
+- OttoDeploy will now properly set both the deployment and subdeployment name to end with "(copy)" when duplicating a deployment using advanced options
+- Fixed an issue where the success message for scheduled deployments would display the wrong timezone.
+- OttoDeploy will no longer show the "Push build to destination" option when using simple options if the deployment is using a source type that does not have the ability to push the build to the destination (like deploying from a url, destination build inbox, or offsite location)
+- Fixed an issue where the test connections modal would display that all connections were working before all of the tests finished
+- Added some quality of life updates to the send deployment ui, like sticky deployment details and a progress bar
+
 ## 2.2.1
 
 Released: 3/14/2025
