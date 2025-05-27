@@ -2,6 +2,49 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.11.0
+
+Released: 5/27/2025
+
+Download for [Linux](/downloads/ottofms/4.11.0/amd), [Linux (arm)](/downloads/ottofms/4.11.0/arm), [Windows](/downloads/ottofms/4.11.0/win), [Mac](/downloads/ottofms/4.11.0/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.11.0/mac-arm)
+
+### Minor Changes
+
+- OttoFMS now exposes an OData Proxy at /otto/fmi/odata. This proxy can be used with Data API Keys to make OData calls. The primary intent of this is to allow for usage of a removable key for OData rather than simple Basic Auth calls. Accordingly, Data API Keys can now be created with a flag to allow access to OData. Data API Keys that already existed will not have OData access by default, but it can be added from the Data API Keys page.
+- Notifications can now be sent for builds, similar to the notifications for deployments. Notifications can be sent to Slack or a webhook, and will be sent on start, successful complete, failure, or crash.
+- Notifications can now be sent for Offsite Backups, similar to the notifications for deployments. Notifications can be sent to Slack or a webhook, and will be sent on successful or failed backup completion.
+- OttoFMS now ships a native Apple Silicon build. If using the normal Mac install script, this will be automatically downloaded the next time you update, as the script has been updated to branch to the new Apple Silicon build for servers with the matching architecture.
+- Builds can now be published using FTP and SFTP.
+- OttoFMS now displays information on disk usage on its dashboard.
+
+### Patch Changes
+
+- When using the "can reach other server" endpoint, OttoFMS will now return a more helpful error message.
+- Security fixes.
+- Fixed an issue where OttoFMS offsites fail if the Event.log is not in English.
+- When setting a custom theme color for OttoFMS, the sidebar will now exactly match the custom color rather than calculating a color based on the input color.
+- Fixed an issue where external container data would fail to zip with files when sending offsites if the file was in a folder that is not the default databases folder or the file is in a subfolder of the default databases folder.
+- Fixed an issue where .fmp12 files in FMS folders other than the Default Databases folder would fail to zip when sending offsite backups with the "zip files" flag toggled on
+- Fixed an issue where the encryption key would not be properly passed when opening files during an install or replace while using the "Maintain External File References" option.
+- Fixed an issue where clicking on the "No files found" text in the file browser would cause an Error screen to appear.
+- When using a custom color for OttoFMS, the "themeColor" key returned by the /otto/api/info endpoint will now exactly match the input color rather than a calculated version of said color.
+- OttoFMS will now hit the FMS Admin API significantly less during normal operation.
+- The header in a running deployment will now stick to the top of the screen, ensuring it is always visible.
+- When running a Just in Time build, OttoFMS will now store the Build manifest even if the Just In Time build fails, meaning you can view build logs for the failed build from the deployment page even if the build fails.
+- Data API Keys now have a "Last Used" timestamp rather than a "Last Updated" timestamp in the UI. This timestamp will represent the last time a Data API Key was used in the Data API or OData proxies.
+- Fixed an issue where offsite schedules with spaces in their name would not send to offsite locations properly.
+- Fixed an issue where the inclusion of ">" , "<", or "&" symbols in deployment names would cause malformed urls in slack notifications.
+- When setting up a build to be deployed from a url, you can now include a "downloadUrl" key in the manifest.json to override the default behavior of attempting to calculate the url from the manifest's url. This can be used to set up builds at urls that are not a simple path, to split builds apart on a web server, or to dynamically generate pre-signed urls for build manifests.
+- Deployments from url now accept a more generic url (previously the url had to have "manifest.json" or ".build.zip" in the name). It will validate if the url has ".build.zip" in the name to try to download a .build.zip directly, otherwise it will hit the url to attempt to download the manifest.json. The downloaded JSON is validated against the build manifest schema, but can have an additional "downloadUrl" key for the download of the .build.zip. If the "downloadUrl" key is not present, OttoFMS will attempt to generate a download url using the manifest url and the .build.zip name.
+- OttoFMS offsites no longer require the CreateBucket S3 permission by default.
+- Added some clarification to the APIDoc on why there are two copies of the "Get a file with the download link" endpoint. It is represented twice in the API doc as you can pass the token as a query parameter or as part of the path. Query parameter is the recommended method, the usage in the path can fail on Windows.
+- Added a count of scheduled deployments to the ottofms dashboard.
+- Added clarification to the "Get a file download link" endpoint for which endpoint to use to download the file after getting the link (use the link it sent you).
+- Added an option in the "Get a file download link" endpoint which lets you pass in an expiry time. Previously this was always 10 minutes, which is still the default.
+- Fixed an issue where clones would fail to run on MacOS if the "Macintosh HD" folder had been renamed.
+- When disconnecting clients immediately, the notification shown will now show that they are being disconnected immediately instead of in 90 seconds.
+- Fixed an issue where the urls returned for container fields in the Data API Proxy would return "undefined" instead of the proper hostname.
+
 ## 4.10.3
 
 Released: 4/9/2025
