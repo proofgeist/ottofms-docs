@@ -2,6 +2,27 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.11.1
+
+Released: 6/26/2025
+
+Download for [Linux](/downloads/ottofms/4.11.1/amd), [Linux (arm)](/downloads/ottofms/4.11.1/arm), [Windows](/downloads/ottofms/4.11.1/win), [Mac](/downloads/ottofms/4.11.1/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.11.1/mac-arm)
+
+### Patch Changes
+
+- Offsite notifications can now be removed from a server.
+- Offsite notification settings are now editable from the OttoFMS Developer API.
+- When uploading a file and renaming it, you can now choose to overwrite an existing file of the same name.
+- When downloading a clone of a file, the downloaded file will now have "\_clone" at the end of its filename.
+- OttoFMS now allows you to download a single file from the top toolbar of the file browser even if you cannot download multiple files from that location (ie. if you are downloading from an offsite location).
+- The OttoFMS OData Proxy now works with the $metadata endpoint.
+- Added a new environment variable PREVENT_DAPI_CALLOUT to turn off the callback to the servers hostname when using the DAPI or OData proxies. This is not turned on by default as there are features of the Data API that will break if this is turned off, primarily around the container data urls that get sent back in the Data API.
+- Reverted a change made in OttoFMS 4.11.0 where the Admin API Proxy called out to the server hostname rather than directly to port 16001 as this was causing issues on servers where the server was unable to connect to its own hostname.
+- Increased the default timeout for opening and closing files via fmsadmin from 10 to 20 seconds.
+- Added a new env variable FMSADMIN_TIMEOUT_IN_SEC, which will override the default timeout of 20 seconds for fmsadmin commands.
+- Fixed an issue where OttoFMS fails to rename files that include a non-unicode character.
+- Fixed an error where some files would fail to upload when uploading multiple files.
+
 ## 4.11.0
 
 Released: 5/27/2025
@@ -33,7 +54,7 @@ Download for [Linux](/downloads/ottofms/4.11.0/amd), [Linux (arm)](/downloads/ot
 - When running a Just in Time build, OttoFMS will now store the Build manifest even if the Just In Time build fails, meaning you can view build logs for the failed build from the deployment page even if the build fails.
 - Data API Keys now have a "Last Used" timestamp rather than a "Last Updated" timestamp in the UI. This timestamp will represent the last time a Data API Key was used in the Data API or OData proxies.
 - Fixed an issue where offsite schedules with spaces in their name would not send to offsite locations properly.
-- Fixed an issue where the inclusion of ">" , "&lt;", or "&gt;" symbols in deployment names would cause malformed urls in slack notifications.
+- Fixed an issue where the inclusion of ">" , "<", or "&" symbols in deployment names would cause malformed urls in slack notifications.
 - When setting up a build to be deployed from a url, you can now include a "downloadUrl" key in the manifest.json to override the default behavior of attempting to calculate the url from the manifest's url. This can be used to set up builds at urls that are not a simple path, to split builds apart on a web server, or to dynamically generate pre-signed urls for build manifests.
 - Deployments from url now accept a more generic url (previously the url had to have "manifest.json" or ".build.zip" in the name). It will validate if the url has ".build.zip" in the name to try to download a .build.zip directly, otherwise it will hit the url to attempt to download the manifest.json. The downloaded JSON is validated against the build manifest schema, but can have an additional "downloadUrl" key for the download of the .build.zip. If the "downloadUrl" key is not present, OttoFMS will attempt to generate a download url using the manifest url and the .build.zip name.
 - OttoFMS offsites no longer require the CreateBucket S3 permission by default.
