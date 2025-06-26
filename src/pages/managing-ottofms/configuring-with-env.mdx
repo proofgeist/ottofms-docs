@@ -71,6 +71,14 @@ When running a deployment, Just in Time builds can be used to create a build on 
 
 - JIT_BUILD_TIMEOUT_IN_SEC=3600
 
+### fmsadmin Timeout
+
+OttoFMS uses the fmsadmin tool to list files, open and close files, and perform other operations on the server. By default, OttoFMS will wait 20 seconds for the fmsadmin tool to complete its operation. If you would like to change this timeout, you can set the following key:
+
+- FMSADMIN_TIMEOUT_IN_SEC=60
+
+This setting does not affect the timeout when performing backups, if you'd like to change the backup timeout, see below.
+
 ### Backup Timeout
 
 When running a backup, the backup process can take a long time. By default, OttoFMS will time out of a backup after 10 minutes. If you would like to change this timeout, you can set the following key:
@@ -119,6 +127,12 @@ If you would like to specify the OttoFMS license key programmatically instead of
 To add trusted root certificates on Windows and Linux, you can set the `NODE_EXTRA_CA_CERTS` environment variable to point to a file containing your root certificates.
 
 - NODE_EXTRA_CA_CERTS=/path/to/your/root-certificates.pem
+
+### Preventing Callout to Server Hostname in Data API and OData Proxies
+
+By default, OttoFMS will call back out from the server to the hostname to send calls to the Data API and OData proxies. This primarily fixes issues with container data urls, as the urls need the server url to be generated properly. If you would like to disable this behavior, you can set the following key:
+
+- PREVENT_DAPI_CALLOUT=true
 
 ## Example .env File
 
