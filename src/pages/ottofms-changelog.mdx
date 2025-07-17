@@ -81,7 +81,7 @@ Download for [Linux](/downloads/ottofms/4.10.3/amd), [Linux (arm)](/downloads/ot
 - Fixed an issue where builds published to the http folder on Mac and Linux were placed into the htdocs folder instead of the httpsRoot folder, which is where the FileMaker web urls point.
 - Fixed an issue where OttoFMS would match against just in time builds created on servers that are not the deployment source server if the deployment name and the files to be deployed were the the exact same.
 - OttoFMS will now double check that there are usable files in build folders in the inbox before attempting to use them for a deployment.
-- OttoFMS now uses the fmsadmin CLI to create backups rather than creating a FileMaker schedule. This is signigicantly faster (in testing, builds are up to 75% faster) than the admin api method was.
+- OttoFMS now uses the fmsadmin CLI to create backups rather than creating a FileMaker schedule. This is significantly faster (in testing, builds are up to 75% faster) than the admin api method was.
 - When using the "Remove Old Removed Files" Settings, non-.fmp12 files will no longer be erroneously removed before the specified number of days.
 - OttoFMS will now properly clean up builds that are in the database but not in the outbox and set their status to crashed on restart.
 - Added the duration to the builds table.
