@@ -1,0 +1,99 @@
+import { Tabs } from "nextra/components";
+
+# OttoFMS Admin MCP Server
+
+OttoFMS exposes an Admin MCP server that lets you use AI clients like Claude (or any other client that supports MCP Streamable HTTP MCP servers) to interact with and manage your FileMaker server.
+
+The MCP server has tools for file management, deployment and build debugging, and things like getting server information and stats.
+
+## Connecting to the MCP server
+
+<Tabs items={["Claude", "Cursor", "Goose", "Generic Config File"]}>
+  <Tabs.Tab>
+In Claude Desktop, you can add the following entry to your MCP config file (Claude Desktop > Settings > Developer > Local MCP Servers > Edit Config)
+
+```json
+{
+  "mcpServers": {
+    "your-custom-name": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://[your.server.hostname]/otto/admin-mcp",
+        "--header",
+        "Authorization: Bearer [admin-api-key]"
+      ]
+    }
+  }
+}
+```
+
+Make sure to replace `[your.server.hostname]` with your server's hostname and `[admin-api-key]` with your Admin API Key.
+
+After saving this and reloading your config, you should see your server listed in the tools section of your client. Most clients will give you options to turn off tools you don't want to make available to the AI agent you're working with.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+In Cursor, you can add the following entry to your MCP config file (Cursor > Cursor Settings > MCP & Integrations > Add Custom MCP)
+
+```json
+{
+  "mcpServers": {
+    "your-custom-name": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://[your.server.hostname]/otto/admin-mcp",
+        "--header",
+        "Authorization: Bearer [admin-api-key]"
+      ]
+    }
+  }
+}
+```
+
+Make sure to replace `[your.server.hostname]` with your server's hostname and `[admin-api-key]` with your Admin API Key.
+
+After saving this and reloading your config, you should see your server listed in the tools section of your client. Most clients will give you options to turn off tools you don't want to make available to the AI agent you're working with.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+In Goose, you can add the MCP server as an extension. Head to `Goose > Extensions > Add custom extension` to get the setup screen.
+
+You'll need to enter a custom name for your server and switch the Type field to `Streamable HTTP`. Enter a description as you see fit and add `https://[your.server.hostname]/otto/admin-mcp` as the Endpoint. Add a header to the Request Headers section with the name `Authorization` and the value `Bearer [admin-api-key]`. Click `Add Extension` and you should be good to go.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+For clients that support a generic mcp config file, you can add the following entry to your MCP config file:
+
+```json
+{
+  "mcpServers": {
+    "your-custom-name": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://[your.server.hostname]/otto/admin-mcp",
+        "--header",
+        "Authorization: Bearer [admin-api-key]"
+      ]
+    }
+  }
+}
+```
+
+Make sure to replace `[your.server.hostname]` with your server's hostname and `[admin-api-key]` with your Admin API Key.
+
+After saving this and reloading your config, you should see your server listed in the tools section of your client. Most clients will give you options to turn off tools you don't want to make available to the AI agent you're working with.
+
+  </Tabs.Tab>
+
+</Tabs>
+
+## Debugging
+
+The OttoFMS Admin MCP Server will log which tools get called to the otto-debug.log file if you have [debug logging](/otto-console/settings#debug-logging) turned on.

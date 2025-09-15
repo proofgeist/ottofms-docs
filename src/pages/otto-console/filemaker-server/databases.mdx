@@ -16,7 +16,7 @@ After the files are uploaded, OttoFMS will automatically open the files for you.
 
 ## File Actions
 
-Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **pause**, **resume**, **download**, **encrypt**, **decrypt**, **save as xml**, **rename**, **move**, **copy**, or **delete** the database file.
+Click the three dots on the right to see the options for the database. You can use the menu to **open**, **close**, **pause**, **resume**, **download**, **encrypt**, **decrypt**, **compress**, **save as xml**, **rename**, **move**, **copy**, or **delete** the database file.
 
 OttoFMS can download a hosted FileMaker file without needing to close it first. When you download a file from this interface, OttoFMS makes an ad-hoc backup of the file and then downloads the backup. When you download a clone, no data is included which can often result in a much smaller file size.
 
@@ -47,10 +47,24 @@ When using the FMDeveloperTool to rename files, new copies of the files will be 
 
 You can use the **Save As XML** option to generate an XML representation of the database. Full Access credentials are required to generate the XML, then the XML file is downloaded to your computer. You can optionally save the XML file to the server Documents folder as well. The XML contains a timestamp so you can compare two versions of the same database to see what has changed using a tool like [FMComparison](https://www.fmcomparison.com/).
 
+### Compressing Files
+
+<Callout type="info">
+  This feature requires FileMaker Server 20.3 or later
+</Callout>
+
+You can use the **Save as Compressed** option to reduce your database file size. This process reclaims unused space in the database file and rebuilds its structure to make it smaller.
+
+This operation can be done in place rather than saving as a new file. Performing the operation in place will create a new copy, delete the existing file, and rename the name file to the old file name.
+
 ### File Encryption
 
-Servers running FileMaker Server 20.3 or higher can encrypt and decrypt files right from the OttoFMS console.
+<Callout type="info">
+  This feature requires FileMaker Server 20.3 or later
+</Callout>
 
 To encrypt a file, click the **Encrypt** option in the file menu. You will be prompted to enter a password for the encryption as well as an account and sharedId for the file.
 
 To decrypt a file, click the **Decrypt** option in the file menu. You will be prompted to enter the password you used to encrypt the file and an account to use for running the decryption.
+
+This operation can be done in place rather than saving as a new file. Performing the operation in place will create a new copy, delete the existing file, and rename the name file to the old file name.

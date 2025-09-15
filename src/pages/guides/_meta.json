@@ -3,5 +3,7 @@
   "api-keys": "Data API Keys",
   "webhooks": "Webhooks",
   "simpleq": "SimpleQ",
-  "offsite-backups": "Offsite Backups"
+  "offsite-backups": "Offsite Backups",
+  "application-logging": "Application Logging",
+  "mac-second-disk": "Mac Second Disk"
 }
