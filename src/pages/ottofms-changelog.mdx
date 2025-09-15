@@ -2,6 +2,40 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.12.0
+
+Released: 9/15/2025
+
+Download for [Linux](/downloads/ottofms/4.12.0/amd), [Linux (arm)](/downloads/ottofms/4.12.0/arm), [Windows](/downloads/ottofms/4.12.0/win), [Mac](/downloads/ottofms/4.12.0/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.12.0/mac-arm)
+
+
+### Minor Changes
+
+- Exposed a Developer API and UI for saving a file as compressed.
+- Added the ability to add text files to the .build.zip so that they can be shipped with builds.
+- Added support for encrypting, decrypting, and saving as compressed in place, which does not require selecting a target file or file path and handles the renaming of the new file to the correct filename.
+- OttoFMS can now Clone closed files when creating a build.
+- Added ability to store pre-deployment and post-deployment script information on a build.
+- OttoFMS now exposes an Admin MCP server at /otto/admin-mcp. This mcp server lets you use AI agents to manage your filemaker server and files. You can get server stats and settings, manage and download filemaker files, debug/rerun/undo deployments, and debug/rerun builds for your server.
+- OttoFMS Webhooks can now accept PATCH and DELETE requests. If you include the headers in the webhook request, the request method will be added to the headers as the "X-Method" header.
+
+### Patch Changes
+
+- Fixed an error when some errors in endpoints could throw an "invalid character in statusMessage" error rather than the actual error that occurred.
+- When setting up notifications for a build or offsites on a server that has never run a deployment, the url in the slack notifications and webhook response will now have the correct URL.
+- Fixed an issue with the File Browser where it would throw a "Invalid String Length" error when listing folders with thousands of files.
+- Added the open files to the clients list in the OttoFMS console.
+- Fixed an issue where the data api key list in the webhook creation flow would overflow the screen if there were too many data api keys.
+- Added logs for encrypting, decrypting, and saving xmls of files.
+- Fixed an error where uploads would fail if the file-store.config.json file was corrupted or completely empty.
+- The "PREVENT_DAPI_CALLOUT" environment variable now also prevents callout on webhooks.
+- Fixed an issue with Deployment and Build Script file management on Windows.
+- Reduced latency for data api and odata proxies.
+- Fixed an issue where OttoFMS still required the S3 CreateBucket permission when testing an offsite location connection.
+- Removed unnecessary callouts to the server fqdn when creating data api keys.
+- The link to the source server in the deployment page now opens to a new tab.
+- Fixed an issue where the OttoFMS web server config could conflict with other updates made after OttoFMS was installed.
+
 ## 4.11.1
 
 Released: 6/26/2025
