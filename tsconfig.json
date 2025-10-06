@@ -31,9 +31,7 @@
     "theme.config.tsx",
     "scripts/build-known-issues.ts",
     ".next/types/**/*.ts",
-    "next.config.js",
-    "src/pages/guides/application-logging.mdx",
-    "src/pages/ottofms-features/notifications.mdx"
+    "next.config.js"
   ],
   "exclude": ["node_modules"],
   "plugins": [

@@ -72,7 +72,7 @@ To configure offsite backups, you will need credentials for an S3-compatible sto
 
 Additional notes and examples of some of the common providers are [available here](/otto-console/settings/offsite-backup-s3-providers).
 
-After entering this information, click the "Test" button to verify that OttoFMS can connect to your storage provider. If the test is successful, click "Save" to save the configuration. If the test fails, you will be prompted to correct the information and try again.
+After entering this information, click "Save" to save the configuration. OttoFMS will test the connection and if successful, will create a new offsite location in the OttoFMS console. If the test fails, you will be prompted to correct the information and try again.
 
 <Callout type="info">
   Offsite Backups with OttoFMS require the following S3 permissions:
@@ -119,7 +119,9 @@ When creating a new schedule, OttoFMS will create a FileMaker Server Backup Sche
 
 ### Including External Container Data
 
-If you have additional Container Data Folders, they can be included in the backup to your offsite storage. Simply toggle the "Include External Container Data Folder" toggles on the schedule for whichever folders you want to include in your backups and they will be included going forward.
+If you have additional Container Data Folders, they can be included in the backup to your offsite storage. Simply toggle the "Include External Container Data Folder" toggles on the schedule for whichever folders you want to include in your backups and they will be included going forward. When including the external container data folders, OttoFMS will push the contents of external folders to a new folder `container1` or `container2` in the remote path. This folder is at the same level as the `dbs` folder the database backups are put into. Files that are removed on the server are not deleted from the offsite location.
+
+In OttoFMS 4.13.0 and later, external container folders can be synced to a different offsite location than the databases. This is ideal if you want to keep the data separate, store them in different storage types, or have different lifecycle rules for the two types of data. To send to a different offsite lcoation, toggle on the pertinent option and enter the new location details.
 
 ### Zipping Backups
 

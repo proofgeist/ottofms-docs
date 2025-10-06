@@ -1,0 +1,194 @@
+import { Callout, Tabs } from "nextra/components";
+import Vimeo from "../../components/vimeo";
+
+# MCP Servers
+
+<Callout type="info">
+  This documentation if for OttoFMS OData MCP Servers only. If you are looking
+  for information on how to use the OttoFMS Admin MCP Server, see the [Admin MCP
+  Server](/ottofms-features/admin-mcp) documentation.
+</Callout>
+
+OttoFMS MCP (Model Context Protocol) Servers are a method to expose your FileMaker Applications to AI clients like Claude, Cursor, and Goose. You can define your own MCP servers and tools in OttoFMS and use them from AI clients in a chat like interface. For more information on the MCP servers and tools check out the [MCP documentation](https://modelcontextprotocol.io/).
+
+OttoFMS MCP Servers are a wrapper for the FileMaker OData API allowing you to expose scripts that you write in your FileMaker Applications as part of an MCP server. This means that you can write any sort of behavior you want from within FileMaker and expose it without any need to use an extra tool or service (other than OttoFMS).
+
+OttoFMS OData MCP Servers are authenticated using Data API Keys. The Data API Key used must be for the FileMaker file the MCP server is connected to and it must have OData privileges.
+
+<Vimeo id="1124880148" />
+
+## Getting Started
+
+You'll need a couple things prepared before you can create an MCP Server:
+
+1. A FileMaker Application you want to expose functionality or data from.
+2. A Data API Key for the FileMaker Application that has OData privileges. (Both the User account and the Data API Key need to be enabled for OData). Ideally, this key is also enabled for the Data API, as we use the Data API to query the list of scripts to make tool creation easier.
+
+### Script Preperation
+
+Scripts for the MCP Server will take in a JSON Object as the Script parameter. You can define the structure of the JSON object when you define the tool parameters, but OttoFMS currently only supports top level keys and string, number, and boolean values. String and number keys can be arrays. This may change in a future version.
+
+Example JSON object:
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": 30,
+  "isStudent": true
+}
+```
+
+Unsupported JSON object:
+
+```json
+{
+  "type": "Person",
+  "param": [
+    {
+      "name": "John",
+      "age": 30
+    },
+    {
+      "name": "Jane",
+      "age": 25
+    }
+  ]
+}
+```
+
+MCP Scripts should return either a string or a JSON object. This value will be passed directly back to the AI client as the response to the tool call, so it should include all information you may want to expose to the user. Unless you are using a private LLM, all data sent back from tools will be sent to the LLM, so be mindful of privacy concerns.
+
+### Creating an MCP Server
+
+To create an MCP Server, you'll need to navigate to the [MCP Servers page](/otto-console/mcp-servers) in the OttoFMS console.
+
+Click the "Create MCP Server" button in the upper right to create a new MCP Server.
+![New MCP Server Button](/img/ottofms/console/mcp-servers/go-to-creation.png)
+
+Fill out the form in the modal dialog that pops up. When you have entered everything correctly click the "Create Server" Button.
+
+The MCP Server description will be exposed to the AI client to help it understand which server does what. The slug is used for the server in urls and should be unique.
+![New MCP Server Form](/img/ottofms/console/mcp-servers/server-creation.png)
+
+### Adding tools
+
+To add a tool, click the "Add Tool" button in the upper right of the MCP Server page.
+![Add Tool Button](/img/ottofms/console/mcp-servers/server-dashboard.png)
+
+The modal that pops up has three tabs, which will let you define the tools name, description, script, parameters, and run a test.
+
+The General tab will let you define the tools name, description, and script as well as the active status. The active status will determine if the tool is exposed to the AI client. The name and description will be used by the AI Client to help it understand which tool does what, so it is important to make them descriptive.
+![New Tool Form](/img/ottofms/console/mcp-servers/add-tool-general-tab.png)
+
+The Input Schema tab will let you define the parameters that the tool will take. Each parameter is a key in the JSON object passed to the tool.
+![Add Parameters to your Tool](/img/ottofms/console/mcp-servers/add-tool-parameters-tab.png)
+
+Each parameter has a name and description, as well as a type. The type can be one of the following:
+
+- String
+- Number
+- Boolean
+
+Strings and Numbers can have the array option toggled on, in which case the tool will take an array of strings or numbers for that key in the JSON object.
+
+Strings can have enum values defined, which will limit the values that can be passed in to a predefined list.
+
+A parameter can also be marked as required, which will require the parameter to be passed in when the tool is called. Optional parameters may be omited from the JSON object passed to the tool.
+
+![Defining a Parameter](/img/ottofms/console/mcp-servers/edit-tool-parameter.png)
+
+The Test tab can be used to test the tools functionality (or run the script remotely if you just want to trigger it manually). This will directly call the script via OData so you can see the result given based on the parameters you passed in.
+
+![Test Tool](/img/ottofms/console/mcp-servers/test-tool.png)
+
+### Using the MCP Server with AI clients
+
+Once you have created an MCP Server and added tools, you can use it with AI clients like Claude, Cursor, and Goose.
+
+<Tabs items={["Claude", "Cursor", "Goose", "Generic Config File"]}>
+
+  <Tabs.Tab>
+In Claude Desktop, you can add the following entry to your MCP config file (Claude Desktop > Settings > Developer > Local MCP Servers > Edit Config)
+
+```json
+{
+  "mcpServers": {
+    "your-custom-name": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://[your.server.hostname]/otto/mcp/[your-mcp-server-slug]",
+        "--header",
+        "Authorization: Bearer [data-api-key]"
+      ]
+    }
+  }
+}
+```
+
+Make sure to replace `[your.server.hostname]` with your server's hostname, `[your-mcp-server-slug]` with your MCP Server slug, and `[data-api-key]` with your Data API Key.
+
+After saving this and reloading your config, you should see your server listed in the tools section of your client. Most clients will give you options to turn off tools you don't want to make available to the AI agent you're working with.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+In Cursor, you can add the following entry to your MCP config file (Cursor > Cursor Settings > MCP & Integrations > Add Custom MCP)
+
+```json
+{
+  "mcpServers": {
+    "your-custom-name": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://[your.server.hostname]/otto/mcp/[your-mcp-server-slug]",
+        "--header",
+        "Authorization: Bearer [data-api-key]"
+      ]
+    }
+  }
+}
+```
+
+Make sure to replace `[your.server.hostname]` with your server's hostname, `[your-mcp-server-slug]` with your MCP Server slug, and `[data-api-key]` with your Data API Key.
+
+After saving this and reloading your config, you should see your server listed in the tools section of your client. Most clients will give you options to turn off tools you don't want to make available to the AI agent you're working with.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+In Goose, you can add the MCP server as an extension. Head to `Goose > Extensions > Add custom extension` to get the setup screen.
+
+You'll need to enter a custom name for your server and switch the Type field to `Streamable HTTP`. Enter a description as you see fit and add `https://[your.server.hostname]/otto/mcp/[your-mcp-server-slug]` as the Endpoint. Add a header to the Request Headers section with the name `Authorization` and the value `Bearer [data-api-key]`. Click `Add Extension` and you should be good to go.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+For clients that support a generic mcp config file, you can add the following entry to your MCP config file:
+
+```json
+{
+  "mcpServers": {
+    "your-custom-name": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://[your.server.hostname]/otto/mcp/[your-mcp-server-slug]",
+        "--header",
+        "Authorization: Bearer [data-api-key]"
+      ]
+    }
+  }
+}
+```
+
+Make sure to replace `[your.server.hostname]` with your server's hostname, `[your-mcp-server-slug]` with your MCP Server slug, and `[data-api-key]` with your Data API Key.
+
+After saving this and reloading your config, you should see your server listed in the tools section of your client. Most clients will give you options to turn off tools you don't want to make available to the AI agent you're working with.
+
+  </Tabs.Tab>
+
+</Tabs>
