@@ -2,12 +2,33 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.13.0
+
+Released: 10/6/2025
+
+Download for [Linux](/downloads/ottofms/4.13.0/amd), [Linux (arm)](/downloads/ottofms/4.13.0/arm), [Windows](/downloads/ottofms/4.13.0/win), [Mac](/downloads/ottofms/4.13.0/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.13.0/mac-arm)
+
+
+### Minor Changes
+
+- OttoFMS has a new Apps page, which displays FileMaker Apps you can install onto your server using OttoFMS. This page replaces the OttoDeploy and SimpleQ popups that had previously appeared in the console, so they and the settings managing them have been removed.
+- OttoFMS now exposes MCP Servers using OData. These servers can be set up on the MCP Server tab of the OttoFMS dashboard. OData MCP servers allow you to set up Tools to be calls by AI Agents which can call scripts in your FileMaker solution, allowing you to expose functionality with AI for users outside of your FileMaker application. One MCP server maps to one file, and authentication is handled with Data API Keys (OData access required). One tools maps to one script, and the output of the script is passed back to the LLM as its response. Check out the docs for more details!
+- OttoFMS Offsite Backup Notifications can now be configured to not send notifications on success. Default behavior remains the same, notifications are sent on success.
+- OttoFMS Offsite Schedules can now have different remotes/buckets/paths set up for external container data folders, allowing you to set up different lifecycle rules or storage types for external container data.
+
+### Patch Changes
+
+- Added a more useful error message for mismatched folders when doing a deployment using the developer tool.
+- Removed the "Test" step of Offsite location creation since OttoFMS does the same test when the location is created.
+- Fixed an issue where OttoFMS debug logging would not start immediately on startup, causing some logs not to be written to the otto-debug.log (specifically the custom CA cert debugging logs were missing).
+- Validation errors on OttoFMS endpoints now have more helpful error messages.
+- Fixed an issue where the folder size would not populate in the file browser until you changed folders.
+
 ## 4.12.0
 
 Released: 9/15/2025
 
 Download for [Linux](/downloads/ottofms/4.12.0/amd), [Linux (arm)](/downloads/ottofms/4.12.0/arm), [Windows](/downloads/ottofms/4.12.0/win), [Mac](/downloads/ottofms/4.12.0/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.12.0/mac-arm)
-
 
 ### Minor Changes
 
