@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.12.0",
+    "version": "4.13.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -4512,6 +4512,599 @@
           }
         }
       }
+    },
+    "/otto/api/mcp-servers": {
+      "post": {
+        "operationId": "PostOttoApiMcpServers",
+        "summary": "Create an MCP Server",
+        "description": "### Create a new MCP Server\n\nThis endpoint creates a new Model Context Protocol server that can be used to expose FileMaker scripts as tools for AI agents.",
+        "tags": [
+          "MCP Servers"
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/mcp-servers Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiMcpServersRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/mcp-servers Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiMcpServersPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/mcp-servers Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiMcpServersNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "GetOttoApiMcpServers",
+        "summary": "Get all MCP Servers",
+        "description": "### List all MCP Servers\n\nReturns a list of all MCP servers configured in OttoFMS.",
+        "tags": [
+          "MCP Servers"
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/mcp-servers Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/mcp-servers Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/mcp-servers/{mcp_server_slug}": {
+      "get": {
+        "operationId": "GetOttoApiMcpServersMcpServerSlug",
+        "summary": "Get an MCP Server",
+        "description": "### Get MCP Server Details\n\nReturns detailed information about a specific MCP server including its tools.",
+        "tags": [
+          "MCP Servers"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugParameterMcpServerSlug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "PatchOttoApiMcpServersMcpServerSlug",
+        "summary": "Update an MCP Server",
+        "description": "### Update MCP Server\n\nUpdates an existing MCP server configuration.",
+        "tags": [
+          "MCP Servers"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugParameterMcpServerSlug"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiMcpServersMcpServerSlug",
+        "summary": "Delete an MCP Server",
+        "description": "### Delete MCP Server\n\nPermanently deletes an MCP server and all its associated tools.",
+        "tags": [
+          "MCP Servers"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugParameterMcpServerSlug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/mcp-servers/{mcp_server_slug}/tools": {
+      "post": {
+        "operationId": "PostOttoApiMcpServersMcpServerSlugTools",
+        "summary": "Create an MCP Tool",
+        "description": "### Create a new MCP Tool\n\nThis endpoint creates a new tool for an existing MCP server. The tool defines how to execute a FileMaker script and what inputs/outputs it expects.",
+        "tags": [
+          "MCP Tools"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "POST /otto/api/mcp-servers/:mcp_server_slug/tools Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PostOttoApiMcpServersMcpServerSlugToolsParameterMcpServerSlug"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "POST /otto/api/mcp-servers/:mcp_server_slug/tools Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOttoApiMcpServersMcpServerSlugToolsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "POST /otto/api/mcp-servers/:mcp_server_slug/tools Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiMcpServersMcpServerSlugToolsPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "POST /otto/api/mcp-servers/:mcp_server_slug/tools Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOttoApiMcpServersMcpServerSlugToolsNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "GetOttoApiMcpServersMcpServerSlugTools",
+        "summary": "Get MCP Tools by Server",
+        "description": "### Get Tools for MCP Server\n\nReturns all tools associated with a specific MCP server.",
+        "tags": [
+          "MCP Tools"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsParameterMcpServerSlug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/otto/api/mcp-servers/{mcp_server_slug}/tools/{id}": {
+      "get": {
+        "operationId": "GetOttoApiMcpServersMcpServerSlugToolsId",
+        "summary": "Get an MCP Tool",
+        "description": "### Get MCP Tool Details\n\nReturns detailed information about a specific MCP tool.",
+        "tags": [
+          "MCP Tools"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsIdParameterMcpServerSlug"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsIdParameterId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools/:id Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsIdPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "GET /otto/api/mcp-servers/:mcp_server_slug/tools/:id Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOttoApiMcpServersMcpServerSlugToolsIdNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "PatchOttoApiMcpServersMcpServerSlugToolsId",
+        "summary": "Update an MCP Tool",
+        "description": "### Update MCP Tool\n\nUpdates an existing MCP tool configuration.",
+        "tags": [
+          "MCP Tools"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug/tools/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugToolsIdParameterId"
+            }
+          },
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug/tools/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugToolsIdParameterMcpServerSlug"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug/tools/:id Request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugToolsIdRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug/tools/:id Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugToolsIdPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "PATCH /otto/api/mcp-servers/:mcp_server_slug/tools/:id Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugToolsIdNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteOttoApiMcpServersMcpServerSlugToolsId",
+        "summary": "Delete an MCP Tool",
+        "description": "### Delete MCP Tool\n\nPermanently deletes an MCP tool.",
+        "tags": [
+          "MCP Tools"
+        ],
+        "parameters": [
+          {
+            "name": "mcp_server_slug",
+            "in": "path",
+            "required": true,
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug/tools/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugToolsIdParameterMcpServerSlug"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug/tools/:id Parameter",
+            "schema": {
+              "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugToolsIdParameterId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug/tools/:id Positive response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugToolsIdPositiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "DELETE /otto/api/mcp-servers/:mcp_server_slug/tools/:id Negative response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOttoApiMcpServersMcpServerSlugToolsIdNegativeResponse"
+                },
+                "examples": {
+                  "example1": {
+                    "value": {
+                      "response": {},
+                      "messages": [
+                        {
+                          "code": 18011,
+                          "text": "OttoFMS sample error"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -5369,8 +5962,7 @@
             "description": "S3 endpoint to use for offsite backup"
           },
           "region": {
-            "type": "string",
-            "default": "us-east-1"
+            "type": "string"
           },
           "access_key_id": {
             "type": "string"
@@ -5489,55 +6081,68 @@
             "type": "object",
             "properties": {
               "offsiteNotificationSettings": {
-                "discriminator": {
-                  "propertyName": "type"
-                },
-                "oneOf": [
+                "allOf": [
                   {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "const": "slack"
-                      },
-                      "channelUrl": {
-                        "type": "string",
-                        "format": "url"
-                      },
-                      "label": {
-                        "type": "string"
-                      }
+                    "discriminator": {
+                      "propertyName": "type"
                     },
-                    "required": [
-                      "type",
-                      "channelUrl"
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "slack"
+                          },
+                          "channelUrl": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "label": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "channelUrl"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "webhook"
+                          },
+                          "webhookUrl": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "headers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "webhookUrl"
+                        ]
+                      }
                     ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "type": {
-                        "type": "string",
-                        "const": "webhook"
-                      },
-                      "webhookUrl": {
-                        "type": "string",
-                        "format": "url"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "headers": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "string"
-                        }
+                      "sendSuccessNotifications": {
+                        "type": "boolean",
+                        "default": true
                       }
-                    },
-                    "required": [
-                      "type",
-                      "webhookUrl"
-                    ]
+                    }
                   }
                 ],
                 "type": "null"
@@ -5618,55 +6223,68 @@
             "type": "object",
             "properties": {
               "offsiteNotificationSettings": {
-                "discriminator": {
-                  "propertyName": "type"
-                },
-                "oneOf": [
+                "allOf": [
                   {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "const": "slack"
-                      },
-                      "channelUrl": {
-                        "type": "string",
-                        "format": "url"
-                      },
-                      "label": {
-                        "type": "string"
-                      }
+                    "discriminator": {
+                      "propertyName": "type"
                     },
-                    "required": [
-                      "type",
-                      "channelUrl"
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "slack"
+                          },
+                          "channelUrl": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "label": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "channelUrl"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "webhook"
+                          },
+                          "webhookUrl": {
+                            "type": "string",
+                            "format": "url"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "headers": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "webhookUrl"
+                        ]
+                      }
                     ]
                   },
                   {
                     "type": "object",
                     "properties": {
-                      "type": {
-                        "type": "string",
-                        "const": "webhook"
-                      },
-                      "webhookUrl": {
-                        "type": "string",
-                        "format": "url"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "headers": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "string"
-                        }
+                      "sendSuccessNotifications": {
+                        "type": "boolean",
+                        "default": true
                       }
-                    },
-                    "required": [
-                      "type",
-                      "webhookUrl"
-                    ]
+                    }
                   }
                 ]
               }
@@ -5745,55 +6363,68 @@
             "type": "object"
           },
           {
-            "discriminator": {
-              "propertyName": "type"
-            },
-            "oneOf": [
+            "allOf": [
               {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "const": "slack"
-                  },
-                  "channelUrl": {
-                    "type": "string",
-                    "format": "url"
-                  },
-                  "label": {
-                    "type": "string"
-                  }
+                "discriminator": {
+                  "propertyName": "type"
                 },
-                "required": [
-                  "type",
-                  "channelUrl"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "const": "slack"
+                      },
+                      "channelUrl": {
+                        "type": "string",
+                        "format": "url"
+                      },
+                      "label": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "channelUrl"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "const": "webhook"
+                      },
+                      "webhookUrl": {
+                        "type": "string",
+                        "format": "url"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "headers": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "webhookUrl"
+                    ]
+                  }
                 ]
               },
               {
                 "type": "object",
                 "properties": {
-                  "type": {
-                    "type": "string",
-                    "const": "webhook"
-                  },
-                  "webhookUrl": {
-                    "type": "string",
-                    "format": "url"
-                  },
-                  "label": {
-                    "type": "string"
-                  },
-                  "headers": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "string"
-                    }
+                  "sendSuccessNotifications": {
+                    "type": "boolean",
+                    "default": true
                   }
-                },
-                "required": [
-                  "type",
-                  "webhookUrl"
-                ]
+                }
               }
             ]
           }
@@ -6435,9 +7066,57 @@
                       "type": "boolean",
                       "default": false
                     },
+                    "container_data_1_different_remote": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "container_data_1_remote": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "container_data_1_bucket": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "container_data_1_remote_path": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
                     "include_external_container_data_2": {
                       "type": "boolean",
                       "default": false
+                    },
+                    "container_data_2_different_remote": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "container_data_2_remote": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "container_data_2_bucket": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "container_data_2_remote_path": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
                     },
                     "last_backup": {
                       "type": [
@@ -6446,10 +7125,16 @@
                       ]
                     },
                     "running": {
-                      "type": "boolean"
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
                     },
                     "zip_files": {
-                      "type": "boolean",
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
                       "default": false
                     },
                     "file_browser_hash": {
@@ -6637,12 +7322,63 @@
             "type": "boolean",
             "default": false
           },
+          "container_data_1_different_remote": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "container_data_1_remote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_1_bucket": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_1_remote_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "include_external_container_data_2": {
             "type": "boolean",
             "default": false
           },
+          "container_data_2_different_remote": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "container_data_2_remote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_2_bucket": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_2_remote_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "zip_files": {
-            "type": "boolean",
+            "type": [
+              "boolean",
+              "null"
+            ],
             "default": false
           },
           "file_browser_hash": {
@@ -6762,12 +7498,63 @@
             "type": "boolean",
             "default": false
           },
+          "container_data_1_different_remote": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "container_data_1_remote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_1_bucket": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_1_remote_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "include_external_container_data_2": {
             "type": "boolean",
             "default": false
           },
+          "container_data_2_different_remote": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "container_data_2_remote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_2_bucket": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "container_data_2_remote_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "zip_files": {
-            "type": "boolean",
+            "type": [
+              "boolean",
+              "null"
+            ],
             "default": false
           },
           "file_browser_hash": {
@@ -12052,7 +12839,7 @@
                                 },
                                 "folderPath": {
                                   "type": "string",
-                                  "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                  "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                                 },
                                 "copy": {
                                   "type": "boolean",
@@ -12818,6 +13605,9 @@
                             {
                               "type": "array",
                               "items": {
+                                "discriminator": {
+                                  "propertyName": "operation"
+                                },
                                 "oneOf": [
                                   {
                                     "type": "object",
@@ -13156,6 +13946,9 @@
                                 "files": {
                                   "type": "array",
                                   "items": {
+                                    "discriminator": {
+                                      "propertyName": "operation"
+                                    },
                                     "oneOf": [
                                       {
                                         "type": "object",
@@ -14291,7 +15084,7 @@
                                 },
                                 "folderPath": {
                                   "type": "string",
-                                  "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                  "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                                 },
                                 "copy": {
                                   "type": "boolean",
@@ -15057,6 +15850,9 @@
                             {
                               "type": "array",
                               "items": {
+                                "discriminator": {
+                                  "propertyName": "operation"
+                                },
                                 "oneOf": [
                                   {
                                     "type": "object",
@@ -15395,6 +16191,9 @@
                                 "files": {
                                   "type": "array",
                                   "items": {
+                                    "discriminator": {
+                                      "propertyName": "operation"
+                                    },
                                     "oneOf": [
                                       {
                                         "type": "object",
@@ -16028,7 +16827,7 @@
                                     },
                                     "folderPath": {
                                       "type": "string",
-                                      "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                      "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                                     },
                                     "copy": {
                                       "type": "boolean",
@@ -16794,6 +17593,9 @@
                                 {
                                   "type": "array",
                                   "items": {
+                                    "discriminator": {
+                                      "propertyName": "operation"
+                                    },
                                     "oneOf": [
                                       {
                                         "type": "object",
@@ -17132,6 +17934,9 @@
                                     "files": {
                                       "type": "array",
                                       "items": {
+                                        "discriminator": {
+                                          "propertyName": "operation"
+                                        },
                                         "oneOf": [
                                           {
                                             "type": "object",
@@ -18099,7 +18904,7 @@
                                           },
                                           "folderPath": {
                                             "type": "string",
-                                            "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                            "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                                           },
                                           "copy": {
                                             "type": "boolean",
@@ -18865,6 +19670,9 @@
                                       {
                                         "type": "array",
                                         "items": {
+                                          "discriminator": {
+                                            "propertyName": "operation"
+                                          },
                                           "oneOf": [
                                             {
                                               "type": "object",
@@ -19203,6 +20011,9 @@
                                           "files": {
                                             "type": "array",
                                             "items": {
+                                              "discriminator": {
+                                                "propertyName": "operation"
+                                              },
                                               "oneOf": [
                                                 {
                                                   "type": "object",
@@ -20382,7 +21193,7 @@
                                 },
                                 "folderPath": {
                                   "type": "string",
-                                  "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                  "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                                 },
                                 "copy": {
                                   "type": "boolean",
@@ -21148,6 +21959,9 @@
                             {
                               "type": "array",
                               "items": {
+                                "discriminator": {
+                                  "propertyName": "operation"
+                                },
                                 "oneOf": [
                                   {
                                     "type": "object",
@@ -21486,6 +22300,9 @@
                                 "files": {
                                   "type": "array",
                                   "items": {
+                                    "discriminator": {
+                                      "propertyName": "operation"
+                                    },
                                     "oneOf": [
                                       {
                                         "type": "object",
@@ -23774,7 +24591,7 @@
                           },
                           "folderPath": {
                             "type": "string",
-                            "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                            "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                           },
                           "copy": {
                             "type": "boolean",
@@ -24540,6 +25357,9 @@
                       {
                         "type": "array",
                         "items": {
+                          "discriminator": {
+                            "propertyName": "operation"
+                          },
                           "oneOf": [
                             {
                               "type": "object",
@@ -24878,6 +25698,9 @@
                           "files": {
                             "type": "array",
                             "items": {
+                              "discriminator": {
+                                "propertyName": "operation"
+                              },
                               "oneOf": [
                                 {
                                   "type": "object",
@@ -25820,7 +26643,7 @@
                                     },
                                     "folderPath": {
                                       "type": "string",
-                                      "description": "The folder path to the files to fetch. If this is not defined, the friles will be fetches from the OttoFMS uploads folder."
+                                      "description": "The folder path to the files to fetch. If this is not defined, the files will be fetched from the OttoFMS uploads folder."
                                     },
                                     "copy": {
                                       "type": "boolean",
@@ -26586,6 +27409,9 @@
                                 {
                                   "type": "array",
                                   "items": {
+                                    "discriminator": {
+                                      "propertyName": "operation"
+                                    },
                                     "oneOf": [
                                       {
                                         "type": "object",
@@ -26924,6 +27750,9 @@
                                     "files": {
                                       "type": "array",
                                       "items": {
+                                        "discriminator": {
+                                          "propertyName": "operation"
+                                        },
                                         "oneOf": [
                                           {
                                             "type": "object",
@@ -30156,6 +30985,1509 @@
         ]
       },
       "GetOttoApiFilesGetDownloadLinkNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiMcpServersPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "is_active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "slug",
+              "name",
+              "filename",
+              "description",
+              "is_active",
+              "created_at",
+              "updated_at",
+              "created_by"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiMcpServersNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiMcpServersRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "slug": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9-]+$"
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "required": [
+          "name",
+          "slug",
+          "filename"
+        ]
+      },
+      "GetOttoApiMcpServersPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "servers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "slug": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "slug",
+                    "name",
+                    "filename",
+                    "description",
+                    "is_active",
+                    "created_at",
+                    "updated_at",
+                    "created_by"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "servers"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiMcpServersNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiMcpServersMcpServerSlugParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "GetOttoApiMcpServersMcpServerSlugPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "is_active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "script_name": {
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "description",
+                    "script_name",
+                    "is_active",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "slug",
+              "name",
+              "filename",
+              "description",
+              "is_active",
+              "created_at",
+              "updated_at",
+              "created_by",
+              "tools"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiMcpServersMcpServerSlugNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiMcpServersMcpServerSlugParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "PatchOttoApiMcpServersMcpServerSlugPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "is_active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "slug",
+              "name",
+              "filename",
+              "description",
+              "is_active",
+              "created_at",
+              "updated_at",
+              "created_by"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiMcpServersMcpServerSlugNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiMcpServersMcpServerSlugRequestBody": {
+        "type": "object",
+        "properties": {
+          "updates": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "slug": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50,
+                "pattern": "^[a-zA-Z0-9-]+$"
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string"
+              },
+              "is_active": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "required": [
+          "updates"
+        ]
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiMcpServersMcpServerSlugToolsParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "PostOttoApiMcpServersMcpServerSlugToolsPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "format": "double",
+                "minimum": -1.7976931348623157e+308,
+                "maximum": 1.7976931348623157e+308
+              },
+              "mcp_server_slug": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "script_name": {
+                "type": "string"
+              },
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    },
+                    "isArray": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "enumValues": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              },
+              "is_active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "mcp_server_slug",
+              "name",
+              "description",
+              "script_name",
+              "input_schema",
+              "is_active",
+              "created_at",
+              "updated_at"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiMcpServersMcpServerSlugToolsNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PostOttoApiMcpServersMcpServerSlugToolsRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string"
+          },
+          "script_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input_schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                },
+                "isArray": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "required": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "description": {
+                  "type": "string"
+                },
+                "enumValues": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ]
+            }
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "required": [
+          "name",
+          "script_name",
+          "input_schema"
+        ]
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "tools": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308
+                    },
+                    "mcp_server_slug": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "script_name": {
+                      "type": "string"
+                    },
+                    "input_schema": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "string",
+                              "number",
+                              "boolean"
+                            ]
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "required": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "enumValues": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      }
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "mcp_server_slug",
+                    "name",
+                    "description",
+                    "script_name",
+                    "input_schema",
+                    "is_active",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "tools"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsIdParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsIdParameterId": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "minimum": -1.7976931348623157e+308,
+        "maximum": 1.7976931348623157e+308
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsIdPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "format": "double",
+                "minimum": -1.7976931348623157e+308,
+                "maximum": 1.7976931348623157e+308
+              },
+              "mcp_server_slug": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "script_name": {
+                "type": "string"
+              },
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    },
+                    "isArray": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "enumValues": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              },
+              "is_active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "mcp_server_slug",
+              "name",
+              "description",
+              "script_name",
+              "input_schema",
+              "is_active",
+              "created_at",
+              "updated_at"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "GetOttoApiMcpServersMcpServerSlugToolsIdNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiMcpServersMcpServerSlugToolsIdParameterId": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "minimum": -1.7976931348623157e+308,
+        "maximum": 1.7976931348623157e+308
+      },
+      "PatchOttoApiMcpServersMcpServerSlugToolsIdParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "PatchOttoApiMcpServersMcpServerSlugToolsIdPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "format": "double",
+                "minimum": -1.7976931348623157e+308,
+                "maximum": 1.7976931348623157e+308
+              },
+              "mcp_server_slug": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "script_name": {
+                "type": "string"
+              },
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    },
+                    "isArray": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "required": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "enumValues": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              },
+              "is_active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "mcp_server_slug",
+              "name",
+              "description",
+              "script_name",
+              "input_schema",
+              "is_active",
+              "created_at",
+              "updated_at"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiMcpServersMcpServerSlugToolsIdNegativeResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": -1,
+                  "maximum": 20000,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code",
+                "text"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "PatchOttoApiMcpServersMcpServerSlugToolsIdRequestBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string"
+          },
+          "script_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input_schema": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "string",
+                    "number",
+                    "boolean"
+                  ]
+                },
+                "isArray": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "required": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "description": {
+                  "type": "string"
+                },
+                "enumValues": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "type"
+              ]
+            }
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        },
+        "required": []
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugToolsIdParameterMcpServerSlug": {
+        "type": "string"
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugToolsIdParameterId": {
+        "type": [
+          "number",
+          "null"
+        ],
+        "format": "double",
+        "minimum": -1.7976931348623157e+308,
+        "maximum": 1.7976931348623157e+308
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugToolsIdPositiveResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "object",
+            "properties": {
+              "ok": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "ok"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "format": "double",
+                  "minimum": 0,
+                  "maximum": 0,
+                  "description": "FileMaker Server, `fmsasdmin` error code, or otto error code"
+                },
+                "text": {
+                  "type": "string",
+                  "default": "ok",
+                  "description": "error message"
+                }
+              },
+              "required": [
+                "code"
+              ]
+            }
+          }
+        },
+        "required": [
+          "response",
+          "messages"
+        ]
+      },
+      "DeleteOttoApiMcpServersMcpServerSlugToolsIdNegativeResponse": {
         "type": "object",
         "properties": {
           "response": {
