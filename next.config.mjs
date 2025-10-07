@@ -51,6 +51,10 @@ const nextConfig = {
           "/ottodeploy-features/deployments/advanced-options#slack-notifications",
         permanent: true,
       },
+      {
+        source: "/otto-console/mcp-tools",
+        destination: "/otto-console/mcp-servers",
+      },
     ];
   },
   rewrites: async () => {
