@@ -54,6 +54,7 @@ const nextConfig = {
       {
         source: "/otto-console/mcp-tools",
         destination: "/otto-console/mcp-servers",
+        permanent: false,
       },
     ];
   },
