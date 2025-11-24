@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "OttoFMS Developer API",
-    "version": "4.13.1",
+    "version": "4.14.0",
     "x-logo": {
       "url": "https://appupdates.geistinteractive.net/_otto_temp_logo.png",
       "altText": "OttoFMS Logo"
@@ -300,7 +300,8 @@
                 "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -451,7 +452,8 @@
                 "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteNotificationsRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -589,7 +591,8 @@
                 "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteRemotesRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -858,7 +861,8 @@
                 "$ref": "#/components/schemas/PostOttoApiSettingsOffsiteSchedulesRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1143,7 +1147,8 @@
                 "$ref": "#/components/schemas/PostOttoApiScriptRunViaScheduleRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1335,7 +1340,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmFileFilenameSaveAsXmlRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1389,7 +1395,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmFileEncryptRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1443,7 +1450,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmFileDecryptRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1498,7 +1506,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmFileCopyCompressRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1552,7 +1561,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmFileRenameRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1606,7 +1616,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmFileRenameDevToolRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -1746,7 +1757,8 @@
                 "$ref": "#/components/schemas/PostOttoApiBuildRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2450,7 +2462,8 @@
                 "$ref": "#/components/schemas/PostOttoApiBuildBuildIdPublishRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2505,7 +2518,8 @@
                 "$ref": "#/components/schemas/PostOttoApiDeploymentRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2720,7 +2734,8 @@
                 "$ref": "#/components/schemas/PutOttoApiDeploymentBatchesBatchIdRenameRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2918,7 +2933,8 @@
                 "$ref": "#/components/schemas/PostOttoApiDeploymentUndoRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2973,7 +2989,8 @@
                 "$ref": "#/components/schemas/PostOttoApiDeploymentUndoFullRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3028,7 +3045,8 @@
                 "$ref": "#/components/schemas/PostOttoApiDeploymentRerunRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3322,7 +3340,8 @@
                 "$ref": "#/components/schemas/PutOttoApiDeploymentIdRenameRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3377,7 +3396,8 @@
                 "$ref": "#/components/schemas/PostOttoApiFmsProcessRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3432,7 +3452,8 @@
                 "$ref": "#/components/schemas/PostOttoApiAdminApiKeyRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3539,7 +3560,8 @@
                 "$ref": "#/components/schemas/PatchOttoApiAdminApiKeyKeyRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3700,7 +3722,8 @@
                 "$ref": "#/components/schemas/PostOttoApiApiKeyRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4033,7 +4056,8 @@
                 "$ref": "#/components/schemas/PostOttoApiApiKeyCreateOnlyRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4129,7 +4153,8 @@
                 "$ref": "#/components/schemas/PostOttoApiWebhooksRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4247,7 +4272,8 @@
                 "$ref": "#/components/schemas/PatchOttoApiWebhooksIdRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4355,7 +4381,8 @@
                 "$ref": "#/components/schemas/PostOttoApiAppLogRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4529,7 +4556,8 @@
                 "$ref": "#/components/schemas/PostOttoApiMcpServersRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4692,7 +4720,8 @@
                 "$ref": "#/components/schemas/PatchOttoApiMcpServersMcpServerSlugRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -4812,7 +4841,8 @@
                 "$ref": "#/components/schemas/PostOttoApiMcpServersMcpServerSlugToolsRequestBody"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7689,6 +7719,9 @@
               },
               "BackupDatabaseRoot3_RC": {
                 "type": "boolean"
+              },
+              "ServerGUID": {
+                "type": "string"
               }
             }
           },
@@ -10073,6 +10106,11 @@
                       ]
                     },
                     "description": "Array of notification settings"
+                  },
+                  "includeCredentialsInManifest": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                   }
                 },
                 "required": [
@@ -13349,6 +13387,11 @@
                                         ]
                                       },
                                       "description": "Array of notification settings"
+                                    },
+                                    "includeCredentialsInManifest": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
@@ -15594,6 +15637,11 @@
                                         ]
                                       },
                                       "description": "Array of notification settings"
+                                    },
+                                    "includeCredentialsInManifest": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
@@ -17337,6 +17385,11 @@
                                             ]
                                           },
                                           "description": "Array of notification settings"
+                                        },
+                                        "includeCredentialsInManifest": {
+                                          "type": "boolean",
+                                          "default": false,
+                                          "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                                         }
                                       },
                                       "description": "The build options that get passed along to the source server"
@@ -19414,6 +19467,11 @@
                                                   ]
                                                 },
                                                 "description": "Array of notification settings"
+                                              },
+                                              "includeCredentialsInManifest": {
+                                                "type": "boolean",
+                                                "default": false,
+                                                "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                                               }
                                             },
                                             "description": "The build options that get passed along to the source server"
@@ -21703,6 +21761,11 @@
                                         ]
                                       },
                                       "description": "Array of notification settings"
+                                    },
+                                    "includeCredentialsInManifest": {
+                                      "type": "boolean",
+                                      "default": false,
+                                      "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                                     }
                                   },
                                   "description": "The build options that get passed along to the source server"
@@ -25101,6 +25164,11 @@
                                   ]
                                 },
                                 "description": "Array of notification settings"
+                              },
+                              "includeCredentialsInManifest": {
+                                "type": "boolean",
+                                "default": false,
+                                "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                               }
                             },
                             "description": "The build options that get passed along to the source server"
@@ -27153,6 +27221,11 @@
                                             ]
                                           },
                                           "description": "Array of notification settings"
+                                        },
+                                        "includeCredentialsInManifest": {
+                                          "type": "boolean",
+                                          "default": false,
+                                          "description": "If true, the credentials will be included in the manifest. This is primarily useful for public builds that need credentials to be available with the files."
                                         }
                                       },
                                       "description": "The build options that get passed along to the source server"
