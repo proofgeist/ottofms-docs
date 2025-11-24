@@ -2,12 +2,48 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.14.0
+
+Released: 11/24/2025
+
+Download for [Linux](/downloads/ottofms/4.14.0/amd), [Linux (arm)](/downloads/ottofms/4.14.0/arm), [Windows](/downloads/ottofms/4.14.0/win), [Mac](/downloads/ottofms/4.14.0/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.14.0/mac-arm)
+
+
+### Minor Changes
+
+- OttoFMS now exposes a UI to work with FileMaker webhooks (which we're referring to as Triggers in the UI to prevent confusion). These can be used to trigger webhook notifications when records in a specific table in a FileMaker file change. The OttoFMS UI exposes a feature that is available in FileMaker Server, but does not have its own UI at this time.
+
+### Patch Changes
+
+- Upgraded to Node.js 22.
+- The OData MCP tool creation/edit modal now displays a helpful error if OttoFMS is unable to fetch scripts from the file.
+- The OData MCP tool creation/edit modal now displays the odata url that it is sending to when testing tools.
+- When creating a MCP Server in OttoFMS, you will now be immediately redirected to the MCP server's dashboard instead of having to exit the success modal and clicking into the dashboard manually
+- Added a warning in the Tool Modal for scripts that have names that will not work with OData (scripts containining special characters).
+- The OData MCP calls now respect the PREVENT_DAPI_CALLOUT env variable.
+- Fixed an issue where the submit button in the MCP tool form would be disabled in some cases when it shouldn't have.
+- When editing the input schema for MCP tools, new parameters will be focused automatically.
+- Fixed an issue where updates and deletions on MCP Tools would not be represented in MCP clients until OttoFMS was restarted.
+- Added column filtering for the builds table.
+- Fixed an issue where the schedule information in the scheduled deployment tab of the deployment page would not display.
+- Fixed possible errors when checking the license when the FileMaker Server APIs are not working properly.
+- The pagination and sorting options on the build table are now stored to the browser to persist across page reloads.
+- Allow Save As XML option with only file credentials (no server-level Admin API key required).
+- The Data API and OData Proxies now pass along all headers when making calls.
+- The OttoFMS OData Proxy now allows using Basic authentication as well as Data API Authentication.
+- OttoFMS will now list the container data folders in the disk info stats.
+- Scheduled deployments will now fail to start if the deployment it attempts to trigger is not scheduled.
+- OttoFMS no longer stores build file credentials in the manifest.json by default. You can opt into storing the credentials in the manifest using the includeCredentialsInManifest boolean flag in the start build API. Storing the credentials in the manifest is primarily useful when using a build as a publicly accessible build.
+- Fixed an issue where the JIT build timeout override was not being used.
+-	Fixed an issue where backups created by OttoFMS would fail if the filename had a trailing space.
+- Attempting to view a log file that does not exist will now return a not found error rather than a generic server error.
+- If the selected log in the log viewer does not exist, OttoFMS will now automatically switch to viewing an existing log file instead.
+
 ## 4.13.1
 
 Released: 10/7/2025
 
 Download for [Linux](/downloads/ottofms/4.13.1/amd), [Linux (arm)](/downloads/ottofms/4.13.1/arm), [Windows](/downloads/ottofms/4.13.1/win), [Mac](/downloads/ottofms/4.13.1/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.13.1/mac-arm)
-
 
 ### Patch Changes
 
