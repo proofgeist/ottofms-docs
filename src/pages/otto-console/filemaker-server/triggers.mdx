@@ -1,0 +1,31 @@
+import { Callout } from "nextra/components";
+
+# FileMaker Triggers
+
+<Callout type="info">
+  The FileMaker Triggers UI is available in OttoFMS 4.14.0 and later.
+</Callout>
+
+FileMaker Server exposes a service which allows you to set up triggers when data in certain tables and fields in a FileMaker file are changed. This is a powerful feature that can be used for data syncing or other purposes. OttoFMS makes it easy to work with this FileMaker feature by exposing a UI for the otherwise hidden FileMaker APIs that allow you to manage triggers.
+
+## Pre-Requisites
+
+FileMaker Triggers are made and managed using the OData API. To manage them for a FileMaker file, you'll need to have a Data API Key or an account with OData access to the file. The OttoFMS UI allows you to use either a Data API Key or the file credentials to manage the triggers.
+
+## Creating a Trigger
+
+To create a trigger, you'll need to navigate to the FileMaker Triggers page in the OttoFMS UI.
+
+![FileMaker Triggers](/img/ottofms/console/filemaker-server/fms-triggers.png)
+
+Select a file from the dropdown and add your credentials or a Data API key. Once added, triggers that exist for that file will be displayed in a table below. You can create a new trigger by clicking the "Add Trigger" button in the top left corner of the table.
+
+![Add Trigger](/img/ottofms/console/filemaker-server/add-trigger.png)
+
+This will open a dialog where you can select the table you'd like to monitor with the trigger and where you'd like to send the notifications. You can also specify headers to send with the requests, choose whether to recieve schema change notifications, select fields to send, and filter the sent records using an OData filter clause. 
+
+![Add Trigger Dialog](/img/ottofms/console/filemaker-server/add-trigger-dialog.png)
+
+## Managing Triggers
+
+Triggers cannot be edited after creation. If you need to make changes, you'll need to delete the trigger and create a new one. You can delete a trigger by clicking the delete icon on the end of its row in the table.
