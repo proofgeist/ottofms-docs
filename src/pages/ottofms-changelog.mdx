@@ -2,12 +2,25 @@
 
 For instructions on how to update OttoFMS, see the [update guide](/managing-ottofms/updating).
 
+## 4.14.1
+
+Released: 12/15/2025
+
+Download for [Linux](/downloads/ottofms/4.14.1/amd), [Linux (arm)](/downloads/ottofms/4.14.1/arm), [Windows](/downloads/ottofms/4.14.1/win), [Mac](/downloads/ottofms/4.14.1/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.14.1/mac-arm)
+
+
+### Patch Changes
+
+- Fixed an issue where newly created data api keys would not be properly loaded into the register webhook modal.
+- Fixed an error where errors during scheduled deployment start would crash OttoFMS.
+- Reverted a change from 4.14.0 which caused an incorrect server id to be used for license validation, breaking offline activations.
+- Fixed an issue where an unknown parsing error would fail a deployment when there was a OttoFMS build (non-Just in Time) in a sub-deployment before a sub-deployment using a Just In Time build.
+
 ## 4.14.0
 
 Released: 11/24/2025
 
 Download for [Linux](/downloads/ottofms/4.14.0/amd), [Linux (arm)](/downloads/ottofms/4.14.0/arm), [Windows](/downloads/ottofms/4.14.0/win), [Mac](/downloads/ottofms/4.14.0/mac), [Mac (Apple Silicon)](/downloads/ottofms/4.14.0/mac-arm)
-
 
 ### Minor Changes
 
@@ -19,7 +32,7 @@ Download for [Linux](/downloads/ottofms/4.14.0/amd), [Linux (arm)](/downloads/ot
 - The OData MCP tool creation/edit modal now displays a helpful error if OttoFMS is unable to fetch scripts from the file.
 - The OData MCP tool creation/edit modal now displays the odata url that it is sending to when testing tools.
 - When creating a MCP Server in OttoFMS, you will now be immediately redirected to the MCP server's dashboard instead of having to exit the success modal and clicking into the dashboard manually
-- Added a warning in the Tool Modal for scripts that have names that will not work with OData (scripts containining special characters).
+- Added a warning in the Tool Modal for scripts that have names that will not work with OData (scripts containing special characters).
 - The OData MCP calls now respect the PREVENT_DAPI_CALLOUT env variable.
 - Fixed an issue where the submit button in the MCP tool form would be disabled in some cases when it shouldn't have.
 - When editing the input schema for MCP tools, new parameters will be focused automatically.
@@ -35,7 +48,7 @@ Download for [Linux](/downloads/ottofms/4.14.0/amd), [Linux (arm)](/downloads/ot
 - Scheduled deployments will now fail to start if the deployment it attempts to trigger is not scheduled.
 - OttoFMS no longer stores build file credentials in the manifest.json by default. You can opt into storing the credentials in the manifest using the includeCredentialsInManifest boolean flag in the start build API. Storing the credentials in the manifest is primarily useful when using a build as a publicly accessible build.
 - Fixed an issue where the JIT build timeout override was not being used.
--	Fixed an issue where backups created by OttoFMS would fail if the filename had a trailing space.
+- Fixed an issue where backups created by OttoFMS would fail if the filename had a trailing space.
 - Attempting to view a log file that does not exist will now return a not found error rather than a generic server error.
 - If the selected log in the log viewer does not exist, OttoFMS will now automatically switch to viewing an existing log file instead.
 
@@ -190,7 +203,7 @@ Download for [Linux](/downloads/ottofms/4.10.3/amd), [Linux (arm)](/downloads/ot
 - OttoFMS now uses the fmsadmin tool to open and close files rather than the Admin API. This should reduce issues with the admin API hanging or timing out.
 - Fixed an issue where build downloads from Windows would fail for long build ids.
 - Fixed an error where OttoFMS would throw an unnecessary error when it cleans up backup schedules if the ClonesOnly folder did not exist.
-- Fixed an issue where builds would be removed from the build inbox based on only the success or failure of the final sub-deployment rather than the success of the subdeployments in which the build was used. Builds will now only be removed from the inbox if all sub-deployments using the build succeed or they fail while the build is being downloaded (to avoid partial downloads causing issues).
+- Fixed an issue where builds would be removed from the build inbox based on only the success or failure of the final sub-deployment rather than the success of the sub-deployments in which the build was used. Builds will now only be removed from the inbox if all sub-deployments using the build succeed or they fail while the build is being downloaded (to avoid partial downloads causing issues).
 - Fixed an issue where builds that errored while starting would not be set as failed.
 - Fixed an issue where database operations would not properly retry on failure.
 
@@ -224,12 +237,12 @@ Download for [Linux](/downloads/ottofms/4.10.0/amd), [Linux (arm)](/downloads/ot
 
 ### Minor Changes
 
-- OttoFMS has a new tab for Builds, which displays a historical log of builds run on the server (similar to the deployments view). Builds can be deleted fromt he server, rerun, and their details (files, logs, times, etc.) can be viewed from a build detail page. Builds that are still in the server outbox can be downloaded and deleted from the server.
+- OttoFMS has a new tab for Builds, which displays a historical log of builds run on the server (similar to the deployments view). Builds can be deleted from the server, rerun, and their details (files, logs, times, etc.) can be viewed from a build detail page. Builds that are still in the server outbox can be downloaded and deleted from the server.
 - Builds can now be scheduled to run in the future. Builds support recurring schedules (similar to deployments).
 - OttoFMS now stores a historical record of every build run in its database. There are also now a new set of APIs that can get a list of these builds and their information from the database.
 - Builds run in the past can now be rerun using a new endpoint (and the builds ui). This is only possible for builds run after the upgrade to 4.10.0
 - Added the ability to abort an ongoing build with the new abort build api
-- OttoFMS now exposes an option in the start build endpoint to keep the files in the build unzipped. This can be used to run local deployments without zipping or to use builds as a simple programatic way to run backups that you can script for other uses than deployments.
+- OttoFMS now exposes an option in the start build endpoint to keep the files in the build unzipped. This can be used to run local deployments without zipping or to use builds as a simple programmatic way to run backups that you can script for other uses than deployments.
 - Just in time build IDs are now generated deterministically. In conjunction with the change that builds are not deleted from the inbox on deployment failure, this means that a just in time build can be used again from the inbox when a deployment fails. The build id is generated using the deployment name, the filenames, and whether the files are a clone or copy. If any of these values change a different buildId will be generated.
 - Deployment notifications can now be sent using webhooks to a specified url. Notifications send a POST request with a JSON body containing information about deployment events on start, success, failure, abort, and crash.
 - Debug logging can now be turned on from the OttoFMS settings page without a restart of the OttoFMS service. The environment variable is still respected on startup, but once the setting in the config page is used the environment variable will no longer be used.
@@ -257,7 +270,7 @@ Download for [Linux](/downloads/ottofms/4.10.0/amd), [Linux (arm)](/downloads/ot
 - OttoFMS will now properly send back the body of webhook responses using the "useScriptResult" options when there are no errors in the webhook receiver script.
 - The move file modal will now autofill the filename if it has not been set already.
 - Container data can now be restored from offsite locations when restoring files sent up from Offsite schedules.
-- Added more debug logging to backup creation, builds, schedules, all admin api calls from OttoFMS, and file opoening and closing.
+- Added more debug logging to backup creation, builds, schedules, all admin api calls from OttoFMS, and file opening and closing.
 - OttoFMS will now properly throw an error when the database in a call to the Data API Proxy does not match the database the Data API Key was created for.
 - OttoFMS no longer adds a temp offsite location when verifying offsite connection settings.
 - Prevented an issue causing a "maxBuffer exceeded" error when sending offsite backups. This also ensures that sending offsite backups does not use as much memory.
@@ -306,10 +319,10 @@ Download for [Linux](/downloads/ottofms/4.8.1/amd), [Linux (arm)](/downloads/ott
 ### Patch Changes
 
 - Added support for container data transfers to/from the additional container data folders. This does not require any additional options other than the "Include Container Data" option introduced in OttoFMS 4.8.0. (NOTE: for additional container data to be included in a build when you are not closing the files, the "Back Up Container Data Folder" option must be enabled in the FileMaker Admin Console.)
-- The API Keys tab has been split into subtabs for the Data API and the Admin API.
+- The API Keys tab has been split into sub-tabs for the Data API and the Admin API.
 - The File Browser can now display sizes for folders, as well as for individual files. This should help find folders that are taking up a significant amount of space on the server. This will not display sizes for the root folders in the file browser, or for the direct children of the Live Databases folder.
 - The File Browser has been optimized, and should now perform significantly faster for nested folders.
-- The Spotlight search (CMD+K) now has direct links to the subpages of the api keys, filemaker server, and settings pages.
+- The Spotlight search (CMD+K) now has direct links to the sub-pages of the api keys, filemaker server, and settings pages.
 - Reworked the webhooks table so it is more compact, sortable, and filterable.
 - When sending offsite backups, only files in folders with the schedule name will be sent. Previously all files in the backup destination folder would be sent.
 - When sending offsite backups with a backup schedule that is set to keep 0 backups, OttoFMS will now only delete the folder that was created for that backup rather than emptying the entire directory.
@@ -345,7 +358,7 @@ Download for [Linux](/downloads/ottofms/4.8.0/amd), [Linux (arm)](/downloads/ott
 - The global filter on the databases table is now persisted in the browser.
 - Fixed errors due to hard links in the FileMaker folder paths.
 - Settings in the File Browser are now persistent. Pagination, filters, sorting, and column visibility are saved off to your browser, and the current folder is saved in the URL, so a page refresh will no longer take you back to the root of the file browser.
-- When using the "push build" feature, OttoFMS will now propely error out when the upload from the source server fails. This requires that both the source and destination servers be on version 4.8.0 to work.
+- When using the "push build" feature, OttoFMS will now properly error out when the upload from the source server fails. This requires that both the source and destination servers be on version 4.8.0 to work.
 - Fixed an issue where closed files could not be downloaded when using the download via link method. This affected the Ottomatic Cloud console download functionality.
 - Changed the name of the File Manager to the File Browser to match the Ottomatic Cloud Console and reduce confusion.
 - Fixed an issue where deleting multiple files at the same time via the File Browser would fail and crash OttoFMS if the files were within the Live Databases folder.
@@ -397,7 +410,7 @@ Download for [Linux](/downloads/ottofms/4.7.0/amd), [Linux (arm)](/downloads/ott
 
 ### Minor Changes
 
-- Added a new redirect url to OttoFMS. This redirect is at /otto/redirect/fm/[filename]/[scriptname] and it will redirect the user to a filemaker file (using an fmp url) and it will run the specified script. It will also take all query parameters on the url and set them as variables when running the script. This can be used as a redirect for an OAuth flow or for other circumstances where you need to redirect a user to a FileMaker file and collect information from the url as you do.
+- Added a new redirect url to OttoFMS. This redirect is at /otto/redirect/fm/[filename]/[script-name] and it will redirect the user to a filemaker file (using an fmp url) and it will run the specified script. It will also take all query parameters on the url and set them as variables when running the script. This can be used as a redirect for an OAuth flow or for other circumstances where you need to redirect a user to a FileMaker file and collect information from the url as you do.
 - OttoFMS now has support for a pre-deployment script. This is very similar in setup to post-deployment scripts, just with a different results filename and it will default to prevent your deployment if the pre-deployment script fails or does not return a "done" results file. This script is run before files are closed during the deployment.
 - Chained actions can now be sent as a generic api call to any url. The method, body, and headers can be specified. This can be used to kick off non-OttoFMS processes when deployments or builds complete.
 - Added a new env variable USE_DATABASE_FOLDER_FOR_MIGRATIONS which will perform migrations in the database folder instead of in the build inbox in the backup directory. Migrations are performed within the Removed_By_FMS folder so that partially migrated files will be ignored by the server in the case a deployment crashes. When a migration completes the files will be moved out of the Removed_By_FMS folder and into the databases folder.
@@ -412,11 +425,11 @@ Download for [Linux](/downloads/ottofms/4.7.0/amd), [Linux (arm)](/downloads/ott
 - Fixed an error where filenames containing non-Ascii characters would be improperly handled in the backend.
 - Fixed an issue were renaming a file would fail due to the file id not being recognized.
 - Added a new toggle in the offsite schedules table that can enable or disable the filemaker backup schedule right from the ottofms console
-- Fixed an issue where folders and subfolders in the database folders which did not allow read access would cause deployments to fail.
+- Fixed an issue where folders and sub-folders in the database folders which did not allow read access would cause deployments to fail.
 - Fixed an issue where servers running FileMaker Server version 21 or higher would be unable to create new offsite backup schedules.
 - Added a bit of clarification to the offsite schedule modal.
 - Fixed an issue causing the console to flash the plain version of the navbar for a second when opening if using hte colored variant of the navbar.
-- When a deployment completes successfully but has errors (ie. the post-deplopyment script fails, but it is not set to fail the entire deployment), the OttoFMS console will display a warning in the deployments table and the slack notification will include a warning count.
+- When a deployment completes successfully but has errors (ie. the post-deployment script fails, but it is not set to fail the entire deployment), the OttoFMS console will display a warning in the deployments table and the slack notification will include a warning count.
 
 ## 4.6.2
 
@@ -444,7 +457,7 @@ Download for [Linux](/downloads/ottofms/4.6.1/amd), [Linux (arm)](/downloads/ott
 ### Patch Changes
 
 - Fixed an issue where circular file paths in the database folder would cause build and deployments to fail with a "maximum call stack size exceeded" error.
-- OttoFMS on Linux now logs stderr and stdout to a stderr.log and a stdout.log file. This should make bedugging errors on OttoFMS startup much simpler.
+- OttoFMS on Linux now logs stderr and stdout to a stderr.log and a stdout.log file. This should make debugging errors on OttoFMS startup much simpler.
 - Fix mis-spelling of receiver in the register webhook api.
 - Fixed an issue where OttoFMS would fail to start with new installs in version 4.6.0.
 - Add create-only endpoint for data api keys.
@@ -475,7 +488,7 @@ Download for [Linux](/downloads/ottofms/4.6.0/amd), [Linux (arm)](/downloads/ott
 - Added a "Run Now" button to the OttoFMS Offsite Backup Settings which will immediately run the selected offsite backup schedule and send the backups to your offsite.
 - Usage data now includes a count of webhooks sent.
 - Made the JIT build poller hardier to errors.
-- Increased the default timeout time of pre-build and post-deployment scripts from 2 minutes to 1 hour. These values can be overriden using new env variables POST_DEPLOYMENT_SCRIPT_TIMEOUT_IN_SEC and PRE_BUILD_SCRIPT_TIMEOUT_IN_SEC.
+- Increased the default timeout time of pre-build and post-deployment scripts from 2 minutes to 1 hour. These values can be overridden using new env variables POST_DEPLOYMENT_SCRIPT_TIMEOUT_IN_SEC and PRE_BUILD_SCRIPT_TIMEOUT_IN_SEC.
 - Usage data now includes offsite backups. Data sent is the number of files, size of the files, and time elapsed.
 - Fixed an error where using a Data API Key for the incorrect database would crash OttoFMS.
 
@@ -521,7 +534,7 @@ Download for [Linux](/downloads/ottofms/4.4.0/amd), [Linux (arm)](/downloads/ott
 - OttoFMS now supports recurring deployments. To set up a recurring deployment, schedule your deployment through OttoDeploy. Once it is scheduled, go to the FMS admin console and update the schedule (named OTTO\_\<deployment title>\_\<string of 5 random characters>) to whatever frequency you want the deployment to run. When the deployment finishes, a new deployment will be created and the schedule will be updated to run the new deployment the next time it runs.
 - You can now set a custom environment tag and environment tag color.
 - OttoFMS now allows for custom theme colors.
-- Files can now be renamed via the api and from the databases list in the ottofms console. This rename is does not currently handle external file references or other plcaes where the filename is referenced.
+- Files can now be renamed via the api and from the databases list in the ottofms console. This rename is does not currently handle external file references or other places where the filename is referenced.
 - Expanded OttoFMS to support the File Browser and Log Viewer in the Ottomatic Cloud Console.
 - Added the "ensureFilesOpen" option to the build API. This option will ensure that all files in the build are open after the build completes.
 
@@ -532,7 +545,7 @@ Download for [Linux](/downloads/ottofms/4.4.0/amd), [Linux (arm)](/downloads/ott
 - Added a column for the next run time of scheduled deployments.
 - The log select on the log viewer is now more responsive to long log names. we have also removed the ".log" from the end of the log names since they are all .log files.
 - Fixed an issue where the status on the databases page would be vertically offset outside of the status badge when in a "loading" status (ie. when it was closing).
-- The extended privelages column in the databases table will now allow filtering on multiple privelage sets and will allow selection of all privelage sets available in the files rather than a specific set.
+- The extended privileges column in the databases table will now allow filtering on multiple privileges sets and will allow selection of all privileges sets available in the files rather than a specific set.
 - Fixed a typo causing "large_yellow_square" to appear in the aborted slack notification rather than a large yellow square.
 - When aborting a deployment during a data migration, we will no longer migrate files after the one that was running when the deployment was aborted.
 - There will no longer be a shortcut to the uninstaller stored right next to the uninstaller on Windows.
@@ -575,7 +588,7 @@ Released: 4/29/2024
 
 ### Patch Changes
 
-- the backup timeout time can now be overrided using the BACKUP_FILE_TIMEOUT_IN_SEC env variable. this defaults to 600 seconds (10 minutes).
+- the backup timeout time can now be overridden using the BACKUP_FILE_TIMEOUT_IN_SEC env variable. this defaults to 600 seconds (10 minutes).
 - fixed links in the PLEASE-READ-FIRST.txt file
 - The Just In Time build timeout can now be adjusted using the JIT_BUILD_TIMEOUT_IN_SEC env variable. This timeout is 30 minutes (1800 seconds) by default.
 - moved the OttoFMSTempUploads folder from the fms Data directory into the OttoFMS folder inside of the FMS Backups folder. This should ensure that large files go onto a drive that has enough storage.
@@ -617,7 +630,7 @@ Released: 4/12/2024
 - OttoFMS now has the ability to only allow access to a list of IP addresses. This will only allow access to the OttoFMS api, console, and webhooks from the listed IP addresses or IP ranges. See the documentation for details on setting up a specific set of IPs or ranges of IPs.
 - Added OttoFMS app log at /otto/api/app-log. See docs for instructions on setting up the OttoFMS app log to use logging in your FileMaker solutions or other systems.
 - Added Slack notifications as an option to each sub-deployment. Notifications are sent when a sub-deployment starts, succeeds, fails, or crashes. See OttoFMS docs for details on setting up the slack integration.
-- Added the closeFilesAfterBuild option to the deployment input, allowing depoyment files to be closed after the build fetches fully rather than before. This should cut down on the file downtime if the build process takes a while.
+- Added the closeFilesAfterBuild option to the deployment input, allowing deployment files to be closed after the build fetches fully rather than before. This should cut down on the file downtime if the build process takes a while.
 - Added the list deployments endpoint at /otto/api/deployments. This endpoint lists all deployments in the ottofms database. API Keys and passwords are encrypted in the response.
 - Added the /deployment/rerun endpoint, which can rerun or schedule a rerun of a deployment or sub-deployment with the initially input options. Also added the ability to rerun a deployment or sub-deployment from the OttoFMS console. This is available in the three dot menu on the deployments table or in the deployment details view.
 - Added a server preferences endpoint which returns the database folder preferences for the server. this endpoint is available at /otto/api/settings/serverPrefs.
@@ -651,7 +664,7 @@ Released: 4/12/2024
 - Added the option to view the full detailed log for a running deployment.
 - Users will now be redirected to the OttoFMS console if they are already logged in and go to the login page.
 - The get deployment endpoint now returns more information about the deployment.
-- Added the fms extended privelages column to the FMS admin databases table. This column is hidden by default and can be revealed in the top right of the table.
+- Added the fms extended privileges column to the FMS admin databases table. This column is hidden by default and can be revealed in the top right of the table.
 - Added folder and subfolder to databases table in the fms admin tab. These columns are hidden by default but can be revealed in the menus in the top right. Full file path can be revealed by hovering over the folder field in the table.
 - The File Browser no longer logs information about access to the otto-info.log. this can be reverted by setting the FILE_MANAGER_LOGGING environment variable to true.
 
@@ -665,7 +678,7 @@ Released: 3/19/2024
 - Overhauled the FMS admin databases and clients table, as well as the deployments table. New tables have better filtering, sorting, and the ability to go fullscreen.
 - OttoFMS will now prevent two builds from running simultaneously
 - Better uncaught exception and unhandled rejection logging
-- Fetched failed errors will no longer cause OttoFMS to crash unecessarily
+- Fetched failed errors will no longer cause OttoFMS to crash unnecessarily
 - Actions can now be taken on multiple rows in the fms admin databases table
 - Added the source to the Deployment details page
 - Added files column to the deployments table
@@ -686,12 +699,12 @@ Released: 3/13/2024
 - hardening OttoFMS against an issue with the FileMaker Server Admin API
 - errors in the deployment log now have a filename where applicable
 - fixed issue with searching and filtering in the logs on the web console
-- Attempt to avoid ECONNRESET error on windows when building
+- Attempt to avoid ECONNRESET error on Windows when building
 - undoing a deployment will now only revert changes for files that have backups. installs will be ignored. previously attempting to undo an install would result in a failed deployment.
 - ottofms will now more gracefully handle errors caused by the FileMaker admin server restarting in the middle of a process.
 - removed duplicate logs for number of completed files
 - fixed an issue causing the entire file path to be written in the migration log on windows. now it will just write the filename
-- fix issue with offsite backups on AWS regions other thatn us-east-1
+- fix issue with offsite backups on AWS regions other than us-east-1
 
 ## 4.2.2
 
@@ -731,7 +744,7 @@ Released: 2/29/2024
 - uninstalling OttoFMS on windows will now fully remove all IIS routing rules put in place by the installer
 - improved logging for delete build and get build status endpoints
 - we are now making even fewer calls to the admin api where possible
-- added link to the webhooks guide from the error if your database is not properly set up to recieve webhooks
+- added link to the webhooks guide from the error if your database is not properly set up to receive webhooks
 - timers for running deployment will now update based on deployment start time rather than most recent log message, making them more accurate in the ui.
 - Builds will now delete each file from the outbox folder after they are successfully zipped into the .build.zip file. This should dramatically reduce folder size in the outbox.
 - OttoFMS now only logs that remaining deployments will be aborted (when using the abort remaining option) if there are remaining deployments to abort
@@ -741,7 +754,7 @@ Released: 2/29/2024
 - added more logs to the zip creation process
 - the manifest.json inside of the .build.zip file will now have a status of "zipping" instead of "started". This value is not updated to "completed" since we update the manifest to "completed" after the zip is complete.
 - we now only log that we are removing builds from the inbox at the end of a deployment if there are builds to remove
-- changed the default compression level of build zips from -1 to 0 (this will apply very little compression to the zips by default, increasing file size and decreasing zip time). This should increase fetch time and decrease zip time. The compression level can be changed in the api, and it will be added to OttoDeployin the future.
+- changed the default compression level of build zips from -1 to 0 (this will apply very little compression to the zips by default, increasing file size and decreasing zip time). This should increase fetch time and decrease zip time. The compression level can be changed in the api, and it will be added to OttoDeploy in the future.
 - Fixed an issue that caused OttoFMS to check the wrong disk for available space before starting deployments
 - zips created by ottofms will no longer have errors when unzipped with services like 7zip
 - fixed issue where the copied webhook url would include the masked api key rather than the full api key.
@@ -759,7 +772,7 @@ Released: 2/21/2024
 - fixed bug in upload ui causing sub-folders for folders that were not the default to not display. Also prevented selecting a sub-folder in the secure folder via the ui, which matches current behavior.
 - fix error causing target locale not to be carried through properly to the data migration tool
 - resuming a deployment will now run a local build rather than fetching if it makes sense to do so.
-- a failure to keep the admin api token alive while running a dpeloyment will now log an error
+- a failure to keep the admin api token alive while running a deployment will now log an error
 - a running deployment will now make fewer calls to the admin api
 - fixed an issue that allowed Otto3 license to be recognized as valid.
 
@@ -786,7 +799,7 @@ Released: 2/12/2024
 - fixed tooltip text in crashed deployment when there is only one sub-deployment
 - only log that we are deleting the schedule if there is a schedule to delete
 - external links in the cmd+k menu will now open in a new tab
-- deployments will now only log that you are logged into the source server if you are using the userpass authentication method since akiKeys and tokens do not need to log in.
+- deployments will now only log that you are logged into the source server if you are using the userpass authentication method since api keys and tokens do not need to log in.
 - usage data now includes otto version and fms version
 - fixed error in ui causing notifications to not appear
 - API errors will now be labelled as OttoFMS API errors rather than FileMaker errors
@@ -873,7 +886,7 @@ Released: 1/23/2024
 
 ### Patch Changes
 
-- fixed issue with autoregister webhook toggle toggling the autoregister webhook behavior backwards
+- fixed issue with auto-register webhook toggle toggling the auto-register webhook behavior backwards
 
 ## 4.0.2
 
@@ -888,17 +901,17 @@ Released: 1/22/2024
 - adding an admin api token via the api before logging into the web console will now properly set up authentication
 - added a log of the license status on OttoFMS startup
 - added lots of docs links
-- fix adminapi login error with keys
+- fix admin API login error with keys
 - admin api key is now encrypted in the database
 - remove expire time from stored token, make cookie expire in 30 days
 - added the option to restart the OttoFMS service from the settings page
 - Rename API Key prefix to DK\_
 - closed files can now be downloaded
-- databases are now sorted alphabetically in the fms amdin tab
+- databases are now sorted alphabetically in the fms admin tab
 - don't close create api key modal on click outside
 - update OttoFMS api doc favicon
 - Add Admin API keys and Admin API Proxy
-- add license info to tinybird
+- add license info to Tinybird
 - build download api now sends the build folder as a zip rather than just the build zip
 - added description to ottomatic folder
 - fix id column spacing in deployments table
@@ -917,7 +930,7 @@ Released: 1/22/2024
 - files now upload in 25 MB chunks to avoid a timeout for large files over slow internet
 - removed http access on windows
 - improves settings page ui
-- fixed issue with FileMaker Servere 20.3 preserved folder
+- fixed issue with FileMaker Server 20.3 preserved folder
 - Add more descriptions to help buttons
 - Update UI for detail view of sub-deployments
 - deploying OttoDeploy will now only choose a schema version that has both a web version and a schema build for that version published
@@ -1027,7 +1040,7 @@ Released: 12/18/2023
 ### Patch Changes
 
 - Fix unhandled rejection error and add splat format to console logger
-- fixed issue with FileMaker Servere 20.3 preserved folder
+- fixed issue with FileMaker Server 20.3 preserved folder
 - fix password and encryption key masking in logs to match complex passwords
 - rename otto v4
 
@@ -1052,7 +1065,7 @@ Released: 12/15/2023
 
 ### Patch Changes
 
-- fix adminapi login error with keys
+- fix admin API login error with keys
 
 ## 4.0.1-beta.12
 
