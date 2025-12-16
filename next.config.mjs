@@ -58,7 +58,7 @@ const nextConfig = {
       },
       {
         source: "/:path*",
-        destination: "https://docs.ottomatic.cloud/:path*",
+        destination: "https://docs.ottomatic.cloud/ottofms-redirect/:path*",
         permanent: true,
       }
     ];
