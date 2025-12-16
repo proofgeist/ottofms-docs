@@ -56,6 +56,11 @@ const nextConfig = {
         destination: "/otto-console/mcp-servers",
         permanent: false,
       },
+      {
+        source: "/:path*",
+        destination: "https://docs.ottomatic.cloud/:path*",
+        permanent: true,
+      }
     ];
   },
   rewrites: async () => {
@@ -67,7 +72,7 @@ const nextConfig = {
       {
         source: "/downloads/:path*",
         destination: "https://console.ottomatic.cloud/downloads/:path*",
-      },
+      }
     ];
   },
 };
